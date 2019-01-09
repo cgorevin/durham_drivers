@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_165829) do
+ActiveRecord::Schema.define(version: 2019_01_09_175744) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "type"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2019_01_09_165829) do
     t.datetime "updated_at", null: false
     t.string "street_address"
     t.string "city"
+  end
+
+  create_table "relief_messages", force: :cascade do |t|
+    t.integer "contact_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_relief_messages_on_contact_id"
   end
 
 end
