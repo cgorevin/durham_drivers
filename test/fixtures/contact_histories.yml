@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact: one
+  offense: one
+  reliefmessage: one
+
+two:
+  contact: two
+  offense: two
+  reliefmessage: two

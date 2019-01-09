@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_175744) do
+ActiveRecord::Schema.define(version: 2019_01_09_180648) do
+
+  create_table "contact_histories", force: :cascade do |t|
+    t.integer "contact_id"
+    t.integer "offense_id"
+    t.integer "relief_message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_contact_histories_on_contact_id"
+    t.index ["offense_id"], name: "index_contact_histories_on_offense_id"
+    t.index ["relief_message_id"], name: "index_contact_histories_on_relief_message_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "type"
