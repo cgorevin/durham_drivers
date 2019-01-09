@@ -4,4 +4,6 @@ class Offense < ApplicationRecord
   validates :street_address, presence: true
   validates :type, presence: true
   validates :status, presence: true
+
+  has_many :contacts
 end
