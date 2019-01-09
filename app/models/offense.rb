@@ -5,4 +5,12 @@ class Offense < ApplicationRecord
   validates :status, presence: true
 
   has_many :contacts
+
+  def fta?
+    !ftp
+  end
+
+  def type
+    ftp ? 'FTP' : 'FTA'
+  end
 end
