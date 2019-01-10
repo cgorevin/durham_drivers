@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_180648) do
+
+ActiveRecord::Schema.define(version: 2019_01_09_203207) do
 
   create_table "contact_histories", force: :cascade do |t|
     t.integer "contact_id"
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_01_09_180648) do
   end
 
   create_table "offenses", force: :cascade do |t|
-    t.boolean "type"
+    t.boolean "ftp"
     t.string "first_name"
     t.string "last_name"
     t.string "middle_name"
