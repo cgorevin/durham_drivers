@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search_histories/index'
   root 'search#show'
 
   controller :search do

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_01_09_203207) do
+ActiveRecord::Schema.define(version: 2019_01_10_151513) do
 
   create_table "contact_histories", force: :cascade do |t|
     t.integer "contact_id"
@@ -54,6 +53,16 @@ ActiveRecord::Schema.define(version: 2019_01_09_203207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_relief_messages_on_contact_id"
+  end
+
+  create_table "search_histories", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "middle_name"
+    t.date "date_of_birth"
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
