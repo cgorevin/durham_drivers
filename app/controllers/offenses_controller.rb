@@ -1,5 +1,5 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:show, :index, :new, :create]
+  # before_action :authenticate_admin!, :except => [:show, :index, :new, :create]
 
   def timer(msg, start, stop, round = 2)
     time = stop - start
