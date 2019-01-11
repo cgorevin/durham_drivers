@@ -126,80 +126,100 @@ class OffensesController < ApplicationController
   # "LOAD FILE TIME: 10.58s"
   # "LOOP TIME: 13m28.48s"
   # "TOTAL TIME: 13m39.07s"
+  # def create
+  #   file = params[:offense][:file]
+  #   start = Time.now
+  #   workbook = Creek::Book.new file.path # , check_file_extension: false
+  #   new_book_time = Time.now
+  #   worksheets = workbook.sheets
+  #   # puts "Found #{worksheets.count} worksheets"
+  #
+  #   worksheets.each do |worksheet|
+  #     # puts "Reading: #{worksheet.name}"
+  #     total_rows = 0
+  #     succesful_rows = 0
+  #     errors = {}
+  #     name, ftp, dob, disposition, group, street, city, race, sex, code, text = nil
+  #     worksheet.simple_rows.each_with_index do |row, index|
+  #       if index == 0
+  #         # the first row has all the names, we have to find the key associated
+  #         # with that name, so that we can find the values of that column in all
+  #         # future rows
+  #         name = row.key 'DEFENDANT_NAME'
+  #         ftp = row.key 'FTP_RELIEF'
+  #         dob = row.key 'DEFENDANT_BIRTHDATE'
+  #         disposition = row.key 'DISPOSITION_DATE'
+  #         group = row.key 'GRP_ID'
+  #         street = row.key 'DEFENDANT_ADDRESS'
+  #         city = row.key 'DEFENDANT_CITY'
+  #         race = row.key 'DEFENDANT_RACE'
+  #         sex = row.key 'DEFENDANT_SEX'
+  #         code = row.key 'CONVICTED_OFFENSE_CODE'
+  #         text = row.key 'CONVICTED_OFFENSE_TEXT'
+  #       else
+  #         # make a hash of data that we will import
+  #         data = {
+  #           name: row[name], # need custom setter method
+  #           ftp: row[ftp], # may need custom setter method
+  #           dob: row[dob], # need custom setter method
+  #           disposition_date: row[disposition],
+  #           group: row[group], street_address: row[street], city: row[city],
+  #           race: row[race], sex: row[sex], code: row[code], text: row[text],
+  #           status: 'pending'
+  #         }
+  #         # print 'data: '; pp data
+  #
+  #         # now that we have some data, let's import it
+  #         offense = Offense.create data
+  #
+  #         if offense.errors.any?
+  #           # if there were any errors, log it
+  #           errors[index + 1] = {
+  #             name: data[:name],
+  #             error: offense.errors.to_a.join('. ')
+  #           }
+  #         else
+  #           # else this row was a succesfully imported
+  #           succesful_rows += 1
+  #         end
+  #       end
+  #
+  #       total_rows += 1
+  #     end
+  #
+  #     puts "#{total_rows} TOTAL ROWS"
+  #     puts "#{succesful_rows} SUCCESSFUL ROWS"
+  #     puts "#{Offense.count} OFFENSES CREATED"
+  #     print "#{errors.count} ERRORS: "
+  #     pp errors
+  #   end
+  #
+  #   stop = Time.now
+  #   timer 'LOAD FILE TIME', start, new_book_time
+  #   timer 'LOOP TIME', new_book_time, stop
+  #   timer 'TOTAL TIME', start, stop
+  #
+  #   redirect_to new_offense_path # , notice: 'CREATE SUCCESSFUL'
+  # end
+
   def create
     file = params[:offense][:file]
+
     start = Time.now
-    workbook = Creek::Book.new file.path # , check_file_extension: false
-    new_book_time = Time.now
-    worksheets = workbook.sheets
-    # puts "Found #{worksheets.count} worksheets"
 
-    worksheets.each do |worksheet|
-      # puts "Reading: #{worksheet.name}"
-      total_rows = 0
-      succesful_rows = 0
-      errors = {}
-      name, ftp, dob, disposition, group, street, city, race, sex, code, text = nil
-      worksheet.simple_rows.each_with_index do |row, index|
-        if index == 0
-          # the first row has all the names, we have to find the key associated
-          # with that name, so that we can find the values of that column in all
-          # future rows
-          name = row.key 'DEFENDANT_NAME'
-          ftp = row.key 'FTP_RELIEF'
-          dob = row.key 'DEFENDANT_BIRTHDATE'
-          disposition = row.key 'DISPOSITION_DATE'
-          group = row.key 'GRP_ID'
-          street = row.key 'DEFENDANT_ADDRESS'
-          city = row.key 'DEFENDANT_CITY'
-          race = row.key 'DEFENDANT_RACE'
-          sex = row.key 'DEFENDANT_SEX'
-          code = row.key 'CONVICTED_OFFENSE_CODE'
-          text = row.key 'CONVICTED_OFFENSE_TEXT'
-        else
-          # make a hash of data that we will import
-          data = {
-            name: row[name], # need custom setter method
-            ftp: row[ftp], # may need custom setter method
-            dob: row[dob], # need custom setter method
-            disposition_date: row[disposition],
-            group: row[group], street_address: row[street], city: row[city],
-            race: row[race], sex: row[sex], code: row[code], text: row[text],
-            status: 'pending'
-          }
-          # print 'data: '; pp data
+    workbook = Creek::Book.new file.path
 
-          # now that we have some data, let's import it
-          offense = Offense.create data
+    load_time = Time.now
 
-          if offense.errors.any?
-            # if there were any errors, log it
-            errors[index + 1] = {
-              name: data[:name],
-              error: offense.errors.to_a.join('. ')
-            }
-          else
-            # else this row was a succesfully imported
-            succesful_rows += 1
-          end
-        end
-
-        total_rows += 1
-      end
-
-      puts "#{total_rows} TOTAL ROWS"
-      puts "#{succesful_rows} SUCCESSFUL ROWS"
-      puts "#{Offense.count} OFFENSES CREATED"
-      print "#{errors.count} ERRORS: "
-      pp errors
-    end
+    import_worksheet(workbook.sheets.first)
 
     stop = Time.now
-    timer 'LOAD FILE TIME', start, new_book_time
-    timer 'LOOP TIME', new_book_time, stop
+
+    timer 'LOAD FILE TIME', start, load_time
+    timer 'LOOP TIME', load_time, stop
     timer 'TOTAL TIME', start, stop
 
-    redirect_to new_offense_path # , notice: 'CREATE SUCCESSFUL'
+    redirect_to new_offense_path
   end
 
   def edit
@@ -209,5 +229,60 @@ class OffensesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def import_worksheet(worksheet)
+    # puts "Reading: #{worksheet.name}"
+    total_rows, succesful_rows = 0
+    errors = {}
+    name, dob, ftp, disposition, group, street, city, race, sex, code, text = nil
+    worksheet.simple_rows.each_with_index do |row, index|
+      if index == 0
+        # the first row has all the names, we have to find the key associated
+        # with that name, so that we can find the values of that column in all
+        # future rows
+        name = row.key 'DEFENDANT_NAME'
+        dob = row.key 'DEFENDANT_BIRTHDATE'
+        ftp = row.key 'FTP_RELIEF'
+        disposition = row.key 'DISPOSITION_DATE'
+        group = row.key 'GRP_ID'
+        street = row.key 'DEFENDANT_ADDRESS'
+        city = row.key 'DEFENDANT_CITY'
+        race = row.key 'DEFENDANT_RACE'
+        sex = row.key 'DEFENDANT_SEX'
+        code = row.key 'CONVICTED_OFFENSE_CODE'
+        text = row.key 'CONVICTED_OFFENSE_TEXT'
+      else
+        # make a hash of data that we will import
+        data = {
+          name: row[name], dob: row[dob], # need custom setter methods
+          ftp: row[ftp], disposition_date: row[disposition],
+          group: row[group], street_address: row[street], city: row[city],
+          race: row[race], sex: row[sex], code: row[code], text: row[text],
+          status: 'pending'
+        }
+        # print 'data: '; pp data
+
+        # now that we have some data, let's import it
+        offense = Offense.create data
+
+        if offense.errors.any?
+          # if there were any errors, log it
+          error = offense.errors.to_a.join('. ')
+          errors[index + 1] = { name: data[:name], error: error }
+        else succesful_rows += 1
+        end
+      end
+
+      total_rows += 1
+    end
+
+    puts "#{total_rows} TOTAL ROWS"
+    puts "#{succesful_rows} SUCCESSFUL ROWS"
+    puts "#{Offense.count} OFFENSES CREATED"
+    print "#{errors.count} ERRORS: "
+    pp errors
   end
 end
