@@ -33,17 +33,35 @@ class OffensesController < ApplicationController
     worksheets.each do |worksheet|
       puts "Reading: #{worksheet.name}"
       num_rows = 0
-      name_position = nil
+      name_key, ftp_key, dob_key, disposition_key, group_key, street_key, city_key = nil
       worksheet.simple_rows.each_with_index do |row, index|
+        data = {}
         if index == 0
-          name_position = row.key 'DEFENDANT_NAME'
-          p "name_position: ", name_position
+          name_key = row.key 'DEFENDANT_NAME'
+          ftp_key = row.key 'FTP_RELIEF'
+          dob_key = row.key 'DEFENDANT_BIRTHDATE'
+          disposition_key = row.key 'DISPOSITION_DATE'
+          group_key = row.key 'GRP_ID'
+          street_key = row.key 'DEFENDANT_ADDRESS'
+          city_key = row.key 'DEFENDANT_CITY'
+          print 'name_key: '; p name_key
+          print 'ftp_key: '; p ftp_key
+          print 'dob_key: '; p dob_key
+          print 'disposition_key: '; p disposition_key
+          print 'group_key: '; p group_key
+          print 'street_key: '; p street_key
+          print 'city_key: '; p city_key
         else
-          name = row[name_position]
-          p "name: ", name
+          data[:name] = row[name_key] # need custom setter method
+          data[:ftp] = row[ftp_key] # may need custom setter method
+          data[:dob] = row[dob_key] # need custom setter method
+          data[:disposition_date] = row[disposition_key] # need custom setter method
+          data[:group] = row[group_key] # need custom setter method
+          data[:street_address] = row[street_key] # need custom setter method
+          data[:city] = row[city_key] # need custom setter method
+          print 'data: '; pp data
         end
-        print 'row: '
-        pp row
+        print 'row: '; pp row
         row_cells = row.values
 
         # splitting the name
