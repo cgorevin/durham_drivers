@@ -4,3 +4,13 @@
 <p>Form that allows you to choose a file and upload it.</p>
 
 <p>Only spreadsheet-type files should be allowed.</p>
+
+<%= form_for @offense do |f| %>
+  <div class="field mt mb">
+    <%= f.file_field :file, accept: 'text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %>
+  </div>
+
+  <div class="btn-container">
+    <%= f.submit 'File Import', class: '' %>
+  </div>
+<% end %>
