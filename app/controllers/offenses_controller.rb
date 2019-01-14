@@ -19,24 +19,10 @@ class OffensesController < ApplicationController
   # TOTAL TIME: 132.34 seconds
   # NOTE: ACTUAL IMPORT RESULTS
   # 94850 TOTAL ROWS
-  # 94817 SUCCESSFUL ROWS
-  # 94817 OFFENSES CREATED
-  # 32 ERRORS: {8329=>
-  #   {:name=>"KEA-ALLEN CASSANDRA",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  8330=>
-  #   {:name=>"ANDERSON SUSAN",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  8331=>
-  #   {:name=>"RICHARDSON CHARLES KENITH",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  8332=>
-  #   {:name=>"RICHARDSON CHARLES KENITH",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  15949=>
-  #   {:name=>"JOHN DOE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  18736=>
+  # 94844 SUCCESSFUL ROWS
+  # 5 ERRORS
+  # 99.995% SUCCESS RATE
+  # 5 ERRORS: {18736=>
   #   {:name=>"VICTOR",
   #    :error=>"First name can't be blank. Last name can't be blank"},
   #  18737=>
@@ -45,147 +31,31 @@ class OffensesController < ApplicationController
   #  20054=>
   #   {:name=>"HERNANDEZ-BADILLO",
   #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  22445=>
-  #   {:name=>"JOHN DOE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  22446=>
-  #   {:name=>"JOHN DOE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  35086=>
-  #   {:name=>"FUENTE,JUAN,JOSE,ORZOA,DE,LA",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  35087=>
-  #   {:name=>"FUENTE,JUAN,JOSE,ORZOA,DE,L",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  35088=>
-  #   {:name=>"FUENTE,JUAN,JOSE,ORZOA,DE,L",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  37246=>{:name=>"MOORE,WILLIAM,,AUTHUR", :error=>"First name can't be blank"},
-  #  37247=>{:name=>"MOORE,WILLIAM,,AUTHUR", :error=>"First name can't be blank"},
-  #  46527=>
-  #   {:name=>"JOHN DOE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  46528=>
-  #   {:name=>"JOHN DOE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  52794=>
-  #   {:name=>"GARCIA,HUGO,RAFAEL,,,,FLORES",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  52795=>
-  #   {:name=>"GARCIA,HUGO,RAFAEL,,,,FLORES",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
   #  56219=>
   #   {:name=>"PINEDA-MARADIAGA",
   #    :error=>"First name can't be blank. Last name can't be blank"},
   #  56220=>
   #   {:name=>"PINEDA-MARADIAGA",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  56486=>{:name=>"MIRANDA-RENDON,,AMUEL", :error=>"First name can't be blank"},
-  #  57518=>
-  #   {:name=>"SOLER,LUIS,,,ANGEL,RECINO,FR",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  64003=>
-  #   {:name=>"ANGEL,ADOLFO,DE,LA,GARZA,DEE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  64004=>
-  #   {:name=>"ANGEL,ADOLFO,DE,LA,GARZA,DEE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  64005=>
-  #   {:name=>"ANGEL,ADOLFO,DE,LA,GARZA,DEE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  64006=>
-  #   {:name=>"ANGEL,ADOLFO,DE,LA,GARZA,DEE",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  75652=>
-  #   {:name=>"ESRES RUDOLPH",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  86065=>{:name=>"LOYA,,SANTIAGO", :error=>"First name can't be blank"},
-  #  91473=>
-  #   {:name=>"CARRERA,RONALD,,,,,DOUGLAS,V",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  91721=>
-  #   {:name=>"GARCIA,HUGO,RAFAEL,,,,FLORES",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  91915=>
-  #   {:name=>"SELF SHARMAN",
   #    :error=>"First name can't be blank. Last name can't be blank"}}
-  # "LOAD FILE TIME: 10.58s"
-  # "LOOP TIME: 13m28.48s"
-  # "TOTAL TIME: 13m39.07s"
-  # def create
-  #   file = params[:offense][:file]
-  #   start = Time.now
-  #   workbook = Creek::Book.new file.path # , check_file_extension: false
-  #   new_book_time = Time.now
-  #   worksheets = workbook.sheets
-  #   # puts "Found #{worksheets.count} worksheets"
-  #
-  #   worksheets.each do |worksheet|
-  #     # puts "Reading: #{worksheet.name}"
-  #     total_rows = 0
-  #     succesful_rows = 0
-  #     errors = {}
-  #     name, ftp, dob, disposition, group, street, city, race, sex, code, text = nil
-  #     worksheet.simple_rows.each_with_index do |row, index|
-  #       if index == 0
-  #         # the first row has all the names, we have to find the key associated
-  #         # with that name, so that we can find the values of that column in all
-  #         # future rows
-  #         name = row.key 'DEFENDANT_NAME'
-  #         ftp = row.key 'FTP_RELIEF'
-  #         dob = row.key 'DEFENDANT_BIRTHDATE'
-  #         disposition = row.key 'DISPOSITION_DATE'
-  #         group = row.key 'GRP_ID'
-  #         street = row.key 'DEFENDANT_ADDRESS'
-  #         city = row.key 'DEFENDANT_CITY'
-  #         race = row.key 'DEFENDANT_RACE'
-  #         sex = row.key 'DEFENDANT_SEX'
-  #         code = row.key 'CONVICTED_OFFENSE_CODE'
-  #         text = row.key 'CONVICTED_OFFENSE_TEXT'
-  #       else
-  #         # make a hash of data that we will import
-  #         data = {
-  #           name: row[name], # need custom setter method
-  #           ftp: row[ftp], # may need custom setter method
-  #           dob: row[dob], # need custom setter method
-  #           disposition_date: row[disposition],
-  #           group: row[group], street_address: row[street], city: row[city],
-  #           race: row[race], sex: row[sex], code: row[code], text: row[text],
-  #           status: 'pending'
-  #         }
-  #         # print 'data: '; pp data
-  #
-  #         # now that we have some data, let's import it
-  #         offense = Offense.create data
-  #
-  #         if offense.errors.any?
-  #           # if there were any errors, log it
-  #           errors[index + 1] = {
-  #             name: data[:name],
-  #             error: offense.errors.to_a.join('. ')
-  #           }
-  #         else
-  #           # else this row was a succesfully imported
-  #           succesful_rows += 1
-  #         end
-  #       end
-  #
-  #       total_rows += 1
-  #     end
-  #
-  #     puts "#{total_rows} TOTAL ROWS"
-  #     puts "#{succesful_rows} SUCCESSFUL ROWS"
-  #     puts "#{Offense.count} OFFENSES CREATED"
-  #     print "#{errors.count} ERRORS: "
-  #     pp errors
+  # LOAD TIME: 9.34s
+  # LOOP TIME: 14m45.1s
+  # TOTAL TIME: 14m54.44s
+  # def counter(interval = 1, klass = Offense)
+  #   residuals = []
+  #   old_count = klass.count
+  #   sleep interval
+  #   loop do
+  #     new_count = klass.count
+  #     break if old_count == new_count
+  #     residual = new_count - old_count
+  #     residuals << residual
+  #     puts "#{new_count} (+#{residual})"
+  #     old_count = new_count
+  #     sleep interval
   #   end
-  #
-  #   stop = Time.now
-  #   timer 'LOAD FILE TIME', start, new_book_time
-  #   timer 'LOOP TIME', new_book_time, stop
-  #   timer 'TOTAL TIME', start, stop
-  #
-  #   redirect_to new_offense_path # , notice: 'CREATE SUCCESSFUL'
+  #   puts "MINIMUM RESIDUAL: #{residuals.min}"
+  #   puts "MAXIMUM RESIDUAL: #{residuals.max}"
+  #   puts "AVERAGE RESIDUAL: #{(residuals.sum / residuals.size.to_f).round 1}"
   # end
 
   def create
@@ -201,7 +71,7 @@ class OffensesController < ApplicationController
 
     stop = Time.now
 
-    timer 'LOAD FILE TIME', start, load_time
+    timer 'LOAD TIME', start, load_time
     timer 'LOOP TIME', load_time, stop
     timer 'TOTAL TIME', start, stop
 
@@ -221,9 +91,10 @@ class OffensesController < ApplicationController
 
   def import_worksheet(worksheet)
     # puts "Reading: #{worksheet.name}"
-    total_rows, succesful_rows = 0
+    total_rows, successful_rows = [0, 0]
     errors = {}
     name, dob, ftp, disposition, group, street, city, race, sex, code, text = nil
+
     worksheet.simple_rows.each_with_index do |row, index|
       if index == 0
         # the first row has all the names, we have to find the key associated
@@ -258,17 +129,20 @@ class OffensesController < ApplicationController
           # if there were any errors, log it
           error = offense.errors.to_a.join('. ')
           errors[index + 1] = { name: data[:name], error: error }
-        else succesful_rows += 1
+        else successful_rows += 1
         end
       end
 
       total_rows += 1
     end
 
+    sleep 2
     puts "#{total_rows} TOTAL ROWS"
-    puts "#{succesful_rows} SUCCESSFUL ROWS"
-    puts "#{Offense.count} OFFENSES CREATED"
-    print "#{errors.count} ERRORS: ", pp errors
+    puts "#{successful_rows} SUCCESSFUL ROWS"
+    puts "#{errors.count} ERRORS"
+    puts "#{((successful_rows / (total_rows - 1).to_f) * 100).round 3}% SUCCESS RATE"
+    print "#{errors.count} ERRORS: "
+    pp errors
   end
 
   def timer(msg, start, stop, round = 2)
@@ -282,6 +156,6 @@ class OffensesController < ApplicationController
     elapsed_time << "#{minutes}m" if minutes.positive?
     elapsed_time << "#{seconds}s"
 
-    p "#{msg}: #{elapsed_time}"
+    puts "#{msg}: #{elapsed_time}"
   end
 end

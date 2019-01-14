@@ -15,7 +15,6 @@ class Offense < ApplicationRecord
   end
 
   def name=(string)
-    names = string.split ','
     # 1. KEA-ALLEN CASSANDRA            < first/last can't be blank
     # 2. ANDERSON SUSAN                 < first/last
     # 3. RICHARDSON CHARLES KENITH      < first/last
@@ -49,6 +48,42 @@ class Offense < ApplicationRecord
     # 31. GARCIA,HUGO,RAFAEL,,,,FLORES  < first/last
     # 32. SELF SHARMAN                  < first/last
 
+    # all first/last can't be blank
+    # 1. VICTOR
+    # 2. VICTOR
+    # 3. HERNANDEZ-BADILLO
+    # 4. FUENTE,JUAN,JOSE,ORZOA,DE,LA
+    # 5. FUENTE,JUAN,JOSE,ORZOA,DE,L
+    # 6. FUENTE,JUAN,JOSE,ORZOA,DE,L
+    # 7. FLORES,JOSE,DE LE ROSA,ALVAR
+    # 8. FLORES,JOSE,DE LE ROSA,ALVAR
+    # 9. CASTILLO DE LA ROSA,JUAN,ANG
+    # 10. CASTILLO DE LA ROSA,JUAN,ANG
+    # 11. PINEDA-MARADIAGA
+    # 12. PINEDA-MARADIAGA
+    # 13. ANGEL,ADOLFO,DE,LA,GARZA,DEE
+    # 14. ANGEL,ADOLFO,DE,LA,GARZA,DEE
+    # 15. ANGEL,ADOLFO,DE,LA,GARZA,DEE
+    # 16. ANGEL,ADOLFO,DE,LA,GARZA,DEE
+
+    # 1. VICTOR
+    # 2. VICTOR
+    # 3. HERNANDEZ-BADILLO
+    # 4. PINEDA-MARADIAGA
+    # 5. PINEDA-MARADIAGA
+
+    # if string.include? ','
+    #   names = string.split ','
+    # else
+    #   names = string.split
+    # end
+    # names = string.include?(',') ? string.split(',') : string.split
+    # names = string.split( string.include?(',') ? ',' : nil )
+    # names = string.split( string[','] ? ',' : nil )
+    names = string.split string[',']
+    # names = string.split /,|\s/
+    names.delete_if &:blank?
+
     if names.count == 2
       # KAISERLIK,JULIE
       # MORGAN,ELAINE
@@ -78,6 +113,10 @@ class Offense < ApplicationRecord
       first_name = names[2..3].join(' ')
       middle_name = names.last
       last_name = names[0..1].join(' ')
+    elsif names.count == 6
+      first_name = names[2..3].join(' ')
+      middle_name = names[4..5].join(' ')
+      last_name = names[0..1].join(' ')
     end
     self.first_name = first_name
     self.middle_name = middle_name
@@ -93,5 +132,9 @@ class Offense < ApplicationRecord
     else
       puts string.length
     end
+  end
+
+  def self.search(name1, name2, name3, dob)
+
   end
 end
