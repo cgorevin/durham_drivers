@@ -1,20 +1,6 @@
 class OffensesController < ApplicationController
   # before_action :authenticate_admin!, :except => [:show, :index, :new, :create]
 
-  def timer(msg, start, stop, round = 2)
-    time = stop - start
-    # elapsed_time = Time.at(time).utc.strftime '%H:%M:%S'
-    hours = (time / (60 * 60)).to_i
-    minutes = (time % (60 * 60) / 60).to_i
-    seconds = (time % 60).round 2
-    elapsed_time = ''
-    elapsed_time << "#{hours}h" if hours.positive?
-    elapsed_time << "#{minutes}m" if minutes.positive?
-    elapsed_time << "#{seconds}s" if seconds.positive?
-
-    p "#{msg}: #{elapsed_time}"
-  end
-
   def index
   end
 
@@ -282,7 +268,20 @@ class OffensesController < ApplicationController
     puts "#{total_rows} TOTAL ROWS"
     puts "#{succesful_rows} SUCCESSFUL ROWS"
     puts "#{Offense.count} OFFENSES CREATED"
-    print "#{errors.count} ERRORS: "
-    pp errors
+    print "#{errors.count} ERRORS: ", pp errors
+  end
+
+  def timer(msg, start, stop, round = 2)
+    time = stop - start
+    # elapsed_time = Time.at(time).utc.strftime '%H:%M:%S'
+    hours = (time / (60 * 60)).to_i
+    minutes = (time % (60 * 60) / 60).to_i
+    seconds = (time % 60).round 2
+    elapsed_time = ''
+    elapsed_time << "#{hours}h" if hours.positive?
+    elapsed_time << "#{minutes}m" if minutes.positive?
+    elapsed_time << "#{seconds}s"
+
+    p "#{msg}: #{elapsed_time}"
   end
 end
