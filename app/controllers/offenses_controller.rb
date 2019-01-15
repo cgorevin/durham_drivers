@@ -19,27 +19,12 @@ class OffensesController < ApplicationController
   # TOTAL TIME: 132.34 seconds
   # NOTE: ACTUAL IMPORT RESULTS
   # 94850 TOTAL ROWS
-  # 94844 SUCCESSFUL ROWS
-  # 5 ERRORS
-  # 99.995% SUCCESS RATE
-  # 5 ERRORS: {18736=>
-  #   {:name=>"VICTOR",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  18737=>
-  #   {:name=>"VICTOR",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  20054=>
-  #   {:name=>"HERNANDEZ-BADILLO",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  56219=>
-  #   {:name=>"PINEDA-MARADIAGA",
-  #    :error=>"First name can't be blank. Last name can't be blank"},
-  #  56220=>
-  #   {:name=>"PINEDA-MARADIAGA",
-  #    :error=>"First name can't be blank. Last name can't be blank"}}
-  # LOAD TIME: 9.34s
-  # LOOP TIME: 14m45.1s
-  # TOTAL TIME: 14m54.44s
+  # 94849 SUCCESSFUL ROWS
+  # 0 ERRORS
+  # 100.0% SUCCESS RATE
+  # LOAD TIME: 10.29s
+  # LOOP TIME: 11m50.79s
+  # TOTAL TIME: 12m1.08s
   # def counter(interval = 1, klass = Offense)
   #   residuals = []
   #   old_count = klass.count

@@ -84,7 +84,12 @@ class Offense < ApplicationRecord
     # names = string.split /,|\s/
     names.delete_if &:blank?
 
-    if names.count == 2
+    if names.count == 1
+      # VICTOR
+      # HERNANDEZ-BADILLO
+      first_name = 'n/a'
+      last_name = names.first
+    elsif names.count == 2
       # KAISERLIK,JULIE
       # MORGAN,ELAINE
       first_name = names.last
@@ -121,9 +126,6 @@ class Offense < ApplicationRecord
     self.first_name = first_name
     self.middle_name = middle_name
     self.last_name = last_name
-    # print 'first name: '; p first_name
-    # print 'middle name: '; p middle_name
-    # print 'last name: '; p last_name
   end
 
   def dob=(string)
