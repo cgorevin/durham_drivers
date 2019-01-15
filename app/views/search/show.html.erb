@@ -1,2 +1,19 @@
-<h1>Search#show</h1>
-<p>Find me in app/views/search/show.html.erb</p>
+<h1>Search</h1>
+
+<p>Enter a your name and date of birth.</p>
+
+<%= form_for @offense, url: confirm_path do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, autocomplete: 'new-password', autofill: :off %>
+
+  <%= f.label :middle_name %>
+  <%= f.text_field :middle_name, autocomplete: 'new-password', autofill: :off %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, autocomplete: 'new-password', autofill: :off %>
+
+  <%= f.label :date_of_birth %>
+  <%= f.text_field :date_of_birth %>
+
+  <%= f.submit 'Search' %>
+<% end %>

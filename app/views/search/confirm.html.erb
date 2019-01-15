@@ -1,2 +1,26 @@
-<h1>Search#confirm</h1>
-<p>Find me in app/views/search/confirm.html.erb</p>
+<%= link_to 'Back', root_path %>
+
+<h1>Is this you?</h1>
+
+<p>Your search:</p>
+
+<p>First name: <%= @first.inspect %></p>
+<p>Middle name: <%= @middle.inspect %></p>
+<p>Last name: <%= @last.inspect %></p>
+<p>Date of birth: <%= @dob.inspect %></p>
+
+<p>EXACT MATCHES</p>
+
+<ol>
+  <% @exact_matches.each do |offense| %>
+    <li>id: <%= offense.id %>. <%= offense.name %>. <%= offense.date_of_birth %></li>
+  <% end %>
+</ol>
+
+<p>SIMILAR MATCHES</p>
+
+<ol>
+  <% @similar_matches.each do |offense| %>
+  <li>id: <%= offense.id %>. <%= offense.name %>. <%= offense.date_of_birth %></li>
+  <% end %>
+</ol>

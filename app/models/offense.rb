@@ -10,6 +10,12 @@ class Offense < ApplicationRecord
     !ftp
   end
 
+  def name
+    names = [last_name, first_name, middle_name]
+    names.delete_if &:blank?
+    names.join ', '
+  end
+
   def type
     ftp ? 'FTP' : 'FTA'
   end
@@ -136,7 +142,50 @@ class Offense < ApplicationRecord
     end
   end
 
-  def self.search(name1, name2, name3, dob)
+  def self.exact_search(first_name, middle_name, last_name, date_of_birth)
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+    search = where date_of_birth: date_of_birth
+    search.where "first_name #{like} ? AND middle_name #{like} ? AND last_name #{like} ?", first_name, middle_name, last_name
+  end
 
+  def self.similar_search(*words, dob)
+    # array of columns you want to search for
+    attrs = %w(first_name middle_name last_name)
+
+    # array of keywords we are search for
+    # get the number of words in a query. the query "john doe smith" has 3 words
+    words = words.join(' ').split
+
+    # split "john doe smith" into ["john", "doe", "smith"]
+    # multiply by the number of columns you are searching for
+    # if columns = [first_name and last_name], then multiply by 2
+    # ["john", "doe", "smith", "john", "doe", "smith"]
+    # sort it: ["doe", "doe", "john", "john", "smith", "smith"]
+    # wrap with %'s to allow wildcard searches
+    # ["%doe%", "%doe%", "%john%", "%john%", "%smith%", "%smith%"]
+    terms = (words * attrs.size).sort.map { |term| "%#{term}%" }
+
+    # use case insensitive operator
+    # allows to find 'John' with 'john', 'JOHN', 'jOhN', etc
+    # sqlite3's operator for case insensitivity is LIKE
+    # postgres's operator for case insensitivity is ILIKE
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+
+    # turn columsn into SQL phrase
+    # ['first_name', 'last_name'] => "(first_name like ? OR last_name like ?)"
+    phrase = %`(#{attrs.map { |c| "#{c} #{like} ?" }.join(' OR ')})`
+
+    # multiply by 3 if words.size = 3. join with ' AND '
+    # (first_name LIKE ? OR last_name LIKE ?) AND
+    # (first_name LIKE ? OR last_name LIKE ?) AND
+    # (first_name LIKE ? OR last_name LIKE ?)
+    # pass that string in and the array of terms to get sql like:
+    # (first_name LIKE "%doe%" OR last_name LIKE "%doe%") AND
+    # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
+    # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
+    # joins() searches customers that have 1+ billing_address & locations
+    # left_joins() searches customers that have 0+ billing or locations
+    # left_joins() can cause duplicate rows because of has_many :locations
+    where(date_of_birth: dob).where ([phrase] * words.size).join(' AND '), *terms
   end
 end
