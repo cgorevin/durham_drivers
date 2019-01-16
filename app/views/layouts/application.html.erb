@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DurhamDrivers</title>
+    <title>Durham Drivers License Restoration Initiative</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <div class="navbar navbar-expand-lg navbar-inverse navbar-fixed-top" id="myNav">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="nav-flex-container">
+              <h1>Durham Drivers License Restoration Initiative</h1>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsing-nav" id="toggle-button">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" id="collapsing-nav">
+          <ul class="nav navbar-nav navbar-style">
+            <li class="nav-item dropdown full-width"><%= link_to "Search", '/', class: 'nav-link' %></li>
+            <% if admin_signed_in? %>
+              <li class="nav-item dropdown full-width"><%= link_to "Offenses", '/offenses/index', class: 'nav-link' %></li>
+              <li class="nav-item dropdown full-width"><%= link_to('Logout', destroy_admin_session_path, method: :delete, class: 'nav-link') %></li>
+            <% else %>
+              <li class="nav-item dropdown full-width">
+                <%= link_to('Admin', new_admin_session_path, class: 'nav-link') %>
+              </li>
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </header>
   <body>
+    <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %> flash-width">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= value %>
+        </div>
+      <% end %>
     <%= yield %>
   </body>
 </html>
