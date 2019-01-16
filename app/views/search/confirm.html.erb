@@ -1,26 +1,91 @@
 <%= link_to 'Back', root_path %>
 
-<h1>Is this you?</h1>
+<h2>Your search</h2>
 
-<p>Your search:</p>
+<table>
+  <thead>
+    <tr>
+      <th>first name</th>
+      <th>middle name</th>
+      <th>last name</th>
+      <th>birth date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @first.inspect %></td>
+      <td><%= @middle.inspect %></td>
+      <td><%= @last.inspect %></td>
+      <td><%= @dob.inspect %></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>First name: <%= @first.inspect %></p>
-<p>Middle name: <%= @middle.inspect %></p>
-<p>Last name: <%= @last.inspect %></p>
-<p>Date of birth: <%= @dob.inspect %></p>
+<h2>Is this you?</h2>
 
-<p>EXACT MATCHES</p>
+<p>Select all that are you</p>
 
-<ol>
-  <% @exact_matches.each do |offense| %>
-    <li>id: <%= offense.id %>. <%= offense.name %>. <%= offense.date_of_birth %></li>
+<% @all_matches = @exact_matches + @similar_matches %>
+
+
+<%= form_tag results_path do |f| %>
+
+  <% @all_matches.group_by { |x| [x.name, x.dob, x.street, x.sex, x.race] }.each_with_index do |array, index| %>
+    <% group = array.first %>
+    <% offenses = array.last %>
+    <% ids = offenses.map(&:id) %>
+    <% name = group[0] %>
+    <% street = group[2] %>
+
+    <div class="">
+      <%= check_box_tag "ids[]", ids, false, id: index %>
+      <%= label_tag index, "#{name}, #{street}" %>
+    </div>
   <% end %>
-</ol>
 
-<p>SIMILAR MATCHES</p>
+  <%= submit_tag 'yeet' %>
+<% end %>
 
-<ol>
-  <% @similar_matches.each do |offense| %>
-  <li>id: <%= offense.id %>. <%= offense.name %>. <%= offense.date_of_birth %></li>
-  <% end %>
-</ol>
+<% if false %>
+  <p>EXACT MATCHES</p>
+
+  <ol>
+    <% @exact_matches.each do |offense| %>
+      <li>
+        <p>id: <%= offense.id %></p>
+        <p>name: <%= offense.name %></p>
+        <p>dob: <%= offense.date_of_birth %></p>
+        <p>Address: <%= offense.street_address %></p>
+        <p>case type: <%= offense.type %></p>
+        <p>disposition date: <%= offense.disposition_date %></p>
+        <p>group: <%= offense.group %></p>
+        <p>sex: <%= offense.sex %>. race: <%= offense.race %></p>
+        <p>code: <%= offense.code %>. text: <%= offense.text %>.</p>
+      </li>
+    <% end %>
+  </ol>
+
+  <p>SIMILAR MATCHES</p>
+
+  <ol>
+    <% @similar_matches.each do |offense| %>
+      <li>
+        <p>id: <%= offense.id %></p>
+        <p>name: <%= offense.name %></p>
+        <p>dob: <%= offense.date_of_birth %></p>
+        <p>Address: <%= offense.street_address %></p>
+        <p>case type: <%= offense.type %></p>
+        <p>disposition date: <%= offense.disposition_date %></p>
+        <p>group: <%= offense.group %></p>
+        <p>sex: <%= offense.sex %>. race: <%= offense.race %></p>
+        <p>code: <%= offense.code %>. text: <%= offense.text %>.</p>
+      </li>
+    <% end %>
+  </ol>
+
+  <%# https://bugs.ruby-lang.org/issues/11076#note-6 %>
+  <p>case types: <%= @all_matches.map(&:type).group_by(&:itself).transform_values(&:size) %></p>
+  <p>dispositions: <%= @all_matches.map(&:disposition_date).sort.group_by(&:itself).transform_values(&:size).sort_by{|x,y| x} %></p>
+  <p>groups: <%= @all_matches.map(&:group).group_by(&:itself).transform_values(&:size) %></p>
+  <p>sexes: <%= @all_matches.map(&:sex).group_by(&:itself).transform_values(&:size) %></p>
+<% end %>

@@ -17,6 +17,13 @@ class SearchController < ApplicationController
   end
 
   def results
+    # collect all the ids
+    ids = params[:ids].join(' ').split
+
+    # load offenses based on ids
+    offenses = Offense.where id: ids
+
+    # based on all the offenses gathered, show some type of message
   end
 
   def sign_up

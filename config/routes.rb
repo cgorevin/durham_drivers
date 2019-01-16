@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   controller :search do
     get :results, :sign_up, :next_steps
-    post :confirm
+    post :confirm, :results
   end
 
   resources :offenses

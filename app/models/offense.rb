@@ -6,6 +6,10 @@ class Offense < ApplicationRecord
   has_many :contacts
   has_many :contact_histories
 
+  def dob
+    date_of_birth
+  end
+
   def fta?
     !ftp
   end
@@ -14,6 +18,10 @@ class Offense < ApplicationRecord
     names = [last_name, first_name, middle_name]
     names.delete_if &:blank?
     names.join ', '
+  end
+
+  def street
+    street_address
   end
 
   def type
