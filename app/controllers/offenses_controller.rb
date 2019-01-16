@@ -254,21 +254,21 @@ class OffensesController < ApplicationController
         # now that we have some data, let's import it
         offense = Offense.create data
 
-        if offense.errors.any?
-          # if there were any errors, log it
-          error = offense.errors.to_a.join('. ')
-          errors[index + 1] = { name: data[:name], error: error }
-        else succesful_rows += 1
-        end
+        # if offense.errors.any?
+        #   # if there were any errors, log it
+        #   error = offense.errors.to_a.join('. ')
+        #   errors[index + 1] = { name: data[:name], error: error }
+        # else succesful_rows += 1
+        # end
       end
 
       total_rows += 1
     end
 
-    puts "#{total_rows} TOTAL ROWS"
-    puts "#{succesful_rows} SUCCESSFUL ROWS"
-    puts "#{Offense.count} OFFENSES CREATED"
-    print "#{errors.count} ERRORS: ", pp errors
+    # puts "#{total_rows} TOTAL ROWS"
+    # puts "#{succesful_rows} SUCCESSFUL ROWS"
+    # puts "#{Offense.count} OFFENSES CREATED"
+    # print "#{errors.count} ERRORS: ", pp(errors)
   end
 
   def timer(msg, start, stop, round = 2)
