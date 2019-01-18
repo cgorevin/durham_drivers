@@ -1,0 +1,17 @@
+<h1>Contacts#sign_up</h1>
+<h2>Sign up page</h2>
+
+<p>Please specify your method of contact</p>
+
+<%= form_for @contact do |f| %>
+<div class="form-row">
+  <div class="form-group">
+    <%= f.label :type, "Contact Method:" %>
+    <%= f.select :type, ['Text message', 'Email']%>
+  </div>
+  <div class="form-group">
+      <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
+  </div>
+</div>
+  <%= f.submit 'Save', class:'btn btn-primary' %>
+<% end %>
