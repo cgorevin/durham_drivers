@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   resources :offenses
   resources :contacts, only: :create
+  get '/panel' => 'offenses#panel'
 end
