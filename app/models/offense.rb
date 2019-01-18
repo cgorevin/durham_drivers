@@ -6,6 +6,10 @@ class Offense < ApplicationRecord
   has_many :contacts
   has_many :contact_histories
 
+  def approved?
+    status == 'approved'
+  end
+
   def dob
     date_of_birth
   end
@@ -144,9 +148,11 @@ class Offense < ApplicationRecord
 
   def dob=(string)
     if string.length > 7
+      # '20010203'
       self.date_of_birth = Date.parse string
     else
-      puts string.length
+      # '23'
+      # puts string.length
     end
   end
 

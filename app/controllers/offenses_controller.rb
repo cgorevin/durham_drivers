@@ -97,13 +97,18 @@ class OffensesController < ApplicationController
         code = row.key 'CONVICTED_OFFENSE_CODE'
         text = row.key 'CONVICTED_OFFENSE_TEXT'
       else
+        # if case is FTA, then status is approved
+        ftp = row[ftp]
+        fta = ftp == '0'
+        status = fta ? 'approved' : 'pending'
+
         # make a hash of data that we will import
         data = {
           name: row[name], dob: row[dob], # need custom setter methods
-          ftp: row[ftp], disposition_date: row[disposition],
+          ftp: ftp, disposition_date: row[disposition],
           group: row[group], street_address: row[street], city: row[city],
           race: row[race], sex: row[sex], code: row[code], text: row[text],
-          status: 'pending'
+          status: status
         }
         # print 'data: '; pp data
 
