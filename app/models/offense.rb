@@ -6,6 +6,14 @@ class Offense < ApplicationRecord
   has_many :contacts
   has_many :contact_histories
 
+  def approved?
+    status == 'approved'
+  end
+
+  def dob
+    date_of_birth
+  end
+
   def fta?
     !ftp
   end
@@ -14,6 +22,10 @@ class Offense < ApplicationRecord
     names = [last_name, first_name, middle_name]
     names.delete_if &:blank?
     names.join ', '
+  end
+
+  def street
+    street_address
   end
 
   def type
@@ -136,9 +148,11 @@ class Offense < ApplicationRecord
 
   def dob=(string)
     if string.length > 7
+      # '20010203'
       self.date_of_birth = Date.parse string
     else
-      puts string.length
+      # '23'
+      # puts string.length
     end
   end
 

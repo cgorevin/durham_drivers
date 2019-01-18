@@ -1,2 +1,20 @@
-<h1>Search#results</h1>
-<p>Find me in app/views/search/results.html.erb</p>
+<h1>Results</h1>
+
+<% if @offenses.empty? %>
+  <p>
+    No, I'm sorry but this project was unable to assist you. Some commone reasons:
+  </p>
+  <ul>
+    <li>reason 1</li>
+    <li>reason 2</li>
+    <li>reason 3</li>
+  </ul>
+<% elsif @offenses.any?(&:approved?) %>
+  <p>
+    Yes, you have received relief through this program. For confidentiality purposes, please provide email address: _______. We will send you details.
+  </p>
+<% else %>
+  <p>
+    Not yet. We have identified cases that may be eligible for relief. Please provide an email address & we will notify you. This could take up to 1 year.
+  </p>
+<% end %>
