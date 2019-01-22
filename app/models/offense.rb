@@ -3,7 +3,7 @@ class Offense < ApplicationRecord
   validates :last_name, presence: true
   validates :street_address, presence: true
   validates :status, presence: true
-  has_many :contacts
+  has_and_belongs_to_many :contacts
   has_many :contact_histories
 
   def approved?
