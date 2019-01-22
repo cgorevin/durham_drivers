@@ -42,6 +42,7 @@ class OffensesController < ApplicationController
   #   puts "MAXIMUM RESIDUAL: #{residuals.max}"
   #   puts "AVERAGE RESIDUAL: #{(residuals.sum / residuals.size.to_f).round 1}"
   # end
+  # {"pending"=>22728, "approved"=>72121}
 
   def create
     file = params[:offense][:file]
@@ -60,7 +61,7 @@ class OffensesController < ApplicationController
     timer 'LOOP TIME', load_time, stop
     timer 'TOTAL TIME', start, stop
 
-    redirect_to new_offense_path
+    redirect_to new_offense_path, notice: "Done! There are now #{Offense.count} offenses in the database."
   end
 
   def edit
@@ -98,8 +99,8 @@ class OffensesController < ApplicationController
         text = row.key 'CONVICTED_OFFENSE_TEXT'
       else
         # if case is FTA, then status is approved
-        ftp = row[ftp]
-        fta = ftp == '0'
+        ftp_value = row[ftp]
+        fta = ftp_value == '0'
         status = fta ? 'approved' : 'pending'
 
         # make a hash of data that we will import
