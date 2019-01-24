@@ -3,23 +3,28 @@
 
 <h1>Group <%= params[:group] %></h1>
 
-<table>
-  <thead>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Date of birth</th>
-    <th>Group</th>
-    <th>Status</th>
-  </thead>
-  <tbody>
-    <% @offenses.each do |offense| %>
-      <tr>
-        <td><%= offense.first_name %></td>
-        <td><%= offense.last_name %></td>
-        <td><%= offense.dob %></td>
-        <td><%= offense.group %></td>
-        <td><%= offense.status %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= form_tag group_offenses_path(params[:group]) do %>
+  <%= submit_tag 'Save' %>
+
+  <table>
+    <thead>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Date of birth</th>
+      <th>Group</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <% @offenses.each do |offense| %>
+        <% id = offense.id %>
+        <tr>
+          <td><%= offense.first_name %></td>
+          <td><%= offense.last_name %></td>
+          <td><%= offense.dob %></td>
+          <td><%= offense.group %></td>
+          <td><%= select_tag "offenses[#{id}]status", options_for_select(['pending', 'approved', 'denied'], offense.status) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

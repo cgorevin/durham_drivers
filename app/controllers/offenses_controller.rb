@@ -1,5 +1,5 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:show, :index, :new, :create, :group]
+  before_action :authenticate_admin!, :except => [:show, :index, :new, :create, :group, :group_update]
 
   def index
     @first = params[:first_name]
@@ -94,6 +94,12 @@ class OffensesController < ApplicationController
 
   def group
     @offenses = Offense.group_search(params[:group])
+  end
+
+  def group_update
+    offenses = params[:offenses]
+    Offense.update offenses.keys, offenses.values
+    redirect_to group_offenses_path params[:group]
   end
 
   private

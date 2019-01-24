@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :offenses do
     collection do
       get 'group/:group' => 'offenses#group', as: :group
+      post 'group/:group' => 'offenses#group_update'
     end
   end
   resources :contacts, only: :create
