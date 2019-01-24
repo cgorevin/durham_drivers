@@ -13,5 +13,25 @@
   <% end %>
 </div>
 
+<table>
+  <thead>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Date of birth</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+    <% @offenses.each do |offense| %>
+      <tr>
+        <td><%= offense.first_name %></td>
+        <td><%= offense.last_name %></td>
+        <td><%= offense.dob || 'missing' %></td>
+        <td><%= offense.status %></td>
+        <td><%= link_to 'link', offense_path(offense) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%# ADD PAGINATION AFTER 500 ROWS %>
