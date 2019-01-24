@@ -1,10 +1,14 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:show, :index, :new, :create]
+  before_action :authenticate_admin!, :except => [:index]
 
   def index
   end
 
   def show
+    @offense = Offense.find(params[:id])
+    @contacts = @offense.contacts
+    @contact = @contacts.first
+    # @contact = Contact.all
   end
 
   def new
