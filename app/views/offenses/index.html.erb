@@ -16,6 +16,7 @@
 <table>
   <thead>
     <th>First name</th>
+    <th>Middle name</th>
     <th>Last name</th>
     <th>Date of birth</th>
     <th>Status</th>
@@ -24,6 +25,7 @@
     <% @offenses.each do |offense| %>
       <tr>
         <td><%= offense.first_name %></td>
+        <td><%= offense.middle_name %></td>
         <td><%= offense.last_name %></td>
         <td><%= offense.dob || 'missing' %></td>
         <td><%= offense.status %></td>

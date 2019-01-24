@@ -200,7 +200,8 @@ class Offense < ApplicationRecord
     # joins() searches customers that have 1+ billing_address & locations
     # left_joins() searches customers that have 0+ billing or locations
     # left_joins() can cause duplicate rows because of has_many :locations
-    where(date_of_birth: dob).where ([phrase] * words.size).join(' AND '), *terms
+    where(date_of_birth: [dob, nil])
+    .where ([phrase] * words.size).join(' AND '), *terms
   end
 
   def self.groups(group)
