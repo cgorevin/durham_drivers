@@ -202,4 +202,15 @@ class Offense < ApplicationRecord
     # left_joins() can cause duplicate rows because of has_many :locations
     where(date_of_birth: dob).where ([phrase] * words.size).join(' AND '), *terms
   end
+
+  def self.groups(group)
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+    search = where %("offenses"."group" #{like} ?), "%#{group}%"
+    search.map(&:group).uniq.map(&:to_i).sort
+  end
+
+  def self.group_search(group)
+    group = 'NA' if group.to_i == 0
+    where '"offenses"."group" = ?', group
+  end
 end

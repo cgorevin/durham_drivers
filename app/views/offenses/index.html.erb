@@ -4,3 +4,14 @@
 <p>
   page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
 </p>
+
+<h3>Groups</h3>
+
+<div>
+  <% @groups.each do |group| %>
+    <span><%= link_to group, group_offenses_path(group) %></span>
+  <% end %>
+</div>
+
+
+<%# ADD PAGINATION AFTER 500 ROWS %>

@@ -1,7 +1,15 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:show, :index, :new, :create]
+  before_action :authenticate_admin!, :except => [:show, :index, :new, :create, :group]
 
   def index
+    @first = params[:first_name]
+    @middle = params[:middle_name]
+    @last = params[:last_name]
+    @dob = params[:date_of_birth]
+
+
+    @groups = Offense.groups params[:group]
+    @offenses = Offense.similar_search(@first, @middle, @last, @dob)
   end
 
   def show
@@ -43,6 +51,17 @@ class OffensesController < ApplicationController
   #   puts "AVERAGE RESIDUAL: #{(residuals.sum / residuals.size.to_f).round 1}"
   # end
   # {"pending"=>22728, "approved"=>72121}
+  # groups
+  # {
+  #   "1"=>423, "10"=>426, "11"=>439, "12"=>434, "13"=>449, "14"=>438, "15"=>436,
+  #   "16"=>440, "17"=>426, "18"=>406, "19"=>412, "2"=>442, "20"=>447, "21"=>421,
+  #   "22"=>443, "23"=>417, "24"=>454, "25"=>446, "26"=>409, "27"=>471, "28"=>441,
+  #   "29"=>439, "3"=>476, "30"=>449, "31"=>446, "32"=>433, "33"=>467, "34"=>469,
+  #   "35"=>448, "36"=>423, "37"=>471, "38"=>460, "39"=>375, "4"=>391, "40"=>453,
+  #   "41"=>402, "42"=>419, "43"=>449, "44"=>419, "45"=>439, "46"=>408, "47"=>447,
+  #   "48"=>430, "49"=>447, "5"=>462, "50"=>454, "51"=>447, "52"=>417, "6"=>453,
+  #   "7"=>419, "8"=>440, "9"=>456, "NA"=>72121
+  # }
 
   def create
     file = params[:offense][:file]
@@ -71,6 +90,10 @@ class OffensesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def group
+    @offenses = Offense.group_search(params[:group])
   end
 
   private
