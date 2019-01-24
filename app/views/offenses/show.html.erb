@@ -1,33 +1,18 @@
-<h1>Offenses#show</h1>
-
 <h2>Offense show page</h2>
-
-<p>
-  This page simply displays all the information about this case. It also shows any contact info that might be associated with this case. It should also show when these contacts were contacted
-  It might be worth adding conditional logic: admin sees grid, users see individual results
-</p>
-
-<h3>
-  ### Example
-</h3>
 
 <hr>
 
-<h2>John Doe's case</h2>
+<h2>Case: <%= "#{@offense.first_name} #{@offense.last_name}" %> %></h2>
 
-<h4>Status: approved</h4>
+<h4>Status: <%= @offense.status %></h4>
+<%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-primary' %>
 
-<p>Contacts:</p>
-
+<p>Contact History:</p>
 <ul>
   <li>
-    john@doe.com
+    <%= @contact.info %>
   </li>
   <ul>
-    <li>emailed 6 days ago</li>
-  </ul>
-  <li>(919) 999-9999</li>
-  <ul>
-    <li>texted 3 days ago</li>
+    <li><%= @contact.contact_time %></li>
   </ul>
 </ul>
