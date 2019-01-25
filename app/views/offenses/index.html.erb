@@ -4,3 +4,60 @@
 <p>
   page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
 </p>
+
+<%= form_tag do %>
+  <table>
+    <thead>
+      <th>
+        <%= label_tag 'First name' %>
+      </th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Date of birth</th>
+      <th>Group ID</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= text_field_tag :first_name, nil, placeholder: 'First name' %></td>
+        <td><%= text_field_tag :middle_name, nil, placeholder: 'Middle name' %></td>
+        <td><%= text_field_tag :last_name, nil, placeholder: 'Last name' %></td>
+        <td><%= text_field_tag :date_of_birth, nil, placeholder: 'Date of birth' %></td>
+        <td><%= text_field_tag :group_id, nil, placeholder: 'Groups 1-52' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= submit_tag %>
+<% end %>
+
+<h3>Groups</h3>
+
+<div>
+  <% @groups.each do |group| %>
+    <span><%= link_to group, group_offenses_path(group) %></span>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <th>First name</th>
+    <th>Middle name</th>
+    <th>Last name</th>
+    <th>Date of birth</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+    <% @offenses.each do |offense| %>
+      <tr>
+        <td><%= offense.first_name %></td>
+        <td><%= offense.middle_name %></td>
+        <td><%= offense.last_name %></td>
+        <td><%= offense.dob || 'missing' %></td>
+        <td><%= offense.status %></td>
+        <td><%= link_to 'link', offense_path(offense) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%# ADD PAGINATION AFTER 500 ROWS %>
