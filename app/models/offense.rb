@@ -186,7 +186,7 @@ class Offense < ApplicationRecord
     # postgres's operator for case insensitivity is ILIKE
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
 
-    # turn columsn into SQL phrase
+    # turn columns into SQL phrase
     # ['first_name', 'last_name'] => "(first_name like ? OR last_name like ?)"
     phrase = %`(#{attrs.map { |c| "#{c} #{like} ?" }.join(' OR ')})`
 
@@ -198,21 +198,22 @@ class Offense < ApplicationRecord
     # (first_name LIKE "%doe%" OR last_name LIKE "%doe%") AND
     # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
     # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
-    # joins() searches customers that have 1+ billing_address & locations
-    # left_joins() searches customers that have 0+ billing or locations
-    # left_joins() can cause duplicate rows because of has_many :locations
     where(date_of_birth: [dob, nil])
     .where ([phrase] * words.size).join(' AND '), *terms
   end
 
+  # find all groups that partially match group given
+  # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
   def self.groups(group)
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
     search = where %("offenses"."group" #{like} ?), "%#{group}%"
     search.map(&:group).uniq.map(&:to_i).sort
   end
 
+  # find all offenses that belong to a group
   def self.group_search(group)
     group = 'NA' if group.to_i == 0
+    # SQL will try to use GROUP BY unless you clearly specify offenses.group
     where '"offenses"."group" = ?', group
   end
 end
