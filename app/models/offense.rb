@@ -6,10 +6,15 @@ class Offense < ApplicationRecord
   has_and_belongs_to_many :contacts
   has_many :contact_histories
 
+  alias_attribute :street, :street_address
+  # alias_attribute :dob, :date_of_birth
+
   def approved?
     status == 'approved'
   end
 
+  # NOTE: use method instead of alias_attribute so that we can write our own
+  # dob= setter method
   def dob
     date_of_birth
   end
@@ -22,10 +27,6 @@ class Offense < ApplicationRecord
     names = [last_name, first_name, middle_name]
     names.delete_if &:blank?
     names.join ', '
-  end
-
-  def street
-    street_address
   end
 
   def type
