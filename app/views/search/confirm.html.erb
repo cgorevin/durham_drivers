@@ -29,7 +29,7 @@
 
 <%= form_tag results_path do |f| %>
 
-  <% @all_matches.group_by { |x| [x.name, x.dob, x.street, x.sex, x.race] }.each_with_index do |array, index| %>
+  <% @all_matches.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
     <% group = array.first %>
     <% offenses = array.last %>
     <% ids = offenses.map(&:id) %>
@@ -39,7 +39,6 @@
 
     <div class="">
       <%= check_box_tag "ids[]", ids, false, id: index %>
-      <%#= label_tag index, "#{name}, #{street}" %>
       <%= label_tag index, "#{name}#{dob}" %>
     </div>
   <% end %>
