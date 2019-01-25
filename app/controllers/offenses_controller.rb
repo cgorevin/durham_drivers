@@ -1,5 +1,5 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:show, :index, :new, :create, :group, :group_update]
+  before_action :authenticate_admin!, :except => [:index]
 
   def index
     @first = params[:first_name]
@@ -13,6 +13,10 @@ class OffensesController < ApplicationController
   end
 
   def show
+    @offense = Offense.find(params[:id])
+    @contacts = @offense.contacts
+    @contact = @contacts.first
+    # @contact = Contact.all
   end
 
   def new
@@ -50,6 +54,7 @@ class OffensesController < ApplicationController
   #   puts "MAXIMUM RESIDUAL: #{residuals.max}"
   #   puts "AVERAGE RESIDUAL: #{(residuals.sum / residuals.size.to_f).round 1}"
   # end
+<<<<<<< HEAD
   # {"pending"=>22728, "approved"=>72121}
   # groups
   # {
@@ -62,6 +67,23 @@ class OffensesController < ApplicationController
   #   "48"=>430, "49"=>447, "5"=>462, "50"=>454, "51"=>447, "52"=>417, "6"=>453,
   #   "7"=>419, "8"=>440, "9"=>456, "NA"=>72121
   # }
+=======
+  # groups
+  # {
+  #   "1"=>423, "2"=>442, "3"=>476, "4"=>391, "5"=>462, "6"=>453, "7"=>419,
+  #   "8"=>440, "9"=>456, "10"=>426, "11"=>439, "12"=>434, "13"=>449, "14"=>438,
+  #   "15"=>436, "16"=>440, "17"=>426, "18"=>406, "19"=>412, "20"=>447, "21"=>421,
+  #   "22"=>443, "23"=>417, "24"=>454, "25"=>446, "26"=>409, "27"=>471, "28"=>441,
+  #   "29"=>439, "30"=>449, "31"=>446, "32"=>433, "33"=>467, "34"=>469, "35"=>448,
+  #   "36"=>423, "37"=>471, "38"=>460, "39"=>375, "40"=>453, "41"=>402, "42"=>419,
+  #   "43"=>449, "44"=>419, "45"=>439, "46"=>408, "47"=>447, "48"=>430, "49"=>447,
+  #   "50"=>454, "51"=>447, "52"=>417, "NA"=>72121
+  # }
+  # statuses
+  # { "approved"=>72121, "pending"=>22728 }
+  # case type
+  # { "FTA"=>72121, "FTP"=>22728 }
+>>>>>>> master
 
   def create
     file = params[:offense][:file]
@@ -135,7 +157,7 @@ class OffensesController < ApplicationController
         # make a hash of data that we will import
         data = {
           name: row[name], dob: row[dob], # need custom setter methods
-          ftp: ftp, disposition_date: row[disposition],
+          ftp: ftp_value, disposition_date: row[disposition],
           group: row[group], street_address: row[street], city: row[city],
           race: row[race], sex: row[sex], code: row[code], text: row[text],
           status: status
