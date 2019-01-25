@@ -9,7 +9,7 @@ class OffensesController < ApplicationController
 
 
     @groups = Offense.groups params[:group]
-    @offenses = Offense.similar_search(@first, @middle, @last, @dob)
+    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
   end
 
   def show
