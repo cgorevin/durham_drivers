@@ -115,7 +115,7 @@ class OffensesController < ApplicationController
     # puts "Reading: #{worksheet.name}"
     total_rows, successful_rows = [0, 0]
     errors = {}
-    name, dob, ftp, disposition, group, street, city, race, sex, code, text = nil
+    name, dob, ftp, disposition, group, street, city, race, sex, num, text = nil
 
     worksheet.simple_rows.each_with_index do |row, index|
       if index == 0
@@ -131,7 +131,7 @@ class OffensesController < ApplicationController
         city = row.key 'DEFENDANT_CITY'
         race = row.key 'DEFENDANT_RACE'
         sex = row.key 'DEFENDANT_SEX'
-        code = row.key 'CONVICTED_OFFENSE_CODE'
+        num = row.key 'CASE_NUMBER'
         text = row.key 'CONVICTED_OFFENSE_TEXT'
       else
         # if case is FTA, then status is approved
@@ -144,8 +144,8 @@ class OffensesController < ApplicationController
           name: row[name], dob: row[dob], # need custom setter methods
           ftp: ftp_value, disposition_date: row[disposition],
           group: row[group], street_address: row[street], city: row[city],
-          race: row[race], sex: row[sex], code: row[code], text: row[text],
-          status: status
+          race: row[race], sex: row[sex], case_number: row[num], 
+          description: row[text], status: status
         }
         # print 'data: '; pp data
 
