@@ -169,6 +169,7 @@ class Offense < ApplicationRecord
 
   # date based query, only has to match 2/3 of the date (year, month, day)
   def self.fuzzy_date_search(dob)
+    return all unless dob.present?
     # where(date_of_birth: [dob, nil])
 
     # NOTE: use string for where clause

@@ -5,7 +5,7 @@
   page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
 </p>
 
-<%= form_tag do %>
+<%= form_tag offenses_path, method: :get do %>
   <table>
     <thead>
       <th>
@@ -18,15 +18,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= text_field_tag :first_name, nil, placeholder: 'First name' %></td>
-        <td><%= text_field_tag :middle_name, nil, placeholder: 'Middle name' %></td>
-        <td><%= text_field_tag :last_name, nil, placeholder: 'Last name' %></td>
-        <td><%= text_field_tag :date_of_birth, nil, placeholder: 'Date of birth' %></td>
-        <td><%= text_field_tag :group_id, nil, placeholder: 'Groups 1-52' %></td>
+        <td><%= text_field_tag :first_name, params[:first_name], placeholder: 'First name' %></td>
+        <td><%= text_field_tag :middle_name, params[:middle_name], placeholder: 'Middle name' %></td>
+        <td><%= text_field_tag :last_name, params[:last_name], placeholder: 'Last name' %></td>
+        <td><%= text_field_tag :date_of_birth, params[:date_of_birth], placeholder: 'Date of birth' %></td>
+        <td><%= text_field_tag :group_id, params[:group_id], placeholder: 'Groups 1-52' %></td>
       </tr>
     </tbody>
   </table>
-  <%= submit_tag %>
+
+  <%= submit_tag 'Search' %>
 <% end %>
 
 <h3>Groups</h3>
