@@ -18,9 +18,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= text_field_tag :first_name, params[:first_name], placeholder: 'First name' %></td>
+        <td><%= text_field_tag :first_name, params[:first_name], placeholder: 'First name', required: true %></td>
         <td><%= text_field_tag :middle_name, params[:middle_name], placeholder: 'Middle name' %></td>
-        <td><%= text_field_tag :last_name, params[:last_name], placeholder: 'Last name' %></td>
+        <td><%= text_field_tag :last_name, params[:last_name], placeholder: 'Last name', required: true %></td>
         <td><%= text_field_tag :date_of_birth, params[:date_of_birth], placeholder: 'Date of birth' %></td>
         <td><%= text_field_tag :group_id, params[:group_id], placeholder: 'Groups 1-52' %></td>
       </tr>

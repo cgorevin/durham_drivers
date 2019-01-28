@@ -4,16 +4,16 @@
 
 <%= form_for @offense, url: confirm_path do |f| %>
   <%= f.label :first_name %>
-  <%= f.text_field :first_name, autocomplete: 'new-password', autofill: :off %>
+  <%= f.text_field :first_name, autocomplete: 'new-password', required: true %>
 
   <%= f.label :middle_name %>
-  <%= f.text_field :middle_name, autocomplete: 'new-password', autofill: :off %>
+  <%= f.text_field :middle_name, autocomplete: 'new-password' %>
 
   <%= f.label :last_name %>
-  <%= f.text_field :last_name, autocomplete: 'new-password', autofill: :off %>
+  <%= f.text_field :last_name, autocomplete: 'new-password', required: true %>
 
   <%= f.label :date_of_birth %>
-  <%= f.text_field :date_of_birth %>
+  <%= f.text_field :date_of_birth, required: true %>
 
   <%= f.submit 'Search' %>
 <% end %>
