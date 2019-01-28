@@ -2,6 +2,8 @@ class OffensesController < ApplicationController
   # before_action :authenticate_admin!, :except => [:index]
 
   def index
+    page = params[:p]
+
     @first = params[:first_name]
     @middle = params[:middle_name]
     @last = params[:last_name]
@@ -9,7 +11,7 @@ class OffensesController < ApplicationController
 
 
     @groups = Offense.groups params[:group_id]
-    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).limit 100
+    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).page page
   end
 
   def show
@@ -100,13 +102,14 @@ class OffensesController < ApplicationController
   end
 
   def group
-    @offenses = Offense.group_search(params[:group])
+    page = params[:p]
+    @offenses = Offense.group_search(params[:group]).page page
   end
 
   def group_update
     offenses = params[:offenses]
     Offense.update offenses.keys, offenses.values
-    redirect_to group_offenses_path params[:group]
+    redirect_to group_offenses_path params[:group], p: params[:p]
   end
 
   private

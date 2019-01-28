@@ -1,4 +1,6 @@
 class Offense < ApplicationRecord
+  paginates_per 100
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :street_address, presence: true

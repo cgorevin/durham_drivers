@@ -1,9 +1,6 @@
-<h1>Offenses#index</h1>
-<h2>Admin Panel page</h2>
+<h1>Search Offenses</h1>
 
-<p>
-  page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
-</p>
+<h2>Admin Panel page</h2>
 
 <%= form_tag offenses_path, method: :get do %>
   <table>
@@ -61,4 +58,4 @@
 </table>
 
 
-<%# ADD PAGINATION AFTER 500 ROWS %>
+<%= paginate @offenses, param_name: :p %>
