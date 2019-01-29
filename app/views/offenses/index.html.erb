@@ -2,7 +2,7 @@
 
 <h2>Admin Panel page</h2>
 
-<%= form_tag offenses_path, method: :get do %>
+<%= form_tag offenses_path, method: :get, enforce_utf8: false do %>
   <table>
     <thead>
       <th><%= label_tag :f, 'First name' %></th>
