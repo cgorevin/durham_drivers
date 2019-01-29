@@ -6,12 +6,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <%= render 'layouts/shim' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

@@ -22,7 +22,7 @@
     <div class="form-row">
       <div class="form-group">
         <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email') %>
+        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
       </div>
 
       <div class="form-group">

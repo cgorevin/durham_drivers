@@ -1,23 +1,21 @@
-<h1>Offenses#panel</h1>
-
-<h2>Admin panel page</h2>
+<h1>Admin Panel</h1>
 
 <p>
-  This page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
+  Please enter the group, date of birth, or first and last name of the case you wish to search for:
 </p>
 
 <%= form_for Offense.new, url: offenses_path, method: :get do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, autocomplete: 'new-password', autofill: :off %>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, autocomplete: 'new-password', autofill: :off %>
-
-  <%= f.label :date_of_birth %>
-  <%= f.text_field :date_of_birth %>
-
-  <%= f.label :group %>
-  <%= f.text_field :group %>
-
-  <%= f.submit 'Search' %>
+  <div class="form-group">
+    <%= f.text_field :first_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'First Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :last_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'Last Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :date_of_birth, class: 'form-control', placeholder: 'Date of Birth' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :group, class: 'form-control', placeholder: 'Group ID' %>
+  </div>
+  <%= f.submit 'Search', class:'btn btn-primary' %>
 <% end %>
