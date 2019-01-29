@@ -5,7 +5,7 @@ class OffensesController < ApplicationController
   def index
     @group = params[:g]
     @groups = Offense.groups @group
-    @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
+    @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @date, @group)
                        .page @page
   end
 

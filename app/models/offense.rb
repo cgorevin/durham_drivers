@@ -289,7 +289,7 @@ class Offense < ApplicationRecord
       ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
       OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
       OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
-    ", y: year, m: month, d: day
+    ".split.join(' '), y: year, m: month, d: day
   end
 
   # name based query, supports case insensitive, partial matching on all name fields
