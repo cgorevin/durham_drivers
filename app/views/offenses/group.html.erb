@@ -21,6 +21,8 @@
   </table>
 <% end %>
 
+<br>
+
 <%= form_tag group_offenses_path(@group) do %>
   <%= hidden_field_tag :ids, @offenses.pluck(:id) %>
   <%= hidden_field_tag :f, @first %>
@@ -29,17 +31,19 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <p>
-    Mark all as:
-    <%= submit_tag 'pending', name: :status %>
-    <%= submit_tag 'approved', name: :status %>
-    <%= submit_tag 'denied', name: :status %>
+  <p class="flex justify-between">
+    <span>
+      <%= page_entries_info @offenses %>
+    </span>
+
+    <span>
+      Mark all as:
+      <%= submit_tag 'pending', name: :status %>
+      <%= submit_tag 'approved', name: :status %>
+      <%= submit_tag 'denied', name: :status %>
+    </span>
   </p>
 <% end %>
-
-<p><%= page_entries_info @offenses %></p>
-
-<p><%= paginate @offenses, param_name: :p %></p>
 
 <%= form_tag group_offenses_path(@group) do %>
   <%= hidden_field_tag :f, @first %>
@@ -47,6 +51,7 @@
   <%= hidden_field_tag :l, @last %>
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
+
   <%= submit_tag 'Save' %>
 
   <table>
@@ -70,6 +75,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= submit_tag 'Save' %>
 <% end %>
 
 <%= paginate @offenses, param_name: :p %>
