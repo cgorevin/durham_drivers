@@ -1,4 +1,6 @@
 class Offense < ApplicationRecord
+  paginates_per 100
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :street_address, presence: true
@@ -6,10 +8,15 @@ class Offense < ApplicationRecord
   has_and_belongs_to_many :contacts
   has_many :contact_histories
 
+  alias_attribute :street, :street_address
+  # alias_attribute :dob, :date_of_birth
+
   def approved?
     status == 'approved'
   end
 
+  # NOTE: use method instead of alias_attribute so that we can write our own
+  # dob= setter method
   def dob
     date_of_birth
   end
@@ -22,10 +29,6 @@ class Offense < ApplicationRecord
     names = [last_name, first_name, middle_name]
     names.delete_if &:blank?
     names.join ', '
-  end
-
-  def street
-    street_address
   end
 
   def type
@@ -162,13 +165,139 @@ class Offense < ApplicationRecord
     search.where "first_name #{like} ? AND middle_name #{like} ? AND last_name #{like} ?", first_name, middle_name, last_name
   end
 
-  def self.similar_search(*words, dob)
+  def self.fuzzy_search(*names, dob)
+    fuzzy_date_search(dob).fuzzy_name_search(names)
+  end
+
+  # date based query, only has to match 2/3 of the date (year, month, day)
+  def self.fuzzy_date_search(dob)
+    return all unless dob.present?
+    # where(date_of_birth: [dob, nil])
+
+    # NOTE: use string for where clause
+    # date = Date.parse(dob).to_s
+    # where 'date_of_birth LIKE ? OR date_of_birth IS ?', date, nil
+
+    # NOTE: split date into 3 string and modify format for partial matching
+    # date = Date.parse(dob).to_s
+    # year, month, day = date.split '-'
+    # year += '-%'
+    # month = "%-#{month}-%"
+    # day = "%-#{day}"
+    # where '
+    #   (date_of_birth LIKE ?
+    #   AND date_of_birth LIKE ?
+    #   AND date_of_birth LIKE ?)
+    #   OR date_of_birth IS ?
+    # ', year, month, day, nil
+
+    # NOTE: add the 3 different conditions that are required for search to work
+    # NOTE: to get 2/3 date match, there are 3 combinations that we must check
+    # NOTE: 1. year-month. 2. year-day. 3. month-day.
+    # NOTE: if any of these combinations work, we have a match
+    # date = Date.parse(dob).to_s
+    # year, month, day = date.split '-'
+    # year += '-%'
+    # month = "%-#{month}-%"
+    # day = "%-#{day}"
+    # where '
+    #   (
+    #     (
+    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
+    #     ) OR (
+    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
+    #     ) OR (
+    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
+    #     )
+    #   )
+    #   OR date_of_birth IS ?
+    # ', year, month, year, day, month, day, nil
+
+    # NOTE: use hash and named variables to reduce repetition
+    # date = Date.parse(dob).to_s
+    # year, month, day = date.split '-'
+    # year += '-%'
+    # month = "%-#{month}-%"
+    # day = "%-#{day}"
+    # where '
+    #   (
+    #     (
+    #       date_of_birth :like :y AND date_of_birth LIKE :m
+    #     ) OR (
+    #       date_of_birth LIKE :y AND date_of_birth LIKE :d
+    #     ) OR (
+    #       date_of_birth LIKE :m AND date_of_birth LIKE :d
+    #     )
+    #   )
+    #   OR date_of_birth IS :nil
+    # ', { y: year, m: month, d: day, nil: nil }
+
+    # NOTE: alias date_of_birth to reduce complexity. remove nil from hash
+    # date = Date.parse(dob).to_s
+    # year, month, day = date.split '-'
+    # year += '-%'
+    # month = "%-#{month}-%"
+    # select('*', 'date_of_birth AS dob')
+    # .where '
+    #   (
+    #     (
+    #       dob LIKE :y AND dob LIKE :m
+    #     ) OR (
+    #       dob LIKE :y AND dob LIKE :d
+    #     ) OR (
+    #       dob LIKE :m AND dob LIKE :d
+    #     )
+    #   )
+    #   OR dob IS NULL
+    # ', y: year, m: month, d: day
+
+    # NOTE: use strftime to reduce lines of code and avoid variable reassignment
+    # date = Date.parse(dob)
+    # year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
+    # select('*', 'date_of_birth AS dob')
+    # .where '
+    #   (
+    #     (
+    #       dob LIKE :y AND dob LIKE :m
+    #     ) OR (
+    #       dob LIKE :y AND dob LIKE :d
+    #     ) OR (
+    #       dob LIKE :m AND dob LIKE :d
+    #     )
+    #   )
+    #   OR dob IS NULL
+    # ', y: year, m: month, d: day
+
+    # NOTE: reduce string size
+    # date = Date.parse(dob)
+    # year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
+    # select('*', 'date_of_birth AS dob')
+    #   .where '
+    #     ((dob LIKE :y AND dob LIKE :m)
+    #     OR (dob LIKE :y AND dob LIKE :d)
+    #     OR (dob LIKE :m AND dob LIKE :d)) OR dob IS NULL
+    #   ', y: year, m: month, d: day
+
+    # add support for postgres like operator
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+    date = Date.parse(dob)
+    year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
+    select('*', 'date_of_birth AS dob')
+      .where "
+        ((dob #{like} :y AND dob #{like} :m)
+        OR (dob #{like} :y AND dob #{like} :d)
+        OR (dob #{like} :m AND dob #{like} :d)) OR dob IS NULL
+      ", y: year, m: month, d: day
+  end
+
+  # name based query, supports case insensitive, partial matching on all name fields
+  def self.fuzzy_name_search(*names)
     # array of columns you want to search for
     attrs = %w(first_name middle_name last_name)
 
     # array of keywords we are search for
     # get the number of words in a query. the query "john doe smith" has 3 words
-    words = words.join(' ').split
+    names = names.join(' ').split
 
     # split "john doe smith" into ["john", "doe", "smith"]
     # multiply by the number of columns you are searching for
@@ -177,7 +306,7 @@ class Offense < ApplicationRecord
     # sort it: ["doe", "doe", "john", "john", "smith", "smith"]
     # wrap with %'s to allow wildcard searches
     # ["%doe%", "%doe%", "%john%", "%john%", "%smith%", "%smith%"]
-    terms = (words * attrs.size).sort.map { |term| "%#{term}%" }
+    terms = (names * attrs.size).sort.map { |term| "%#{term}%" }
 
     # use case insensitive operator
     # allows to find 'John' with 'john', 'JOHN', 'jOhN', etc
@@ -185,7 +314,7 @@ class Offense < ApplicationRecord
     # postgres's operator for case insensitivity is ILIKE
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
 
-    # turn columsn into SQL phrase
+    # turn columns into SQL phrase
     # ['first_name', 'last_name'] => "(first_name like ? OR last_name like ?)"
     phrase = %`(#{attrs.map { |c| "#{c} #{like} ?" }.join(' OR ')})`
 
@@ -197,9 +326,21 @@ class Offense < ApplicationRecord
     # (first_name LIKE "%doe%" OR last_name LIKE "%doe%") AND
     # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
     # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
-    # joins() searches customers that have 1+ billing_address & locations
-    # left_joins() searches customers that have 0+ billing or locations
-    # left_joins() can cause duplicate rows because of has_many :locations
-    where(date_of_birth: dob).where ([phrase] * words.size).join(' AND '), *terms
+    where ([phrase] * names.size).join(' AND '), *terms
+  end
+
+  # find all groups that partially match group given
+  # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
+  def self.groups(group)
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+    search = where %("offenses"."group" #{like} ?), "%#{group}%"
+    search.map(&:group).uniq.map(&:to_i).sort
+  end
+
+  # find all offenses that belong to a group
+  def self.group_search(group)
+    group = 'NA' if group.to_i.zero?
+    # SQL will try to use GROUP BY unless you clearly specify offenses.group
+    where '"offenses"."group" = ?', group
   end
 end

@@ -1,7 +1,17 @@
 class OffensesController < ApplicationController
-  before_action :authenticate_admin!, :except => [:index]
+  # before_action :authenticate_admin!, :except => [:index]
 
   def index
+    page = params[:p]
+
+    @first = params[:first_name]
+    @middle = params[:middle_name]
+    @last = params[:last_name]
+    @dob = params[:date_of_birth]
+
+
+    @groups = Offense.groups params[:group_id]
+    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).page page
   end
 
   def show
@@ -91,13 +101,24 @@ class OffensesController < ApplicationController
   def destroy
   end
 
+  def group
+    page = params[:p]
+    @offenses = Offense.group_search(params[:group]).page page
+  end
+
+  def group_update
+    offenses = params[:offenses]
+    Offense.update offenses.keys, offenses.values
+    redirect_to group_offenses_path params[:group], p: params[:p]
+  end
+
   private
 
   def import_worksheet(worksheet)
     # puts "Reading: #{worksheet.name}"
     total_rows, successful_rows = [0, 0]
     errors = {}
-    name, dob, ftp, disposition, group, street, city, race, sex, code, text = nil
+    name, dob, ftp, disposition, group, street, city, race, sex, num, text = nil
 
     worksheet.simple_rows.each_with_index do |row, index|
       if index == 0
@@ -113,7 +134,7 @@ class OffensesController < ApplicationController
         city = row.key 'DEFENDANT_CITY'
         race = row.key 'DEFENDANT_RACE'
         sex = row.key 'DEFENDANT_SEX'
-        code = row.key 'CONVICTED_OFFENSE_CODE'
+        num = row.key 'CASE_NUMBER'
         text = row.key 'CONVICTED_OFFENSE_TEXT'
       else
         # if case is FTA, then status is approved
@@ -126,8 +147,8 @@ class OffensesController < ApplicationController
           name: row[name], dob: row[dob], # need custom setter methods
           ftp: ftp_value, disposition_date: row[disposition],
           group: row[group], street_address: row[street], city: row[city],
-          race: row[race], sex: row[sex], code: row[code], text: row[text],
-          status: status
+          race: row[race], sex: row[sex], case_number: row[num], 
+          description: row[text], status: status
         }
         # print 'data: '; pp data
 
