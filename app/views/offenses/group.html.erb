@@ -1,9 +1,20 @@
+<% group_id = params[:group] %>
+
 <br>
 <br>
 
-<h1>Group <%= params[:group] %></h1>
+<h1>Group <%= group_id %></h1>
 
-<%= form_tag group_offenses_path(params[:group]) do %>
+<%= form_tag group_offenses_path(group_id) do %>
+  <p>
+    Mark all as:
+    <%= submit_tag 'pending', name: :status %>
+    <%= submit_tag 'approved', name: :status %>
+    <%= submit_tag 'denied', name: :status %>
+  </p>
+<% end %>
+
+<%= form_tag group_offenses_path(group_id) do %>
   <%= hidden_field_tag :p, params[:p] %>
   <%= submit_tag 'Save' %>
 

@@ -106,9 +106,31 @@ class OffensesController < ApplicationController
     @offenses = Offense.group_search(params[:group]).page page
   end
 
+  # POST "/offenses/group/4"
+  # when user submits table form
+  # Parameters: {
+  #   "p"=>"",
+  #   "commit"=>"Save",
+  #   "offenses"=>{
+  #     "100"=>{"status"=>"pending"},
+  #     "101"=>{"status"=>"approved"},
+  #     "305"=>{"status"=>"denied"},
+  #     "400"=>{"status"=>"pending"},
+  #     ...
+  #   },
+  #   "group"=>"4"
+  # }
+  # when user presses one of the 'mark as ...' buttons
+  # Parameters: {
+  #   "status"=>"approved",
+  #   "group"=>"4"
+  # }
   def group_update
-    offenses = params[:offenses]
-    Offense.update offenses.keys, offenses.values
+    if status = params[:status]
+      Offense.update_all status: status
+    elsif offenses = params[:offenses]
+      Offense.update offenses.keys, offenses.values
+    end
     redirect_to group_offenses_path params[:group], p: params[:p]
   end
 
@@ -147,7 +169,7 @@ class OffensesController < ApplicationController
           name: row[name], dob: row[dob], # need custom setter methods
           ftp: ftp_value, disposition_date: row[disposition],
           group: row[group], street_address: row[street], city: row[city],
-          race: row[race], sex: row[sex], case_number: row[num], 
+          race: row[race], sex: row[sex], case_number: row[num],
           description: row[text], status: status
         }
         # print 'data: '; pp data
