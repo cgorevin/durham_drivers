@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     @dob = data[:date_of_birth]
 
     @exact_matches = Offense.exact_search(@first, @middle, @last, @dob).to_a
-    @similar_matches = Offense.similar_search(@first, @middle, @last, @dob).to_a
+    @similar_matches = Offense.fuzzy_search(@first, @middle, @last, @dob).to_a
     @similar_matches = @similar_matches - @exact_matches
 
     # NOTE: redirect if no matches

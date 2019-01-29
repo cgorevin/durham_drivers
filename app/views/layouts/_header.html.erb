@@ -1,11 +1,24 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
+<header class="navbar navbar-fixed-top navbar-expand-lg navbar-inverse" id="myNav">
+  <div class="nav-flex-container organization-brand">
     <%= link_to "Durham Drivers License Restoration Initiative", '#', id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Search", '/' %></li>
-        <li><%= link_to('Admin', new_admin_session_path, class: 'nav-link') %></li>
-      </ul>
-    </nav>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsing-nav" id="toggle-button">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="collapsing-nav">
+    <ul class="nav navbar-nav">
+      <li class="nav-item dropdown full-width"><%= link_to "Search", '/', class: 'nav-link' %></li>
+      <li class="nav-item dropdown full-width"><%= link_to "Español", '#', target: :_blank, class: 'nav-link' %></li>
+      <% if admin_signed_in? %>
+        <li class="nav-item dropdown full-width"><%= link_to "Admin Panel", panel_path, class: 'nav-link' %></li>
+        <li class="nav-item dropdown full-width"><%= link_to('Logout', destroy_admin_session_path, method: :delete, class: 'nav-link') %></li>
+      <% else %>
+        <li class="nav-item dropdown full-width">
+          <%= link_to('Admin', new_admin_session_path, class: 'nav-link') %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </header>

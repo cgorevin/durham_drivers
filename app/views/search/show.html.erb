@@ -1,19 +1,19 @@
-<h1>Search</h1>
+<h1>Search the Database</h1>
 
-<p>Enter a your name and date of birth.</p>
+<p>Please enter your name and date of birth:</p>
 
 <%= form_for @offense, url: confirm_path do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, autocomplete: 'new-password', autofill: :off %>
-
-  <%= f.label :middle_name %>
-  <%= f.text_field :middle_name, autocomplete: 'new-password', autofill: :off %>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, autocomplete: 'new-password', autofill: :off %>
-
-  <%= f.label :date_of_birth %>
-  <%= f.text_field :date_of_birth %>
-
-  <%= f.submit 'Search' %>
+  <div class="form-group">
+    <%= f.text_field :first_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'First Name', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :middle_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'Middle Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :last_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'Last Name', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :date_of_birth, class: 'form-control', placeholder: 'Date of Birth', required: true %>
+  </div>
+  <%= f.submit 'Search', class:'btn btn-primary' %>
 <% end %>

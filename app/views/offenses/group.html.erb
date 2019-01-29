@@ -1,0 +1,44 @@
+<% group_id = params[:group] %>
+
+<br>
+<br>
+
+<h1>Group <%= group_id %></h1>
+
+<%= form_tag group_offenses_path(group_id) do %>
+  <p>
+    Mark all as:
+    <%= submit_tag 'pending', name: :status %>
+    <%= submit_tag 'approved', name: :status %>
+    <%= submit_tag 'denied', name: :status %>
+  </p>
+<% end %>
+
+<%= form_tag group_offenses_path(group_id) do %>
+  <%= hidden_field_tag :p, params[:p] %>
+  <%= submit_tag 'Save' %>
+
+  <table>
+    <thead>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Date of birth</th>
+      <th>Group</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <% @offenses.each do |offense| %>
+        <% id = offense.id %>
+        <tr>
+          <td><%= offense.first_name %></td>
+          <td><%= offense.last_name %></td>
+          <td><%= offense.dob %></td>
+          <td><%= offense.group %></td>
+          <td><%= select_tag "offenses[#{id}]status", options_for_select(['pending', 'approved', 'denied'], offense.status) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= paginate @offenses, param_name: :p %>

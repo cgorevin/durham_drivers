@@ -1,5 +1,3 @@
-<%= link_to 'Back', root_path %>
-
 <h2>Your search</h2>
 
 <table>
@@ -29,22 +27,21 @@
 
 <%= form_tag results_path do |f| %>
 
-  <% @all_matches.group_by { |x| [x.name, x.dob, x.street, x.sex, x.race] }.each_with_index do |array, index| %>
+  <% @all_matches.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
     <% group = array.first %>
     <% offenses = array.last %>
     <% ids = offenses.map(&:id) %>
     <% name = group[0] %>
-    <% dob = group[1].strftime '%-m/%-d/%Y' %>
+    <% dob = group[1]&.strftime(', %-m/%-d/%Y') %>
     <% street = group[2] %>
 
     <div class="">
       <%= check_box_tag "ids[]", ids, false, id: index %>
-      <%#= label_tag index, "#{name}, #{street}" %>
-      <%= label_tag index, "#{name}, #{dob}" %>
+      <%= label_tag index, "#{name}#{dob}" %>
     </div>
   <% end %>
 
-  <%= submit_tag 'Next' %>
+  <%= submit_tag 'Next', class:'btn btn-primary' %>
 <% end %>
 
 <% if false %>
@@ -90,3 +87,4 @@
   <p>groups: <%= @all_matches.map(&:group).group_by(&:itself).transform_values(&:size) %></p>
   <p>sexes: <%= @all_matches.map(&:sex).group_by(&:itself).transform_values(&:size) %></p>
 <% end %>
+<%= link_to 'Back', root_path, class: 'btn btn-primary' %>

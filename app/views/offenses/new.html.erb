@@ -6,11 +6,8 @@
 <p>Only spreadsheet-type files should be allowed.</p>
 
 <%= form_for @offense do |f| %>
-  <div class="">
-    <%= f.file_field :file, accept: 'text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %>
+  <div class="form-group">
+    <%= f.file_field :file, accept: 'text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', class: 'form-control-file' %>
   </div>
-
-  <div class="">
-    <%= f.submit 'File Import', class: '' %>
-  </div>
+    <%= f.submit 'File Import', class:'btn btn-primary' %>
 <% end %>

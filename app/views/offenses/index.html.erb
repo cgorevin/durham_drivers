@@ -1,6 +1,63 @@
-<h1>Offenses#index</h1>
+<h1>Search Offenses</h1>
+
 <h2>Admin Panel page</h2>
 
-<p>
-  page has a search bar similar to the search page, except these results are full and have links to the offenses#show page for further detail
-</p>
+<%= form_tag offenses_path, method: :get do %>
+  <table>
+    <thead>
+      <th>
+        <%= label_tag 'First name' %>
+      </th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Date of birth</th>
+      <th>Group ID</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= text_field_tag :first_name, params[:first_name], placeholder: 'First name', required: true %></td>
+        <td><%= text_field_tag :middle_name, params[:middle_name], placeholder: 'Middle name' %></td>
+        <td><%= text_field_tag :last_name, params[:last_name], placeholder: 'Last name', required: true %></td>
+        <td><%= text_field_tag :date_of_birth, params[:date_of_birth], placeholder: 'Date of birth' %></td>
+        <td><%= text_field_tag :group_id, params[:group_id], placeholder: 'Groups 1-52' %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<h3>Groups</h3>
+
+<div>
+  <% @groups.each do |group| %>
+    <span><%= link_to group, group_offenses_path(group) %></span>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <th>First name</th>
+    <th>Middle name</th>
+    <th>Last name</th>
+    <th>Date of birth</th>
+    <th>Status</th>
+    <th>Group</th>
+  </thead>
+  <tbody>
+    <% @offenses.each do |offense| %>
+      <tr>
+        <td><%= offense.first_name %></td>
+        <td><%= offense.middle_name %></td>
+        <td><%= offense.last_name %></td>
+        <td><%= offense.dob || 'missing' %></td>
+        <td><%= offense.status %></td>
+        <td><%= offense.group %></td>
+        <td><%= link_to 'link', offense_path(offense) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @offenses, param_name: :p %>
