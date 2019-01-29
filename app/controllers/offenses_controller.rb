@@ -1,24 +1,17 @@
 class OffensesController < ApplicationController
+  before_action :set_params, only: [:index, :group, :group_update]
   # before_action :authenticate_admin!, :except => [:index]
 
   def index
-    page = params[:p]
-
-    @first = params[:first_name]
-    @middle = params[:middle_name]
-    @last = params[:last_name]
-    @dob = params[:date_of_birth]
-
-
-    @groups = Offense.groups params[:group_id]
-    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).page page
+    @group = params[:g]
+    @groups = Offense.groups @group
+    @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
+                       .page @page
   end
 
   def show
     @offense = Offense.find(params[:id])
     @contacts = @offense.contacts
-    @contact = @contacts.first
-    # @contact = Contact.all
   end
 
   def new
@@ -101,9 +94,12 @@ class OffensesController < ApplicationController
   def destroy
   end
 
+  # GET "/offenses/group/4"
   def group
-    page = params[:p]
-    @offenses = Offense.group_search(params[:group]).page page
+    @group = params[:group]
+    # @offenses = Offense.group_search(params[:group]).page page
+    @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
+                       .page @page
   end
 
   # POST "/offenses/group/4"
@@ -122,16 +118,19 @@ class OffensesController < ApplicationController
   # }
   # when user presses one of the 'mark as ...' buttons
   # Parameters: {
-  #   "status"=>"approved",
+  #   "ids"=>"55 56 57 58 29327",
+  #   "status"=>"pending",
   #   "group"=>"4"
   # }
   def group_update
+    @group = params[:group]
     if status = params[:status]
-      Offense.update_all status: status
+      Offense.where(id: params[:ids].split).update_all(status: status)
     elsif offenses = params[:offenses]
       Offense.update offenses.keys, offenses.values
     end
-    redirect_to group_offenses_path params[:group], p: params[:p]
+
+    redirect_to group_offenses_path @group, p: @page, f: @first, m: @middle, l: @last
   end
 
   private
@@ -209,5 +208,13 @@ class OffensesController < ApplicationController
     elapsed_time << "#{seconds}s"
 
     puts "#{msg}: #{elapsed_time}"
+  end
+
+  def set_params
+    @first = params[:f]
+    @middle = params[:m]
+    @last = params[:l]
+    @date = params[:d]
+    @page = params[:p]
   end
 end

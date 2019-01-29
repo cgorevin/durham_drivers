@@ -1,11 +1,34 @@
-<% group_id = params[:group] %>
+<h1>Group <%= @group %></h1>
 
-<br>
-<br>
+<%= form_tag group_offenses_path(@group), method: :get, enforce_utf8: false do %>
+  <table>
+    <thead>
+      <th><%= label_tag :f, 'First name' %></th>
+      <th><%= label_tag :m, 'Middle name' %></th>
+      <th><%= label_tag :l, 'Last name' %></th>
+      <th><%= label_tag :d, 'Date of birth' %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= text_field_tag :f, @first, placeholder: 'First name' %></td>
+        <td><%= text_field_tag :m, @middle, placeholder: 'Middle name' %></td>
+        <td><%= text_field_tag :l, @last, placeholder: 'Last name' %></td>
+        <td><%= text_field_tag :d, @date, placeholder: 'Date of birth' %></td>
+        <td><%= submit_tag 'Search', name: nil %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
 
-<h1>Group <%= group_id %></h1>
+<%= form_tag group_offenses_path(@group) do %>
+  <%= hidden_field_tag :ids, @offenses.pluck(:id) %>
+  <%= hidden_field_tag :f, @first %>
+  <%= hidden_field_tag :m, @middle %>
+  <%= hidden_field_tag :l, @last %>
+  <%= hidden_field_tag :d, @date %>
+  <%= hidden_field_tag :p, @page %>
 
-<%= form_tag group_offenses_path(group_id) do %>
   <p>
     Mark all as:
     <%= submit_tag 'pending', name: :status %>
@@ -14,8 +37,16 @@
   </p>
 <% end %>
 
-<%= form_tag group_offenses_path(group_id) do %>
-  <%= hidden_field_tag :p, params[:p] %>
+<p><%= page_entries_info @offenses %></p>
+
+<p><%= paginate @offenses, param_name: :p %></p>
+
+<%= form_tag group_offenses_path(@group) do %>
+  <%= hidden_field_tag :f, @first %>
+  <%= hidden_field_tag :m, @middle %>
+  <%= hidden_field_tag :l, @last %>
+  <%= hidden_field_tag :d, @date %>
+  <%= hidden_field_tag :p, @page %>
   <%= submit_tag 'Save' %>
 
   <table>

@@ -5,26 +5,24 @@
 <%= form_tag offenses_path, method: :get do %>
   <table>
     <thead>
-      <th>
-        <%= label_tag 'First name' %>
-      </th>
-      <th>Middle name</th>
-      <th>Last name</th>
-      <th>Date of birth</th>
-      <th>Group ID</th>
+      <th><%= label_tag :f, 'First name' %></th>
+      <th><%= label_tag :m, 'Middle name' %></th>
+      <th><%= label_tag :l, 'Last name' %></th>
+      <th><%= label_tag :d, 'Date of birth' %></th>
+      <th><%= label_tag :g, 'Group ID' %></th>
     </thead>
     <tbody>
       <tr>
-        <td><%= text_field_tag :first_name, params[:first_name], placeholder: 'First name', required: true %></td>
-        <td><%= text_field_tag :middle_name, params[:middle_name], placeholder: 'Middle name' %></td>
-        <td><%= text_field_tag :last_name, params[:last_name], placeholder: 'Last name', required: true %></td>
-        <td><%= text_field_tag :date_of_birth, params[:date_of_birth], placeholder: 'Date of birth' %></td>
-        <td><%= text_field_tag :group_id, params[:group_id], placeholder: 'Groups 1-52' %></td>
+        <td><%= text_field_tag :f, @first, placeholder: 'First name' %></td>
+        <td><%= text_field_tag :m, @middle, placeholder: 'Middle name' %></td>
+        <td><%= text_field_tag :l, @last, placeholder: 'Last name' %></td>
+        <td><%= text_field_tag :d, @date, placeholder: 'Date of birth' %></td>
+        <td><%= text_field_tag :g, @group, placeholder: 'Groups 1-52' %></td>
       </tr>
     </tbody>
   </table>
 
-  <%= submit_tag 'Search' %>
+  <%= submit_tag 'Search', name: nil %>
 <% end %>
 
 <h3>Groups</h3>
@@ -34,6 +32,8 @@
     <span><%= link_to group, group_offenses_path(group) %></span>
   <% end %>
 </div>
+
+<%= page_entries_info @offenses %>
 
 <table>
   <thead>
