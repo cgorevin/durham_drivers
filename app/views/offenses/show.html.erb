@@ -1,8 +1,8 @@
-<h2>Offense show page</h2>
+<h2>Contact History & Status</h2>
 
 <hr>
 
-<h2>Case: <%= "#{@offense.first_name} #{@offense.last_name}" %> %></h2>
+<h2>Case: <%= "#{@offense.first_name} #{@offense.middle_name} #{@offense.last_name}" %></h2>
 
 <h4>Status: <%= @offense.status %></h4>
 <%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-primary' %>

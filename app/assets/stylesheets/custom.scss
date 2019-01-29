@@ -1,35 +1,117 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'sass';
 
 /* universal */
 
+html, body {
+  height: 100%;
+}
+
 body {
   padding-top: 60px;
-  margin: 50px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 0;
 }
 
 /* header */
 
+.navbar {
+  height: 80px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.organization-brand {
+  width: 40%;
+  text-align: center;
+  margin-left: 1em;
+}
+
 #logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
+  height: 80px;
+  padding-left: 10px;
+  font-size: 1.3em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  @include mobile {
+    font-size: 1em;
+  }
 }
 
-#logo:hover {
-  color: #fff;
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+.navbar-nav > li {
+  display: inline;
+}
+
+.navbar-nav > li > a {
   text-decoration: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-nav > li > a:hover {
+  text-decoration: underline;
+}
+
+/* footer */
+
+.footer {
+  // flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+}
+
+.footer-row {
+  margin-top: 15px;
+}
+
+.copyright {
+  margin-bottom: 1.5em;
+}
+
+.text-uppercase, .credits, .copyright, .list-unstyled > li > a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-sections {
+  @include mobile {
+    margin-top: 15px;
+  }
 }
 
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  font-family: 'Raleway', sans-serif;
+  color: #777;
 }
 
 h1 {
@@ -45,10 +127,14 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  font-family: 'Raleway', sans-serif;
+}
+
+li, a {
+  font-family: 'Raleway', sans-serif;
 }
