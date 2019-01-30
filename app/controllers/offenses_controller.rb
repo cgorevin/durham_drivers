@@ -1,4 +1,7 @@
+
 class OffensesController < ApplicationController
+  include OffensesHelper
+
   before_action :set_params, only: [:index, :group, :group_update]
   # before_action :authenticate_admin!, :except => [:index]
 
@@ -6,6 +9,7 @@ class OffensesController < ApplicationController
     @group = params[:g]
     @groups = Offense.groups @group
     @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @date, @group)
+                       .order("#{sort_column} #{sort_direction}")
                        .page @page
   end
 
@@ -99,6 +103,7 @@ class OffensesController < ApplicationController
     @group = params[:group]
     # @offenses = Offense.group_search(params[:group]).page page
     @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
+                       .order("#{sort_column} #{sort_direction}")
                        .page @page
   end
 

@@ -341,6 +341,7 @@ class Offense < ApplicationRecord
 
   # find all offenses that belong to a group
   def self.group_search(group)
+    return all unless group.present?
     group = 'NA' if group.to_i.zero?
     # SQL will try to use GROUP BY unless you clearly specify offenses.group
     where '"offenses"."group" = ?', group

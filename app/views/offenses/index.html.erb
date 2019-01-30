@@ -17,12 +17,12 @@
         <td><%= text_field_tag :m, @middle, placeholder: 'Middle name' %></td>
         <td><%= text_field_tag :l, @last, placeholder: 'Last name' %></td>
         <td><%= text_field_tag :d, @date, placeholder: 'Date of birth' %></td>
-        <td><%= text_field_tag :g, @group, placeholder: 'Groups 1-52' %></td>
+        <td><%= text_field_tag :g, @group, placeholder: 'Groups 1-52', size: 12 %></td>
+        <td><%= submit_tag 'Search', name: nil %></td>
       </tr>
     </tbody>
   </table>
 
-  <%= submit_tag 'Search', name: nil %>
 <% end %>
 
 <h3>Groups</h3>
@@ -39,12 +39,12 @@
 
 <table>
   <thead>
-    <th>First name</th>
-    <th>Middle name</th>
-    <th>Last name</th>
-    <th>Date of birth</th>
-    <th>Status</th>
-    <th>Group</th>
+    <th><%= sortable 'first_name' %></th>
+    <th><%= sortable 'middle_name' %></th>
+    <th><%= sortable 'last_name' %></th>
+    <th><%= sortable 'date_of_birth' %></th>
+    <th><%= sortable 'status' %></th>
+    <th><%= sortable 'group' %></th>
   </thead>
   <tbody>
     <% @offenses.each do |offense| %>

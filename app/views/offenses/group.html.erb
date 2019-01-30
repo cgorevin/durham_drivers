@@ -56,11 +56,11 @@
 
   <table>
     <thead>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th>Last name</th>
-      <th>Date of birth</th>
-      <th>Status</th>
+      <th><%= sortable 'first_name' %></th>
+      <th><%= sortable 'middle_name' %></th>
+      <th><%= sortable 'last_name' %></th>
+      <th><%= sortable 'date_of_birth' %></th>
+      <th><%= sortable 'status' %></th>
     </thead>
     <tbody>
       <% @offenses.each do |offense| %>
