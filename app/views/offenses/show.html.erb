@@ -5,14 +5,18 @@
 <h2>Case: <%= "#{@offense.first_name} #{@offense.middle_name} #{@offense.last_name}" %></h2>
 
 <h4>Status: <%= @offense.status %></h4>
+
 <%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-primary' %>
 
 <p>Contact History:</p>
+
 <ul>
-  <li>
-    <%= @contact.info %>
-  </li>
-  <ul>
-    <li><%= @contact.contact_time %></li>
-  </ul>
+  <% @contacts.each do |contact| %>
+    <li>
+      <%= contact.info %>
+    </li>
+    <ul>
+      <li><%= contact.contact_time %></li>
+    </ul>
+  <% end %>
 </ul>

@@ -1,4 +1,10 @@
 class Offense < ApplicationRecord
+  alias_attribute :street, :street_address
+  # alias_attribute :dob, :date_of_birth
+
+  has_and_belongs_to_many :contacts
+  has_many :contact_histories
+
   paginates_per 100
 
   validates :first_name, presence: true
@@ -7,11 +13,6 @@ class Offense < ApplicationRecord
   validates :status, presence: true
   validates :status, inclusion: { in: %w(pending approved denied),
     message: %("%{value}" is not a valid status) }, allow_blank: true
-  has_and_belongs_to_many :contacts
-  has_many :contact_histories
-
-  alias_attribute :street, :street_address
-  # alias_attribute :dob, :date_of_birth
 
   def approved?
     status == 'approved'
@@ -284,12 +285,11 @@ class Offense < ApplicationRecord
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
     date = Date.parse(dob)
     year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
-    select('*', 'date_of_birth AS dob')
-      .where "
-        ((dob #{like} :y AND dob #{like} :m)
-        OR (dob #{like} :y AND dob #{like} :d)
-        OR (dob #{like} :m AND dob #{like} :d)) OR dob IS NULL
-      ", y: year, m: month, d: day
+    where "
+      ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
+      OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
+      OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
+    ".split.join(' '), y: year, m: month, d: day
   end
 
   # name based query, supports case insensitive, partial matching on all name fields
@@ -341,8 +341,15 @@ class Offense < ApplicationRecord
 
   # find all offenses that belong to a group
   def self.group_search(group)
+    return all unless group.present?
     group = 'NA' if group.to_i.zero?
     # SQL will try to use GROUP BY unless you clearly specify offenses.group
     where '"offenses"."group" = ?', group
+  end
+
+  def self.fuzzy_group_search(*names, dob, group)
+    group_search(group)
+    .fuzzy_date_search(dob)
+    .fuzzy_name_search(names)
   end
 end
