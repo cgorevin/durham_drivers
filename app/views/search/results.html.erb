@@ -11,7 +11,7 @@
   </ul>
 <% elsif @offenses.any?(&:approved?) %>
   <p>
-    Yes, you have received relief through this program. For confidentiality purposes, please provide email address. We will send you details.
+    Yes, you have received relief through this program. For confidentiality purposes, please provide an email address. We will send you details.
   </p>
 
   <p>Please specify your method of contact</p>
@@ -35,4 +35,22 @@
   <p>
     Not yet. We have identified cases that may be eligible for relief. Please provide an email address & we will notify you. This could take up to 1 year.
   </p>
+
+  <p>Please specify your method of contact</p>
+
+  <%= form_for Contact.new do |f| %>
+    <%= hidden_field_tag :ids, nil, value: params[:ids] %>
+
+    <div class="form-row">
+      <div class="form-group">
+        <%= f.label :method, "Contact Method:" %>
+        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
+      </div>
+    </div>
+    <%= submit_tag 'Save', class:'btn btn-primary' %>
+  <% end %>
 <% end %>

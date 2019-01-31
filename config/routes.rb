@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'search#show'
 
   controller :search do
-    get :sign_up, :next_steps
+    get :results, :sign_up, :next_steps
     post :confirm, :results
   end
 
