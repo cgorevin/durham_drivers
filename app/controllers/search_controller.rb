@@ -16,14 +16,13 @@ class SearchController < ApplicationController
     @similar_matches = @similar_matches - @exact_matches
 
     # NOTE: redirect if no matches
-    # if @all_matches.empty?
-    #   redirect_to results_path([]) # redirect to results page with 0 offenses
-    # end
+    # redirect to results page with 0 offenses
+    redirect_to results_path if @similar_matches.empty?
   end
 
   def results
     # collect all the ids
-    @ids = params[:ids].join(' ').split
+    @ids = params[:ids]&.join(' ')&.split
 
     # load offenses based on ids
     @offenses = Offense.where id: @ids
