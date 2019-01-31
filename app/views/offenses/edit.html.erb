@@ -2,5 +2,18 @@
 
 <p>
   This page will detail individual cases where you can edit status from pending to approved/rejected
-  on a case-by-case basis. 
+  on a case-by-case basis.
 </p>
+
+<%= form_for @offense do |f| %>
+  <% offense = f.object %>
+  <%= f.label :status %>
+  <%#= f.select :status, "offenses[#{offense.id}]status", options_for_select(['pending', 'approved', 'denied'], offense.status) %>
+  <%= f.select :status,
+    options_for_select(['pending', 'approved', 'denied'], offense.status) ,
+    name: "offenses[#{offense.id}]status" %>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

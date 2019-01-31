@@ -13,6 +13,7 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
+    <%= flash_helper if flash.present? %>
     <%= render 'layouts/header' %>
     <div class="col-md-2"></div>
     <div class="col-md-8">

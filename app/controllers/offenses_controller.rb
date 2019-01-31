@@ -3,6 +3,7 @@ class OffensesController < ApplicationController
   include OffensesHelper
 
   before_action :set_params, only: [:index, :group, :group_update]
+  before_action :set_offense, only: [:show, :edit, :update]
   # before_action :authenticate_admin!, :except => [:index]
 
   def index
@@ -14,7 +15,6 @@ class OffensesController < ApplicationController
   end
 
   def show
-    @offense = Offense.find(params[:id])
     @contacts = @offense.contacts
   end
 
@@ -93,6 +93,12 @@ class OffensesController < ApplicationController
   end
 
   def update
+    if @offense.update offense_params
+      redirect_to @offense, notice: 'Save successful'
+    else
+      flash.alert = @offense.errors.to_a.join('. ')
+      render :edit
+    end
   end
 
   def destroy
@@ -135,7 +141,7 @@ class OffensesController < ApplicationController
       Offense.update offenses.keys, offenses.values
     end
 
-    redirect_to group_offenses_path @group, p: @page, f: @first, m: @middle, l: @last
+    redirect_to group_offenses_path(@group, p: @page, f: @first, m: @middle, l: @last), notice: 'Save successful'
   end
 
   private
@@ -213,6 +219,14 @@ class OffensesController < ApplicationController
     elapsed_time << "#{seconds}s"
 
     puts "#{msg}: #{elapsed_time}"
+  end
+
+  def offense_params
+    params.require(:offense).permit(:status)
+  end
+
+  def set_offense
+    @offense = Offense.find params[:id]
   end
 
   def set_params
