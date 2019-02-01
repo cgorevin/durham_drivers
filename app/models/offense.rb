@@ -184,6 +184,7 @@ class Offense < ApplicationRecord
   # date based query, only has to match 2/3 of the date (year, month, day)
   def self.fuzzy_date_search(dob)
     return all unless dob.present?
+
     # where(date_of_birth: [dob, nil])
 
     # NOTE: use string for where clause
@@ -298,7 +299,7 @@ class Offense < ApplicationRecord
       ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
       OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
       OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
-    ".split.join(' '), y: year, m: month, d: day
+    ".squish, y: year, m: month, d: day
   end
 
   # name based query, supports case insensitive, partial matching on all name fields
