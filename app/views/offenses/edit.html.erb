@@ -6,12 +6,11 @@
 </p>
 
 <%= form_for @offense do |f| %>
-  <% offense = f.object %>
   <%= f.label :status %>
-  <%#= f.select :status, "offenses[#{offense.id}]status", options_for_select(['pending', 'approved', 'denied'], offense.status) %>
-  <%= f.select :status,
-    options_for_select(['pending', 'approved', 'denied'], offense.status) ,
-    name: "offenses[#{offense.id}]status" %>
+  <%= f.select :status, ['pending', 'approved', 'denied'] %>
+
+  <%= f.label :group %>
+  <%= f.select :group, (1..52).to_a.unshift('NA') %>
 
   <div>
     <%= f.submit %>

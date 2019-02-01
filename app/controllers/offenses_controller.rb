@@ -222,7 +222,7 @@ class OffensesController < ApplicationController
   end
 
   def offense_params
-    params.require(:offense).permit(:status)
+    params.require(:offense).permit(:status, :group)
   end
 
   def set_offense
