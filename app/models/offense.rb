@@ -14,6 +14,15 @@ class Offense < ApplicationRecord
   validates :status, inclusion: { in: %w(pending approved denied),
     message: %("%{value}" is not a valid status) }, allow_blank: true
 
+  def age
+    return unless dob
+    t = Date.today
+    age = t.year - dob.year
+    b4bday = t.strftime('%m%d') < dob.strftime('%m%d')
+    age - (b4bday ? 1 : 0)
+  end
+
+
   def approved?
     status == 'approved'
   end
