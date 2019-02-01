@@ -309,7 +309,7 @@ class Offense < ApplicationRecord
 
     # array of keywords we are search for
     # get the number of words in a query. the query "john doe smith" has 3 words
-    names = names.join(' ').split
+    names = I18n.transliterate(names.join(' ')).split
 
     # split "john doe smith" into ["john", "doe", "smith"]
     # multiply by the number of columns you are searching for
