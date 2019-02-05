@@ -1,3 +1,125 @@
+# frozen_string_literal: true
+
+class OffensesController
+  class Importer
+    # the function so you can call Importer.new file and the import just goes
+    def initialize(file = nil)
+      @file = file
+      @row_total = 0
+      @success_count = 0
+      @errors = {}
+      %w[name dob ftp date group street city race sex num text].each do |x|
+        instance_variable_set "@#{x}", nil
+      end
+      begin_import if file
+    end
+
+    # the function that loads the file and prints time lapse results
+    def begin_import
+      start = Time.now
+
+      workbook = Creek::Book.new @file.path
+
+      load_time = Time.now
+
+      import_worksheet workbook.sheets.first
+      print_results
+
+      stop = Time.now
+
+      timer 'LOAD TIME', start, load_time
+      timer 'LOOP TIME', load_time, stop
+      timer 'TOTAL TIME', start, stop
+    end
+
+    # the main function that loops thru the rows
+    # abc: [52.41/15]
+    # abc: [39.01/15]
+    # abc: [27.59/15]
+    # abc: [16.25/15]
+    # abc: [15.39/15]
+    def import_worksheet(worksheet)
+      worksheet.simple_rows.each_with_index do |row, index|
+        if index.positive?
+          data = get_data row
+
+          offense = Offense.create data
+
+          offense.errors.any? ? add_error(offense, data) : @success_count += 1
+          @row_total += 1
+        else get_keys row
+        end
+      end
+    end
+
+    def get_keys(row)
+      # the first row has all the names, we have to find the key associated
+      # with that name, so that we can find the values of that column in all
+      # future rows
+      @name = row.key 'DEFENDANT_NAME'
+      @dob = row.key 'DEFENDANT_BIRTHDATE'
+      @ftp = row.key 'FTP_RELIEF'
+      @date = row.key 'DISPOSITION_DATE'
+      @group = row.key 'GRP_ID'
+      @street = row.key 'DEFENDANT_ADDRESS'
+      @city = row.key 'DEFENDANT_CITY'
+      @race = row.key 'DEFENDANT_RACE'
+      @sex = row.key 'DEFENDANT_SEX'
+      @num = row.key 'CASE_NUMBER'
+      @text = row.key 'CONVICTED_OFFENSE_TEXT'
+    end
+
+    def get_data(row)
+      # if case is FTA, then status is approved
+      ftp_value = row[@ftp]
+      fta = ftp_value == '0'
+      status = fta ? 'approved' : 'pending'
+
+      # return hash of data to import
+      {
+        name: row[@name], dob: row[@dob], # need custom setter methods
+        ftp: ftp_value, disposition_date: row[@date],
+        group: row[@group], street_address: row[@street], city: row[@city],
+        race: row[@race], sex: row[@sex], case_number: row[@num],
+        description: row[@text], status: status
+      }
+    end
+
+    def add_error(offense, data)
+      # if there were any errors, log it
+      error = offense.errors.to_a.join('. ')
+      @errors[index + 1] = { name: data[:name], error: error }
+    end
+
+    def print_results
+      sleep 2
+      puts "#{@row_total} TOTAL ROWS"
+      puts "#{@success_count} SUCCESSFUL ROWS"
+      puts "#{@errors.count} ERRORS"
+      rate = ((@success_count / @row_total.to_f) * 100).round 3
+      puts "#{rate}% SUCCESS RATE"
+      print "#{@errors.count} ERRORS: "
+      pp @errors
+    end
+
+    # function for printing time
+    def timer(msg, start, stop, round = 2)
+      # elapsed_time = Time.at(time).utc.strftime '%H:%M:%S'
+      time = stop - start
+      # 1 hour is 60 seconds * 60 minutes = 60 * 60 = 3600
+      hours = (time / 3600).to_i
+      minutes = (time % 3600 / 60).to_i
+      seconds = (time % 60).round round
+      elapsed_time = ''
+      elapsed_time << "#{hours}h" if hours.positive?
+      elapsed_time << "#{minutes}m" if minutes.positive?
+      elapsed_time << "#{seconds}s"
+
+      puts "#{msg}: #{elapsed_time}"
+    end
+  end
+end
+
 # use creek or simple_xlsx_reader gem to read file
 # file is 65,535 rows long in Numbers application
 # Creek says there are 94,850 rows
@@ -44,103 +166,3 @@
 # { "approved"=>72121, "pending"=>22728 }
 # case type
 # { "FTA"=>72121, "FTP"=>22728 }
-
-class OffensesController
-  class Importer
-    def initialize(file)
-      @file = file
-      begin_the_import_lol
-    end
-
-    def begin_the_import_lol
-      start = Time.now
-
-      workbook = Creek::Book.new @file.path
-
-      load_time = Time.now
-
-      import_worksheet(workbook.sheets.first)
-
-      stop = Time.now
-
-      timer 'LOAD TIME', start, load_time
-      timer 'LOOP TIME', load_time, stop
-      timer 'TOTAL TIME', start, stop
-    end
-
-    def import_worksheet(worksheet)
-      # puts "Reading: #{worksheet.name}"
-      total_rows, successful_rows = [0, 0]
-      errors = {}
-      name, dob, ftp, disposition, group, street, city, race, sex, num, text = nil
-
-      worksheet.simple_rows.each_with_index do |row, index|
-        if index == 0
-          # the first row has all the names, we have to find the key associated
-          # with that name, so that we can find the values of that column in all
-          # future rows
-          name = row.key 'DEFENDANT_NAME'
-          dob = row.key 'DEFENDANT_BIRTHDATE'
-          ftp = row.key 'FTP_RELIEF'
-          disposition = row.key 'DISPOSITION_DATE'
-          group = row.key 'GRP_ID'
-          street = row.key 'DEFENDANT_ADDRESS'
-          city = row.key 'DEFENDANT_CITY'
-          race = row.key 'DEFENDANT_RACE'
-          sex = row.key 'DEFENDANT_SEX'
-          num = row.key 'CASE_NUMBER'
-          text = row.key 'CONVICTED_OFFENSE_TEXT'
-        else
-          # if case is FTA, then status is approved
-          ftp_value = row[ftp]
-          fta = ftp_value == '0'
-          status = fta ? 'approved' : 'pending'
-
-          # make a hash of data that we will import
-          data = {
-            name: row[name], dob: row[dob], # need custom setter methods
-            ftp: ftp_value, disposition_date: row[disposition],
-            group: row[group], street_address: row[street], city: row[city],
-            race: row[race], sex: row[sex], case_number: row[num],
-            description: row[text], status: status
-          }
-          # print 'data: '; pp data
-
-          # now that we have some data, let's import it
-          offense = Offense.create data
-
-          if offense.errors.any?
-            # if there were any errors, log it
-            error = offense.errors.to_a.join('. ')
-            errors[index + 1] = { name: data[:name], error: error }
-          else successful_rows += 1
-          end
-        end
-
-        total_rows += 1
-      end
-
-      sleep 2
-      puts "#{total_rows} TOTAL ROWS"
-      puts "#{successful_rows} SUCCESSFUL ROWS"
-      puts "#{errors.count} ERRORS"
-      puts "#{((successful_rows / (total_rows - 1).to_f) * 100).round 3}% SUCCESS RATE"
-      print "#{errors.count} ERRORS: "
-      pp errors
-    end
-
-    def timer(msg, start, stop, round = 2)
-      time = stop - start
-      # elapsed_time = Time.at(time).utc.strftime '%H:%M:%S'
-      hours = (time / (60 * 60)).to_i
-      minutes = (time % (60 * 60) / 60).to_i
-      seconds = (time % 60).round 2
-      elapsed_time = ''
-      elapsed_time << "#{hours}h" if hours.positive?
-      elapsed_time << "#{minutes}m" if minutes.positive?
-      elapsed_time << "#{seconds}s"
-
-      puts "#{msg}: #{elapsed_time}"
-    end
-  end
-end
