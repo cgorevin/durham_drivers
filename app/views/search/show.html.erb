@@ -1,6 +1,7 @@
-<h1>Search the Database</h1>
+<h1><%= t ".title" %></h1>
+<h2><%= t ".welcome_message" %></h2>
 
-<p>Please enter your name and date of birth:</p>
+<p><%= t ".introduction" %></p>
 
 <%= form_for @offense, url: confirm_path do |f| %>
   <div class="form-group">
@@ -17,3 +18,12 @@
   </div>
   <%= f.submit 'Search', class:'btn btn-primary' %>
 <% end %>
+
+<hr />
+<p><%= t ".upcoming_court_dates" %></p>
+<hr />
+<h2><%= t ".about_project" %></h2>
+<button type="button" class="btn btn-primary about-us"><%= t ".about_button" %></button>
+<p><%= t ".project_partners" %></p>
+<br />
+</p>

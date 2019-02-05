@@ -30,12 +30,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  helpers:
-      page_entries_info:
-        one_page:
-          display_entries:
-            zero: "No %{entry_name} found"
-            one: "<b>1</b> %{entry_name}"
-            other: "<b>%{count}</b> %{entry_name}"
-        more_pages:
-          display_entries: "%{entry_name} <b>%{first}—%{last}</b> of <b>%{total}</b>"
+  search:
+    show:
+      title: "Search"
+      welcome_message: "Welcome to the Durham Driver’s License Restoration Project!"
+      introduction: "This project assists people who have had a suspended driver’s license for more
+        than 2 years due to traffic charges in Durham County that do not involve DUIs or
+        other “high risk” traffic offenses. Please enter your name and date of birth below
+        to find out if you are eligible for this program."
+      upcoming_court_dates: "Please note: if you have upcoming or pending traffic court case, you should go to
+        court on your court dates. This project only assists individuals with certain
+        traffic charges that are older than 2 years."
+      about_project: "About the Project:"
+      project_partners: "This project is supported by the following partners:"
+      about_button: "The Restoration Initiative"

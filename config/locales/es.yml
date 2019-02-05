@@ -1,0 +1,10 @@
+es:
+  search:
+    show:
+      title: "Spanish Search"
+      welcome_message: "Spanish Welcome"
+      introduction: "Spanish intro"
+      upcoming_court_dates: "Spanish upcoming court dates"
+      about_project: "Spanish about"
+      project_partners: "Spanish project partners"
+      about_button: "Spanish about button"
