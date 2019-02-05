@@ -15,12 +15,12 @@ class ContactsController < ApplicationController
       contact.offense_ids = ids
     end
 
-    redirect_to sign_up_path, notice: 'nice'
+    redirect_to sign_up_path, notice: 'Thank you'
   end
 
   private
 
   def contact_params
-    params.require(:contact).permit(:method, :info)
+    params.require(:contact).permit(:method, :info, :requestor_name)
   end
 end
