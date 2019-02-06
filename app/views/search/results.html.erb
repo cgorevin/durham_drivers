@@ -1,20 +1,12 @@
-<h1>Results</h1>
+<h1><%= t ".title" %></h1>
 
 <% if @offenses.empty? %>
-  <p>
-    No, I'm sorry but this project was unable to assist you. Some common reasons:
-  </p>
-  <ul>
-    <li>reason 1</li>
-    <li>reason 2</li>
-    <li>reason 3</li>
-  </ul>
+  <p><%= t ".empty_offenses" %></p>
+    <%= link_to (t ".learn_more_button"), '#', class: 'btn btn-primary about-us' %>
 <% elsif @offenses.any?(&:approved?) %>
-  <p>
-    Yes, you have received relief through this program. For confidentiality purposes, please provide an email address. We will send you details.
-  </p>
+  <p><%= t ".approved_offenses_intro" %></p>
 
-  <p>Please specify your method of contact</p>
+  <p><%= t ".contact_method" %></p>
 
   <%= form_for Contact.new do |f| %>
     <%= hidden_field_tag :ids, nil, value: params[:ids] %>
@@ -22,14 +14,14 @@
     <div class="form-row">
       <div class="form-group">
         <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
+        <%= f.select :method, options_for_select([(t '.email'), (t '.text')], (t '.email')), class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
+        <%= f.text_field :info, placeholder: (t '.contact_info'), class: 'form-control'%>
       </div>
     </div>
-    <%= submit_tag 'Save', class:'btn btn-primary' %>
+    <%= submit_tag (t '.save_button'), class:'btn btn-primary' %>
   <% end %>
 <% else %>
   <p>
