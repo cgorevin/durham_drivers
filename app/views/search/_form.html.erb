@@ -1,0 +1,37 @@
+<%= form_for Contact.new do |f| %>
+  <%= hidden_field_tag :ids, nil, value: params[:ids] %>
+
+  <div class="form-row">
+    <div class="form-group">
+      <%= f.label :method, "Contact Method:" %>
+      <%= f.radio_button :method, 'email', required: true %>
+      <%= f.label :method_email, t('.email')%>
+      <%= f.radio_button :method, 'phone', required: true %>
+      <%= f.label :method_phone, t('.text') %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :info, placeholder: t('.contact_info'), class: 'form-control'%>
+    </div>
+  </div>
+
+  <div>
+    <p>Check one: </p>
+
+    <p>
+      <%= f.radio_button :requestor_name, ' ', class: 'js-radio', required: true %>
+      <%= f.label :requestor_name__, "This email address is for #{@offense.name}" %>
+    </p>
+
+    <p>
+      <%= f.radio_button :requestor_name, true, class: 'js-radio', required: true %>
+      <%= f.label :requestor_name_true, "I am getting this information on behalf of #{@offense.name} at the person's request." %>
+    </p>
+    <div class="js-div">
+      My name is:
+      <%= f.text_field :requestor_name, class: 'js-field', disabled: true, required: true, placeholder: 'Enter name here' %>
+    </div>
+  </div>
+
+  <%= submit_tag t('.save_button'), class:'btn btn-primary' %>
+<% end %>

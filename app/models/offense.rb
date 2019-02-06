@@ -36,6 +36,14 @@ class Offense < ApplicationRecord
     status == 'approved'
   end
 
+  def denied?
+    status == 'denied'
+  end
+
+  def pending?
+    status == 'pending'
+  end
+
   # NOTE: use method instead of alias_attribute so that we can write our own
   # dob= setter method
   def dob

@@ -1,56 +1,13 @@
-<h1>Results</h1>
+<h1><%= t ".title" %></h1>
 
 <% if @offenses.empty? %>
-  <p>
-    No, I'm sorry but this project was unable to assist you. Some common reasons:
-  </p>
-  <ul>
-    <li>reason 1</li>
-    <li>reason 2</li>
-    <li>reason 3</li>
-  </ul>
-<% elsif @offenses.any?(&:approved?) %>
-  <p>
-    Yes, you have received relief through this program. For confidentiality purposes, please provide an email address. We will send you details.
-  </p>
-
-  <p>Please specify your method of contact</p>
-
-  <%= form_for Contact.new do |f| %>
-    <%= hidden_field_tag :ids, nil, value: params[:ids] %>
-
-    <div class="form-row">
-      <div class="form-group">
-        <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
-      </div>
-    </div>
-    <%= submit_tag 'Save', class:'btn btn-primary' %>
-  <% end %>
-<% else %>
-  <p>
-    Not yet. We have identified cases that may be eligible for relief. Please provide an email address & we will notify you. This could take up to 1 year.
-  </p>
-
-  <p>Please specify your method of contact</p>
-
-  <%= form_for Contact.new do |f| %>
-    <%= hidden_field_tag :ids, nil, value: params[:ids] %>
-
-    <div class="form-row">
-      <div class="form-group">
-        <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
-      </div>
-    </div>
-    <%= submit_tag 'Save', class:'btn btn-primary' %>
-  <% end %>
+  <%= render 'record_missing' %>
+<% elsif @offenses.all?(&:approved?) %>
+  <%= render 'approved' %>
+<% elsif @offenses.all?(&:denied?) %>
+  <%= render 'denied' %>
+<% elsif @offenses.all?(&:pending?) %>
+  <%= render 'pending' %>
+<% elsif %>
+  <%= render 'mix' %>
 <% end %>
