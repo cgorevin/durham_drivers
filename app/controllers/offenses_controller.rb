@@ -22,7 +22,8 @@ class OffensesController < ApplicationController
   end
 
   def create
-    Importer.new params[:offense][:file]
+    importer = Importer.new params[:offense][:file]
+    importer.begin_import
     redirect_to new_offense_path, notice: "Done! There are now #{Offense.count} offenses in the database."
   end
 

@@ -1,33 +1,40 @@
 # frozen_string_literal: false
-require 'csv'
 
+require 'csv'
 class OffensesController
   # class for importing .xlsx files
   class Importer
-    CSV_FILE = 'text/csv'
-    XLS = 'application/vnd.ms-excel'
-    XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     # the function so you can call Importer.new file and the import just goes
-    def initialize(file = nil)
+    def initialize(file = nil, initial_values = [0, 0, {}])
       @file = file
-      @row_total = 0
-      @success_count = 0
-      @errors = {}
+      @row_total, @success_count, @errors = initial_values
+
+      # 8 lines
       @attrs = {
-        name: { header: 'DEFENDANT_NAME' },
-        dob: { header: 'DEFENDANT_BIRTHDATE' },
-        ftp: { header: 'FTP_RELIEF' },
-        date: { header: 'DISPOSITION_DATE' },
-        group: { header: 'GRP_ID' },
-        addr: { header: 'DEFENDANT_ADDRESS' },
-        city: { header: 'DEFENDANT_CITY' },
-        race: { header: 'DEFENDANT_RACE' },
-        sex: { header: 'DEFENDANT_SEX' },
-        num: { header: 'CASE_NUMBER' },
+        name: { header: 'DEFENDANT_NAME' }, sex: { header: 'DEFENDANT_SEX' },
+        ftp: { header: 'FTP_RELIEF' }, date: { header: 'DISPOSITION_DATE' },
+        group: { header: 'GRP_ID' }, addr: { header: 'DEFENDANT_ADDRESS' },
+        city: { header: 'DEFENDANT_CITY' }, race: { header: 'DEFENDANT_RACE' },
+        dob: { header: 'DEFENDANT_BIRTHDATE' }, num: { header: 'CASE_NUMBER' },
         text: { header: 'CONVICTED_OFFENSE_TEXT' }
       }
 
-      begin_import if file
+      # 7 lines
+      # @attrs = {
+      #   name: 'DEFENDANT_NAME', sex: 'DEFENDANT_SEX', ftp: 'FTP_RELIEF',
+      #   date: 'DISPOSITION_DATE', group: 'GRP_ID', addr: 'DEFENDANT_ADDRESS',
+      #   city: 'DEFENDANT_CITY', race: 'DEFENDANT_RACE', num: 'CASE_NUMBER',
+      #   dob: 'DEFENDANT_BIRTHDATE', text: 'CONVICTED_OFFENSE_TEXT'
+      # }
+      # @attrs.each { |k, v| @attrs[k] = { header: v } }
+
+      # 6 lines
+      # attrs = %w[name sex ftp date group addr city race num dob text]
+      # keys = %w[DEFENDANT_NAME DEFENDANT_SEX FTP_RELIEF DISPOSITION_DATE
+      #           GRP_ID DEFENDANT_ADDRESS DEFENDANT_CITY DEFENDANT_RACE
+      #           CASE_NUMBER DEFENDANT_BIRTHDATE CONVICTED_OFFENSE_TEXT]
+      # @attrs = {}
+      # attrs.each_with_index { |k, i| @attrs[k] = { header: keys[i] } }
     end
 
     # the function that loads the file and prints time lapse results
@@ -45,72 +52,62 @@ class OffensesController
       print_results
     end
 
+    # use different gems to load file based on file type
     def load_file
-      # Creek::Book.new @file.path # does not work with csv, xls
-      case @file.content_type
-      when CSV_FILE
-        # load as csv file
-        # returns headers
-        CSV.read @file.path, headers: true
-      when XLS
+      # load as csv file
+      if csv? then CSV.read @file.path, headers: true
+      elsif xls?
         # load as xls file
-      when XLSX
+      elsif xlsx?
         # load as xlsx file
-        # returns wookbook that has many sheets
         workbook = Creek::Book.new @file.path
         workbook.sheets.first.simple_rows
       end
     end
 
+    def csv?
+      @file.content_type == 'text/csv'
+    end
+
+    def xls?
+      @file.content_type == 'application/vnd.ms-excel'
+    end
+
+    def xlsx?
+      @file.content_type == 'application/vnd.openxmlformats-officedocument.spr'\
+      'eadsheetml.sheet'
+    end
+
     def import_rows(rows)
       # handle key setting
-      case @file.content_type
-      when CSV_FILE
-        get_keys
-      when XLSX
-        get_keys rows.first
-      end
+      get_keys rows.first
 
-      rows.each_with_index do |row, index|
-        next if index.zero? && @file.content_type == XLSX
+      rows.each_with_index do |row, i|
+        next if i.zero? && xlsx?
+
         data = get_data row
 
         offense = Offense.create data
 
-        offense.errors.any? ? add_error(offense, data) : @success_count += 1
+        offense.errors.any? ? add_error(offense, data, i) : @success_count += 1
+
         @row_total += 1
       end
     end
 
-    def get_keys(row = nil)
+    def get_keys(row)
       # the first row has all the names, we have to find the key associated with
       # that name, so that we can find the values of that column in all future
       # rows
-      if @file.content_type == XLSX
-        @attrs.each do |attr, hash|
+      if xlsx?
+        @attrs.each do |_attr, hash|
           hash[:key] = row.key hash[:header]
         end
       end
 
       @attrs.each do |attr, hash|
-        case @file.content_type
-        when CSV_FILE
-          instance_variable_set "@#{attr}", hash[:header]
-        when XLSX
-          instance_variable_set "@#{attr}", hash[:key]
-        end
+        instance_variable_set "@#{attr}", csv? ? hash[:header] : hash[:key]
       end
-      # @name = row.key 'DEFENDANT_NAME'
-      # @dob = row.key 'DEFENDANT_BIRTHDATE'
-      # @ftp = row.key 'FTP_RELIEF'
-      # @date = row.key 'DISPOSITION_DATE'
-      # @group = row.key 'GRP_ID'
-      # @street = row.key 'DEFENDANT_ADDRESS'
-      # @city = row.key 'DEFENDANT_CITY'
-      # @race = row.key 'DEFENDANT_RACE'
-      # @sex = row.key 'DEFENDANT_SEX'
-      # @num = row.key 'CASE_NUMBER'
-      # @text = row.key 'CONVICTED_OFFENSE_TEXT'
     end
 
     def get_data(row)
@@ -129,7 +126,7 @@ class OffensesController
       }
     end
 
-    def add_error(offense, data)
+    def add_error(offense, data, index)
       # if there were any errors, log it
       error = offense.errors.to_a.join('. ')
       @errors[index + 1] = { name: data[:name], error: error }
