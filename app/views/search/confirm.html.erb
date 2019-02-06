@@ -23,11 +23,10 @@
 
 <p><%= t ".records_returned" %></p>
 
-<% @all_matches = @exact_matches + @similar_matches %>
 
 <%= form_tag results_path do |f| %>
 
-  <% @all_matches.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
+  <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
     <% group = array.first %>
     <% offenses = array.last %>
     <% ids = offenses.map(&:id) %>
