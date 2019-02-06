@@ -7,7 +7,10 @@
 
 <%= form_for @offense do |f| %>
   <div class="form-group">
-    <%= f.file_field :file, accept: 'text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', class: 'form-control-file' %>
+    <%#= accept: 'text/csv' %>
+    <%#= accept: 'application/vnd.ms-excel' %>
+    <%#= accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %>
+    <%= f.file_field :file, class: 'form-control-file' %>
   </div>
     <%= f.submit 'File Import', class:'btn btn-primary' %>
 <% end %>

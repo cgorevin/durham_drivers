@@ -1,17 +1,32 @@
 # frozen_string_literal: false
+require 'csv'
 
 class OffensesController
   # class for importing .xlsx files
   class Importer
+    CSV_FILE = 'text/csv'
+    XLS = 'application/vnd.ms-excel'
+    XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     # the function so you can call Importer.new file and the import just goes
     def initialize(file = nil)
       @file = file
       @row_total = 0
       @success_count = 0
       @errors = {}
-      %w[name dob ftp date group street city race sex num text].each do |x|
-        instance_variable_set "@#{x}", nil
-      end
+      @attrs = {
+        name: { header: 'DEFENDANT_NAME' },
+        dob: { header: 'DEFENDANT_BIRTHDATE' },
+        ftp: { header: 'FTP_RELIEF' },
+        date: { header: 'DISPOSITION_DATE' },
+        group: { header: 'GRP_ID' },
+        addr: { header: 'DEFENDANT_ADDRESS' },
+        city: { header: 'DEFENDANT_CITY' },
+        race: { header: 'DEFENDANT_RACE' },
+        sex: { header: 'DEFENDANT_SEX' },
+        num: { header: 'CASE_NUMBER' },
+        text: { header: 'CONVICTED_OFFENSE_TEXT' }
+      }
+
       begin_import if file
     end
 
@@ -19,46 +34,83 @@ class OffensesController
     def begin_import
       @start_time = Time.now
 
-      workbook = Creek::Book.new @file.path
+      rows = load_file
 
       @load_time = Time.now
 
-      import_worksheet workbook.sheets.first
+      import_rows rows
 
       @stop_time = Time.now
 
       print_results
     end
 
-    def import_worksheet(worksheet)
-      worksheet.simple_rows.each_with_index do |row, index|
-        if index.positive?
-          data = get_data row
-
-          offense = Offense.create data
-
-          offense.errors.any? ? add_error(offense, data) : @success_count += 1
-          @row_total += 1
-        else get_keys row
-        end
+    def load_file
+      # Creek::Book.new @file.path # does not work with csv, xls
+      case @file.content_type
+      when CSV_FILE
+        # load as csv file
+        # returns headers
+        CSV.read @file.path, headers: true
+      when XLS
+        # load as xls file
+      when XLSX
+        # load as xlsx file
+        # returns wookbook that has many sheets
+        workbook = Creek::Book.new @file.path
+        workbook.sheets.first.simple_rows
       end
     end
 
-    def get_keys(row)
+    def import_rows(rows)
+      # handle key setting
+      case @file.content_type
+      when CSV_FILE
+        get_keys
+      when XLSX
+        get_keys rows.first
+      end
+
+      rows.each_with_index do |row, index|
+        next if index.zero? && @file.content_type == XLSX
+        data = get_data row
+
+        offense = Offense.create data
+
+        offense.errors.any? ? add_error(offense, data) : @success_count += 1
+        @row_total += 1
+      end
+    end
+
+    def get_keys(row = nil)
       # the first row has all the names, we have to find the key associated with
       # that name, so that we can find the values of that column in all future
       # rows
-      @name = row.key 'DEFENDANT_NAME'
-      @dob = row.key 'DEFENDANT_BIRTHDATE'
-      @ftp = row.key 'FTP_RELIEF'
-      @date = row.key 'DISPOSITION_DATE'
-      @group = row.key 'GRP_ID'
-      @street = row.key 'DEFENDANT_ADDRESS'
-      @city = row.key 'DEFENDANT_CITY'
-      @race = row.key 'DEFENDANT_RACE'
-      @sex = row.key 'DEFENDANT_SEX'
-      @num = row.key 'CASE_NUMBER'
-      @text = row.key 'CONVICTED_OFFENSE_TEXT'
+      if @file.content_type == XLSX
+        @attrs.each do |attr, hash|
+          hash[:key] = row.key hash[:header]
+        end
+      end
+
+      @attrs.each do |attr, hash|
+        case @file.content_type
+        when CSV_FILE
+          instance_variable_set "@#{attr}", hash[:header]
+        when XLSX
+          instance_variable_set "@#{attr}", hash[:key]
+        end
+      end
+      # @name = row.key 'DEFENDANT_NAME'
+      # @dob = row.key 'DEFENDANT_BIRTHDATE'
+      # @ftp = row.key 'FTP_RELIEF'
+      # @date = row.key 'DISPOSITION_DATE'
+      # @group = row.key 'GRP_ID'
+      # @street = row.key 'DEFENDANT_ADDRESS'
+      # @city = row.key 'DEFENDANT_CITY'
+      # @race = row.key 'DEFENDANT_RACE'
+      # @sex = row.key 'DEFENDANT_SEX'
+      # @num = row.key 'CASE_NUMBER'
+      # @text = row.key 'CONVICTED_OFFENSE_TEXT'
     end
 
     def get_data(row)
@@ -71,7 +123,7 @@ class OffensesController
       {
         name: row[@name], dob: row[@dob], # need custom setter methods
         ftp: ftp_value, disposition_date: row[@date],
-        group: row[@group], street_address: row[@street], city: row[@city],
+        group: row[@group], street_address: row[@addr], city: row[@city],
         race: row[@race], sex: row[@sex], case_number: row[@num],
         description: row[@text], status: status
       }
