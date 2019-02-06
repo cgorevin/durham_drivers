@@ -1,12 +1,12 @@
-<h2>Your Search</h2>
+<h2><%= t ".title" %></h2>
 
 <table>
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Middle Name</th>
-      <th>Last Name</th>
-      <th>Birthdate</th>
+      <th><%= t ".first_name" %></th>
+      <th><%= t ".middle_name" %></th>
+      <th><%= t ".last_name" %></th>
+      <th><%= t ".dob" %></th>
     </tr>
   </thead>
   <tbody>
@@ -19,10 +19,9 @@
   </tbody>
 </table>
 
-<h2>Is This You?</h2>
+<h2><%= t ".header" %></h2>
 
-<p>Here are the records we found. Please select your name if it
-  appears, otherwise select “my record does not appear.”</p>
+<p><%= t ".records_returned" %></p>
 
 <% @all_matches = @exact_matches + @similar_matches %>
 
@@ -42,7 +41,7 @@
     </div>
   <% end %>
 
-  <%= submit_tag 'Next', class:'btn btn-primary' %>
+  <%= submit_tag (t '.next_button'), class:'btn btn-primary' %>
 <% end %>
 
 <% if false %>
@@ -88,4 +87,4 @@
   <p>groups: <%= @all_matches.map(&:group).group_by(&:itself).transform_values(&:size) %></p>
   <p>sexes: <%= @all_matches.map(&:sex).group_by(&:itself).transform_values(&:size) %></p>
 <% end %>
-<%= link_to 'Back', root_path, class: 'btn btn-primary' %>
+<%= link_to (t '.back_button'), root_path, class: 'btn btn-primary' %>

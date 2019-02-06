@@ -1,20 +1,12 @@
-<h1>Results</h1>
+<h1><%= t ".title" %></h1>
 
 <% if @offenses.empty? %>
-  <p>The issues leading to your suspended driver’s license are not eligible for
-    this program.  If you would like to learn more, please visit the Durham Expunction
-    and Restoration (DEAR) program office where you can meet with a free attorney
-    to learn more about what you can do to restore your driving privileges.
-    The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham
-    County Courthouse in suite 6400 on the 6th floor.</p>
-    <%= link_to 'Learn More About this Program', '#', class: 'btn btn-primary about-us' %>
+  <p><%= t ".empty_offenses" %></p>
+    <%= link_to (t ".learn_more_button"), '#', class: 'btn btn-primary about-us' %>
 <% elsif @offenses.any?(&:approved?) %>
-  <p>We were able to assist with some of the issues leading to your suspended license.
-    To protect your privacy, please enter your email address below and we will send you
-    detailed information about the legal relief you received. Please note, this does
-    not mean you can legally drive.  You likely still have additional steps to take.</p>
+  <p><%= t ".approved_offenses_intro" %></p>
 
-  <p>Please specify your method of contact:</p>
+  <p><%= t ".contact_method" %></p>
 
   <%= form_for Contact.new do |f| %>
     <%= hidden_field_tag :ids, nil, value: params[:ids] %>
@@ -22,14 +14,14 @@
     <div class="form-row">
       <div class="form-group">
         <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
+        <%= f.select :method, options_for_select([(t '.email'), (t '.text')], (t '.email')), class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
+        <%= f.text_field :info, placeholder: (t '.contact_info'), class: 'form-control'%>
       </div>
     </div>
-    <%= submit_tag 'Save', class:'btn btn-primary' %>
+    <%= submit_tag (t '.save_button'), class:'btn btn-primary' %>
   <% end %>
 <% else %>
   <p>
