@@ -1,6 +1,7 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 class OffensesController
+  # class for importing .xlsx files
   class Importer
     # the function so you can call Importer.new file and the import just goes
     def initialize(file = nil)
@@ -16,28 +17,19 @@ class OffensesController
 
     # the function that loads the file and prints time lapse results
     def begin_import
-      start = Time.now
+      @start_time = Time.now
 
       workbook = Creek::Book.new @file.path
 
-      load_time = Time.now
+      @load_time = Time.now
 
       import_worksheet workbook.sheets.first
+
+      @stop_time = Time.now
+
       print_results
-
-      stop = Time.now
-
-      timer 'LOAD TIME', start, load_time
-      timer 'LOOP TIME', load_time, stop
-      timer 'TOTAL TIME', start, stop
     end
 
-    # the main function that loops thru the rows
-    # abc: [52.41/15]
-    # abc: [39.01/15]
-    # abc: [27.59/15]
-    # abc: [16.25/15]
-    # abc: [15.39/15]
     def import_worksheet(worksheet)
       worksheet.simple_rows.each_with_index do |row, index|
         if index.positive?
@@ -53,9 +45,9 @@ class OffensesController
     end
 
     def get_keys(row)
-      # the first row has all the names, we have to find the key associated
-      # with that name, so that we can find the values of that column in all
-      # future rows
+      # the first row has all the names, we have to find the key associated with
+      # that name, so that we can find the values of that column in all future
+      # rows
       @name = row.key 'DEFENDANT_NAME'
       @dob = row.key 'DEFENDANT_BIRTHDATE'
       @ftp = row.key 'FTP_RELIEF'
@@ -96,10 +88,13 @@ class OffensesController
       puts "#{@row_total} TOTAL ROWS"
       puts "#{@success_count} SUCCESSFUL ROWS"
       puts "#{@errors.count} ERRORS"
-      rate = ((@success_count / @row_total.to_f) * 100).round 3
-      puts "#{rate}% SUCCESS RATE"
-      print "#{@errors.count} ERRORS: "
+      puts "#{((@success_count / @row_total.to_f) * 100).round 3}% SUCCESS RATE"
+      print 'ERRORS: '
       pp @errors
+
+      timer 'LOAD TIME', @start_time, @load_time
+      timer 'LOOP TIME', @load_time, @stop_time
+      timer 'TOTAL TIME', @start_time, @stop_time
     end
 
     # function for printing time
