@@ -4,7 +4,10 @@
   <div class="form-row">
     <div class="form-group">
       <%= f.label :method, "Contact Method:" %>
-      <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
+      <%= f.radio_button :method, 'email', required: true %>
+      <%= f.label :method_email, 'Email' %>
+      <%= f.radio_button :method, 'phone', required: true %>
+      <%= f.label :method_phone, 'Phone' %>
     </div>
 
     <div class="form-group">
