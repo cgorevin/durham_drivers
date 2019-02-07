@@ -55,7 +55,7 @@
         <td><%= offense.dob&.strftime('%-m/%-d/%Y') %></td>
         <td><%= offense.status %></td>
         <td><%= offense.group %></td>
-        <td><%= link_to 'link', offense_path(offense, locale: params[:locale]) %></td>
+        <td><%= link_to 'link', offense_path(offense) %></td>
       </tr>
     <% end %>
   </tbody>
