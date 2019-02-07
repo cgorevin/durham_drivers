@@ -2,32 +2,36 @@
 
 require 'csv'
 class OffensesController
-  # class for importing .xlsx files
+  # class for importing .xlsx and .csv files
+  # written to import the 2nd version of the spreadsheet files we received
+  # some columns were removed, like "FTP_RELIEF"
+  # some columsn were added, like "RELIEF"
   class ImporterV2
     # the function so you can call Importer.new file and the import just goes
     def initialize(file = nil, initial_values = [0, 0, {}])
       @file = file
       @row_total, @success_count, @errors = initial_values
 
+      # 9 lines
+      # @attrs = {
+      #   name: { header: 'DEFENDANT_NAME' }, sex: { header: 'DEFENDANT_SEX' },
+      #   amount: { header: 'AMOUNT' }, date: { header: 'DISPOSITION_DATE' },
+      #   group: { header: 'GRP_ID' }, addr: { header: 'DEFENDANT_ADDRESS' },
+      #   city: { header: 'DEFENDANT_CITY' }, race: { header: 'DEFENDANT_RACE'},
+      #   dob: { header: 'DEFENDANT_BIRTHDATE' }, num: { header: 'CASE_NUMBER'},
+      #   text: { header: 'CONVICTED_OFFENSE_TEXT' }, ftp: { header: 'RELIEF' },
+      #   status: { header: 'CASE_STATUS' }
+      # }
+
       # 8 lines
       @attrs = {
-        name: { header: 'DEFENDANT_NAME' }, sex: { header: 'DEFENDANT_SEX' },
-        ftp: { header: 'RELIEF' }, date: { header: 'DISPOSITION_DATE' },
-        group: { header: 'GRP_ID' }, addr: { header: 'DEFENDANT_ADDRESS' },
-        city: { header: 'DEFENDANT_CITY' }, race: { header: 'DEFENDANT_RACE' },
-        dob: { header: 'DEFENDANT_BIRTHDATE' }, num: { header: 'CASE_NUMBER' },
-        text: { header: 'CONVICTED_OFFENSE_TEXT' }, amount: { header: 'AMOUNT' },
-        status: { header: 'CASE_STATUS' }
+        dob: 'DEFENDANT_BIRTHDATE', date: 'DISPOSITION_DATE', ftp: 'RELIEF',
+        addr: 'DEFENDANT_ADDRESS', name: 'DEFENDANT_NAME', sex: 'DEFENDANT_SEX',
+        city: 'DEFENDANT_CITY', race: 'DEFENDANT_RACE', num: 'CASE_NUMBER',
+        text: 'CONVICTED_OFFENSE_TEXT', group: 'GRP_ID', amount: 'AMOUNT',
+        status: 'CASE_STATUS'
       }
-
-      # 7 lines
-      # @attrs = {
-      #   dob: 'DEFENDANT_BIRTHDATE', date: 'DISPOSITION_DATE',ftp:'FTP_RELIEF',
-      #   addr: 'DEFENDANT_ADDRESS', name: 'DEFENDANT_NAME',sex:'DEFENDANT_SEX',
-      #   city: 'DEFENDANT_CITY', race: 'DEFENDANT_RACE', num: 'CASE_NUMBER',
-      #   text: 'CONVICTED_OFFENSE_TEXT', group: 'GRP_ID', amount: 'AMOUNT'
-      # }
-      # @attrs.each { |k, v| @attrs[k] = { header: v } }
+      @attrs.each { |k, v| @attrs[k] = { header: v } }
 
       # 6 lines
       # attrs = %w[name sex ftp date group addr city race num dob text amount]
@@ -117,7 +121,7 @@ class OffensesController
 
       # return hash of data to import
       {
-        name: row[@name], dob: row[@dob], ftp: ftp_value,  group: row[@group],
+        name: row[@name], dob: row[@dob], ftp: ftp_value, group: row[@group],
         disposition_date: row[@date], case_number: row[@num], city: row[@city],
         street_address: row[@addr], race: row[@race], status: row[@status],
         relief_amount: row[@amount], sex: row[@sex], description: row[@text]
@@ -217,14 +221,14 @@ end
 # LOOP TIME: 11m32.63s
 # TOTAL TIME: 11m37.76s
 # { GROUPS
-  # "1"=>275, "2"=>285, "3"=>305, "4"=>262, "5"=>309, "6"=>295, "7"=>289,
-  # "8"=>295, "9"=>300, "10"=>287, "11"=>279, "12"=>288, "13"=>298, "14"=>296,
-  # "15"=>287, "16"=>292, "17"=>286, "18"=>276, "19"=>275, "20"=>295, "21"=>279,
-  # "22"=>292, "23"=>276, "24"=>306, "25"=>284, "26"=>271, "27"=>311, "28"=>298,
-  # "29"=>297, "30"=>296, "31"=>300, "32"=>293, "33"=>301, "34"=>308, "35"=>285,
-  # "36"=>278, "37"=>315, "38"=>307, "39"=>258, "40"=>285, "41"=>269, "42"=>283,
-  # "43"=>306, "44"=>283, "45"=>290, "46"=>272, "47"=>292, "48"=>276, "49"=>300,
-  # "50"=>298, "51"=>301, "52"=>288, "NA"=>71791
+# "1"=>275, "2"=>285, "3"=>305, "4"=>262, "5"=>309, "6"=>295, "7"=>289,
+# "8"=>295, "9"=>300, "10"=>287, "11"=>279, "12"=>288, "13"=>298, "14"=>296,
+# "15"=>287, "16"=>292, "17"=>286, "18"=>276, "19"=>275, "20"=>295, "21"=>279,
+# "22"=>292, "23"=>276, "24"=>306, "25"=>284, "26"=>271, "27"=>311, "28"=>298,
+# "29"=>297, "30"=>296, "31"=>300, "32"=>293, "33"=>301, "34"=>308, "35"=>285,
+# "36"=>278, "37"=>315, "38"=>307, "39"=>258, "40"=>285, "41"=>269, "42"=>283,
+# "43"=>306, "44"=>283, "45"=>290, "46"=>272, "47"=>292, "48"=>276, "49"=>300,
+# "50"=>298, "51"=>301, "52"=>288, "NA"=>71791
 # }
 # STATUSES
 # { "approved" => 72656, "pending" => 14207 }

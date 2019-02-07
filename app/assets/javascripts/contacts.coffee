@@ -1,4 +1,4 @@
-carneViva = ->
+requestorNameToggle = ->
   $('.js-radio').change ->
     value = @.value
     field = $('.js-field')
@@ -13,4 +13,4 @@ carneViva = ->
       div.hide()
       field.attr 'disabled', ''
 
-$(window).on 'turbolinks:load', carneViva
+$(window).on 'turbolinks:load', requestorNameToggle

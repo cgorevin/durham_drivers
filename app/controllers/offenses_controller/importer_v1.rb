@@ -2,7 +2,8 @@
 
 require 'csv'
 class OffensesController
-  # class for importing .xlsx files
+  # class for importing .xlsx and .cxv files
+  # written to import the first version of the spreadsheet files we received
   class ImporterV1
     # the function so you can call Importer.new file and the import just goes
     def initialize(file = nil, initial_values = [0, 0, {}])
