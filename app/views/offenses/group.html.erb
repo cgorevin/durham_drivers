@@ -52,7 +52,7 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <%= submit_tag 'Save' %>
+  <%= submit_tag 'Save and send emails' %>
 
   <table>
     <thead>
@@ -77,7 +77,7 @@
     </tbody>
   </table>
 
-  <%= submit_tag 'Save' %>
+  <%= submit_tag 'Save and send emails' %>
 <% end %>
 
 <%= paginate @offenses, param_name: :p %>
