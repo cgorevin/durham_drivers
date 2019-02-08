@@ -13,6 +13,6 @@
   <%= f.select :group, (1..52).to_a.unshift('NA') %>
 
   <div>
-    <%= f.submit %>
+    <%= f.submit @offense.contacts.any? ? 'Save and send emails' : 'Save' %>
   </div>
 <% end %>
