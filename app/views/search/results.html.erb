@@ -2,7 +2,8 @@
 
 <% if @offenses.empty? %>
   <p><%= t ".empty_offenses" %></p>
-    <%= link_to (t ".learn_more_button"), '#', class: 'btn btn-primary about-us' %>
+    <%= link_to (t ".not_eligible_button"), '#', class: 'btn btn-primary about-us' %>
+    <%= link_to (t ".learn_more_button"), 'www.deardurham.org', class: 'btn btn-primary about-us' %>
 <% elsif @offenses.any?(&:approved?) %>
   <p><%= t ".approved_offenses_intro" %></p>
 
