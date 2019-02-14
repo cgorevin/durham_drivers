@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'chronic'
 gem 'kaminari' # for pagination
 # Use creek to read .xlsx files
 gem 'creek'

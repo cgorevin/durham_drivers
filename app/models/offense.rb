@@ -557,7 +557,8 @@ class Offense < ApplicationRecord
 
     # add support for postgres like operator
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-    date = Date.parse(dob)
+    # date = Date.parse(dob)
+    date = Chronic.parse(dob).to_date
     year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
     if Rails.env.production?
       where "
