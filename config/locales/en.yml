@@ -32,7 +32,7 @@
 en:
   search:
     show:
-      title: "Search"
+      heading: "Search"
       welcome_message: "Welcome to the Durham Driver’s License Restoration Project!"
       welcome_message_sub: "Helping people get safely back on the road and back to work"
       introduction_header: "Check to see if you are eligible:"
@@ -47,6 +47,7 @@ en:
       about_project: "About the Project:"
       project_partners: "This project is supported by the following partners:"
       about_button: "The Restoration Initiative"
+      district_attorney: "Durham County District Attorney's Office"
       first_name: "First Name"
       middle_name: "Middle Name"
       last_name: "Last Name"

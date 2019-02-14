@@ -1,6 +1,6 @@
-<h2><%= t ".title" %></h2>
+<h1 class="title"><%= t ".title" %></h1>
 
-<table>
+<table class="search-result-table">
   <thead>
     <tr>
       <th><%= t ".first_name" %></th>
@@ -19,7 +19,7 @@
   </tbody>
 </table>
 
-<p><%= t ".records_returned" %></p>
+<p class="records-returned"><%= t ".records_returned" %></p>
 
 <% @all_matches = @exact_matches + @similar_matches %>
 
@@ -33,7 +33,7 @@
     <% dob = group[1]&.strftime(', %-m/%-d/%Y') %>
     <% street = group[2] %>
 
-    <div class="">
+    <div class="results-returned">
       <%= check_box_tag "ids[]", ids, false, id: index %>
       <%= label_tag index, "#{name}#{dob}" %>
     </div>

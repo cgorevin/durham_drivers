@@ -4,14 +4,18 @@
 
 /* universal */
 
-html, body {
-  height: 100%;
+:root {
+  --universal: rgba(15,15,24);
+  --button: #0091A0;
+  --nav: #f7fcfa;
 }
 
-body {
-  padding-top: 60px;
-  margin-top: 60px;
-  margin-bottom: 60px;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 .content {
@@ -22,70 +26,44 @@ body {
 
 .btn-primary {
   margin-top: 10px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Sofia Pro Soft Light', sans-serif;
   font-size: 12px;
   font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 0;
+  background-color: var(--button);
 }
 
 .about-us {
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin: 5px 10px 15px 10px;
 }
 
 /* header */
 
-.navbar {
-  height: 80px;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+header {
+  background-color: var(--universal);
 }
 
-.organization-brand {
-  width: 40%;
-  text-align: center;
-  margin-left: 1em;
-}
-
-#logo {
+.logo {
   height: 80px;
   padding-left: 10px;
-  font-size: 1.3em;
-  color: #fff;
+  font-size: 1.7em;
+  color: var(--nav);
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  font-family: 'Raleway', sans-serif;
   @include mobile {
     font-size: 1em;
   }
 }
 
-.navbar-collapse {
-  display: flex;
-  align-items: center;
-  width: 30%;
-}
-
-.navbar-nav > li {
-  display: inline;
-}
-
-.navbar-nav > li > a {
-  text-decoration: none;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-  color: #fff;
-}
-
-.navbar-nav > li > a:hover {
-  text-decoration: underline;
+.nav-link {
+  font-family: 'Raleway', sans-serif;
+  color: var(--nav);
 }
 
 /* footer */
@@ -95,7 +73,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #000;
+  background-color: var(--universal);
 }
 
 .footer-row {
@@ -108,7 +86,7 @@ body {
 
 .text-uppercase, .credits, .copyright, .list-unstyled > li > a {
   text-decoration: none;
-  color: #fff;
+  color: var(--nav);
 }
 
 .footer-sections {
@@ -119,10 +97,15 @@ body {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p, li, a, th, td {
+  color: var(--universal);
+}
+
+h1, h2, h3, h4, h5, h6, th {
   line-height: 1;
-  font-family: 'Raleway', sans-serif;
-  color: #777;
+  font-family: 'Sofia Pro Soft Light', sans-serif;
+  font-style: normal;
+  font-weight: 700;
 }
 
 h1 {
@@ -144,19 +127,254 @@ h2 {
   font-style: italic;
 }
 
+p, li, a, .copyright, td {
+  font-family: 'Varela Round', sans-serif;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
-  font-family: 'Raleway', sans-serif;
 }
 
-li, a {
-  font-family: 'Raleway', sans-serif;
+th {
+  font-size: 1.33em;
 }
 
-.flex {
-  display: flex;
+td {
+  font-size: 1.25em;
 }
-.justify-between {
-  justify-content: space-between;
+
+/* show page */
+
+.project-partners {
+  display: inline;
+  list-style: none;
+}
+
+.welcome {
+  margin-bottom: 7px;
+}
+
+.welcome-sub {
+  margin-top: 0px;
+}
+
+.project-partners-text {
+  margin-bottom: 15px;
+}
+
+.partners {
+  padding-left: 0px;
+}
+
+.project-partners img {
+  display: block;
+  margin: 0 auto;
+}
+
+img {
+  margin-top: 30px;
+}
+
+.district-attorney {
+  margin: 15px 10px 15px 10px;
+  text-align: center;
+}
+
+/* confirm page */
+
+.title {
+  margin-top: 400px;
+}
+
+.search-result-table {
+  margin: 0 auto;
+  padding: 10px;
+  width: 70%;
+  border-spacing: 3px;
+}
+
+.records-returned {
+  margin: 20px 0px 10px 0px;
+}
+
+th, td {
+  text-align: center;
+  vertical-align: baseline;
+  padding: 10px 5px 10px 5px;
+}
+
+.results-returned {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 39em) {
+  header {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    padding: 1em;
+  }
+
+  .logo {
+    margin-left: 1.75em;
+  }
+
+  nav {
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: rgba(15,15,24,0.85);
+    width: 100%;
+    transform: scale(1,0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+  }
+
+  nav ul {
+    margin: 0;
+    padding-top: 1em;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  nav li {
+    margin-bottom: 1em;
+    margin-left: 1em;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  nav a:hover {
+    color: var(--button);
+  }
+
+  .nav-toggle:checked ~ nav {
+    transform: scale(1, 1);
+  }
+
+  .nav-toggle:checked ~ nav a {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    display: block;
+    background: var(--nav);
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+  }
+
+  .nav-toggle-label span::before {
+    bottom: 7px;
+  }
+
+  .nav-toggle-label span::after {
+    top: 7px;
+  }
+}
+
+@media only screen and (min-width: 39em) {
+  .nav-toggle {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(25em, 3fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 2 / span 1;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .logo:hover {
+    color: var(--button);
+    text-decoration: none;
+  }
+
+  nav {
+    all: unset;
+    grid-column: 3 / span 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+
+  nav ul {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a:hover {
+    text-decoration: none;
+    color: var(--nav);
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: var(--button);
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1, 1);
+  }
 }

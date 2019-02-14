@@ -1,22 +1,21 @@
 es:
   search:
     show:
-      title: "Search (translation needed?)"
+      heading: "Enviar"
       welcome_message: "¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!"
       welcome_message_sub: "Ayudamos a las personas a volver a la carretera y al trabajo de una forma segura"
       introduction_header: "Verifique si es elegible:"
-      introduction: "Este proyecto ayuda a las personas que han tenido una licencia de conducir
-      suspendida por más de 2 años debido a cargos de tráfico en el Condado de Durham,
-      que no involucran a DWI u otras infracciones de tráfico de "alto riesgo".
-      Ingrese su nombre y fecha de nacimiento a continuación para averiguar si es
-      elegible para este programa."
-      upcoming_court_dates: "Tenga en cuenta: Si tiene un caso en la corte de tránsito
-      pendiente, debe acudir a la corte en las fechas programas  para ir a la corte.
-      Este proyecto solo asiste a personas con ciertos cargos de tráfico que tienen más
-      de 2 años."
+      introduction: 'Este proyecto ayuda a las personas que han tenido una licencia de conducir suspendida por
+      más de 2 años debido a cargos de tráfico en el Condado de Durham, que no involucran a DWI
+      u otras infracciones de tráfico de "alto riesgo". Ingrese su nombre y fecha de nacimiento a continuación
+      para averiguar si es elegible para este programa.'
+      upcoming_court_dates: "Tenga en cuenta: Si tiene un caso en la corte de tránsito pendiente, debe acudir
+      a la corte en las fechas programas para ir a la corte. Este proyecto solo asiste a
+      personas con ciertos cargos de tráfico que tienen más de 2 años."
       about_project: "Sobre el proyecto:"
       project_partners: "Este proyecto es apoyado por los siguientes socios:"
       about_button: "Aprenda más sobre el proyecto"
+      district_attorney: "Oficina Fiscal del Distrito del Condado de Durham"
       first_name: "Primer Nombre"
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
@@ -28,8 +27,8 @@ es:
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
       dob: "Fecha de nacimiento"
-      records_returned: "Aquí están los registros que encontramos. Seleccione su nombre
-      si aparece, de lo contrario, seleccione "Mi registro no aparece"."
+      records_returned: 'Aquí están los registros que encontramos. Seleccione su nombre si aparece, de
+      lo contrario, seleccione "Mi registro no aparece".'
       next_button: "Siguiente"
       back_button: "Back (translation needed?)"
     results:
@@ -43,11 +42,11 @@ es:
       en el sexto piso (Durham County Courthouse)."
       not_eligible_button: "Obtenga más información acerca de por qué sus cargos pueden no haber sido elegibles"
       learn_more_button: "Obtenga más información sobre el programa DEAR"
-      approved_offenses_intro: "Podemos ayudarlo con algunos de los problemas que llevaron a
-      que su licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección
-      de correo electrónico a continuación y le enviaremos información detallada sobre el
-      alivio legal que recibió. Tenga en cuenta que esto no significa que pueda conducir
-      legalmente. Es probable que aún tengas pasos adicionales que tomar."
+      approved_offenses_intro: "Podemos ayudarlo con algunos de los problemas que llevaron a que
+      su licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de correo
+      electrónico a continuación y le enviaremos información detallada sobre el alivio legal que
+      recibió. Tenga en cuenta que esto no significa que pueda conducir legalmente. Es
+      probable que aún tengas pasos adicionales que tomar."
       contact_method: "Spanish method of contact"
       email: "Spanish email"
       text: "Spanish text message"
