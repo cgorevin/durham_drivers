@@ -12,18 +12,22 @@ en:
       save_button: "Save"
       text: "Text message"
     show:
-      title: "Search"
+      heading: "Search"
       welcome_message: "Welcome to the Durham Driver’s License Restoration Project!"
-      introduction: "This project assists people who have had a suspended driver’s license for more
-        than 2 years due to traffic charges in Durham County that do not involve DUIs or
-        other “high risk” traffic offenses. Please enter your name and date of birth below
-        to find out if you are eligible for this program."
-      upcoming_court_dates: "Please note: if you have upcoming or pending traffic court case, you should go to
-        court on your court dates. This project only assists individuals with certain
-        traffic charges that are older than 2 years."
+      welcome_message_sub: "Helping people get safely back on the road and back to work"
+      introduction_header: "Check to see if you are eligible:"
+      introduction: "This project assists people who have had a suspended driver’s license
+      for more than 2 years due to traffic charges in Durham County that do not involve DWIs
+       or other “high risk” traffic offenses. Please enter your name and date of birth
+       below to find out if you are eligible for this program."
+      upcoming_court_dates: "This project assists people who have had a suspended driver’s
+      license for more than 2 years due to traffic charges in Durham County that do not
+      involve DWIs or other “high risk” traffic offenses. Please enter your name and date
+      of birth below to find out if you are eligible for this program."
       about_project: "About the Project:"
       project_partners: "This project is supported by the following partners:"
       about_button: "The Restoration Initiative"
+      district_attorney: "Durham County District Attorney's Office"
       first_name: "First Name"
       middle_name: "Middle Name"
       last_name: "Last Name"
@@ -35,9 +39,8 @@ en:
       middle_name: "Middle Name"
       last_name: "Last Name"
       dob: "Birthdate"
-      header: "Is This You?"
       records_returned: "Here are the records we found. Please select your name if it
-        appears, otherwise select “my record does not appear.”"
+      appears, otherwise select “my record does not appear.”"
       next_button: "Next"
       back_button: "Back"
     record_missing:
@@ -51,5 +54,4 @@ en:
       not_eligible_button: "Reasons for ineligibility"
     results:
       title: "Results"
-      learn_more_button: "Learn More About this Program"
       contact_method: "Please specify your method of contact:"
