@@ -27,7 +27,7 @@ html, body {
 .btn-primary {
   margin-top: 10px;
   font-family: 'Sofia Pro Soft Light', sans-serif;
-  font-size: 12px;
+  font-size: 0.75em;
   font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
@@ -146,6 +146,10 @@ td {
 
 /* show page */
 
+.dear-logo {
+  margin-top: 70px;
+}
+
 .project-partners {
   display: inline;
   list-style: none;
@@ -212,6 +216,7 @@ th, td {
 /* media queries */
 
 @media only screen and (max-width: 39em) {
+  /* nav */
   header {
     text-align: center;
     position: fixed;
@@ -307,9 +312,38 @@ th, td {
   .nav-toggle-label span::after {
     top: 7px;
   }
+
+  /* typography */
+
+  h1 {
+    font-size: 1.75em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  h3 {
+    font-size: 0.85em;
+  }
+
+  p {
+    font-size: 0.9em;
+  }
+
+  .btn-primary {
+    font-size: 0.625em;
+  }
+
+  .district-attorney-media {
+    font-size: 1.1em;
+  }
+
+
 }
 
 @media only screen and (min-width: 39em) {
+  /* nav */
   .nav-toggle {
     display: none;
   }
