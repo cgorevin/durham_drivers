@@ -10,7 +10,7 @@ class OffensesController < ApplicationController
     @groups = Offense.groups @group
     @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @date, @group)
                        .order("#{sort_column} #{sort_direction}")
-                       .page @page
+                       .page(@page)
   end
 
   def show
