@@ -38,9 +38,9 @@
 
     <span>
       Mark all as:
-      <%= submit_tag 'pending', name: :status %>
-      <%= submit_tag 'approved', name: :status %>
-      <%= submit_tag 'denied', name: :status %>
+      <%= link_to 'pending', 'javascript:void(0)', class: 'js-mark-as' %>
+      <%= link_to 'approved', 'javascript:void(0)', class: 'js-mark-as' %>
+      <%= link_to 'denied', 'javascript:void(0)', class: 'js-mark-as' %>
     </span>
   </p>
 <% end %>
@@ -52,7 +52,7 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <%= submit_tag 'Save' %>
+  <%= submit_tag 'Save and send emails' %>
 
   <table>
     <thead>
@@ -77,7 +77,7 @@
     </tbody>
   </table>
 
-  <%= submit_tag 'Save' %>
+  <%= submit_tag 'Save and send emails' %>
 <% end %>
 
 <%= paginate @offenses, param_name: :p %>

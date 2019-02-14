@@ -1,49 +1,13 @@
 <h1 class="title"><%= t ".title" %></h1>
 
 <% if @offenses.empty? %>
-  <p><%= t ".empty_offenses" %></p>
-    <%= link_to (t ".not_eligible_button"), '#', class: 'btn btn-primary about-us' %>
-    <%= link_to (t ".learn_more_button"), 'www.deardurham.org', class: 'btn btn-primary about-us' %>
-<% elsif @offenses.any?(&:approved?) %>
-  <p><%= t ".approved_offenses_intro" %></p>
-
-  <p><%= t ".contact_method" %></p>
-
-  <%= form_for Contact.new do |f| %>
-    <%= hidden_field_tag :ids, nil, value: params[:ids] %>
-
-    <div class="form-row">
-      <div class="form-group">
-        <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select([(t '.email'), (t '.text')], (t '.email')), class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.text_field :info, placeholder: (t '.contact_info'), class: 'form-control'%>
-      </div>
-    </div>
-    <%= submit_tag (t '.save_button'), class:'btn btn-primary' %>
-  <% end %>
-<% else %>
-  <p>
-    Not yet. We have identified cases that may be eligible for relief. Please provide an email address & we will notify you. This could take up to 1 year.
-  </p>
-
-  <p>Please specify your method of contact</p>
-
-  <%= form_for Contact.new do |f| %>
-    <%= hidden_field_tag :ids, nil, value: params[:ids] %>
-
-    <div class="form-row">
-      <div class="form-group">
-        <%= f.label :method, "Contact Method:" %>
-        <%= f.select :method, options_for_select(['Email', 'Text message'], 'Email'), class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.text_field :info, placeholder: 'Contact information', class: 'form-control'%>
-      </div>
-    </div>
-    <%= submit_tag 'Save', class:'btn btn-primary' %>
-  <% end %>
+  <%= render 'record_missing' %>
+<% elsif @offenses.all?(&:approved?) %>
+  <%= render 'approved' %>
+<% elsif @offenses.all?(&:denied?) %>
+  <%= render 'denied' %>
+<% elsif @offenses.all?(&:pending?) %>
+  <%= render 'pending' %>
+<% elsif %>
+  <%= render 'mix' %>
 <% end %>

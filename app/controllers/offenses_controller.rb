@@ -1,4 +1,3 @@
-
 class OffensesController < ApplicationController
   include OffensesHelper
 
@@ -23,7 +22,8 @@ class OffensesController < ApplicationController
   end
 
   def create
-    Importer.new params[:offense][:file]
+    importer = ImporterV2.new params[:offense][:file]
+    importer.begin_import
     redirect_to new_offense_path, notice: "Done! There are now #{Offense.count} offenses in the database."
   end
 
@@ -65,19 +65,10 @@ class OffensesController < ApplicationController
   #   },
   #   "group"=>"4"
   # }
-  # when user presses one of the 'mark as ...' buttons
-  # Parameters: {
-  #   "ids"=>"55 56 57 58 29327",
-  #   "status"=>"pending",
-  #   "group"=>"4"
-  # }
   def group_update
     @group = params[:group]
-    if status = params[:status]
-      Offense.where(id: params[:ids].split).update_all(status: status)
-    elsif offenses = params[:offenses]
-      Offense.update offenses.keys, offenses.values
-    end
+    offenses = params[:offenses]
+    Offense.update offenses.keys, offenses.values
 
     redirect_to group_offenses_path(@group, p: @page, f: @first, m: @middle, l: @last), notice: 'Save successful'
   end

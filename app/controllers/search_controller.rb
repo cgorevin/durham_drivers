@@ -11,13 +11,13 @@ class SearchController < ApplicationController
     @last = data[:last_name]
     @dob = data[:date_of_birth]
 
-    @exact_matches = Offense.exact_search(@first, @middle, @last, @dob).to_a
-    @similar_matches = Offense.fuzzy_search(@first, @middle, @last, @dob).to_a
-    @similar_matches = @similar_matches - @exact_matches
+    # @exact_matches = Offense.exact_search(@first, @middle, @last, @dob).to_a
+    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).to_a
+    # @similar_matches = @similar_matches - @exact_matches
 
     # NOTE: redirect if no matches
     # redirect to results page with 0 offenses
-    redirect_to results_path if @similar_matches.empty?
+    redirect_to results_path if @offenses.empty?
   end
 
   def results
@@ -26,6 +26,7 @@ class SearchController < ApplicationController
 
     # load offenses based on ids
     @offenses = Offense.where id: @ids
+    @offense = @offenses.first
 
     # based on all the offenses gathered, show some type of message
   end

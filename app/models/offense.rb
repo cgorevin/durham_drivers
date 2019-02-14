@@ -7,6 +7,8 @@ class Offense < ApplicationRecord
   alias_attribute :last, :last_name
   # alias_attribute :dob, :date_of_birth
 
+  before_validation :downcase_fields
+
   has_and_belongs_to_many :contacts
   has_many :contact_histories
 
@@ -32,6 +34,14 @@ class Offense < ApplicationRecord
 
   def approved?
     status == 'approved'
+  end
+
+  def denied?
+    status == 'denied'
+  end
+
+  def pending?
+    status == 'pending'
   end
 
   # NOTE: use method instead of alias_attribute so that we can write our own
@@ -616,5 +626,11 @@ class Offense < ApplicationRecord
     group_search(group)
       .fuzzy_date_search(dob)
       .fuzzy_name_search(names)
+  end
+
+  private
+
+  def downcase_fields
+    self.status.downcase!
   end
 end

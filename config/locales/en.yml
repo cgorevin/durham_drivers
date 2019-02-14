@@ -31,6 +31,9 @@
 
 en:
   search:
+    form:
+      contact_info: "Contact information"
+      save_button: "Save"
     show:
       heading: "Search"
       welcome_message: "Welcome to the Durham Driver’s License Restoration Project!"
@@ -81,5 +84,3 @@ en:
       contact_method: "Please specify your method of contact:"
       email: "Email"
       text: "Text message"
-      contact_info: "Contact information"
-      save_button: "Save"
