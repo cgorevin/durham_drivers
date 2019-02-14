@@ -22,7 +22,7 @@ html, body {
   margin-bottom: 300px;
 }
 
-/* buttons */
+/* buttons & images */
 
 .btn-primary {
   margin-top: 10px;
@@ -38,6 +38,14 @@ html, body {
 
 .about-us {
   margin: 5px 10px 15px 10px;
+}
+
+.dear-logo {
+  margin-top: 70px;
+}
+
+.footer-image {
+  margin-top: 0px;
 }
 
 /* header */
@@ -145,10 +153,6 @@ td {
 }
 
 /* show page */
-
-.dear-logo {
-  margin-top: 70px;
-}
 
 .project-partners {
   display: inline;
@@ -323,23 +327,27 @@ th, td {
     font-size: 1em;
   }
 
-  h3 {
+  h3, .footer h5 {
     font-size: 0.85em;
   }
 
-  p {
+  p, .footer a {
     font-size: 0.9em;
-  }
-
-  .btn-primary {
-    font-size: 0.625em;
   }
 
   .district-attorney-media {
     font-size: 1.1em;
   }
 
+  /* buttons & images */
 
+  .footer-image {
+    margin-top: 5px;
+  }
+
+  .btn-primary {
+    font-size: 0.625em;
+  }
 }
 
 @media only screen and (min-width: 39em) {
