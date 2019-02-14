@@ -3,7 +3,7 @@
 
   <div class="form-row">
     <div class="form-group">
-      <%= f.label :method, "Contact Method:" %>
+      <%= f.label :method, t('.contact_method') %>
       <%= f.radio_button :method, 'email', required: true %>
       <%= f.label :method_email, t('.email')%>
       <%= f.radio_button :method, 'phone', required: true %>
@@ -16,20 +16,20 @@
   </div>
 
   <div>
-    <p>Check one: </p>
+    <p><%= t ".selector" %></p>
 
     <p>
       <%= f.radio_button :requestor_name, ' ', class: 'js-radio', required: true %>
-      <%= f.label :requestor_name__, "This email address is for #{@offense.name}" %>
+      <%= f.label :requestor_name__, t('.email_request') + "#{@offense.name}" + t('.email_request_end') %>
     </p>
 
     <p>
       <%= f.radio_button :requestor_name, true, class: 'js-radio', required: true %>
-      <%= f.label :requestor_name_true, "I am getting this information on behalf of #{@offense.name} at the person's request." %>
+      <%= f.label :requestor_name_true,  t('.request_start') + "#{@offense.name}" + t('.request_end') %>
     </p>
     <div class="js-div">
-      My name is:
-      <%= f.text_field :requestor_name, class: 'js-field', disabled: true, required: true, placeholder: 'Enter name here' %>
+      <%= t('.requestor_name') %>
+      <%= f.text_field :requestor_name, class: 'js-field', disabled: true, required: true, placeholder: (t '.enter_name') %>
     </div>
   </div>
 

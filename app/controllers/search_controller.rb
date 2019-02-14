@@ -32,6 +32,10 @@ class SearchController < ApplicationController
   end
 
   def sign_up
+    @ids = params[:ids]&.join(' ')&.split
+
+    # load offenses based on ids
+    @offenses = Offense.where id: @ids
   end
 
   def next_steps
