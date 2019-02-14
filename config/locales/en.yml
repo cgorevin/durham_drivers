@@ -110,3 +110,58 @@ en:
       The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham
       County Courthouse in suite 6400 on the 6th floor."
       about_button: "Learn more about the DEAR program"
+    sign_up:
+      title: "Thank You & What to Expect Next"
+    approved_signup:
+      first_paragraph: "Thank you!  You should receive an email from the DEAR program today.  If you
+      do not receive the email, please first check to make sure the email did not land in your junk
+      email inbox.  If you still do not see it or if you have questions about the relief you received,
+      please visit the Durham Expunction and Restoration (DEAR) program office.  The office is open
+      Monday – Friday, 9:30am – 3:00pm (see below for our address)."
+      understanding: "Understanding the relief you received"
+      second_paragraph: "If you visit the DEAR office, you can meet with a free attorney to learn
+      more about the relief you received and to see if you have any additional issues that must be
+      resolved before you can go to the DMV to get your driving privileges restored."
+      third_paragraph: "You can sign up for an appointment to meet with a DEAR attorney below or you
+      can just drop by during the office hours listed above. Walk-ins may have to wait longer, but
+      appointments are not necessary."
+      getting: "Getting your driver’s license back"
+      fourth_paragraph: "Before visiting the DMV to restore your driving privileges, we recommend
+      that you can contact them to check on what remaining issues you may need to address or steps
+      you need to take to restore your driver’s license.  Ask them what you need to bring with you,
+      and how much you will need to pay.  To speak with someone at the DMV, please call (919) 715-7000.
+      Sometimes it can take the DMV a little while to process all of the paperwork from the courts.
+      If you call them before going to a DMV location, you can also check to make sure the relief you
+      received is reflected in their records."
+      dear_program: "DEAR Program Office"
+      address1: "Durham County Courthouse"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6th Floor"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Map"
+      print: "Print this page"
+    pending_signup:
+      first_paragraph: "Thank you!  You should receive an email from the DEAR program today
+      confirming that we received your information. If you do not receive the email, please
+      first check to make sure the email did not land in your junk email inbox. If you still
+      do not see the letter or if you have questions about it, please visit the Durham
+      Expunction and Restoration (DEAR) program office.  The office is open Monday – Friday,
+      9:30am – 3:00pm (see below for our address)."
+      second_paragraph: "Once we have an update on your case, you will receive an automatic
+      update to the email address you provided.  Again, this could take as long as a year due to
+      the number of cases.  Thank you in advance for your patience.  We are working as quickly as
+      we can to determine whether we can assist you through this program.  We cannot guarantee
+      the outcome of your case.  If you do not wish to wait and you are able to address the issues
+      on your own (for example, you can afford to pay any old traffic tickets), we encourage you to
+      do so."
+      third_paragraph: "We will notify you as soon as we have an update on your case, and will
+      include additional information about next steps you can take once we know more."
+      dear_program: "DEAR Program Office"
+      address1: "Durham County Courthouse"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6th Floor"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Map"
+      print: "Print this page"

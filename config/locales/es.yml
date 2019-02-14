@@ -79,3 +79,61 @@ es:
       de 9:30 a.m. a 3:00 p.m. y está ubicada en el Palacio de  Justicia del Condado de
       Durham en la suite 6400 en el sexto piso."
       about_button: "Obtenga más información sobre el programa DEAR"
+    sign_up:
+      title: "Thank You & What to Expect Next (Translation needed?)"
+    approved_signup:
+      first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy.
+      Si no recibe el correo electrónico, primero verifique que el correo electrónico no haya
+      llegado a su bandeja de entrada de correo no deseado. Si aún no lo ve o si tiene preguntas
+      sobre el alivio que recibió, visite la oficina del programa Durham Expunction and Restoration
+      (DEAR). La oficina está abierta de lunes a viernes, de 9:30 a.m. a 3:00 p.m. (consulte a
+      continuación nuestra dirección)."
+      understanding: "Entendiendo el alivio que recibido"
+      second_paragraph: "Si visita la oficina de DEAR, puede reunirse con un abogado
+      gratuito para obtener más información sobre el alivio que recibió y para ver si tiene
+      algún problema adicional que deba resolverse antes de poder acudir al DMV para recuperar
+      sus privilegios de conducir."
+      third_paragraph: "Puede inscribirse en una cita para reunirse con un abogado de DEAR a
+      continuación o simplemente puede pasar durante las horas de oficina mencionadas anteriormente.
+      Las personas sin cita pueden tener que esperar más tiempo, pero las citas no son necesarias."
+      getting: "Recuperar su licencia de conducir"
+      fourth_paragraph: "Antes de visitar el DMV para restaurar sus privilegios de manejo, le
+      recomendamos que se comunique con ellos para verificar los problemas pendientes que necesita
+      resolver o los pasos que debe seguir para restaurar su licencia de conducir. Pregúnteles
+      qué necesita traer con usted y cuánto tendrá que pagar. Para hablar con alguien en el DMV,
+      llame al (919) 715-7000. En ocasiones, el DMV puede tardar un poco en procesar todos los
+      documentos de los tribunales. Si los llama antes de ir a una ubicación del DMV, también
+      puede verificar que el alivio que recibió esté reflejado en sus registros."
+      dear_program: "Oficina del programa DEAR"
+      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6to piso"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Mapa"
+      print: "Imprimir esta página"
+    pending_signup:
+      first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy
+      confirmando que recibimos su información. Si no recibe el correo electrónico, primero
+      verifique que el correo electrónico no haya llegado a su bandeja de entrada de correo no
+      deseado. Si aún no ve la carta o si tiene alguna pregunta al respecto, visite la oficina del
+      programa Durham Expunction and Restoration (DEAR). La oficina está abierta de lunes a viernes,
+      de 9:30 a.m. a 3:00 p.m. (consulte a continuación nuestra dirección)."
+      second_paragraph: "Una vez que tengamos una actualización de su caso, recibirá una actualización
+      automática a la dirección de correo electrónico que proporcionó. Nuevamente, esto podría
+      tomar hasta un año debido a la cantidad de casos. Gracias de antemano por su paciencia.
+      Estamos trabajando lo más rápido posible para determinar si podemos ayudarlo a través de este
+      programa. No podemos garantizar el resultado de su caso. Si no desea esperar y puede resolver
+      los problemas por su cuenta (por ejemplo, puede pagar las multas de tráfico anteriores),
+      le recomendamos que lo haga."
+      third_paragraph: "Le notificaremos tan pronto como tengamos una actualización de su caso,
+      e incluiremos información adicional sobre los próximos pasos que puede seguir una vez que
+      sepamos más."
+      dear_program: "Oficina del programa DEAR"
+      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6to piso"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Mapa"
+      print: "Imprimir esta página"
