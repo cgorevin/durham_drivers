@@ -1,5 +1,14 @@
+# translation missing: es.search.record_missing.empty_offenses
 es:
   search:
+    approved:
+      approved_offenses_intro: "Spanish message of approval"
+      contact_method: "Spanish method of contact"
+    form:
+      contact_info: "Spanish contact information"
+      email: "Spanish email"
+      save_button: "Spanish save"
+      text: "Spanish text message"
     show:
       title: "Spanish Search"
       welcome_message: "Spanish Welcome"
@@ -23,13 +32,15 @@ es:
       records_returned: "Spanish records returned"
       next_button: "Spanish next"
       back_button: "Spanish back"
+    record_missing:
+      empty_offenses: "Los problemas que condujeron a la suspensión de su licencia de conducir
+      no son elegibles para este programa. Si desea obtener más información, visite la oficina
+      del Programa de Restauración y Expansión de Durham (DEAR), donde puede reunirse con un
+      abogado gratuito para obtener más información sobre lo que puede hacer para restablecer
+      sus privilegios de conducir. La oficina está abierta de lunes a viernes, de 9:30 a.m. a
+      3:00 p.m. y está ubicada en el Palacio de Justicia del Condado de Durham en la suite 6400,
+      en el sexto piso (Durham County Courthouse)."
+      learn_more_button: "Obtenga más información sobre el programa DEAR"
+      not_eligible_button: "Obtenga más información acerca de por qué sus cargos pueden no haber sido elegibles"
     results:
       title: "Spanish results"
-      empty_offenses: "Spanish empty offense message"
-      learn_more_button: "Learn more button in Spanish"
-      approved_offenses_intro: "Spanish message of approval"
-      contact_method: "Spanish method of contact"
-      email: "Spanish email"
-      text: "Spanish text message"
-      contact_info: "Spanish contact information"
-      save_button: "Spanish save"

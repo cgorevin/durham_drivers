@@ -566,6 +566,7 @@ class Offense < ApplicationRecord
     ".squish, y: year, m: month, d: day
   end
 
+
   # name based search with case insensitive, partial matching on all name fields
   def self.fuzzy_name_search(*names)
     # array of columns you want to search for
@@ -604,6 +605,39 @@ class Offense < ApplicationRecord
     # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
     where ([phrase] * names.size).join(' AND '), *terms
   end
+
+  # def self.fuzzy_name_search(*names)
+  #   # array of columns you want to search for
+  #   attrs = %w[first_name middle_name last_name]
+  #
+  #   # array of keywords we are search for
+  #   # get the number of words in a query. the query "john doe smith" has 3 words
+  #   names = I18n.transliterate(names.join(' ')).split
+  #   return all unless names.any?
+  #
+  #   # split "john doe smith" into ["john", "doe", "smith"]
+  #   # multiply by the number of columns you are searching for
+  #   # if columns = [first_name and last_name], then multiply by 2
+  #   # ["john", "doe", "smith", "john", "doe", "smith"]
+  #   # sort it: ["doe", "doe", "john", "john", "smith", "smith"]
+  #   # wrap with %'s to allow wildcard searches
+  #   # ["%doe%", "%doe%", "%john%", "%john%", "%smith%", "%smith%"]
+  #   terms = (names * attrs.size).map { |term| "%#{term}%" }
+  #
+  #   # use case insensitive operator
+  #   # allows to find 'John' with 'john', 'JOHN', 'jOhN', etc
+  #   # sqlite3's operator for case insensitivity is LIKE
+  #   # postgres's operator for case insensitivity is ILIKE
+  #   like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+  #
+  #   # loop thru attrs
+  #   # form strings like "first_name like ? or first_name like ? or first_name like" for as many terms as there are
+  #   phrase = attrs.map do |atr|
+  #     %`(#{(["#{atr} #{like} ?"] * names.size).join ' OR '})`
+  #   end.join(' AND ')
+  #
+  #   where phrase, *terms
+  # end
 
   # find all groups that partially match group given
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
