@@ -1,15 +1,5 @@
-<p>
-  The issues leading to your suspended driver’s license are not eligible for this program. If you would like
-  to learn more, please visit the Durham Expunction and Restoration (DEAR) program office where you
-  can meet with a free attorney to learn more about what you can do to restore your driving privileges.
-  The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham County Courthouse
-  in suite 6400 on the 6 th floor.
-</p>
+<p><%= t ".empty_offenses" %></p>
 
-<p>
-  [Link: Learn more about this project and why your charges may not have been eligible]
-</p>
-
-<p>
-  [Sign up for an appointment to meet with an attorney at the DEAR office]
-</p>
+<!-- cait's stuff -->
+<%= link_to (t ".not_eligible_button"), '#', class: 'btn btn-primary about-us' %>
+<%= link_to (t ".learn_more_button"), 'www.deardurham.org', class: 'btn btn-primary about-us' %>

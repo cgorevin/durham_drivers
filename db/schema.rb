@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_191238) do
+ActiveRecord::Schema.define(version: 2019_02_08_012901) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -68,6 +68,9 @@ ActiveRecord::Schema.define(version: 2019_02_06_191238) do
     t.string "case_number"
     t.text "description"
     t.integer "relief_amount"
+    t.index ["date_of_birth"], name: "index_offenses_on_date_of_birth"
+    t.index ["first_name", "middle_name", "last_name"], name: "index_offenses_on_first_name_and_middle_name_and_last_name"
+    t.index ["group"], name: "index_offenses_on_group"
   end
 
   create_table "relief_messages", force: :cascade do |t|
