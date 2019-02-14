@@ -559,12 +559,25 @@ class Offense < ApplicationRecord
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
     date = Date.parse(dob)
     year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
-    where "
-      ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
-      OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
-      OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
-    ".squish, y: year, m: month, d: day
+    if Rails.env.production?
+      where "
+      ((to_char(date_of_birth, 'YYYY-MM-DD') #{like} :y AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :m)
+      OR (to_char(date_of_birth, 'YYYY-MM-DD') #{like} :y AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :d)
+      OR (to_char(date_of_birth, 'YYYY-MM-DD') #{like} :m AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :d)) OR date_of_birth IS NULL
+      ".squish, y: year, m: month, d: day
+    else
+      where "
+        ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
+        OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
+        OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
+      ".squish, y: year, m: month, d: day
+    end
   end
+  # Offense.where("
+  #   ((to_char(date_of_birth, 'YYYY-MM-DD') #{like} :y AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :m)
+  #   OR (to_char(date_of_birth, 'YYYY-MM-DD') #{like} :y AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :d)
+  #   OR (to_char(date_of_birth, 'YYYY-MM-DD') #{like} :m AND to_char(date_of_birth, 'YYYY-MM-DD') #{like} :d)) OR date_of_birth IS NULL
+  # ".squish, y: year, m: month, d: day)
 
 
   # name based search with case insensitive, partial matching on all name fields
