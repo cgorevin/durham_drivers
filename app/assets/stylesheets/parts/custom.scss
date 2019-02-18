@@ -14,24 +14,7 @@ html, body {
   height: 100%;
 }
 
-.content {
-  // margin-bottom: 300px;
-  margin-bottom: 5em;
-}
-
 /* buttons & images */
-
-.btn-primary {
-  margin-top: 10px;
-  font-family: 'Sofia Pro Soft Light', sans-serif;
-  font-size: 0.75em;
-  font-weight: 500;
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 0;
-  background-color: var(--button);
-}
 
 .about-us {
   margin: 5px 10px 15px 10px;
@@ -41,9 +24,41 @@ html, body {
   margin: 5px 10px 15px 0px;
 }
 
+.dear-logo {
+  margin-top: 70px;
+}
+
 .durham-logo {
   width: 60%;
   margin-top: 30px;
+}
+
+/* header */
+
+header {
+  background-color: var(--universal);
+}
+
+.nav-link {
+  font-family: 'Raleway', sans-serif;
+  color: var(--nav);
+}
+
+/* footer */
+
+.footer-row {
+  margin-top: 15px;
+}
+
+.text-uppercase, .credits, .copyright, .list-unstyled > li > a {
+  text-decoration: none;
+  color: var(--nav);
+}
+
+.footer-sections {
+  @include mobile {
+    margin-top: 15px;
+  }
 }
 
 /* typography */
@@ -284,6 +299,10 @@ th, td {
 
   /* buttons & images */
 
+  .footer-image {
+    margin-top: 5px;
+  }
+
   .btn-primary {
     font-size: 0.625em;
   }
@@ -317,13 +336,12 @@ th, td {
   }
 
   nav {
-    all: unset;
+    // all: unset;
     grid-column: 3 / span 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
-
 
   nav ul {
     display: flex;

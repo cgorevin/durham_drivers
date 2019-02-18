@@ -1,12 +1,22 @@
+$nav-link-color: #f7fcfa;
+
 header {
   background-color: $nav-bg;
+
+  @media only screen and (max-width: 39em) {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    padding: 1em;
+  }
 }
 
 .logo {
   height: 80px;
   padding-left: 10px;
   font-size: 1.7em;
-  color: var(--nav);
+  color: $nav-link-color;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -19,5 +29,6 @@ header {
 
 .nav-link {
   font-family: 'Raleway', sans-serif;
-  color: var(--nav);
+  color: $nav-link-color;
+  list-style-type: none;
 }
