@@ -1,7 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import 'sass';
-
 /* universal */
 
 :root {
@@ -40,6 +36,10 @@ html, body {
   margin: 5px 10px 15px 10px;
 }
 
+.dear-program {
+  margin: 5px 10px 15px 0px;
+}
+
 .dear-logo {
   margin-top: 70px;
 }
@@ -51,32 +51,6 @@ html, body {
 .durham-logo {
   width: 60%;
   margin-top: 30px;
-}
-
-/* header */
-
-header {
-  background-color: var(--universal);
-}
-
-.logo {
-  height: 80px;
-  padding-left: 10px;
-  font-size: 1.7em;
-  color: var(--nav);
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  font-family: 'Raleway', sans-serif;
-  @include mobile {
-    font-size: 1em;
-  }
-}
-
-.nav-link {
-  font-family: 'Raleway', sans-serif;
-  color: var(--nav);
 }
 
 /* footer */
