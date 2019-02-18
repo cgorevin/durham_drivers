@@ -28,7 +28,7 @@
 <hr />
 <p>
   <%= t ".about_project" %>
-  <button type="button" class="btn btn-primary about-us"><%= t ".about_button" %></button>
+  <%= link_to (t '.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary about-us' %>
 </p>
 <p class="project-partners-text"><%= t ".project_partners" %></p>
   <ul class="partners">

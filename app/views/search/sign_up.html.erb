@@ -1,21 +1,7 @@
-<h1>Search#sign_up</h1>
-<h2>Sign up for follow clinics</h2>
+<h1 class="title"><%= t('.title') %></h1>
 
-<p>
-  This page will have have a link to eventbrite.
-</p>
-
-<p>
-  This allows users to sign up for workshops and info sessions.
-</p>
-
-<ul>
-  <li>if resident has received relief</li>
-  <ul>
-    <li>allow resident to sign up for free legal clinic to learn about the relief you received</li>
-  </ul>
-  <li>if resident has not received relief yet</li>
-  <ul>
-    <li>Please sign up to learn more about the program at upcoming info sessions</li>
-  </ul>
-</ul>
+<% if @offenses.all?(&:approved?) %>
+  <%= render 'approved_signup' %>
+<% else @offenses.all?(&:pending?) %>
+  <%= render 'pending_signup' %>
+<% end %>

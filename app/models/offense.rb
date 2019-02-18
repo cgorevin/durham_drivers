@@ -555,35 +555,36 @@ class Offense < ApplicationRecord
     #     OR (dob LIKE :m AND dob LIKE :d)) OR dob IS NULL
     #   ', y: year, m: month, d: day
 
-    # add support for postgres like operator
-    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-    date = Date.parse(dob)
+    # date = Date.parse(dob)
+    date = Chronic.parse(dob).to_date
     year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
-    where "
-      ((date_of_birth #{like} :y AND date_of_birth #{like} :m)
-      OR (date_of_birth #{like} :y AND date_of_birth #{like} :d)
-      OR (date_of_birth #{like} :m AND date_of_birth #{like} :d)) OR date_of_birth IS NULL
-    ".squish, y: year, m: month, d: day
+
+    # add support for postgres like operator
+    like, column = if Rails.env.production?
+      ['ILIKE', "to_char(date_of_birth, 'YYYY-MM-DD')"]
+    else ['LIKE', 'date_of_birth']
+    end
+    sql = "((%{dob} %{like} :y AND %{dob} %{like} :m)
+          OR (%{dob} %{like} :y AND %{dob} %{like} :d)
+          OR (%{dob} %{like} :m AND %{dob} %{like} :d)) OR date_of_birth IS NULL"
+    phrase = format(sql, dob: column, like: like).squish
+    where phrase, y: year, m: month, d: day
   end
 
-
-  # name based search with case insensitive, partial matching on all name fields
   def self.fuzzy_name_search(*names)
     # array of columns you want to search for
     attrs = %w[first_name middle_name last_name]
 
-    # array of keywords we are search for
-    # get the number of words in a query. the query "john doe smith" has 3 words
+    # remove accents and make array full of names
     names = I18n.transliterate(names.join(' ')).split
+    return all unless names.any?
 
     # split "john doe smith" into ["john", "doe", "smith"]
     # multiply by the number of columns you are searching for
     # if columns = [first_name and last_name], then multiply by 2
-    # ["john", "doe", "smith", "john", "doe", "smith"]
-    # sort it: ["doe", "doe", "john", "john", "smith", "smith"]
     # wrap with %'s to allow wildcard searches
-    # ["%doe%", "%doe%", "%john%", "%john%", "%smith%", "%smith%"]
-    terms = (names * attrs.size).sort.map { |term| "%#{term}%" }
+    # ["%john%", "%doe%", "%smith%", "%john%", "%doe%", "%smith%"]
+    terms = (names * attrs.size).map { |term| "%#{term}%" }
 
     # use case insensitive operator
     # allows to find 'John' with 'john', 'JOHN', 'jOhN', etc
@@ -591,53 +592,15 @@ class Offense < ApplicationRecord
     # postgres's operator for case insensitivity is ILIKE
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
 
-    # turn columns into SQL phrase
-    # ['first_name', 'last_name'] => "(first_name like ? OR last_name like ?)"
-    phrase = %`(#{attrs.map { |c| "#{c} #{like} ?" }.join(' OR ')})`
+    # loop thru attrs and make an array of strings like
+    # 'first_name like ? OR first_name like ? OR first_name like'
+    # join the strings with ' AND '
+    phrase = attrs.map do |atr|
+      %`(#{(["#{atr} #{like} ?"] * names.size).join ' OR '})`
+    end.join(' AND ')
 
-    # multiply by 3 if words.size = 3. join with ' AND '
-    # (first_name LIKE ? OR last_name LIKE ?) AND
-    # (first_name LIKE ? OR last_name LIKE ?) AND
-    # (first_name LIKE ? OR last_name LIKE ?)
-    # pass that string in and the array of terms to get sql like:
-    # (first_name LIKE "%doe%" OR last_name LIKE "%doe%") AND
-    # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
-    # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
-    where ([phrase] * names.size).join(' AND '), *terms
+    where phrase, *terms
   end
-
-  # def self.fuzzy_name_search(*names)
-  #   # array of columns you want to search for
-  #   attrs = %w[first_name middle_name last_name]
-  #
-  #   # array of keywords we are search for
-  #   # get the number of words in a query. the query "john doe smith" has 3 words
-  #   names = I18n.transliterate(names.join(' ')).split
-  #   return all unless names.any?
-  #
-  #   # split "john doe smith" into ["john", "doe", "smith"]
-  #   # multiply by the number of columns you are searching for
-  #   # if columns = [first_name and last_name], then multiply by 2
-  #   # ["john", "doe", "smith", "john", "doe", "smith"]
-  #   # sort it: ["doe", "doe", "john", "john", "smith", "smith"]
-  #   # wrap with %'s to allow wildcard searches
-  #   # ["%doe%", "%doe%", "%john%", "%john%", "%smith%", "%smith%"]
-  #   terms = (names * attrs.size).map { |term| "%#{term}%" }
-  #
-  #   # use case insensitive operator
-  #   # allows to find 'John' with 'john', 'JOHN', 'jOhN', etc
-  #   # sqlite3's operator for case insensitivity is LIKE
-  #   # postgres's operator for case insensitivity is ILIKE
-  #   like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-  #
-  #   # loop thru attrs
-  #   # form strings like "first_name like ? or first_name like ? or first_name like" for as many terms as there are
-  #   phrase = attrs.map do |atr|
-  #     %`(#{(["#{atr} #{like} ?"] * names.size).join ' OR '})`
-  #   end.join(' AND ')
-  #
-  #   where phrase, *terms
-  # end
 
   # find all groups that partially match group given
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]

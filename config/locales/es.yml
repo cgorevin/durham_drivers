@@ -1,18 +1,5 @@
-# translation missing: es.search.record_missing.empty_offenses
 es:
   search:
-    approved:
-      approved_offenses_intro: "Podemos ayudarlo con algunos de los problemas que llevaron a que
-      su licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de correo
-      electrónico a continuación y le enviaremos información detallada sobre el alivio legal que
-      recibió. Tenga en cuenta que esto no significa que pueda conducir legalmente. Es
-      probable que aún tengas pasos adicionales que tomar."
-      contact_method: "Spanish method of contact"
-    form:
-      contact_info: "Spanish contact information"
-      email: "Spanish email"
-      save_button: "Spanish save"
-      text: "Spanish text message"
     show:
       heading: "Enviar"
       welcome_message: "¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!"
@@ -35,37 +22,118 @@ es:
       dob: "Fecha de nacimiento"
       search: "Enviar"
     confirm:
-      title: "Spanish search"
+      title: "Your Search (translation needed?)"
       first_name: "Primer Nombre"
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
-      dob: "Spanish date of birth"
-      header: "Spanish header"
-      records_returned: "Spanish records returned"
-      next_button: "Spanish next"
-      back_button: "Spanish back"
-    record_missing:
-      empty_offenses: "Los problemas que condujeron a la suspensión de su licencia de conducir
-      no son elegibles para este programa. Si desea obtener más información, visite la oficina
-      del Programa de Restauración y Expansión de Durham (DEAR), donde puede reunirse con un
-      abogado gratuito para obtener más información sobre lo que puede hacer para restablecer
-      sus privilegios de conducir. La oficina está abierta de lunes a viernes, de 9:30 a.m. a
-      3:00 p.m. y está ubicada en el Palacio de Justicia del Condado de Durham en la suite 6400,
-      en el sexto piso (Durham County Courthouse)."
-      learn_more_button: "Obtenga más información sobre el programa DEAR"
-      not_eligible_button: "Obtenga más información acerca de por qué sus cargos pueden no haber sido elegibles"
-    results:
-      title: "Results (translation needed?)"
-
-      title: "Your Search (translation needed?)"
       dob: "Fecha de nacimiento"
       records_returned: 'Aquí están los registros que encontramos. Seleccione su nombre si aparece, de
       lo contrario, seleccione "Mi registro no aparece".'
       next_button: "Siguiente"
       back_button: "Back (translation needed?)"
-      contact_method: "Spanish method of contact"
-      email: "Spanish email"
-      text: "Spanish text message"
-      contact_info: "Spanish contact information"
-      save_button: "Spanish save"
-
+    results:
+      title: "Results (translation needed?)"
+    approved:
+      approved: "Podemos ayudarlo con algunos de los problemas que llevaron a que su
+      licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de
+      correo electrónico a continuación y le enviaremos información detallada sobre el
+      alivio legal que recibió. Tenga en cuenta que esto no significa que pueda conducir
+      legalmente. Es probable que aún tengas pasos adicionales que tomar."
+    denied:
+      denied: "Los problemas que condujeron a la suspensión de su licencia de conducir no son
+      elegibles para este programa. Si desea obtener más información, visite la oficina del
+      Programa de Restauración y Expansión de Durham (DEAR), donde puede reunirse con un
+      abogado gratuito para obtener más información sobre lo que puede hacer para
+      restablecer sus privilegios de conducir. La oficina está abierta de lunes a viernes,
+      de 9:30 a.m. a 3:00 p.m. y está ubicada en el Palacio de Justicia del Condado de
+      Durham en la suite 6400, en el sexto piso (Durham County Courthouse)."
+      about_button: "Obtenga más información sobre el programa DEAR"
+    form:
+      contact_method: "Contact method: (translation needed?)"
+      email: "Correo electrónico"
+      text: "Text message (translation needed?)"
+      contact_info: "Contact information (translation needed?)"
+      selector: "Marque uno (requerido):"
+      email_request: "Esta dirección de correo electrónico es para "
+      email_request_end: "."
+      request_start: "Recibo esta información en nombre de "
+      request_end: " a solicitud de la persona."
+      requestor_name: "Mi nombre es:"
+      enter_name: "Ingresar nombre"
+      save_button: "Siguiente"
+    pending:
+      pending: "Hemos identificado algunos problemas que condujeron a la suspensión de su licencia que pueden ser elegibles bajo este
+      programa para recibir asistencia. Debido a la gran cantidad de registros que estamos
+      revisando, puede tomar hasta 12 meses para que sus casos sean revisados. Para proteger
+      su privacidad, ingrese su dirección de correo electrónico a continuación y le
+      enviaremos una actualización cuando se revise su caso. Por favor permita hasta 12
+      meses. Recibirá una actualización automática tan pronto como sepamos más sobre su caso.
+      Si tiene un caso en la corte de tránsito próximo o pendiente, debe ir a la corte en
+      las fechas programadas para que asista a corte."
+    record_missing:
+      records_missing: "Los problemas que condujeron a su licencia de conducir ser suspendida
+      no son elegibles para este programa. Si desea obtener más información, visite la
+      oficina del programa Durham Expunction and Restoration (DEAR) donde puede reunirse con
+      un abogado gratuito para obtener más información sobre lo que puede hacer para
+      restablecer sus privilegios de manejar. La oficina está abierta de lunes a viernes,
+      de 9:30 a.m. a 3:00 p.m. y está ubicada en el Palacio de  Justicia del Condado de
+      Durham en la suite 6400 en el sexto piso."
+      about_button: "Obtenga más información sobre el programa DEAR"
+    sign_up:
+      title: "Thank You & What to Expect Next (Translation needed?)"
+    approved_signup:
+      first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy.
+      Si no recibe el correo electrónico, primero verifique que el correo electrónico no haya
+      llegado a su bandeja de entrada de correo no deseado. Si aún no lo ve o si tiene preguntas
+      sobre el alivio que recibió, visite la oficina del programa Durham Expunction and Restoration
+      (DEAR). La oficina está abierta de lunes a viernes, de 9:30 a.m. a 3:00 p.m. (consulte a
+      continuación nuestra dirección)."
+      understanding: "Entendiendo el alivio que recibido"
+      second_paragraph: "Si visita la oficina de DEAR, puede reunirse con un abogado
+      gratuito para obtener más información sobre el alivio que recibió y para ver si tiene
+      algún problema adicional que deba resolverse antes de poder acudir al DMV para recuperar
+      sus privilegios de conducir."
+      third_paragraph: "Puede inscribirse en una cita para reunirse con un abogado de DEAR a
+      continuación o simplemente puede pasar durante las horas de oficina mencionadas anteriormente.
+      Las personas sin cita pueden tener que esperar más tiempo, pero las citas no son necesarias."
+      getting: "Recuperar su licencia de conducir"
+      fourth_paragraph: "Antes de visitar el DMV para restaurar sus privilegios de manejo, le
+      recomendamos que se comunique con ellos para verificar los problemas pendientes que necesita
+      resolver o los pasos que debe seguir para restaurar su licencia de conducir. Pregúnteles
+      qué necesita traer con usted y cuánto tendrá que pagar. Para hablar con alguien en el DMV,
+      llame al (919) 715-7000. En ocasiones, el DMV puede tardar un poco en procesar todos los
+      documentos de los tribunales. Si los llama antes de ir a una ubicación del DMV, también
+      puede verificar que el alivio que recibió esté reflejado en sus registros."
+      dear_program: "Oficina del programa DEAR"
+      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6to piso"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Mapa"
+      print: "Imprimir esta página"
+    pending_signup:
+      first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy
+      confirmando que recibimos su información. Si no recibe el correo electrónico, primero
+      verifique que el correo electrónico no haya llegado a su bandeja de entrada de correo no
+      deseado. Si aún no ve la carta o si tiene alguna pregunta al respecto, visite la oficina del
+      programa Durham Expunction and Restoration (DEAR). La oficina está abierta de lunes a viernes,
+      de 9:30 a.m. a 3:00 p.m. (consulte a continuación nuestra dirección)."
+      second_paragraph: "Una vez que tengamos una actualización de su caso, recibirá una actualización
+      automática a la dirección de correo electrónico que proporcionó. Nuevamente, esto podría
+      tomar hasta un año debido a la cantidad de casos. Gracias de antemano por su paciencia.
+      Estamos trabajando lo más rápido posible para determinar si podemos ayudarlo a través de este
+      programa. No podemos garantizar el resultado de su caso. Si no desea esperar y puede resolver
+      los problemas por su cuenta (por ejemplo, puede pagar las multas de tráfico anteriores),
+      le recomendamos que lo haga."
+      third_paragraph: "Le notificaremos tan pronto como tengamos una actualización de su caso,
+      e incluiremos información adicional sobre los próximos pasos que puede seguir una vez que
+      sepamos más."
+      dear_program: "Oficina del programa DEAR"
+      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
+      address2: "510 S Dillard Street"
+      address3: "Suite 6400, 6to piso"
+      address4: "Durham, NC 27701"
+      email: "dear@durhamnc.gov"
+      map: "Mapa"
+      print: "Imprimir esta página"
