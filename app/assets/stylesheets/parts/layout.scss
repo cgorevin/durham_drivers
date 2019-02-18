@@ -1,0 +1,7 @@
+$header-height: 80px;
+$footer-height: 160px;
+
+.container {
+  // min-height: 67vh; // good estimate, but it's not exact and could break down with screens bigger than mine
+  min-height: calc(100vh - (80px + 160px)); // perfect
+}
