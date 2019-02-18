@@ -1,0 +1,26 @@
+.footer {
+  // flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $nav-bg;
+}
+
+.footer-row {
+  margin-top: 15px;
+}
+
+.copyright {
+  margin-bottom: 1.5em;
+}
+
+.text-uppercase, .credits, .copyright, .list-unstyled > li > a {
+  text-decoration: none;
+  color: var(--nav);
+}
+
+.footer-sections {
+  @include mobile {
+    margin-top: 15px;
+  }
+}
