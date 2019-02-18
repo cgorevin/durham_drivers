@@ -15,7 +15,8 @@ html, body {
 }
 
 .content {
-  margin-bottom: 300px;
+  // margin-bottom: 300px;
+  margin-bottom: 5em;
 }
 
 /* buttons & images */
@@ -38,14 +39,6 @@ html, body {
 
 .dear-program {
   margin: 5px 10px 15px 0px;
-}
-
-.dear-logo {
-  margin-top: 70px;
-}
-
-.footer-image {
-  margin-top: 0px;
 }
 
 .durham-logo {
@@ -290,10 +283,6 @@ th, td {
   }
 
   /* buttons & images */
-
-  .footer-image {
-    margin-top: 5px;
-  }
 
   .btn-primary {
     font-size: 0.625em;

@@ -1,6 +1,6 @@
 .footer {
   // flex-shrink: 0;
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   width: 100%;
   background-color: $nav-bg;
@@ -11,7 +11,7 @@
 }
 
 .copyright {
-  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
 }
 
 .text-uppercase, .credits, .copyright, .list-unstyled > li > a {
