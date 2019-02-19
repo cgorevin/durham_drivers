@@ -172,7 +172,7 @@ class Offense < ApplicationRecord
     # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
     # join the strings with ' AND '
     phrase = attrs.map do |atr|
-      %`(#{(["difference(#{atr}, ?)"] * names.size).join ' OR '})`
+      %`(#{(["difference(#{atr}, ?) > 3"] * names.size).join ' OR '})`
     end.join(' AND ')
 
     where phrase, *terms
