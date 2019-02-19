@@ -56,7 +56,7 @@ class Offense < ApplicationRecord
 
   def name
     names = [last_name, first_name, middle_name]
-    names.delete_if &:blank?
+    names.delete_if(&:blank?)
     names.join ', '
   end
 
@@ -64,355 +64,12 @@ class Offense < ApplicationRecord
     ftp ? 'FTP' : 'FTA'
   end
 
-  # abc: [41.62/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [28/10]
-  # def namev1=(string)
-  #   # 1. KEA-ALLEN CASSANDRA            < first/last can't be blank
-  #   # 2. ANDERSON SUSAN                 < first/last
-  #   # 3. RICHARDSON CHARLES KENITH      < first/last
-  #   # 4. RICHARDSON CHARLES KENITH      < first/last
-  #   # 5. JOHN DOE                       < first/last
-  #   # 6. VICTOR                         < first/last
-  #   # 7. VICTOR                         < first/last
-  #   # 8. HERNANDEZ-BADILLO              < first/last
-  #   # 9. JOHN DOE                       < first/last
-  #   # 10. JOHN DOE                      < first/last
-  #   # 11. FUENTE,JUAN,JOSE,ORZOA,DE,LA  < first/last
-  #   # 12. FUENTE,JUAN,JOSE,ORZOA,DE,LA  < first/last
-  #   # 13. FUENTE,JUAN,JOSE,ORZOA,DE,LA  < first/last
-  #   # 14. MOORE,WILLIAM,,AUTHUR         < first
-  #   # 15. MOORE,WILLIAM,,AUTHUR         < first
-  #   # 16. JOHN DOE                      < first/last
-  #   # 17. JOHN DOE                      < first/last
-  #   # 18. GARCIA,HUGO,RAFAEL,,,,FLORES  < first/last
-  #   # 19. GARCIA,HUGO,RAFAEL,,,,FLORES  < first/last
-  #   # 20. PINEDA-MARADIAGA              < first/last
-  #   # 21. PINEDA-MARADIAGA              < first/last
-  #   # 22. MIRANDA-RENDON,,AMUEL         < first
-  #   # 23. SOLER,LUIS,,,ANGEL,RECINO,FR  < first/last
-  #   # 24. ANGEL,ADOLFO,DE,LA,GARZA,DEE  < first/last
-  #   # 25. ANGEL,ADOLFO,DE,LA,GARZA,DEE  < first/last
-  #   # 26. ANGEL,ADOLFO,DE,LA,GARZA,DEE  < first/last
-  #   # 27. ANGEL,ADOLFO,DE,LA,GARZA,DEE  < first/last
-  #   # 28. ESRES RUDOLPH                 < first/last
-  #   # 29. LOYA,,SANTIAGO                < first
-  #   # 30. CARRERA,RONALD,,,,,DOUGLAS,V  < first/last
-  #   # 31. GARCIA,HUGO,RAFAEL,,,,FLORES  < first/last
-  #   # 32. SELF SHARMAN                  < first/last
-  #
-  #   # all first/last can't be blank
-  #   # 1. VICTOR
-  #   # 2. VICTOR
-  #   # 3. HERNANDEZ-BADILLO
-  #   # 4. FUENTE,JUAN,JOSE,ORZOA,DE,LA
-  #   # 5. FUENTE,JUAN,JOSE,ORZOA,DE,L
-  #   # 6. FUENTE,JUAN,JOSE,ORZOA,DE,L
-  #   # 7. FLORES,JOSE,DE LE ROSA,ALVAR
-  #   # 8. FLORES,JOSE,DE LE ROSA,ALVAR
-  #   # 9. CASTILLO DE LA ROSA,JUAN,ANG
-  #   # 10. CASTILLO DE LA ROSA,JUAN,ANG
-  #   # 11. PINEDA-MARADIAGA
-  #   # 12. PINEDA-MARADIAGA
-  #   # 13. ANGEL,ADOLFO,DE,LA,GARZA,DEE
-  #   # 14. ANGEL,ADOLFO,DE,LA,GARZA,DEE
-  #   # 15. ANGEL,ADOLFO,DE,LA,GARZA,DEE
-  #   # 16. ANGEL,ADOLFO,DE,LA,GARZA,DEE
-  #
-  #   # 1. VICTOR
-  #   # 2. VICTOR
-  #   # 3. HERNANDEZ-BADILLO
-  #   # 4. PINEDA-MARADIAGA
-  #   # 5. PINEDA-MARADIAGA
-  #
-  #   # if string.include? ','
-  #   #   names = string.split ','
-  #   # else
-  #   #   names = string.split
-  #   # end
-  #   # names = string.include?(',') ? string.split(',') : string.split
-  #   # names = string.split( string.include?(',') ? ',' : nil )
-  #   # names = string.split( string[','] ? ',' : nil )
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   if names.count == 1
-  #     first_name = 'n/a'
-  #     last_name = names.first
-  #   elsif names.count == 2
-  #     first_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 3
-  #     first_name = names[1]
-  #     middle_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 4
-  #     first_name = names[2]
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 5
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 6
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names[4..5].join(' ')
-  #     last_name = names[0..1].join(' ')
-  #   end
-  #   self.first_name = first_name
-  #   self.middle_name = middle_name
-  #   self.last_name = last_name
-  # end
-
-  # abc: [41.16/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [26/10]
-  # def namev2=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   if names.count == 1
-  #     first_name = 'n/a'
-  #     last_name = names.first
-  #   elsif names.count == 2
-  #     first_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 3
-  #     first_name = names[1]
-  #     middle_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 4
-  #     first_name = names[2]
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 5
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 6
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names[4..5].join(' ')
-  #     last_name = names[0..1].join(' ')
-  #   end
-  #   assign_attributes first_name: first_name, middle_name: middle_name, last_name: last_name
-  # end
-
-  # abc: [40.69/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [26/10]
-  # def namev3=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   if names.count == 1
-  #     first_name = 'n/a'
-  #     last_name = names.first
-  #   elsif names.count == 2
-  #     first_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 3
-  #     first_name = names[1]
-  #     middle_name = names.last
-  #     last_name = names.first
-  #   elsif names.count == 4
-  #     first_name = names[2]
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 5
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   elsif names.count == 6
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names[4..5].join(' ')
-  #     last_name = names[0..1].join(' ')
-  #   end
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [31.38/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [27/10]
-  # def namev4=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   case names.count
-  #   when 1
-  #     first_name = 'n/a'
-  #     last_name = names.first
-  #   when 2
-  #     first_name = names.last
-  #     last_name = names.first
-  #   when 3
-  #     first_name = names[1]
-  #     middle_name = names.last
-  #     last_name = names.first
-  #   when 4
-  #     first_name = names[2]
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   when 5
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names.last
-  #     last_name = names[0..1].join(' ')
-  #   when 6
-  #     first_name = names[2..3].join(' ')
-  #     middle_name = names[4..5].join(' ')
-  #     last_name = names[0..1].join(' ')
-  #   end
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [26.76/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [31/10]
-  # def namev5=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first = names.first
-  #   last = names.last
-  #   join1 = names[0..1].join(' ')
-  #   join2 = names[2..3].join(' ')
-  #
-  #   case names.count
-  #   when 1
-  #     first_name = 'n/a'
-  #     last_name = first
-  #   when 2
-  #     first_name = last
-  #     last_name = first
-  #   when 3
-  #     first_name = names[1]
-  #     middle_name = last
-  #     last_name = first
-  #   when 4
-  #     first_name = names[2]
-  #     middle_name = last
-  #     last_name = join1
-  #   when 5
-  #     first_name = join2
-  #     middle_name = last
-  #     last_name = join1
-  #   when 6
-  #     first_name = join2
-  #     middle_name = names[4..5].join(' ')
-  #     last_name = join1
-  #   end
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [18.22/15]
-  # cyclomatic complexity: [7/6]
-  # method length: [15/10]
-  # def namev6=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first = names.first
-  #   last = names.last
-  #   join1 = names[0..1].join(' ')
-  #   join2 = names[2..3].join(' ')
-  #
-  #   first_name, middle_name, last_name = case names.count
-  #   when 1 then ['n/a', nil, first]
-  #   when 2 then [last, nil, first]
-  #   when 3 then [names[1], last, first]
-  #   when 4 then [names[2], last, join1]
-  #   when 5 then [join2, last, join1]
-  #   when 6 then [join2, names[4..5].join(' '), join1]
-  #   end
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [18.03/15]
-  # cyclomatic complexity: [<7/6]
-  # method length: [12/10]
-  # def namev7=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first = names.first
-  #   last = names.last
-  #   join1 = names[0..1].join ' '
-  #   join2 = names[2..3]&.join ' '
-  #
-  #   first_name, middle_name, last_name = {
-  #     1 => ['n/a', nil, first], 2 => [last, nil, first],
-  #     3 => [names[1], last, first], 4 => [names[2], last, join1],
-  #     5 => [join2, last, join1], 6 => [join2, names[4..5]&.join(' '), join1]
-  #   }[names.count]
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [18.6/15]
-  # cyclomatic complexity: [<7/6]
-  # method length: [11/10]
-  # def namev8=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first, last = [names.first, names.last]
-  #   join1 = names[0..1].join ' '
-  #   join2 = names[2..3]&.join ' '
-  #
-  #   first_name, middle_name, last_name = {
-  #     1 => ['n/a', nil, first], 2 => [last, nil, first],
-  #     3 => [names[1], last, first], 4 => [names[2], last, join1],
-  #     5 => [join2, last, join1], 6 => [join2, names[4..5]&.join(' '), join1]
-  #   }[names.count]
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [19.21/15]
-  # cyclomatic complexity: [<7/6]
-  # method length: [10/10]
-  # def namev9=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first, last = [names.first, names.last]
-  #   join1, join2 = [names[0..1].join(' '), names[2..3]&.join(' ')]
-  #
-  #   first_name, middle_name, last_name = {
-  #     1 => ['n/a', nil, first], 2 => [last, nil, first],
-  #     3 => [names[1], last, first], 4 => [names[2], last, join1],
-  #     5 => [join2, last, join1], 6 => [join2, names[4..5]&.join(' '), join1]
-  #   }[names.count]
-  #
-  #   self.attributes = { first_name: first_name, middle_name: middle_name, last_name: last_name }
-  # end
-
-  # abc: [18.6/15]
-  # cyclomatic complexity: [<7/6]
-  # method length: [9/10]
-  # def namev10=(string)
-  #   names = string.split string[',']
-  #   names.delete_if &:blank?
-  #
-  #   first, last, join1, join2 = [names.first, names.last, names[0..1].join(' '), names[2..3]&.join(' ')]
-  #
-  #   first_name, middle_name, last_name = {
-  #     1 => ['n/a', nil, first], 2 => [last, nil, first],
-  #     3 => [names[1], last, first], 4 => [names[2], last, join1],
-  #     5 => [join2, last, join1], 6 => [join2, names[4..5]&.join(' '), join1]
-  #   }[names.count]
-  #
-  #   self.attributes={first_name:first_name,middle_name:middle_name,last_name:last_name}
-  # end
-
   # abc: [18.6/15]
   # cyclomatic complexity: [<7/6]
   # method length: [9/10]
   def name=(string)
     names = string.split string[',']
-    names.delete_if &:blank?
+    names.delete_if(&:blank?)
 
     first, last, join1, join2 = [names[0], names[-1], names[0..1].join(' '), names[2..3]&.join(' ')]
 
@@ -449,124 +106,18 @@ class Offense < ApplicationRecord
   def self.fuzzy_date_search(dob)
     return all unless dob.present?
 
-    # where(date_of_birth: [dob, nil])
-
-    # NOTE: use string for where clause
-    # date = Date.parse(dob).to_s
-    # where 'date_of_birth LIKE ? OR date_of_birth IS ?', date, nil
-
-    # NOTE: split date into 3 string and modify format for partial matching
-    # date = Date.parse(dob).to_s
-    # year, month, day = date.split '-'
-    # year += '-%'
-    # month = "%-#{month}-%"
-    # day = "%-#{day}"
-    # where '
-    #   (date_of_birth LIKE ?
-    #   AND date_of_birth LIKE ?
-    #   AND date_of_birth LIKE ?)
-    #   OR date_of_birth IS ?
-    # ', year, month, day, nil
-
-    # NOTE: add the 3 different conditions that are required for search to work
-    # NOTE: to get 2/3 date match, there are 3 combinations that we must check
-    # NOTE: 1. year-month. 2. year-day. 3. month-day.
-    # NOTE: if any of these combinations work, we have a match
-    # date = Date.parse(dob).to_s
-    # year, month, day = date.split '-'
-    # year += '-%'
-    # month = "%-#{month}-%"
-    # day = "%-#{day}"
-    # where '
-    #   (
-    #     (
-    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
-    #     ) OR (
-    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
-    #     ) OR (
-    #       date_of_birth LIKE ? AND date_of_birth LIKE ?
-    #     )
-    #   )
-    #   OR date_of_birth IS ?
-    # ', year, month, year, day, month, day, nil
-
-    # NOTE: use hash and named variables to reduce repetition
-    # date = Date.parse(dob).to_s
-    # year, month, day = date.split '-'
-    # year += '-%'
-    # month = "%-#{month}-%"
-    # day = "%-#{day}"
-    # where '
-    #   (
-    #     (
-    #       date_of_birth :like :y AND date_of_birth LIKE :m
-    #     ) OR (
-    #       date_of_birth LIKE :y AND date_of_birth LIKE :d
-    #     ) OR (
-    #       date_of_birth LIKE :m AND date_of_birth LIKE :d
-    #     )
-    #   )
-    #   OR date_of_birth IS :nil
-    # ', { y: year, m: month, d: day, nil: nil }
-
-    # NOTE: alias date_of_birth to reduce complexity. remove nil from hash
-    # date = Date.parse(dob).to_s
-    # year, month, day = date.split '-'
-    # year += '-%'
-    # month = "%-#{month}-%"
-    # select('*', 'date_of_birth AS dob')
-    # .where '
-    #   (
-    #     (
-    #       dob LIKE :y AND dob LIKE :m
-    #     ) OR (
-    #       dob LIKE :y AND dob LIKE :d
-    #     ) OR (
-    #       dob LIKE :m AND dob LIKE :d
-    #     )
-    #   )
-    #   OR dob IS NULL
-    # ', y: year, m: month, d: day
-
-    # NOTE: use strftime to reduce lines of code and avoid variable reassignment
-    # date = Date.parse(dob)
-    # year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
-    # select('*', 'date_of_birth AS dob')
-    # .where '
-    #   (
-    #     (
-    #       dob LIKE :y AND dob LIKE :m
-    #     ) OR (
-    #       dob LIKE :y AND dob LIKE :d
-    #     ) OR (
-    #       dob LIKE :m AND dob LIKE :d
-    #     )
-    #   )
-    #   OR dob IS NULL
-    # ', y: year, m: month, d: day
-
-    # NOTE: reduce string size
-    # date = Date.parse(dob)
-    # year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
-    # select('*', 'date_of_birth AS dob')
-    #   .where '
-    #     ((dob LIKE :y AND dob LIKE :m)
-    #     OR (dob LIKE :y AND dob LIKE :d)
-    #     OR (dob LIKE :m AND dob LIKE :d)) OR dob IS NULL
-    #   ', y: year, m: month, d: day
-
     # date = Date.parse(dob)
     date = Chronic.parse(dob).to_date
     year, month, day = date.strftime('%Y-% %%-%m-% %%-%d').split
 
     # add support for postgres like operator
     like, column = if Rails.env.production?
-      ['ILIKE', "to_char(date_of_birth, 'YYYY-MM-DD')"]
-    else ['LIKE', 'date_of_birth']
+                     ['ILIKE', "to_char(date_of_birth, 'YYYY-MM-DD')"]
+                   else %w[LIKE date_of_birth]
     end
-    sql = "((%{dob} %{like} :y AND %{dob} %{like} :m)
-          OR (%{dob} %{like} :y AND %{dob} %{like} :d)
-          OR (%{dob} %{like} :m AND %{dob} %{like} :d)) OR date_of_birth IS NULL"
+    sql = "((%<dob> %<like> :y AND %<dob> %<like> :m)
+          OR (%<dob> %<like> :y AND %<dob> %<like> :d)
+          OR (%<dob> %<like> :m AND %<dob> %<like> :d)) OR date_of_birth IS NULL"
     phrase = format(sql, dob: column, like: like).squish
     where phrase, y: year, m: month, d: day
   end
@@ -618,7 +169,7 @@ class Offense < ApplicationRecord
     terms = names * attrs.size
 
     # loop thru attrs and make an array of strings like
-    # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
+    # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
     # join the strings with ' AND '
     phrase = attrs.map do |atr|
       %`(#{(["difference(#{atr}, ?)"] * names.size).join ' OR '})`
@@ -646,7 +197,7 @@ class Offense < ApplicationRecord
 
   def self.fuzzy_group_search(*names, dob, group)
     search = group_search(group)
-      .fuzzy_date_search(dob)
+             .fuzzy_date_search(dob)
     if Rails.env.production?
       search.pg_fuzzy_name_search(names)
     else
