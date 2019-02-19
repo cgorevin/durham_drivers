@@ -602,6 +602,40 @@ class Offense < ApplicationRecord
     where phrase, *terms
   end
 
+  def self.pg_fuzzy_name_search(*names)
+    # array of columns you want to search for
+    attrs = %w[first_name middle_name last_name]
+
+    # remove accents and make array full of names
+    names = I18n.transliterate(names.join(' ')).split
+    return all unless names.any?
+
+    # split "john doe smith" into ["john", "doe", "smith"]
+    # multiply by the number of columns you are searching for
+    # if columns = [first_name and last_name], then multiply by 2
+    # wrap with %'s to allow wildcard searches
+    # ["%john%", "%doe%", "%smith%", "%john%", "%doe%", "%smith%"]
+    terms = names * attrs.size
+
+    # loop thru attrs and make an array of strings like
+    # 'first_name like ? OR first_name like ? OR first_name like'
+    # join the strings with ' AND '
+    phrase = attrs.map do |atr|
+      %`(#{(["difference(#{atr}, ?)"] * names.size).join ' OR '})`
+    end.join(' AND ')
+
+    where phrase, *terms
+    # SELECT  "offenses".*
+    # FROM "offenses"
+    # WHERE (
+    #   (first_name LIKE '%cruz%' OR first_name LIKE '%alejandro%' OR first_name LIKE '%nunez%')
+    #   (difference(first_name, 'cruz') > 3 OR difference(first_name, 'alejandro') > 3 OR difference(first_name, 'cruz') > 3)
+    #   AND (middle_name LIKE '%cruz%' OR middle_name LIKE '%alejandro%' OR middle_name LIKE '%nunez%')
+    #   AND (last_name LIKE '%cruz%' OR last_name LIKE '%alejandro%' OR last_name LIKE '%nunez%')
+    # )
+    # LIMIT ?  [["LIMIT", 11]]
+  end
+
   # find all groups that partially match group given
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
   def self.groups(group)
@@ -620,9 +654,13 @@ class Offense < ApplicationRecord
   end
 
   def self.fuzzy_group_search(*names, dob, group)
-    group_search(group)
+    search = group_search(group)
       .fuzzy_date_search(dob)
-      .fuzzy_name_search(names)
+    if Rails.env.production?
+      search.pg_fuzzy_name_search(names)
+    else
+      search.fuzzy_name_search(names)
+    end
   end
 
   private
