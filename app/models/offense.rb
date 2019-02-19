@@ -618,22 +618,13 @@ class Offense < ApplicationRecord
     terms = names * attrs.size
 
     # loop thru attrs and make an array of strings like
-    # 'first_name like ? OR first_name like ? OR first_name like'
+    # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
     # join the strings with ' AND '
     phrase = attrs.map do |atr|
       %`(#{(["difference(#{atr}, ?)"] * names.size).join ' OR '})`
     end.join(' AND ')
 
     where phrase, *terms
-    # SELECT  "offenses".*
-    # FROM "offenses"
-    # WHERE (
-    #   (first_name LIKE '%cruz%' OR first_name LIKE '%alejandro%' OR first_name LIKE '%nunez%')
-    #   (difference(first_name, 'cruz') > 3 OR difference(first_name, 'alejandro') > 3 OR difference(first_name, 'cruz') > 3)
-    #   AND (middle_name LIKE '%cruz%' OR middle_name LIKE '%alejandro%' OR middle_name LIKE '%nunez%')
-    #   AND (last_name LIKE '%cruz%' OR last_name LIKE '%alejandro%' OR last_name LIKE '%nunez%')
-    # )
-    # LIMIT ?  [["LIMIT", 11]]
   end
 
   # find all groups that partially match group given
