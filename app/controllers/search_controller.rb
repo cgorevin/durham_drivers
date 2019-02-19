@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   def show
+    flash.notice = 'yeet'
     @offense = Offense.new
   end
 
