@@ -114,10 +114,12 @@ class Offense < ApplicationRecord
     like, column = if Rails.env.production?
                      ['ILIKE', "to_char(date_of_birth, 'YYYY-MM-DD')"]
                    else %w[LIKE date_of_birth]
-    end
-    sql = "((%<dob> %<like> :y AND %<dob> %<like> :m)
-          OR (%<dob> %<like> :y AND %<dob> %<like> :d)
-          OR (%<dob> %<like> :m AND %<dob> %<like> :d)) OR date_of_birth IS NULL"
+                   end
+
+    sql = "((%<dob>s %<like>s :y AND %<dob>s %<like>s :m)
+          OR (%<dob>s %<like>s :y AND %<dob>s %<like>s :d)
+          OR (%<dob>s %<like>s :m AND %<dob>s %<like>s :d))
+          OR date_of_birth IS NULL"
     phrase = format(sql, dob: column, like: like).squish
     where phrase, y: year, m: month, d: day
   end
