@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_012901) do
+ActiveRecord::Schema.define(version: 2019_02_20_231850) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 2019_02_08_012901) do
     t.index ["date_of_birth"], name: "index_offenses_on_date_of_birth"
     t.index ["first_name", "middle_name", "last_name"], name: "index_offenses_on_first_name_and_middle_name_and_last_name"
     t.index ["group"], name: "index_offenses_on_group"
+  end
+
+  create_table "offenses_relief_messages", force: :cascade do |t|
+    t.integer "offense_id"
+    t.integer "relief_message_id"
+    t.index ["offense_id"], name: "index_offenses_relief_messages_on_offense_id"
+    t.index ["relief_message_id"], name: "index_offenses_relief_messages_on_relief_message_id"
   end
 
   create_table "relief_messages", force: :cascade do |t|
