@@ -145,4 +145,43 @@ class ReliefMessage < ApplicationRecord
       The DEAR team
     HTML
   end
+
+  def message_4
+    full_name = offenses.first.name
+    ftas = offenses.select(&:fta?)
+    fta_lines = ftas.map { |x| "Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}" }
+    fta_lines = lines.join "\n"
+    ftps = offenses.select(&:ftp?)
+    ftp_lines = ftas.map { |x| "Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}" }
+    ftp_lines = lines.join "\n"
+    fta_tickets = 'ticket'.pluralize ftas.count
+    ftp_tickets = 'ticket'.pluralize ftps.count
+    fta_have = 'has'.pluralize ftas.count
+    fta_are = 'is'.pluralize ftas.count
+    fta_these = 'this'.pluralize ftas.count
+
+    <<~HTML
+      Dear #{full_name}:
+
+      This project is staffed by the Durham Expungement and Restoration (“DEAR”) program in collaboration with the Durham District Attorney’s Office. Our goal is to provide relief to people who have had a suspended driver’s license for more than two years due to unresolved traffic tickets in Durham County that do not involve DWIs or other “high risk” traffic offenses.
+
+      We are excited to inform you that the Durham District Attorney’s office has dismissed the following traffic #{fta_tickets}:
+
+      #{fta_lines}
+
+      The #{fta_tickets} identified above #{fta_have} been dismissed and #{fta_are} now resolved. Any suspension of your driver’s license caused by #{fta_these} specific unresolved #{fta_tickets} has ended.
+
+      The Durham District Attorney’s Office is also willing to ask the Durham District Court to eliminate all fees and/fines for the following traffic #{ftp_tickets}:
+
+      #{ftp_lines}
+
+      Until all unpaid fees and/or fines are either paid or eliminated by the Court, your driver’s license will remain suspended for the traffic #{ftp_tickets} identified above. Between January 1, 2019, and December 31, 2019, the Durham District Attorney’s Office will file a motion asking for all fines and/or fees to be eliminated based on the extended length of your driver’s license suspension. You will get an automatic update as soon as we know more about your case. If you have upcoming or pending traffic court case, you should go to court on your court dates.
+
+      For more information about the complete status of your driver’s license, please call the NC Division of Motor Vehicles (NC DMV) at (919) 715-7000.
+
+      Sincerely,
+
+      The DEAR team
+    HTML
+  end
 end
