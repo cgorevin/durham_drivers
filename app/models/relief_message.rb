@@ -3,7 +3,7 @@ class ReliefMessage < ApplicationRecord
 
   belongs_to :contact
 
-  has_many :contact_histories
+  has_many :contact_histories, dependent: :destroy
 
   has_and_belongs_to_many :offenses
 

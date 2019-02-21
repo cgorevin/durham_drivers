@@ -1,6 +1,6 @@
 class Contact < ApplicationRecord
   has_and_belongs_to_many :offenses
-  has_many :relief_messages
+  has_many :relief_messages, dependent: :destroy
   has_many :contact_histories, dependent: :destroy
 
   validates :method, presence: true
