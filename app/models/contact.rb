@@ -37,9 +37,27 @@ class Contact < ApplicationRecord
   end
 
   # need a contact_histories_offenses table and need to remove contact_histories.offense_id
-  # def notify_of(ids_string)
-  #   ids = ids_string.split
-  #   offenses_to_notify = offenses.where id: ids
-  #   contact_histories.create offenses: offenses_to_notify
-  # end
+  def notify_of(ids_string)
+    ids = ids_string.split
+    offenses_to_notify = offenses.where id: ids
+
+    relief_message = relief_messages.create offenses: offenses_to_notify
+
+    if relief_message.errors.any?
+      p "relief_message errors: #{relief_message.errors.to_a}"
+    end
+
+    offenses_to_notify.each do |offense|
+      if !offense.pending?
+        # create contact history to get things rolling
+        # ContactHistory.create contact: self, offense: offense
+        history = contact_histories.create(
+          offense: offense, relief_message: relief_message
+        )
+        if history.errors.any?
+          p "history errors: #{history.errors.to_a}"
+        end
+      end
+    end
+  end
 end

@@ -3,7 +3,7 @@ class ContactHistory < ApplicationRecord
 
   belongs_to :contact
   belongs_to :offense
-  belongs_to :relief_message, optional: true
+  belongs_to :relief_message
 
   private
 
