@@ -1,10 +1,11 @@
 class Contact < ApplicationRecord
   has_and_belongs_to_many :offenses
-  has_many :relief_messages, dependent: :destroy
-  has_many :contact_histories, dependent: :destroy
 
-  validates :method, presence: true
+  has_many :contact_histories, dependent: :destroy
+  has_many :relief_messages, dependent: :destroy
+
   validates :info, presence: true, uniqueness: true
+  validates :method, presence: true
 
   def add_offenses(ids_string)
     old_ids = offense_ids
