@@ -36,15 +36,13 @@ class Contact < ApplicationRecord
     end
 
     offenses_to_notify.each do |offense|
-      if !offense.pending?
-        # create contact history to get things rolling
-        # ContactHistory.create contact: self, offense: offense
-        history = contact_histories.create(
-          offense: offense, relief_message: relief_message
-        )
-        if history.errors.any?
-          p "history errors: #{history.errors.to_a}"
-        end
+      # create contact history to get things rolling
+      # ContactHistory.create contact: self, offense: offense
+      history = contact_histories.create(
+        offense: offense, relief_message: relief_message
+      )
+      if history.errors.any?
+        p "history errors: #{history.errors.to_a}"
       end
     end
   end
