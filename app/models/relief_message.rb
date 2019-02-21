@@ -48,13 +48,13 @@ class ReliefMessage < ApplicationRecord
       end
     elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
       ftps = offenses.select(&:ftp?)
-      if ftps.all?(:approved?)
+      if ftps.all?(&:approved?)
         # ftp approved => message 3
         message_3
-      elsif ftps.all?(:pending?)
+      elsif ftps.all?(&:pending?)
         # ftp pending => message 4
         message_4
-      elsif ftps.all?(:denied?)
+      elsif ftps.all?(&:denied?)
         # ftp denied => missing
       end
     end
@@ -157,10 +157,10 @@ class ReliefMessage < ApplicationRecord
     full_name = offenses.first.name
     ftas = offenses.select(&:fta?)
     fta_lines = ftas.map { |x| "<li>Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}</li>" }
-    fta_lines = lines.join "\n"
+    fta_lines = fta_lines.join "\n"
     ftps = offenses.select(&:ftp?)
     ftp_lines = ftas.map { |x| "<li>Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}</li>" }
-    ftp_lines = lines.join "\n"
+    ftp_lines = ftp_lines.join "\n"
     fta_tickets = 'ticket'.pluralize ftas.count
     ftp_tickets = 'ticket'.pluralize ftps.count
 
