@@ -36,9 +36,14 @@ class ReliefMessage < ApplicationRecord
       # render message 1
       message_1
     elsif offenses.all?(&:ftp?)
-      # pending => message 5
-      # approved => message 2
-      # denied => message 6
+      if offenses.all?(&:pending?)
+        # pending => message 5
+      elsif offenses.all?(&:approved?)
+        # approved => message 2
+        message_2
+      elsif offenses.all?(&:denied?)
+        # denied => message 6
+      end
     elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
       # ftp approved => message 3
       # ftp pending => message 4
@@ -73,6 +78,65 @@ class ReliefMessage < ApplicationRecord
       Sincerely,
 
       The DEAR team
+    HTML
+  end
+
+  def message_2
+    o_count = offenses.count
+    one_offense = o_count == 1
+    requestor_name = contact.requestor_name.presence
+    full_name = offenses.first.name
+    lines = offenses.map { |x| "Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}" }
+    lines = lines.join "\n"
+    tickets = 'ticket'.pluralize o_count
+    have = 'has'.pluralize o_count
+    are = 'is'.pluralize o_count
+    these = 'this'.pluralize o_count
+    cases = 'cases'.pluralize o_count
+    <<~HTML
+      Dear #{full_name}:
+
+      Thank you for using this portal to see if you have received relief through the Durham Driver’s License Restoration Project. This project is staffed by the Durham Expungement and Restoration (“DEAR”) program in collaboration with the Durham District Attorney’s Office. Our goal is to provide relief to people who have had a suspended driver’s license for more than two years due to unresolved traffic tickets in Durham County that do not involve DWIs or other “high risk” traffic offenses.
+
+      We are excited to inform you that the Durham County court has eliminated all unpaid fines and/or fees for the following traffic ticket(s):
+
+      #{lines}
+
+      All fines and/or fees for the #{tickets} identified above #{have} been eliminated by the court and the #{cases} #{are} now resolved. Any suspension of your driver’s license caused by the specific unresolved #{tickets} has ended. Although the fines and/or fees  for the #{tickets} identified above have been eliminated and the #{tickets} #{are} no longer causing your license to be suspended, this does not mean that you are now legally able to drive. There may be other traffic matters that are causing your license to remain suspended. If there are no other traffic matters causing your license to be suspended, then you will need to pay a reinstatement fee to the NCDMV in order to reinstate your license. For more information about the status of your driver’s license and/or procedures to reinstate a driver’s license, please call the NC Division of Motor Vehicles (NC DMV) at (919) 715-7000.
+
+      If you would like to meet with a DEAR staff person to review your entire state driving record, please visit the Durham Expunction and Restoration Program (DEAR) office. The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham County Courthouse in suite 6400 on the 6th floor. This service is free.
+
+      Sincerely,
+
+      The DEAR team
+    HTML
+  end
+
+  def message_3
+    full_name = offenses.first.name
+
+    <<~HTML
+      Dear #{full_name}:
+
+      This project is staffed by the Durham Expungement and Restoration (“DEAR”) program in collaboration with the Durham District Attorney’s Office. Our goal is to provide relief to people who have had a suspended driver’s license for more than two years due to unresolved traffic tickets in Durham County that do not involve DWIs or other “high risk” traffic offenses.
+
+      We are excited to inform you that the Durham District Attorney’s office has dismissed the following traffic ticket(s):
+
+      [insert full name, case number, and charge description]
+      [insert full name, case number, and charge description]
+
+      We are excited to inform you that the Durham County court has eliminated all unpaid fines and/or fees for the following traffic ticket(s):
+
+      [insert full name, case number, and charge description]
+      [insert full name, case number, and charge description]
+
+      All tickets identified above have been resolved. Any suspensions of your driver’s license caused by the specific tickets being unresolved have ended. Although the fines and/or fees  for the ticket(s) identified above have been eliminated and the ticket is no longer causing your license to be suspended, this does not mean that you are now legally able to drive. There may be other traffic matters that are causing your license to remain suspended. If there are no other traffic matters causing your license to be suspended, then you will need to pay a reinstatement fee to the NCDMV in order to reinstate your license. For more information about the status of your driver’s license and/or procedures to reinstate a driver’s license, please call the NC Division of Motor Vehicles (NC DMV) at (919) 715-7000.
+
+      If you would like to meet with a DEAR staff person to review your entire state driving record, please visit the Durham Expunction and Restoration Program (DEAR) office. The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham County Courthouse in suite 6400 on the 6th floor. This service is free.
+
+      Sincerely,
+
+      The DEAR team
     HTML
   end
 end
