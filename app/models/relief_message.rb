@@ -38,16 +38,25 @@ class ReliefMessage < ApplicationRecord
     elsif offenses.all?(&:ftp?)
       if offenses.all?(&:pending?)
         # pending => message 5
+        message_5
       elsif offenses.all?(&:approved?)
         # approved => message 2
         message_2
       elsif offenses.all?(&:denied?)
         # denied => message 6
+        message_6
       end
     elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
-      # ftp approved => message 3
-      # ftp pending => message 4
-      # ftp denied => missing
+      ftps = offenses.select(&:ftp?)
+      if ftps.all?(:approved?)
+        # ftp approved => message 3
+        message_3
+      elsif ftps.all?(:pending?)
+        # ftp pending => message 4
+        message_4
+      elsif ftps.all?(:denied?)
+        # ftp denied => missing
+      end
     end
   end
 
