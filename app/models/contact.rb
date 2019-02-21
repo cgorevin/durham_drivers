@@ -24,20 +24,7 @@ class Contact < ApplicationRecord
     time_of_contact.strftime 'Contacted on %m/%d/%Y'
   end
 
-  # notify one by one
-  def notify_of(ids_string)
-    ids = ids_string.split
-    offenses_to_notify = offenses.where id: ids
-    offenses_to_notify.each do |offense|
-      if !offense.pending?
-        # create contact history to get things rolling
-        # ContactHistory.create contact: self, offense: offense
-        history = contact_histories.create offense: offense
-      end
-    end
-  end
-
-  # need a contact_histories_offenses table and need to remove contact_histories.offense_id
+  # need a contact_histories_offenses table
   def notify_of(ids_string)
     ids = ids_string.split
     offenses_to_notify = offenses.where id: ids
