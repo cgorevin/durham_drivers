@@ -6,13 +6,13 @@ class ContactHistory < ApplicationRecord
   belongs_to :relief_message
 
   def contact_time
-    if self.created_at == self.updated_at
-      time_of_contact = self.created_at
-    elsif self.updated_at > self.created_at
-      time_of_contact = self.updated_at
-    end
+    time_of_contact = self.created_at
 
-    time_of_contact.strftime 'Contacted on %m/%d/%Y %l:%M:%S %P'
+    if contact.method == 'email'
+      time_of_contact.strftime 'Emailed on %m/%d/%Y %l:%M:%S %P'
+    else
+      time_of_contact.strftime 'Texted on %m/%d/%Y %l:%M:%S %P'
+    end
   end
 
   private

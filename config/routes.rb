@@ -19,5 +19,7 @@ Rails.application.routes.draw do
       post 'group/:group' => 'offenses#group_update'
     end
   end
+
+  resources :relief_messages, only: :show
   # get '', to: redirect("/#{I18n.default_locale}/")
 end
