@@ -43,8 +43,7 @@ class ReliefMessage < ApplicationRecord
         # approved => message 2
         message_2
       elsif offenses.all?(&:denied?)
-        # denied => message 6
-        message_6
+        # denied => message 6 (no such thing as message 6)
       end
     elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
       ftps = offenses.select(&:ftp?)
@@ -85,46 +84,6 @@ class ReliefMessage < ApplicationRecord
   end
 
   def message_5
-    # full_name = offenses.first.name
-    # lines = offenses.map { |x| "<li>Full name: #{x.name}. Case number: #{x.case_number}.  Charge description: #{x.description}</li>" }
-    # lines = lines.join "\n"
-    # o_count = offenses.count
-    # tickets = 'ticket'.pluralize o_count
-    #
-    # <<~HTML
-    #   <p>
-    #     Dear #{full_name}:
-    #   </p>
-    #
-    #   <p>
-    #     This project is staffed by the Durham Expungement and Restoration (“DEAR”) program in collaboration with the Durham District Attorney’s Office. Our goal is to provide relief to people who have had a suspended driver’s license for more than two years due to unresolved traffic tickets in Durham County that do not involve DWIs or other “high risk” traffic offenses.
-    #   </p>
-    #
-    #   <p>
-    #     The Durham District Attorney’s Office is willing to ask the Durham District Court to eliminate all fees and/fines for the following traffic #{tickets}:
-    #   </p>
-    #
-    #   <ul>
-    #     #{lines}
-    #   </ul>
-    #
-    #   <p>
-    #     Until all unpaid fees and/or fines are either paid or eliminated by the Court, your driver’s license will remain suspended for the traffic #{tickets} identified above. Between January 1, 2019, and December 31, 2019, the Durham District Attorney’s Office will file a motion asking for all fines and/or fees to be eliminated based on the extended length of your driver’s license suspension. You will get an automatic update as soon as we know more about your case.  If you have upcoming or pending traffic court case, you should go to court on your court dates.
-    #   </p>
-    #
-    #   <p>
-    #     For more information about the complete status of your driver’s license, please call the NC Division of Motor Vehicles (NC DMV) at (919) 715-7000.
-    #   </p>
-    #
-    #   <p>
-    #     Sincerely,
-    #   </p>
-    #
-    #   <p>
-    #     The DEAR team
-    #   </p>
-    # HTML
-
     ApplicationController.render(
       'contact_mailer/message_5', layout: nil, locals: { offenses: offenses }
     )
