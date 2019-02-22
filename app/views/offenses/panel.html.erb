@@ -4,18 +4,19 @@
   Please enter the group, date of birth, or first and last name of the case you wish to search for:
 </p>
 
-<%= form_for Offense.new, url: offenses_path, method: :get do |f| %>
+<%= form_tag offenses_path, method: :get, enforce_utf8: false do %>
   <div class="form-group">
-    <%= f.text_field :first_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'First Name' %>
+    <%= text_field_tag :f, @first, autocomplete: 'new-password', class: 'form-control', placeholder: 'First name' %>
   </div>
   <div class="form-group">
-    <%= f.text_field :last_name, autocomplete: 'new-password', class: 'form-control', placeholder: 'Last Name' %>
+    <%= text_field_tag :l, @last, autocomplete: 'new-password', class: 'form-control', placeholder: 'Last name' %>
   </div>
   <div class="form-group">
-    <%= f.text_field :date_of_birth, class: 'form-control', placeholder: 'Date of Birth' %>
+    <%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth' %>
   </div>
   <div class="form-group">
-    <%= f.text_field :group, class: 'form-control', placeholder: 'Group ID' %>
+    <%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Group ID' %>
   </div>
-  <%= f.submit 'Search', class:'btn btn-primary' %>
+
+  <%= submit_tag 'Search', class:'btn btn-primary', name: nil %>
 <% end %>

@@ -1,24 +1,27 @@
 <header>
-  <%= link_to 'Durham Drivers License Restoration Initiative', '/', class: "logo" %>
+  <%= link_to 'Durham Drivers License Restoration Initiative', '/', class: 'logo' %>
+
   <input type="checkbox" class="nav-toggle" id="nav-toggle" />
+
   <nav>
     <ul>
       <li><%= link_to "Search", '/', class: 'nav-link' %></li>
+
       <% if I18n.locale == :en %>
-        <li><%= link_to "Español", root_path(locale: "es"), class: 'nav-link' %></li>
+        <li><%= link_to 'Español', root_path(locale: 'es'), class: 'nav-link' %></li>
       <% elsif I18n.locale == :es %>
-        <li><%= link_to "Ingles", root_path(locale: "en"), class: 'nav-link' %></li>
+        <li><%= link_to 'Ingles', root_path(locale: 'en'), class: 'nav-link' %></li>
       <% end %>
+
       <% if admin_signed_in? %>
-        <li><%= link_to "Admin Panel", panel_path, class: 'nav-link' %></li>
-        <li><%= link_to('Logout', destroy_admin_session_path, method: :delete, class: 'nav-link') %></li>
+        <li><%= link_to 'Admin Panel', panel_path, class: 'nav-link' %></li>
+        <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link' %></li>
       <% else %>
-        <li>
-          <%= link_to('Admin', new_admin_session_path, class: 'nav-link') %>
-        </li>
+        <li><%= link_to 'Admin', new_admin_session_path, class: 'nav-link' %></li>
       <% end %>
     </ul>
   </nav>
+
   <label for="nav-toggle" class="nav-toggle-label">
     <span></span>
   </label>
