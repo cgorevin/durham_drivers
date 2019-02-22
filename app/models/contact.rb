@@ -14,16 +14,6 @@ class Contact < ApplicationRecord
     self.offense_ids = all_ids
   end
 
-  def contact_time
-    if self.created_at == self.updated_at
-      time_of_contact = self.created_at
-    elsif self.updated_at > self.created_at
-      time_of_contact = self.updated_at
-    end
-
-    time_of_contact.strftime 'Contacted on %m/%d/%Y'
-  end
-
   # need a contact_histories_offenses table
   def notify_of(ids_string)
     ids = ids_string.split
@@ -31,19 +21,12 @@ class Contact < ApplicationRecord
 
     relief_message = relief_messages.create offenses: offenses_to_notify
 
-    if relief_message.errors.any?
-      p "relief_message errors: #{relief_message.errors.to_a}"
-    end
-
     offenses_to_notify.each do |offense|
       # create contact history to get things rolling
       # ContactHistory.create contact: self, offense: offense
       history = contact_histories.create(
         offense: offense, relief_message: relief_message
       )
-      if history.errors.any?
-        p "history errors: #{history.errors.to_a}"
-      end
     end
   end
 end
