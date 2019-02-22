@@ -2,7 +2,7 @@
 
 <% if @offenses.empty? %>
   <%= render 'record_missing' %>
-<% elsif @offenses.all?(&:approved?) %>
+<% elsif @offenses.any?(&:approved?) %>
   <%= render 'approved' %>
 <% elsif @offenses.all?(&:denied?) %>
   <%= render 'denied' %>
