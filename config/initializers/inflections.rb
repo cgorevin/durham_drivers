@@ -20,3 +20,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'has', 'have'
   inflect.irregular 'this', 'these'
 end
+
+ActiveSupport::Inflector.inflections(:es) do |inflect|
+  inflect.irregular 'el', 'los'
+  inflect.irregular 'ha', 'han'
+  inflect.irregular 'está', 'están'
+  inflect.irregular 'este', 'estos'
+end
