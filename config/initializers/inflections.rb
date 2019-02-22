@@ -26,4 +26,5 @@ ActiveSupport::Inflector.inflections(:es) do |inflect|
   inflect.irregular 'ha', 'han'
   inflect.irregular 'está', 'están'
   inflect.irregular 'este', 'estos'
+  inflect.irregular 'provoca', 'provocan'
 end

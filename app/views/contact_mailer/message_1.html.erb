@@ -1,5 +1,6 @@
 <%# FTA dismissed only %>
-<% o_count = offenses.count
+<%
+  o_count = offenses.count
   full_name = offenses.first.name
   tickets = 'ticket'.pluralize o_count
   have = 'has'.pluralize o_count
@@ -13,6 +14,8 @@
   estos = 'este'.pluralize o_count, :es
   cancelados = 'cancelado'.pluralize o_count
 %>
+
+<h2>Message 1</h2>
 
 <div class="pdf-page">
   <p>
