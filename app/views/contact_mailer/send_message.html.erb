@@ -1,34 +1,3 @@
-<h1>Offense#show</h1>
-
-<h2>Contact History & Status</h2>
-
-<hr>
-
-<h2>Case: <%= "#{@offense.first_name} #{@offense.middle_name} #{@offense.last_name}" %></h2>
-
-<h4>Status: <%= @offense.status %></h4>
-
-<p><b>Type:</b> <%= @offense.type %></p>
-<% dob = @offense.dob %>
-<% disposition = @offense.disposition_date %>
-
-<% if dob %>
-  <p><b>Date of birth:</b> <%= dob %> (<%= @offense.age %> years old)</p>
-<% end %>
-<p><b>Disposition date:</b> <%= disposition %> (<%= time_ago_in_words disposition %> ago)</p>
-<p><b>Age of incident:</b> <%= distance_of_time_in_words dob, disposition %> old</p>
-<p><b>Group:</b> <%= @offense.group %></p>
-<p><b>Imported at:</b> <%= @offense.created_at %></p>
-<p><b>Last updated:</b> <%= @offense.updated_at %></p>
-<p><b>Street:</b> <%= @offense.street %></p>
-<p><b>City:</b> <%= @offense.city %></p>
-<p><b>Race:</b> <%= @offense.race %></p>
-<p><b>Sex:</b> <%= @offense.sex %></p>
-<p><b>Case number:</b> <%= @offense.case_number %></p>
-<p><b>Description:</b> <%= @offense.description %></p>
-
-<hr>
-
 <h1>Relief message</h1>
 
 <%= @relief_message.body.html_safe %>

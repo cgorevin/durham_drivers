@@ -21,12 +21,6 @@ class Contact < ApplicationRecord
 
     relief_message = relief_messages.create offenses: offenses_to_notify
 
-    offenses_to_notify.each do |offense|
-      # create contact history to get things rolling
-      # ContactHistory.create contact: self, offense: offense
-      history = contact_histories.create(
-        offense: offense, relief_message: relief_message
-      )
-    end
+    contact_histories.create relief_message: relief_message
   end
 end

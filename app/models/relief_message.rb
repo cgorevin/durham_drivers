@@ -1,4 +1,6 @@
 class ReliefMessage < ApplicationRecord
+  after_create :deliver_message
+
   before_validation :set_body
 
   belongs_to :contact
@@ -87,5 +89,17 @@ class ReliefMessage < ApplicationRecord
     ApplicationController.render(
       'contact_mailer/message_5', layout: nil, locals: { offenses: offenses }
     )
+  end
+
+  private
+
+  def deliver_message
+    if contact.method == 'email'
+      # send email
+      ContactMailer.send_message(contact_id, id).deliver_now
+    elsif contact.method == 'text'
+      # send text
+      p 'I SHOULD SEND A TEXT MESSAGE'
+    end
   end
 end
