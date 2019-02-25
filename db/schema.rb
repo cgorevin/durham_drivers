@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_165529) do
+ActiveRecord::Schema.define(version: 2019_02_25_214343) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -83,7 +83,9 @@ ActiveRecord::Schema.define(version: 2019_02_25_165529) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
     t.index ["contact_id"], name: "index_relief_messages_on_contact_id"
+    t.index ["token"], name: "index_relief_messages_on_token"
   end
 
   create_table "search_histories", force: :cascade do |t|

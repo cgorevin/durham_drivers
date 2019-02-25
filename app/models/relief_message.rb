@@ -87,6 +87,19 @@ class ReliefMessage < ApplicationRecord
 
   private
 
+  def set_token
+    # number of possibilities as length of string increases
+    # 1 =                64
+    # 2 =             4,096
+    # 3 =           262,144
+    # 4 =        16,777,216
+    # 5 =     1,073,741,824
+    # 6 =    68,719,476,736
+    # 7 = 4,398,046,511,104
+    # to get a base64 string with length of 6, you need
+    # self.token = SecureRandom.SecureRandom.urlsafe_base64 4
+  end
+
   def deliver_message
     if contact.method == 'email'
       # send email
