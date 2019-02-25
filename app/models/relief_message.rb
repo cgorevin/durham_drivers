@@ -1,5 +1,5 @@
 class ReliefMessage < ApplicationRecord
-  after_create :deliver_message
+  after_create_commit :deliver_message
 
   before_validation :set_body
 
@@ -10,12 +10,6 @@ class ReliefMessage < ApplicationRecord
   has_and_belongs_to_many :offenses
 
   validates :body, presence: true
-
-  private
-
-  def set_body
-    self.body = generate_body_text
-  end
 
   # 1. FTA dismissed only               (fta approved)
   # 2. FTC eliminated only              (ftp approved)
@@ -31,19 +25,24 @@ class ReliefMessage < ApplicationRecord
   # fta approved, ftp approved  (3)
   # fta approved, ftp pending   (4)
   # fta approved, ftp denied    (missing)
-  def generate_body_text
+  def generate_email(format = 'html')
+    p "format: #{format}"
+    print 'self: '
+    pp self
+    print 'offenses: '
+    pp offenses
     # we must determine if all the offenses are fta or ftp or both
     # we must determine if all the offenses are approved/pending/denied
     if offenses.all?(&:fta?)
       # render message 1
-      message_1
+      message_1 format
     elsif offenses.all?(&:ftp?)
       if offenses.all?(&:pending?)
         # pending => message 5
-        message_5
+        message_5 format
       elsif offenses.all?(&:approved?)
         # approved => message 2
-        message_2
+        message_2 format
       elsif offenses.all?(&:denied?)
         # denied => message 6 (no such thing as message 6)
       end
@@ -51,43 +50,43 @@ class ReliefMessage < ApplicationRecord
       ftps = offenses.select(&:ftp?)
       if ftps.all?(&:approved?)
         # ftp approved => message 3
-        message_3
+        message_3 format
       elsif ftps.all?(&:pending?)
         # ftp pending => message 4
-        message_4
+        message_4 format
       elsif ftps.all?(&:denied?)
         # ftp denied => missing
       end
     end
   end
 
-  def message_1
+  def message_1(format)
     ApplicationController.render(
-      'contact_mailer/message_1', layout: nil, locals: { offenses: offenses }
+      "contact_mailer/message_1.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
-  def message_2
+  def message_2(format)
     ApplicationController.render(
-      'contact_mailer/message_2', layout: nil, locals: { offenses: offenses }
+      "contact_mailer/message_2.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
-  def message_3
+  def message_3(format)
     ApplicationController.render(
-      'contact_mailer/message_3', layout: nil, locals: { offenses: offenses }
+      "contact_mailer/message_3.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
-  def message_4
+  def message_4(format)
     ApplicationController.render(
-      'contact_mailer/message_4', layout: nil, locals: { offenses: offenses }
+      "contact_mailer/message_4.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
-  def message_5
+  def message_5(format)
     ApplicationController.render(
-      'contact_mailer/message_5', layout: nil, locals: { offenses: offenses }
+      "contact_mailer/message_5.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
@@ -101,5 +100,9 @@ class ReliefMessage < ApplicationRecord
       # send text
       p 'I SHOULD SEND A TEXT MESSAGE'
     end
+  end
+
+  def set_body
+    self.body = generate_email 'html'
   end
 end
