@@ -26,11 +26,6 @@ class ReliefMessage < ApplicationRecord
   # fta approved, ftp pending   (4)
   # fta approved, ftp denied    (missing)
   def generate_email(format = 'html')
-    p "format: #{format}"
-    print 'self: '
-    pp self
-    print 'offenses: '
-    pp offenses
     # we must determine if all the offenses are fta or ftp or both
     # we must determine if all the offenses are approved/pending/denied
     if offenses.all?(&:fta?)
