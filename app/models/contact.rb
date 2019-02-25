@@ -7,19 +7,18 @@ class Contact < ApplicationRecord
   validates :info, presence: true, uniqueness: true
   validates :method, presence: true
 
-  def add_offenses(ids_string)
+  def add_offenses(ids_array)
     old_ids = offense_ids
-    new_ids = ids_string.split
+    new_ids = ids_array
     all_ids = (old_ids + new_ids).map(&:to_i).uniq
     self.offense_ids = all_ids
 
-    notify_of ids_string
+    notify_of ids_array
   end
 
   # need a contact_histories_offenses table
-  def notify_of(ids_string)
-    ids = ids_string.split
-    offenses_to_notify = offenses.where id: ids
+  def notify_of(ids_array)
+    offenses_to_notify = offenses.where id: ids_array
 
     relief_message = relief_messages.create offenses: offenses_to_notify
 

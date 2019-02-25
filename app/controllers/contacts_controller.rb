@@ -8,11 +8,10 @@ class ContactsController < ApplicationController
   #   "commit"=>"Save"
   # }
   def create
-    ids = params[:ids]
     contact = Contact.find_or_create_by contact_params
 
     if contact.persisted?
-      contact.add_offenses ids
+      contact.add_offenses params[:ids].split
     end
 
     redirect_to sign_up_path, notice: 'Thank you'
