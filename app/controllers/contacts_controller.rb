@@ -13,7 +13,6 @@ class ContactsController < ApplicationController
 
     if contact.persisted?
       contact.add_offenses ids
-      contact.notify_of ids
     end
 
     redirect_to sign_up_path, notice: 'Thank you'

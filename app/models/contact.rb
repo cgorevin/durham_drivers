@@ -12,6 +12,8 @@ class Contact < ApplicationRecord
     new_ids = ids_string.split
     all_ids = (old_ids + new_ids).map(&:to_i).uniq
     self.offense_ids = all_ids
+
+    notify_of ids_string
   end
 
   # need a contact_histories_offenses table
