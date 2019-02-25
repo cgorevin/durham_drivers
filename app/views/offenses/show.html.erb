@@ -16,7 +16,7 @@
       <%= contact.info %>
     </li>
     <ol>
-      <% contact.contact_histories.order(id: :desc).each do |contact_history| %>
+      <% contact.contact_histories.each do |contact_history| %>
         <li>
           <%= contact_history.contact_time %> (<%= time_ago_in_words contact_history.created_at %> ago)
           <ul>

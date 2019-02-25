@@ -14,6 +14,9 @@ class OffensesController < ApplicationController
   end
 
   def show
+    @offense = Offense.includes(contacts: { contact_histories: :relief_message })
+                      .order('contact_histories.id desc')
+                      .find params[:id]
     @contacts = @offense.contacts
   end
 
