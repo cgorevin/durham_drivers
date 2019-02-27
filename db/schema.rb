@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_012901) do
+ActiveRecord::Schema.define(version: 2019_02_25_214343) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,12 +26,10 @@ ActiveRecord::Schema.define(version: 2019_02_08_012901) do
 
   create_table "contact_histories", force: :cascade do |t|
     t.integer "contact_id"
-    t.integer "offense_id"
     t.integer "relief_message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_contact_histories_on_contact_id"
-    t.index ["offense_id"], name: "index_contact_histories_on_offense_id"
     t.index ["relief_message_id"], name: "index_contact_histories_on_relief_message_id"
   end
 
@@ -73,12 +71,21 @@ ActiveRecord::Schema.define(version: 2019_02_08_012901) do
     t.index ["group"], name: "index_offenses_on_group"
   end
 
+  create_table "offenses_relief_messages", force: :cascade do |t|
+    t.integer "offense_id"
+    t.integer "relief_message_id"
+    t.index ["offense_id"], name: "index_offenses_relief_messages_on_offense_id"
+    t.index ["relief_message_id"], name: "index_offenses_relief_messages_on_relief_message_id"
+  end
+
   create_table "relief_messages", force: :cascade do |t|
     t.integer "contact_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
     t.index ["contact_id"], name: "index_relief_messages_on_contact_id"
+    t.index ["token"], name: "index_relief_messages_on_token"
   end
 
   create_table "search_histories", force: :cascade do |t|

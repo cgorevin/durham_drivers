@@ -1,0 +1,2 @@
+module ReliefMessagesHelper
+end

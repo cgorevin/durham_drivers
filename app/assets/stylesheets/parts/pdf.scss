@@ -1,0 +1,41 @@
+// https://github.com/sparksuite/simple-html-invoice-template
+
+.pdf-page {
+  page-break-before: always; // invoke page break on pdf
+  color: #000; // #555
+  font-size: 16px; // 14px
+  margin: auto;
+}
+
+.pdf-logo, .pdf-html-logo {
+  width: 100%;
+  max-width: 150px;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+
+// styles only to be applied to the pdf view
+.pdf-file-container {
+  .pdf-html-logo {
+    display: none;
+  }
+}
+
+// styles only to be applied to the html view
+.pdf-html-container {
+  .pdf-page {
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    margin-top: 1em;
+    padding: 30px;
+  }
+
+  .pdf-html-logo {
+    display: block;
+  }
+
+  .pdf-logo {
+    display: none;
+  }
+}

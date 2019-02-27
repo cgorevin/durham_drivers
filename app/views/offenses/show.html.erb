@@ -15,9 +15,18 @@
     <li>
       <%= contact.info %>
     </li>
-    <ul>
-      <li><%= contact.contact_time %></li>
-    </ul>
+    <ol>
+      <% contact.contact_histories.each do |contact_history| %>
+        <li>
+          <%= contact_history.contact_time %> (<%= time_ago_in_words contact_history.created_at %> ago)
+          <ul>
+            <% relief_message = contact_history.relief_message %>
+            <li><%= link_to 'message', relief_message %></li>
+            <li><%= link_to 'pdf', relief_message_path(relief_message, format: :pdf) %></li>
+          </ul>
+        </li>
+      <% end %>
+    </ol>
   <% end %>
 </ul>
 

@@ -1,0 +1,8 @@
+<p>Below are your relief details</p>
+
+<%= @relief_message.body.html_safe %>
+
+<p>
+  If you would like to see this message as a webpage or PDF document, click here:
+  <%= link_to 'link to message', token_url(@relief_message.token) %>
+</p>

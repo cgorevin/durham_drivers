@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
-gem 'chronic'
+gem 'wicked_pdf' # create pdfs with html
+gem 'wkhtmltopdf-binary' # needed by wicked_pdf
+gem 'chronic' # date parsing
 gem 'kaminari' # for pagination
 # Use creek to read .xlsx files
 gem 'creek'
@@ -47,6 +49,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'letter_opener' # open emails in browser
   gem 'sqlite3' # database
 end
 

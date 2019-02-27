@@ -14,3 +14,17 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'is', 'are'
+  inflect.irregular 'has', 'have'
+  inflect.irregular 'this', 'these'
+end
+
+ActiveSupport::Inflector.inflections(:es) do |inflect|
+  inflect.irregular 'el', 'los'
+  inflect.irregular 'ha', 'han'
+  inflect.irregular 'está', 'están'
+  inflect.irregular 'este', 'estos'
+  inflect.irregular 'provoca', 'provocan'
+end

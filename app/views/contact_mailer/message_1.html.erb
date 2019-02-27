@@ -1,0 +1,94 @@
+<%# FTA dismissed only %>
+<%
+  o_count = offenses.count
+  full_name = offenses.first.name
+  tickets = 'ticket'.pluralize o_count
+  have = 'has'.pluralize o_count
+  are = 'is'.pluralize o_count
+  these = 'this'.pluralize o_count
+  los = 'El'.pluralize o_count, :es
+  boletos = 'boleto'.pluralize o_count
+  identificados = 'identificado'.pluralize o_count
+  han = 'ha'.pluralize o_count, :es
+  estan = 'está'.pluralize o_count, :es
+  estos = 'este'.pluralize o_count, :es
+  cancelados = 'cancelado'.pluralize o_count
+%>
+
+<div class="pdf-page">
+  <%= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
+  <%= image_tag '/durham_logo_transparent.png', class: 'pdf-html-logo' %>
+
+  <p>
+    Dear <%= full_name %>:
+  </p>
+
+  <p>
+    Thank you for using the city’s online portal to see if you have received relief through the Durham Driver’s License Restoration Project. This project is staffed by the Durham Expungement and Restoration (“DEAR”) program in collaboration with the Durham District Attorney’s Office. Our goal is to provide relief to people who have had a suspended driver’s license for more than two years due to unresolved traffic tickets in Durham County that do not involve DWIs or other “high risk” traffic offenses.
+  </p>
+
+  <p>
+    We are excited to inform you that the Durham District Attorney’s office has dismissed the following traffic <%= tickets %>:
+  </p>
+
+  <ul>
+    <% offenses.each do |x| %>
+      <li>Full name: <%= x.name %>. Case number: <%= x.case_number %>. Charge description: <%= x.description %>.</li>
+    <% end %>
+  </ul>
+
+  <p>
+    The <%= tickets %> identified above <%= have %> been dismissed and <%= are %> now resolved. Any suspension of your driver’s license caused by the specific unresolved <%= tickets %> has ended. Although <%= these %> <%= tickets %> <%= have %> been dismissed and <%= are %> no longer causing your license to be suspended, this does not mean that you are now legally able to drive. There may be other traffic matters that are causing your license to remain suspended. If there are no other traffic matters causing your license to be suspended, then you will need to pay a reinstatement fee to the NCDMV in order to reinstate your license. For more information about the status of your driver’s license and/or procedures to reinstate a driver’s license, please call the NC Division of Motor Vehicles (NC DMV) at (919) 715-7000.
+  </p>
+
+  <p>
+    If you would like to meet with a DEAR staff person to review your entire state driving record, please visit the Durham Expunction and Restoration Program (DEAR) office. The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham County Courthouse in suite 6400 on the 6th floor. This service is free.
+  </p>
+
+  <p>
+    Sincerely,
+  </p>
+
+  <p>
+    The DEAR team
+  </p>
+</div>
+
+<div class="pdf-page">
+  <%= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
+  <%= image_tag '/durham_logo_transparent.png', class: 'pdf-html-logo' %>
+
+  <p>
+    Estimado <%= full_name %>:
+  </p>
+
+  <p>
+    Gracias por usar el portal en línea de la ciudad para ver si ha recibido alivio a través del Proyecto de Restauración de Licencia del Conductor de Durham. Este proyecto cuenta con el personal del Programa de Eliminación y Restauración de Durham ("DEAR") en colaboración con la Oficina del Fiscal del Distrito de Durham. Nuestro objetivo es brindar alivio a las personas que han tenido la licencia de conducir suspendida por más de dos años debido a multas de tránsito no resueltas en el Condado de Durham que no involucran a DWI u otras infracciones de tráfico de "alto riesgo".
+  </p>
+
+  <p>
+    Nos complace informarle que la oficina del Fiscal del Distrito de Durham ha desestimado las siguientes multas de tráfico:
+  </p>
+
+  <ul>
+    <% offenses.each do |x| %>
+      <li>Nombre completo: <%= x.name %>. Número de caso: <%= x.case_number %>. Descripción del cargo: <%= x.description %>.</li>
+    <% end %>
+  </ul>
+
+  <p>
+    <%= los %> <%= boletos %> <%= identificados %> arriba <%= han %> sido despedido y ahora <%= estan %> resuelto. Cualquier suspensión de su licencia de conducir causada por los boletos específicos sin resolver ha finalizado. Aunque <%= estos %> <%= boletos %> <%= han %> sido <%= cancelados %> y ya no <%= estan %> causando que su licencia sea suspendida, esto no significa que ahora pueda conducir legalmente. Puede haber otros asuntos de tráfico que estén causando que su licencia permanezca suspendida. Si no hay otros asuntos de tráfico que causen que su licencia sea suspendida, entonces deberá pagar una tarifa de restablecimiento al NCDMV para restablecer su licencia. Para obtener más información sobre el estado de su licencia de conducir y/o los procedimientos para restablecer una licencia de conducir, llame a la División de Vehículos Motorizados (NC DMV) de Carolina del Norte al (919) 715-7000.
+  </p>
+
+  <p>
+    Si desea reunirse con un miembro del personal de DEAR para revisar su registro de conducir del estado completo, visite la oficina del Programa de Eliminación y  Restauración de Durham (DEAR). La oficina está abierta de lunes a viernes, de 9:30 a.m. a 3:00 p.m. y está ubicada en el palacio de justicia del condado de Durham en la suite 6400 en el sexto piso. Este servicio es gratuito.
+  </p>
+
+  <p>
+    Sinceramente,
+  </p>
+
+  <p>
+    El equipo de DEAR
+  </p>
+</div>
