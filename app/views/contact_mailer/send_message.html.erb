@@ -4,5 +4,5 @@
 
 <p>
   If you would like to see this message as a webpage or PDF document, click here:
-  <a href="#">link to message</a>
+  <%= link_to 'link to message', token_url(@relief_message.token) %>
 </p>

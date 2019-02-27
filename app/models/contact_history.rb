@@ -1,6 +1,6 @@
 class ContactHistory < ApplicationRecord
   belongs_to :contact
-  belongs_to :relief_message
+  belongs_to :relief_message, optional: false
 
   def contact_time
     time_of_contact = self.created_at

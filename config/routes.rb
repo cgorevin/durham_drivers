@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   end
 
   resources :relief_messages, only: :show
+  get 'm/:token' => 'relief_messages#show', as: :token
   # get '', to: redirect("/#{I18n.default_locale}/")
 end
