@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    locale = params[:locale] || 'en'
-    I18n.locale = locale
+    locale = params[:locale]
+    I18n.locale = locale || 'en'
     Rails.application.routes.default_url_options = { locale: locale }
   end
 
