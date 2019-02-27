@@ -63,11 +63,25 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "durham_drivers_#{Rails.env}"
 
+  config.action_mailer.default_url_options = { host: 'secondchancedriving.org' }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    authentication:       :plain,
+    domain:               'heroku.com',
+    enable_starttls_auto: true,
+    port:                 587,
+    password:             ENV['SENDGRID_PASSWORD'],
+    user_name:            ENV['SENDGRID_USERNAME']
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
