@@ -22,8 +22,6 @@ class Contact < ApplicationRecord
 
     relief_message = relief_messages.create offenses: offenses_to_notify
 
-    p relief_message.errors.to_a if relief_message.errors.any?
-
     contact_histories.create relief_message: relief_message
   end
 end
