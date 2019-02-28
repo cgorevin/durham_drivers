@@ -63,7 +63,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "durham_drivers_#{Rails.env}"
 
-  config.action_mailer.default_url_options = { host: 'secondchancedriving.org' }
+  config.action_mailer.default_url_options = { host: 'second-chance-driving.herokuapp.com' }
 
   config.action_mailer.perform_caching = false
 
