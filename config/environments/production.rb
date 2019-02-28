@@ -64,7 +64,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "durham_drivers_#{Rails.env}"
 
   # necessary to get a image_tag to generate entire url in email
-  config.action_controller.asset_host = 'second-chance-driving.herokuapp.com'
+  # config.action_controller.asset_host = 'second-chance-driving.herokuapp.com'
   # config.action_mailer.asset_host = 'https://second-chance-driving.herokuapp.com'
 
   config.action_mailer.default_url_options = { host: 'second-chance-driving.herokuapp.com' }
