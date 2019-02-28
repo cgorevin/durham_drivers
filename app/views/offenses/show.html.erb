@@ -37,8 +37,10 @@
 <% if dob %>
   <p><b>Date of birth:</b> <%= dob %> (<%= @offense.age %> years old)</p>
 <% end %>
-<p><b>Disposition date:</b> <%= disposition %> (<%= time_ago_in_words disposition %> ago)</p>
-<p><b>Age of incident:</b> <%= distance_of_time_in_words dob, disposition %> old</p>
+<% if disposition %>
+  <p><b>Disposition date:</b> <%= disposition %> (<%= time_ago_in_words disposition %> ago)</p>
+  <p><b>Age of incident:</b> <%= distance_of_time_in_words dob, disposition %> old</p>
+<% end %>
 <p><b>Group:</b> <%= @offense.group %></p>
 <p><b>Imported at:</b> <%= @offense.created_at %></p>
 <p><b>Last updated:</b> <%= @offense.updated_at %></p>
