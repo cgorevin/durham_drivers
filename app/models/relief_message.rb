@@ -59,7 +59,8 @@ class ReliefMessage < ApplicationRecord
 
   def message_1(format)
     host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
-    renderer = ApplicationController.renderer.new(http_host: host, https: true)
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_1.#{format}", layout: nil, locals: { offenses: offenses }
     )
@@ -67,7 +68,8 @@ class ReliefMessage < ApplicationRecord
 
   def message_2(format)
     host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
-    renderer = ApplicationController.renderer.new(http_host: host, https: true)
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_2.#{format}", layout: nil, locals: { offenses: offenses }
     )
@@ -75,7 +77,8 @@ class ReliefMessage < ApplicationRecord
 
   def message_3(format)
     host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
-    renderer = ApplicationController.renderer.new(http_host: host, https: true)
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_3.#{format}", layout: nil, locals: { offenses: offenses }
     )
@@ -83,7 +86,8 @@ class ReliefMessage < ApplicationRecord
 
   def message_4(format)
     host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
-    renderer = ApplicationController.renderer.new(http_host: host, https: true)
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_4.#{format}", layout: nil, locals: { offenses: offenses }
     )
@@ -91,7 +95,8 @@ class ReliefMessage < ApplicationRecord
 
   def message_5(format)
     host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
-    renderer = ApplicationController.renderer.new(http_host: host, https: true)
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_5.#{format}", layout: nil, locals: { offenses: offenses }
     )
