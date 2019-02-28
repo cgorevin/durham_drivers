@@ -18,8 +18,6 @@
 <div class="pdf-page">
   <%= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
   <%= image_tag asset_url('/durham_logo_transparent.png'), class: 'pdf-html-logo' %>
-  <%#= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
-  <%#= image_tag asset_url('/durham_logo_transparent.png', host: 'google.com') %>
 
   <p>
     Dear <%= full_name %>:
@@ -58,7 +56,7 @@
 
 <div class="pdf-page">
   <%= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
-  <%= image_tag '/durham_logo_transparent.png', class: 'pdf-html-logo' %>
+  <%= image_tag asset_url('/durham_logo_transparent.png'), class: 'pdf-html-logo' %>
 
   <p>
     Estimado <%= full_name %>:

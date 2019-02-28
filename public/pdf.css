@@ -11,7 +11,7 @@
   margin-top: 1em;
 }
 .pdf-file-container .pdf-html-logo {
-  /* display: none; */
+  display: none;
 }
 .pdf-html-container .pdf-page {
   border: 1px solid #eee;
