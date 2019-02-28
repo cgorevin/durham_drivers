@@ -182,7 +182,7 @@ class Offense < ApplicationRecord
     # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
     # join the strings with ' AND '
     phrase = attrs.map do |atr|
-      %`(#{(["difference(#{atr}, ?) > 3"] * names.size).join ' OR '})`
+      %`(#{(["difference(#{atr}, ?) > 2"] * names.size).join ' OR '})`
     end.join(' AND ')
 
     where phrase, *terms
@@ -216,7 +216,6 @@ class Offense < ApplicationRecord
     # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
     # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
     where ([phrase] * names.size).join(' AND '), *terms
-
   end
 
   # find all groups that partially match group given
