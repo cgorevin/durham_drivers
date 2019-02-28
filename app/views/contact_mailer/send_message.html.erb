@@ -1,8 +1,8 @@
-<p>Below are your relief details</p>
+<p>
+  Below are your relief details as well as
+  <%= link_to 'online', token_url(@relief_message.token) %>
+  and in
+  <%= link_to 'PDF format', token_url(@relief_message.token, format: :pdf) %>.
+</p>
 
 <%= @relief_message.body.html_safe %>
-
-<p>
-  If you would like to see this message as a webpage or PDF document, click here:
-  <%= link_to 'link to message', token_url(@relief_message.token) %>
-</p>
