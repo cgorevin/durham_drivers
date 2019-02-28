@@ -58,7 +58,9 @@ class ReliefMessage < ApplicationRecord
   end
 
   def message_1(format)
-    ApplicationController.render(
+    host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
+    renderer = ApplicationController.renderer.new(http_host: host)
+    renderer.render(
       "contact_mailer/message_1.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
@@ -82,7 +84,9 @@ class ReliefMessage < ApplicationRecord
   end
 
   def message_5(format)
-    ApplicationController.render(
+    host = Rails.env.production? ? 'second-chance-driving.herokuapp.com' : 'localhost:3000'
+    renderer = ApplicationController.renderer.new(http_host: host)
+    renderer.render(
       "contact_mailer/message_5.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
