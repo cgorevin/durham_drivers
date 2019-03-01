@@ -11,9 +11,7 @@ class SearchController < ApplicationController
     @last = data[:last_name]
     @dob = data[:date_of_birth]
 
-    # @exact_matches = Offense.exact_search(@first, @middle, @last, @dob).to_a
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).to_a
-    # @similar_matches = @similar_matches - @exact_matches
 
     # NOTE: redirect if no matches
     # redirect to results page with 0 offenses

@@ -99,7 +99,13 @@ class Offense < ApplicationRecord
   end
 
   def self.fuzzy_search(*names, dob)
-    fuzzy_date_search(dob).fuzzy_name_search(names)
+    search = fuzzy_date_search(dob)
+
+    @offenses = if Rails.env.production?
+      search.pg_fuzzy_name_search(names)
+    else
+      search.fuzzy_name_search(names)
+    end
   end
 
   # date based query, only has to match 2/3 of the date (year, month, day)
@@ -161,31 +167,6 @@ class Offense < ApplicationRecord
     # (first_name LIKE "%john%" OR last_name LIKE "%john%") AND
     # (first_name LIKE "%smith%" OR last_name LIKE "%smith%")
     where ([phrase] * names.size).join(' AND '), *terms
-  end
-
-  def self.pg_fuzzy_name_search(*names)
-    # array of columns you want to search for
-    attrs = %w[first_name middle_name last_name]
-
-    # remove accents and make array full of names
-    names = I18n.transliterate(names.join(' ')).split
-    return all unless names.any?
-
-    # split "john doe smith" into ["john", "doe", "smith"]
-    # multiply by the number of columns you are searching for
-    # if columns = [first_name and last_name], then multiply by 2
-    # wrap with %'s to allow wildcard searches
-    # ["%john%", "%doe%", "%smith%", "%john%", "%doe%", "%smith%"]
-    terms = names * attrs.size
-
-    # loop thru attrs and make an array of strings like
-    # 'difference(first_name, ?) > 3 OR difference(first_name, ?) > 3'
-    # join the strings with ' AND '
-    phrase = attrs.map do |atr|
-      %`(#{(["difference(#{atr}, ?) > 2"] * names.size).join ' OR '})`
-    end.join(' AND ')
-
-    where phrase, *terms
   end
 
   def self.pg_fuzzy_name_search(*names)
