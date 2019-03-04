@@ -108,9 +108,19 @@ class ReliefMessage < ApplicationRecord
     if contact.method == 'email'
       # send email
       ContactMailer.send_message(contact_id, id).deliver_now
-    elsif contact.method == 'text'
+    elsif contact.method == 'phone'
       # send text
-      p 'I SHOULD SEND A TEXT MESSAGE'
+      url = Rails.env.production? ? 'secondchancedriving.org' : 'localhost:3000'
+
+      acc_sid = 'AC8e8c4098fc6e4a7337735b1637523550'
+      auth_tkn = '5df26aa51ebbd0de7dcf51d48f5ffb9f'
+
+      @client = Twilio::REST::Client.new(acc_sid, auth_tkn)
+      @client.messages.create(
+        from: '+19193553993',
+        to: contact.info,
+        body: "Hi! Please view your relief details here: #{url}/m/#{token}"
+      )
     end
   end
 
