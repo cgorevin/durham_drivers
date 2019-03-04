@@ -58,6 +58,7 @@ class OffensesController
     # use different gems to load file based on file type
     # instead of loading the files up into a variable,
     # we should use parse the spreadsheet file row by row to be efficient with memory
+    # https://dalibornasevic.com/posts/68-processing-large-csv-files-with-ruby
     def load_file
       # load as csv file
       if csv? then CSV.foreach @file.path, headers: true
