@@ -67,7 +67,7 @@ Rails.application.configure do
   # config.action_controller.asset_host = 'second-chance-driving.herokuapp.com'
   # config.action_mailer.asset_host = 'https://second-chance-driving.herokuapp.com'
 
-  config.action_mailer.default_url_options = { host: 'second-chance-driving.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'secondchancedriving.org' }
 
   config.action_mailer.perform_caching = false
 
