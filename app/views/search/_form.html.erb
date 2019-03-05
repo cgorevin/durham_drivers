@@ -4,29 +4,36 @@
   <div class="form-row">
     <div class="form-group">
       <%= f.label :method, t('.contact_method') %>
-      <%= f.radio_button :method, 'email', required: true %>
+      <%= f.radio_button :method, 'email', class: 'js-contact-radio', required: true %>
       <%= f.label :method_email, t('.email')%>
-      <%= f.radio_button :method, 'phone', required: true %>
+      <%= f.radio_button :method, 'phone', class: 'js-contact-radio', required: true %>
       <%= f.label :method_phone, t('.text') %>
     </div>
 
     <div class="form-group">
-      <%= f.text_field :info, placeholder: t('.contact_info'), class: 'form-control'%>
+      <%= f.email_field :info, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
+      <%= f.phone_field :info, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;' %>
     </div>
   </div>
 
   <div>
     <p><%= t ".selector" %></p>
 
-    <p>
-      <%= f.radio_button :requestor_name, ' ', class: 'js-radio', required: true %>
-      <%= f.label :requestor_name__, t('.email_request') + "#{@offense.name}" + t('.email_request_end') %>
+    <p class="js-email-option">
+      <%= f.radio_button :requestor_name, ' ', class: 'js-requestor-radio', required: true %>
+      <%= f.label :requestor_name__, t('.email_request') + @offense.name %>.
+    </p>
+
+    <p class="js-phone-option" style="display: none;">
+      <%= f.radio_button :requestor_name, '  ', class: 'js-requestor-radio', required: true %>
+      <%= f.label :requestor_name___, t('.phone_request') + @offense.name %>.
     </p>
 
     <p>
-      <%= f.radio_button :requestor_name, true, class: 'js-radio', required: true %>
-      <%= f.label :requestor_name_true,  t('.request_start') + "#{@offense.name}" + t('.request_end') %>
+      <%= f.radio_button :requestor_name, true, class: 'js-requestor-radio', required: true %>
+      <%= f.label :requestor_name_true,  t('.request_start') + @offense.name + t('.request_end') %>
     </p>
+
     <div class="js-div">
       <%= t('.requestor_name') %>
       <%= f.text_field :requestor_name, class: 'js-field', disabled: true, required: true, placeholder: (t '.enter_name') %>

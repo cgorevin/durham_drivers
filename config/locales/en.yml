@@ -1,7 +1,6 @@
 en:
   search:
     form:
-      contact_info: "Contact information"
       save_button: "Save"
     show:
       heading: "Search"
@@ -57,7 +56,7 @@ en:
       contact_info: "Contact information"
       selector: "Check one (required):"
       email_request: "This email address is for "
-      email_request_end: "."
+      phone_request: "This phone number is for "
       request_start: "I am getting this information on behalf of "
       request_end: " at their request."
       requestor_name: "My name is:"
