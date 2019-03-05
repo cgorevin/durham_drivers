@@ -11,7 +11,9 @@ class SearchController < ApplicationController
     @last = data[:last_name]
     @dob = data[:date_of_birth]
 
-    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob).to_a
+    @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
+                       .order(last_name: :asc)
+                       .to_a
 
     # NOTE: redirect if no matches
     # redirect to results page with 0 offenses
