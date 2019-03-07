@@ -19,7 +19,7 @@ es:
       first_name: "Primer Nombre"
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
-      dob: "Fecha de nacimiento"
+      dob: 'Fecha de Nacimiento'
       search: "Enviar"
     confirm:
       title: "Your Search (translation needed?)"

@@ -14,7 +14,11 @@
       <td><%= @first.inspect %></td>
       <td><%= @middle.inspect %></td>
       <td><%= @last.inspect %></td>
-      <td><%= @dob.inspect %></td>
+      <td>
+        <%= @dob.inspect %>
+        <!-- <span class="fa fa-arrow-right"></span>
+        <%= Chronic.parse(@dob).strftime('%b %-d, %Y') %> -->
+      </td>
     </tr>
   </tbody>
 </table>

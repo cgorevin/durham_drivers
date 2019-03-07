@@ -19,7 +19,7 @@ en:
       first_name: "First Name"
       middle_name: "Middle Name"
       last_name: "Last Name"
-      dob: "Date of Birth"
+      dob: 'Date of Birth'
       search: "Search"
     confirm:
       title: "Your Search"
