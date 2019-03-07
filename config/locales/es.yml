@@ -49,9 +49,9 @@ es:
       Durham en la suite 6400, en el sexto piso (Durham County Courthouse)."
       about_button: "Obtenga más información sobre el programa DEAR"
     form:
-      contact_method: "Contact method: (translation needed?)"
+      contact_method: "Metodo de contacto"
       email: "Correo electrónico"
-      text: "Text message (translation needed?)"
+      text: "Mensaje de texto"
       selector: "Marque uno (requerido):"
       email_request: "Esta dirección de correo electrónico es para "
       phone_request: "Esta número de teléfono es para "
@@ -79,7 +79,7 @@ es:
       Durham en la suite 6400 en el sexto piso."
       about_button: "Obtenga más información sobre el programa DEAR"
     sign_up:
-      title: "Thank You & What to Expect Next (Translation needed?)"
+      title: "Gracias Y Qué Esperar Después"
     approved_signup:
       first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy.
       Si no recibe el correo electrónico, primero verifique que el correo electrónico no haya
