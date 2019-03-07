@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil) # no subdomain
+  get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil) # no subdomain
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'
 
