@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  # get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil) # no subdomain
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'
 
     controller :search do
       get :results, :sign_up, :next_steps
       post :confirm, :results
+      get :confirm, to: redirect('/')
     end
   end
 
