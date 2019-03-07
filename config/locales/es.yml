@@ -22,7 +22,7 @@ es:
       dob: 'Fecha de Nacimiento'
       search: "Buscar"
     confirm:
-      title: "Your Search (translation needed?)"
+      title: "Tu Búsqueda"
       first_name: "Primer Nombre"
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
