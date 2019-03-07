@@ -20,7 +20,7 @@ es:
       middle_name: "Segundo Nombre"
       last_name: "Apellido"
       dob: 'Fecha de Nacimiento'
-      search: "Enviar"
+      search: "Buscar"
     confirm:
       title: "Your Search (translation needed?)"
       first_name: "Primer Nombre"
@@ -32,7 +32,7 @@ es:
       next_button: "Siguiente"
       back_button: "Back (translation needed?)"
     results:
-      title: "Results (translation needed?)"
+      title: "Resultados"
     approved:
       approved: "Podemos ayudarlo con algunos de los problemas que llevaron a que su
       licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de
