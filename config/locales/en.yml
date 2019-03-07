@@ -3,7 +3,6 @@ en:
     form:
       save_button: "Save"
     show:
-      heading: "Search"
       welcome_message: "Welcome to the Durham Driver’s License Restoration Project!"
       welcome_message_sub: "Helping people get safely back on the road and back to work"
       introduction_header: "Check to see if you are eligible:"

@@ -1,7 +1,6 @@
 es:
   search:
     show:
-      heading: "Enviar"
       welcome_message: "¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!"
       welcome_message_sub: "Ayudamos a las personas a volver a la carretera y al trabajo de una forma segura"
       introduction_header: "Verifique si es elegible:"
