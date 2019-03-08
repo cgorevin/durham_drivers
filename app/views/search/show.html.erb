@@ -29,10 +29,12 @@
 <hr />
 <p><%= t '.upcoming_court_dates' %></p>
 <hr />
+
 <p>
   <%= t '.about_project' %>
   <%= link_to t('.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary about-us' %>
 </p>
+
 <p class="project-partners-text"><%= t '.project_partners' %></p>
   <ul class="partners">
     <li class="project-partners">
@@ -50,5 +52,63 @@
       </h3>
     </li>
   </ul>
+
   <br />
 </p>
+
+<div class="flex justify-between">
+  <div class="card" style="width: 45%">
+    <div class="flex justify-center">
+      <%= image_tag 'mayor2.jpg', class: 'quote-img' %>
+    </div>
+
+    <p style="font-size: 18px;">
+      “Making the city we love, a city for all, means making the city we love a city of second chance. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
+    </p>
+
+    <p style="font-size: 17px; float: right;">
+      - Mayor Steve Schewel, City of Durham
+    </p>
+  </div>
+
+  <div class="" style="width: 45%">
+    <div class="flex justify-center">
+      <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="quote-img">
+    </div>
+
+    <p style="font-size: 18px;">
+      “With their debts forgiven, these individuals can now get a driver’s license.  They can get insurance. They can go to work and to school. They can participate fully in the economic and social vitality of our community.”
+    </p>
+
+    <p style="font-size: 17px; float: right;">
+      - Durham County District Attorney Satana Deberry
+    </p>
+  </div>
+</div>
+
+<div class="flex justify-between">
+  <div class="card" style="width: 45%">
+    <%= image_tag 'mayor2.jpg', class: 'card-img-top' %>
+
+    <div class="card-body">
+      <h5 class="card-title">Mayor Steve Schewel, City of Durham</h5>
+      <p class="card-text" style="font-size: 18px;">
+        “Making the city we love, a city for all, means making the city we love a city of second chance. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
+      </p>
+    </div>
+  </div>
+
+  <div class="" style="width: 45%">
+    <div class="flex justify-center">
+      <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="quote-img">
+    </div>
+
+    <p style="font-size: 18px;">
+      “With their debts forgiven, these individuals can now get a driver’s license.  They can get insurance. They can go to work and to school. They can participate fully in the economic and social vitality of our community.”
+    </p>
+
+    <p style="font-size: 17px; float: right;">
+      - Durham County District Attorney Satana Deberry
+    </p>
+  </div>
+</div>

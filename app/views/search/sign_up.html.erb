@@ -2,6 +2,6 @@
 
 <% if @offenses.all?(&:approved?) %>
   <%= render 'approved_signup' %>
-<% else @offenses.all?(&:pending?) %>
+<% else %>
   <%= render 'pending_signup' %>
 <% end %>
