@@ -1,3 +1,6 @@
-.dear-logo {
-  margin-top: 70px;
+.logo-twin {
+  height: 100px;
+  @include mobile {
+    height: 14vw;
+  }
 }
