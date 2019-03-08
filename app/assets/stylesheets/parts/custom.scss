@@ -33,6 +33,9 @@ html, body {
   text-decoration: none;
   color: var(--nav);
 }
+.text-center {
+  text-align: center;
+}
 
 .footer-sections {
   @include mobile {
@@ -116,11 +119,6 @@ td {
   display: block;
   margin: 0 auto;
 }
-
-img {
-  margin-top: 30px;
-}
-
 .district-attorney {
   margin: 15px 10px 15px 10px;
   text-align: center;
