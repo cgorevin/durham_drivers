@@ -9,6 +9,6 @@
 <p><%= t('.address2') %></p>
 <p><%= t('.address3') %></p>
 <p><%= t('.address4') %></p>
-<%= mail_to 'dear@durhamnc.gov', (t '.email'), class: 'btn btn-primary dear-program' %>
-<%= link_to (t '.map'), 'https://www.google.com/maps/place/510+S+Dillard+St,+Durham,+NC+27701/@35.9921841,-78.9035178,17z/data=!3m1!4b1!4m5!3m4!1s0x89ace46c181f41cf:0x43ebc317d722369a!8m2!3d35.9921841!4d-78.9013291', target: '_blank', rel: 'noopener', class: 'btn btn-primary dear-program' %>
-<%= link_to (t '.print'), '#', class: 'btn btn-primary dear-program' %>
+<%= mail_to 'dear@durhamnc.gov', t('.email'), class: 'btn btn-primary dear-program' %>
+<%= link_to t('.map'), 'https://www.google.com/maps/place/510+S+Dillard+St,+Durham,+NC+27701/@35.9921841,-78.9035178,17z/data=!3m1!4b1!4m5!3m4!1s0x89ace46c181f41cf:0x43ebc317d722369a!8m2!3d35.9921841!4d-78.9013291', target: '_blank', rel: 'noopener', class: 'btn btn-primary dear-program' %>
+<%#= link_to t('.print'), '#', class: 'btn btn-primary dear-program' %>
