@@ -1,4 +1,7 @@
 en:
+  layouts:
+    header:
+      search: Search
   search:
     form:
       save_button: "Save"

@@ -1,4 +1,7 @@
 es:
+  layouts:
+    header:
+      search: Buscar
   search:
     show:
       welcome_message: "¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!"
