@@ -14,7 +14,8 @@ class ContactsController < ApplicationController
       contact.add_offenses params[:ids].split
     end
 
-    redirect_to sign_up_path, notice: 'Thank you'
+    # NOTE: add some way for the sign up path to know which message to show
+    redirect_to sign_up_path
   end
 
   private
