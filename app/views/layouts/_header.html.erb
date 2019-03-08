@@ -4,7 +4,7 @@
   <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
 
   <nav>
-    <ul>
+    <ul style="list-style: none;">
       <li><%= link_to t('.search'), root_path(locale: params[:locale]), class: 'nav-link' %></li>
 
       <% if I18n.locale == :en %>
