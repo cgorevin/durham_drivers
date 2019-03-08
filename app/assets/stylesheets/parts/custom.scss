@@ -33,9 +33,6 @@ html, body {
   text-decoration: none;
   color: var(--nav);
 }
-.text-center {
-  text-align: center;
-}
 
 .footer-sections {
   @include mobile {

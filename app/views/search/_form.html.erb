@@ -1,7 +1,7 @@
 <%= form_for Contact.new do |f| %>
   <%= hidden_field_tag :ids, nil, value: params[:ids] %>
 
-  <div class="form-row">
+  <div>
     <div class="form-group">
       <%= f.label :method, t('.contact_method') %>
       <%= f.radio_button :method, 'email', class: 'js-contact-radio', required: true %>
@@ -34,9 +34,13 @@
       <%= f.label :requestor_name_true,  t('.request_start') + @offense.name + t('.request_end') %>
     </p>
 
-    <div class="js-div">
-      <%= t('.requestor_name') %>
-      <%= f.text_field :requestor_name, class: 'js-field', disabled: true, required: true, placeholder: (t '.enter_name') %>
+    <div class="js-div form-row">
+      <div class="col-auto">
+        <%= t '.requestor_name' %>
+      </div>
+      <div class="col-auto">
+        <%= f.text_field :requestor_name, class: 'js-field form-control', disabled: true, required: true, placeholder: t('.enter_name') %>
+      </div>
     </div>
   </div>
 

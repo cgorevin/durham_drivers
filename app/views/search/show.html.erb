@@ -1,13 +1,13 @@
-<div class="flex justify-between" style="padding-top: 2em;">
+<div class="flex justify-between" style="padding: 2em 0;">
   <%= image_tag '/durham_logo_transparent.png', class: 'logo-twin' %>
   <%= image_tag 'DEAR_logo.png', class: 'logo-twin' %>
 </div>
 
-<h2 class="welcome"><%= t ".welcome_message" %></h2>
-<h2 class="welcome-sub"><%= t ".welcome_message_sub" %></h2>
+<h2 class="welcome"><%= t '.welcome_message' %></h2>
+<h2 class="welcome-sub"><%= t '.welcome_message_sub' %></h2>
 
-<p><%= t ".introduction" %></p>
-<h3><%= t ".introduction_header" %></h3>
+<p><%= t '.introduction' %></p>
+<h3><%= t '.introduction_header' %></h3>
 
 <%= form_for @offense, url: confirm_path do |f| %>
   <div class="form-group">

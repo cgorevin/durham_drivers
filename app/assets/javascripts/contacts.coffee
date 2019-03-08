@@ -6,7 +6,7 @@ requestorNameToggle = ->
 
     if value == 'true'
       # show and enable name field
-      div.show()
+      div.css display: 'flex'
       field.removeAttr 'disabled'
     else
       # hide and disable name field
