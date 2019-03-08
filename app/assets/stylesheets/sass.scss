@@ -1,6 +1,12 @@
 $nav-bg: rgb(15,15,24);
-$phone-width: 768px;
 $green: #0091A0;
+// 360px is galaxy s8 portrait width
+// 375px is iphone x portrait
+// 724px is iphone x landscape
+// 740px is galaxy s8 landscape width
+// 768px is ipad mini portrait width
+// 1024px is ipad mini landscape width
+$phone-width: 650px;
 
 // sass mixins
 @mixin mobile {

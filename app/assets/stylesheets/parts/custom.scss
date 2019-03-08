@@ -1,8 +1,6 @@
 /* universal */
 
 :root {
-  --universal: rgba(15,15,24);
-  --button: #0091A0;
   --nav: #f7fcfa;
 }
 
@@ -34,16 +32,6 @@ html, body {
 }
 
 /* header */
-
-header {
-  background-color: var(--universal);
-}
-
-.nav-link {
-  font-family: 'Raleway', sans-serif;
-  color: var(--nav);
-}
-
 /* footer */
 
 .footer-row {
@@ -64,7 +52,7 @@ header {
 /* typography */
 
 h1, h2, h3, h4, h5, h6, p, li, a, th, td {
-  color: var(--universal);
+  color: $nav-bg;
 }
 
 h1, h2, h3, h4, h5, h6, th {
@@ -177,56 +165,8 @@ th, td {
 
 /* media queries */
 
-@media only screen and (max-width: 39em) {
+@include mobile {
   /* nav */
-  header {
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-    padding: 1em;
-  }
-
-  .logo {
-    margin-left: 1.75em;
-  }
-
-  nav {
-    position: absolute;
-    text-align: left;
-    top: 100%;
-    left: 0;
-    background: rgba(15,15,24,0.85);
-    width: 100%;
-    transform: scale(1,0);
-    transform-origin: top;
-    transition: transform 400ms ease-in-out;
-  }
-
-  nav ul {
-    margin: 0;
-    padding-top: 1em;
-    padding-left: 0;
-    list-style: none;
-  }
-
-  nav li {
-    margin-bottom: 1em;
-    margin-left: 1em;
-  }
-
-  nav a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity 150ms ease-in-out;
-  }
-
-  nav a:hover {
-    color: var(--button);
-  }
-
   .nav-toggle:checked ~ nav {
     transform: scale(1, 1);
   }
@@ -312,72 +252,9 @@ th, td {
   }
 }
 
-@media only screen and (min-width: 39em) {
+@include desktop {
   /* nav */
   .nav-toggle {
     display: none;
-  }
-
-  header {
-    display: grid;
-    grid-template-columns: 1fr auto minmax(25em, 3fr) 1fr;
-  }
-
-  .logo {
-    grid-column: 2 / span 1;
-    display: flex;
-    align-items: center;
-    padding: 0;
-  }
-
-  .logo:hover {
-    color: var(--button);
-    text-decoration: none;
-  }
-
-  nav {
-    // all: unset;
-    grid-column: 3 / span 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  nav ul {
-    display: flex;
-    margin-bottom: 0;
-  }
-
-  nav li {
-    margin-left: 3em;
-    margin-bottom: 0;
-  }
-
-  nav a {
-    opacity: 1;
-    position: relative;
-  }
-
-  nav a:hover {
-    text-decoration: none;
-    color: var(--nav);
-  }
-
-  nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background: var(--button);
-    position: absolute;
-    top: -0.75em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transform-origin: left;
-    transition: transform ease-in-out 250ms;
-  }
-
-  nav a:hover::before {
-    transform: scale(1, 1);
   }
 }

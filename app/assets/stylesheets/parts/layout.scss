@@ -7,6 +7,12 @@ $footer-height: 160px;
   padding-bottom: 5em;
 }
 
+@include mobile {
+  .content {
+    padding-top: 4em;
+  }
+}
+
 .bg-image {
   background-position: center;
   background-size: cover;
