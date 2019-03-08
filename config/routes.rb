@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil) # no subdomain
-  # get '/', constraints: {  }
+  # redirect all www requests to no subdomain site
+  get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil)
+  # redirect all com requests to org site
+  get '/', constraints: { host: /com/ }, to: redirect('https://secondchancedriving.org')
+
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'
 
