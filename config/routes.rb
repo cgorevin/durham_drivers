@@ -4,16 +4,17 @@ Rails.application.routes.draw do
   # redirect all com requests to org site
   get '/', constraints: { host: /com/ }, to: redirect('https://secondchancedriving.org')
 
+  # user related paths
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'
-
     controller :search do
-      get :results, :sign_up, :next_steps
+      get :results, :next_steps
       post :confirm, :results
       get :confirm, to: redirect('/')
     end
   end
 
+  # admin related paths
   devise_for :admins
   get '/panel' => 'offenses#panel'
   get 'search_histories/index'

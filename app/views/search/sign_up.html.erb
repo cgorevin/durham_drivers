@@ -1,7 +1,0 @@
-<h1 class="title"><%= t('.title') %></h1>
-
-<% if @offenses.all?(&:approved?) %>
-  <%= render 'search/approved_signup' %>
-<% else %>
-  <%= render 'search/pending_signup' %>
-<% end %>

@@ -1,2 +1,7 @@
-<h1>Next Steps to Renewing Your License</h1>
-<p>Copy needed from the Restoration Initiative to fill in this page</p>
+<h1 class="title"><%= t '.title' %></h1>
+
+<% if @offenses.all?(&:approved?) %>
+  <%= render 'search/approved_signup' %>
+<% else %>
+  <%= render 'search/pending_signup' %>
+<% end %>

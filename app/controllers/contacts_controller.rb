@@ -17,9 +17,7 @@ class ContactsController < ApplicationController
       contact.add_offenses ids
     end
 
-    # NOTE: add some way for the sign up path to know which message to show
-    redirect_to sign_up_path
-    # render 'search/sign_up'
+    redirect_to next_steps_path
   end
 
   private
