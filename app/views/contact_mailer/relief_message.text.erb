@@ -177,7 +177,7 @@
       <% if ftas.any? && ftp_approved.any? %>
         Todas las entradas identificadas anteriormente han sido resueltas.
       <% elsif ftas.any? %>
-        <%= ':El :boleto :identificado arriba :ha sido :despedido y ahora :está :resuelto'.pluralize_sentence ftas.count, :es %>.
+        <%= ':El :boleto :identificado arriba :ha sido despedido y ahora :está resuelto.'.pluralize_sentence ftas.count, :es %>
       <% elsif ftp_approved.any? %>
         Todas las multas y/o tarifas por
         <%= ':el :boleto :identificado'.pluralize_sentence ftp_approved.count, :es %>
@@ -195,7 +195,7 @@
         la suspensión de su licencia,
       <% else %>
         Aunque
-        <%= ':este :boleto :ha sido :cancelado y ya no :está'.pluralize_sentence ftas.count, :es %>
+        <%= ':este :boleto :ha sido :cancelado y ya no :está'.pluralize_sentence ftas.count %>
         causando que su licencia sea suspendida,
       <% end %>
 
@@ -219,7 +219,7 @@
     </ul>
 
     <p>
-      Hasta que todos los cargos y/o multas pendientes sean pagadas o eliminados por el Tribunal, permanecerá suspendida su licencia de conducir por
+      Hasta que todos los cargos y/o multas pendientes son pagadas o eliminados por el Tribunal, permanecerá suspendida su licencia de conducir por
       <%= ':el :boleto'.pluralize_sentence ftp_pending.any?, :es %>
       del tráfico identificado anteriormente. Entre el 1 de enero de 2019 y el 31 de diciembre de 2019, la Oficina del Fiscal del Distrito de Durham presentará una moción solicitando que se eliminen todas las multas y/o tarifas según la duración extendida de la suspensión de su licencia de conducir. Usted recibirá una actualización automática tan pronto como obtengamos más información sobre su caso. Si tiene un caso en la corte de tránsito pendiente, debe ir a la corte en las fechas programadas.
     </p>

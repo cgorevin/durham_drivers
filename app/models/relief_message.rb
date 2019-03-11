@@ -30,31 +30,32 @@ class ReliefMessage < ApplicationRecord
   def generate_email(format = 'html')
     # we must determine if all the offenses are fta or ftp or both
     # we must determine if all the offenses are approved/pending/denied
-    if offenses.all?(&:fta?)
-      # render message 1
-      message_1 format
-    elsif offenses.all?(&:ftp?)
-      if offenses.all?(&:pending?)
-        # pending => message 5
-        message_5 format
-      elsif offenses.all?(&:approved?)
-        # approved => message 2
-        message_2 format
-      elsif offenses.all?(&:denied?)
-        # denied => message 6 (no such thing as message 6)
-      end
-    elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
-      ftps = offenses.select(&:ftp?)
-      if ftps.all?(&:approved?)
-        # ftp approved => message 3
-        message_3 format
-      elsif ftps.all?(&:pending?)
-        # ftp pending => message 4
-        message_4 format
-      elsif ftps.all?(&:denied?)
-        # ftp denied => missing
-      end
-    end
+    message_6 format
+    # if offenses.all?(&:fta?)
+    #   # render message 1
+    #   message_1 format
+    # elsif offenses.all?(&:ftp?)
+    #   if offenses.all?(&:pending?)
+    #     # pending => message 5
+    #     message_5 format
+    #   elsif offenses.all?(&:approved?)
+    #     # approved => message 2
+    #     message_2 format
+    #   elsif offenses.all?(&:denied?)
+    #     # denied => message 6 (no such thing as message 6)
+    #   end
+    # elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?)
+    #   ftps = offenses.select(&:ftp?)
+    #   if ftps.all?(&:approved?)
+    #     # ftp approved => message 3
+    #     message_3 format
+    #   elsif ftps.all?(&:pending?)
+    #     # ftp pending => message 4
+    #     message_4 format
+    #   elsif ftps.all?(&:denied?)
+    #     # ftp denied => missing
+    #   end
+    # end
   end
 
   def message_1(format)
@@ -99,6 +100,15 @@ class ReliefMessage < ApplicationRecord
     renderer = ApplicationController.renderer.new(http_host: host, https: https)
     renderer.render(
       "contact_mailer/message_5.#{format}", layout: nil, locals: { offenses: offenses }
+    )
+  end
+
+  def message_6(format)
+    host = Rails.env.production? ? 'secondchancedriving.org' : 'localhost:3000'
+    https = Rails.env.production?
+    renderer = ApplicationController.renderer.new http_host: host, https: https
+    renderer.render(
+      "contact_mailer/relief_message.#{format}", layout: nil, locals: { offenses: offenses }
     )
   end
 
