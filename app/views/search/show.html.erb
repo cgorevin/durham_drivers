@@ -31,9 +31,9 @@
 <hr />
 
 <p>
-  <%= t '.about_project' %>
-  <%= link_to t('.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary about-us' %>
+  <%= link_to t('.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary' %>
 </p>
+<br>
 
 <div class="row">
   <div class="col-sm-6">
@@ -67,29 +67,31 @@
   </div>
 </div>
 
+<br>
+
 <p class="project-partners-text"><%= t '.project_partners' %></p>
-  <ul class="partners">
-    <li class="project-partners">
-      <%= image_tag '/durham_logo_transparent.png', class: 'durham-logo' %>
-    </li>
-    <li class="project-partners district-attorney">
-      <h3 class="district-attorney-media"><%= t '.district_attorney' %></h3>
-    </li>
-    <li class="project-partners">
-      <%= image_tag 'DEAR_logo.png', style: 'width: 30em; max-width: 100%;', class: 'dear-logo' %>
-    </li>
-    <li class="project-partners district-attorney">
-      <h3 class="district-attorney-media">
-        <%= t '.dear' %>
-      </h3>
-    </li>
-    <li class="project-partners">
-      <%= image_tag 'justice_center.jpg', style: 'width: 30em; max-width: 100%;', class: 'dear-logo' %>
-    </li>
-    <li class="project-partners district-attorney">
-      <h3 class="district-attorney-media">
-        North Caroliina Justice Center
-      </h3>
-    </li>
-  </ul>
-</p>
+
+<ul class="partners">
+  <li class="project-partners">
+    <%#= image_tag '/durham_logo_transparent.png', class: 'durham-logo' %>
+  </li>
+  <li class="project-partners district-attorney">
+    <h3 class="district-attorney-media"><%= t '.district_attorney' %></h3>
+  </li>
+  <li class="project-partners">
+    <%#= image_tag 'DEAR_logo.png', style: 'width: 30em; max-width: 100%;', class: 'dear-logo' %>
+  </li>
+  <li class="project-partners district-attorney">
+    <h3 class="district-attorney-media">
+      <%= t '.dear' %>
+    </h3>
+  </li>
+  <li class="project-partners">
+    <%= image_tag 'justice_center.jpg', style: 'width: 30em; max-width: 100%;', class: 'dear-logo' %>
+  </li>
+  <li class="project-partners district-attorney">
+    <h3 class="district-attorney-media">
+      North Caroliina Justice Center
+    </h3>
+  </li>
+</ul>
