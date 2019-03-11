@@ -1,6 +1,18 @@
 <h1 class="title"><%= t '.title' %></h1>
 
 <% if @offenses.empty? %>
+  render 'record_missing'
+<% elsif @offenses.any?(&:approved?) %>
+  render 'approved'
+<% elsif @offenses.all?(&:denied?) %>
+  render 'denied'
+<% elsif @offenses.all?(&:pending?) %>
+  render 'pending'
+<% elsif %>
+  render 'mix'
+<% end %>
+
+<% if @offenses.empty? %>
   <%= render 'record_missing' %>
 <% elsif @offenses.any?(&:approved?) %>
   <%= render 'approved' %>
