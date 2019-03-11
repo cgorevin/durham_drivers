@@ -9,16 +9,17 @@ class ContactsController < ApplicationController
   # }
   # POST '/contacts'
   def create
-    @offenses = Offense.where id: params['ids'].split
+    ids = session[:ids]
+    @offenses = Offense.where id: ids
     contact = Contact.find_or_create_by contact_params
 
     if contact.persisted?
-      contact.add_offenses params[:ids].split
+      contact.add_offenses ids
     end
 
     # NOTE: add some way for the sign up path to know which message to show
-    # redirect_to sign_up_path
-    render 'search/sign_up'
+    redirect_to sign_up_path
+    # render 'search/sign_up'
   end
 
   private

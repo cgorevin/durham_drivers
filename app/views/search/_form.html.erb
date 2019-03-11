@@ -1,6 +1,4 @@
 <%= form_for Contact.new do |f| %>
-  <%= hidden_field_tag :ids, nil, value: params[:ids] %>
-
   <div>
     <div class="form-group">
       <%= f.label :method, t('.contact_method') %>

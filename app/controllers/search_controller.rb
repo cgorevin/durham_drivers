@@ -22,20 +22,22 @@ class SearchController < ApplicationController
 
   def results
     # collect all the ids
-    @ids = params[:ids]&.join(' ')&.split
+    # place all ids in session variable and use for the rest of the pages
+    session[:ids] = params[:ids]&.join(' ')&.split
+    ids = session[:ids]
 
     # load offenses based on ids
-    @offenses = Offense.where id: @ids
+    @offenses = Offense.where id: ids
     @offense = @offenses.first
 
     # based on all the offenses gathered, show some type of message
   end
 
   def sign_up
-    @ids = params[:ids]&.join(' ')&.split
+    ids = session[:ids]
 
     # load offenses based on ids
-    @offenses = Offense.where id: @ids
+    @offenses = Offense.where id: ids
   end
 
   def next_steps
