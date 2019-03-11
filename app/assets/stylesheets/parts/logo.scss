@@ -1,6 +1,8 @@
 .logo-twin {
-  height: 9vw;
+  @include desktop {
+    height: 7.3vw;
+  }
   @include mobile {
-    height: 14vw;
+    height: 12.5vw;
   }
 }
