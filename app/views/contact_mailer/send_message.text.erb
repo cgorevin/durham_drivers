@@ -1,1 +1,3 @@
+Below are your relief details. To view the online version visit: <%= token_url(@relief_message.token) %>. To view the PDF version visit: <%= token_url(@relief_message.token, format: :pdf) %>.
+
 <%= @relief_message.generate_email 'text' %>
