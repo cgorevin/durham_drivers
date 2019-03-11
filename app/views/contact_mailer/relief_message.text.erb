@@ -39,20 +39,10 @@ excited to inform you that the Durham County court has eliminated all unpaid fin
 <% if ftas.any? && ftp_approved.any? %>
 All tickets identified above have been resolved.
 <% elsif ftas.any? %>
-<%= 'The :ticket identified above :has been dismissed and :is now resolved.'.pluralize_sentence ftas.count %>
-<% else %>
+<%= 'The :ticket identified above :has been dismissed and :is now resolved.'.pluralize_sentence ftas.count %><% else %>
 <%= 'All fines and/or fees for the :ticket identified above have been eliminated by the court and the :case :is now resolved.'.pluralize_sentence ftp_approved.count %>
-<% end %>
-
-Any suspension of your driver’s license caused by the specific unresolved <%= 'ticket'.pluralize all_approved.count %> has ended.
-
-<% if ftp_approved.any? %>
-<%= 'Although the fines and/or fees for the :ticket identified above have been eliminated and the :ticket'.pluralize_sentence all_approved.count %>
-<% else %>
-<%= 'Although :this :ticket :has been dismissed and'.pluralize_sentence ftas.count %>
-<% end %>
-
-<%= 'is'.pluralize all_approved.count %> no longer causing your license to be suspended, this does not mean that you are now legally able to drive. There may be other traffic matters that are causing your license to remain suspended. If there are no other traffic matters causing your license to be suspended, then you will need to pay a reinstatement fee to the NCDMV in order to reinstate your license.
+<% end %> Any suspension of your driver’s license caused by the specific unresolved <%= 'ticket'.pluralize all_approved.count %> has ended. <% if ftp_approved.any? %>
+<%= 'Although the fines and/or fees for the :ticket identified above have been eliminated and the :ticket'.pluralize_sentence all_approved.count %><% else %><%= 'Although :this :ticket :has been dismissed and'.pluralize_sentence ftas.count %><% end %> <%= 'is'.pluralize all_approved.count %> no longer causing your license to be suspended, this does not mean that you are now legally able to drive. There may be other traffic matters that are causing your license to remain suspended. If there are no other traffic matters causing your license to be suspended, then you will need to pay a reinstatement fee to the NCDMV in order to reinstate your license.
 <% end %>
 
 <% if ftp_pending.any? %>
