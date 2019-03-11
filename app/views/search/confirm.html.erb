@@ -23,11 +23,9 @@
   </tbody>
 </table>
 
-<p class="records-returned"><%= t ".records_returned" %></p>
-
+<p class="records-returned"><%= t '.records_returned' %></p>
 
 <%= form_tag results_path do |f| %>
-
   <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
     <% group = array.first %>
     <% offenses = array.last %>
@@ -45,47 +43,4 @@
   <%= submit_tag (t '.next_button'), class:'btn btn-primary' %>
 <% end %>
 
-<% if false %>
-  <p>EXACT MATCHES</p>
-
-  <ol>
-    <% @exact_matches.each do |offense| %>
-      <li>
-        <p>id: <%= offense.id %></p>
-        <p>name: <%= offense.name %></p>
-        <p>dob: <%= offense.date_of_birth %></p>
-        <p>Address: <%= offense.street_address %></p>
-        <p>case type: <%= offense.type %></p>
-        <p>disposition date: <%= offense.disposition_date %></p>
-        <p>group: <%= offense.group %></p>
-        <p>sex: <%= offense.sex %>. race: <%= offense.race %></p>
-        <p>code: <%= offense.code %>. text: <%= offense.text %>.</p>
-      </li>
-    <% end %>
-  </ol>
-
-  <p>SIMILAR MATCHES</p>
-
-  <ol>
-    <% @similar_matches.each do |offense| %>
-      <li>
-        <p>id: <%= offense.id %></p>
-        <p>name: <%= offense.name %></p>
-        <p>dob: <%= offense.date_of_birth %></p>
-        <p>Address: <%= offense.street_address %></p>
-        <p>case type: <%= offense.type %></p>
-        <p>disposition date: <%= offense.disposition_date %></p>
-        <p>group: <%= offense.group %></p>
-        <p>sex: <%= offense.sex %>. race: <%= offense.race %></p>
-        <p>code: <%= offense.code %>. text: <%= offense.text %>.</p>
-      </li>
-    <% end %>
-  </ol>
-
-  <%# https://bugs.ruby-lang.org/issues/11076#note-6 %>
-  <p>case types: <%= @all_matches.map(&:type).group_by(&:itself).transform_values(&:size) %></p>
-  <p>dispositions: <%= @all_matches.map(&:disposition_date).sort.group_by(&:itself).transform_values(&:size).sort_by{|x,y| x} %></p>
-  <p>groups: <%= @all_matches.map(&:group).group_by(&:itself).transform_values(&:size) %></p>
-  <p>sexes: <%= @all_matches.map(&:sex).group_by(&:itself).transform_values(&:size) %></p>
-<% end %>
 <%= link_to (t '.back_button'), root_path, class: 'btn btn-primary' %>

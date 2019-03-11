@@ -55,9 +55,9 @@ class Offense < ApplicationRecord
   end
 
   def name
-    names = [last_name, first_name, middle_name]
+    names = [first_name, middle_name, last_name]
     names.delete_if(&:blank?)
-    names.join ', '
+    names.join ' '
   end
 
   def type
