@@ -7,7 +7,7 @@
 
 <%= form_for @offense do |f| %>
   <%= f.label :status %>
-  <%= f.select :status, ['pending', 'approved', 'denied'] %>
+  <%= f.select :status, ['pending', 'approved', 'denied', 'pulled'] %>
 
   <%= f.label :group %>
   <%= f.select :group, (1..52).to_a.unshift('NA') %>

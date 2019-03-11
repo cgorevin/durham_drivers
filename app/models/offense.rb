@@ -19,7 +19,7 @@ class Offense < ApplicationRecord
   validates :street_address, presence: true
   validates :status, presence: true
   validates :status, allow_blank: true, inclusion: {
-    in: %w[pending approved denied],
+    in: %w[pending approved denied pulled],
     message: %("%{value}" is not a valid status)
   }
 

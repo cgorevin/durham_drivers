@@ -12,6 +12,7 @@ class SearchController < ApplicationController
     @dob = data[:date_of_birth]
 
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
+                       .where.not(status: 'pulled')
                        .order(first: :asc)
                        .to_a
 
