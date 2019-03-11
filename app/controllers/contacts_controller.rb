@@ -7,7 +7,9 @@ class ContactsController < ApplicationController
   #   },
   #   "commit"=>"Save"
   # }
+  # POST '/contacts'
   def create
+    @offenses = Offense.where id: params['ids'].split
     contact = Contact.find_or_create_by contact_params
 
     if contact.persisted?
@@ -15,7 +17,8 @@ class ContactsController < ApplicationController
     end
 
     # NOTE: add some way for the sign up path to know which message to show
-    redirect_to sign_up_path
+    # redirect_to sign_up_path
+    render 'search/sign_up'
   end
 
   private
