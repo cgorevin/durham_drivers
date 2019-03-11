@@ -122,8 +122,8 @@ class ReliefMessage < ApplicationRecord
       # send text
       url = Rails.env.production? ? 'secondchancedriving.org' : 'localhost:3000'
 
-      acc_sid = 'AC8e8c4098fc6e4a7337735b1637523550'
-      auth_tkn = '5df26aa51ebbd0de7dcf51d48f5ffb9f'
+      acc_sid = ENV['twilio_id']
+      auth_tkn = ENV['twilio_token']
 
       @client = Twilio::REST::Client.new(acc_sid, auth_tkn)
       @client.messages.create(
