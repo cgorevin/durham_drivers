@@ -71,13 +71,18 @@ es:
       Si tiene un caso en la corte de tránsito próximo o pendiente, debe ir a la corte en
       las fechas programadas para que asista a corte."
     record_missing:
-      records_missing: "Los problemas que condujeron a su licencia de conducir ser suspendida
+      records_missing: "No pudimos encontrar su nombre en los archivos. Si su licensia esta actualmente suspendia,
+      los problemas que condujeron a su licencia de conducir ser suspendida
       no son elegibles para este programa. Si desea obtener más información, visite la
       oficina del programa Durham Expunction and Restoration (DEAR) donde puede reunirse con
       un abogado gratuito para obtener más información sobre lo que puede hacer para
       restablecer sus privilegios de manejar. La oficina está abierta de lunes a viernes,
       de 9:30 a.m. a 3:00 p.m. y está ubicada en el Palacio de  Justicia del Condado de
       Durham en la suite 6400 en el sexto piso."
+      reasons_missing: "Unas de las razones por lo cual las personas no son eligibles incluyen: "
+      item1: "Los cargos no estaban en el condado de Durham."
+      item2: "Los cargos ocurrieron hace menos que dos años atrás."
+      item3: "Los cargos eran por ofensas identificadas como “alto riesgo” por la oficina de la Fiscal del Distrito."
       about_button: "Obtenga más información sobre el programa DEAR"
     sign_up:
       title: "Gracias Y Qué Esperar Después"
@@ -93,9 +98,6 @@ es:
       gratuito para obtener más información sobre el alivio que recibió y para ver si tiene
       algún problema adicional que deba resolverse antes de poder acudir al DMV para recuperar
       sus privilegios de conducir."
-      third_paragraph: "Puede inscribirse en una cita para reunirse con un abogado de DEAR a
-      continuación o simplemente puede pasar durante las horas de oficina mencionadas anteriormente.
-      Las personas sin cita pueden tener que esperar más tiempo, pero las citas no son necesarias."
       getting: "Recuperar su licencia de conducir"
       fourth_paragraph: "Antes de visitar el DMV para restaurar sus privilegios de manejo, le
       recomendamos que se comunique con ellos para verificar los problemas pendientes que necesita

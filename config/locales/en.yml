@@ -61,7 +61,8 @@ en:
       enter_name: "Enter name here"
       save_button: "Next"
     pending:
-      pending: "We have identified some issues leading to your suspended license that may be
+      pending: "We did not find you in our records. If you currently have a suspended license
+      we have identified some issues leading to your suspended license that may be
       eligible under this program for assistance.  Due the large number of records we are
       reviewing it could take up to 12 months for your cases to be reviewed.  To protect
       your privacy, please enter your email address below and we will send you an update
@@ -75,6 +76,10 @@ en:
       attorney to learn more about what you can do to restore your driving privileges.
       The office is open Monday – Friday, 9:30am – 3:00pm and is located at the Durham
       County Courthouse in suite 6400 on the 6th floor."
+      reasons_missing: "Common reasons people were not eligible were: "
+      item1: "The charges were not in Durham county."
+      item2: "There charges are not older than two years."
+      item3: "There charges were for offenses identified as “high risk” by the District Attorney’s."
       about_button: "Learn more about the DEAR program"
     sign_up:
       title: "Thank You & What to Expect Next"
@@ -88,9 +93,6 @@ en:
       second_paragraph: "If you visit the DEAR office, you can meet with a free attorney to learn
       more about the relief you received and to see if you have any additional issues that must be
       resolved before you can go to the DMV to get your driving privileges restored."
-      third_paragraph: "You can sign up for an appointment to meet with a DEAR attorney below or you
-      can just drop by during the office hours listed above. Walk-ins may have to wait longer, but
-      appointments are not necessary."
       getting: "Getting your driver’s license back"
       fourth_paragraph: "Before visiting the DMV to restore your driving privileges, we recommend
       that you can contact them to check on what remaining issues you may need to address or steps
