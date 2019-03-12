@@ -35,10 +35,11 @@ class ReliefMessage < ApplicationRecord
 
       acc_sid = ENV['TWILIO_ID']
       auth_tkn = ENV['TWILIO_TOKEN']
+      twilio_number = ENV['TWILIO_NUMBER']
 
       @client = Twilio::REST::Client.new(acc_sid, auth_tkn)
       @client.messages.create(
-        from: '+19193553993',
+        from: twilio_number,
         to: contact.phone,
         body: "Hi! Please view your relief details here: #{url}/m/#{token}"
       )

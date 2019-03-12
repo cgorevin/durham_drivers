@@ -48,44 +48,41 @@
     Choose One:
   </p>
 
-  <div class="">
-    <div class="form-check">
-      <%= f.radio_button :advice_method, 'email', checked: true, class: 'form-check-input' %>
-      <%= f.label :advice_method_email, 'I prefer to receive my record by email.', class: 'form-check-label' %>
-    </div>
 
-    <div class="pl-4">
-      <%= label_tag :email %>
-      <%= f.text_field :email, class: 'form-control', placeholder: 'Please confirm email address', value: nil %>
-    </div>
+  <div class="form-check">
+    <%= f.radio_button :advice_method, 'email', checked: true, class: 'form-check-input js-advice-radio' %>
+    <%= f.label :advice_method_email, 'I prefer to receive my record by email.', class: 'form-check-label' %>
   </div>
 
-  <div class="">
-    <div class="form-check">
-      <%= f.radio_button :advice_method, 'postal', class: 'form-check-input' %>
-      <%= f.label :advice_method_postal, 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
-    </div>
+  <div class="form-check">
+    <%= f.radio_button :advice_method, 'postal', class: 'form-check-input js-advice-radio' %>
+    <%= f.label :advice_method_postal, 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
+  </div>
 
-    <div class="pl-4">
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <%= f.label :street, 'Address' %>
-          <%= f.text_field :street, class: 'form-control', disabled: true, placeholder: '1234 Main St', value: nil %>
-        </div>
+  <div class="pl-4 email-area">
+    <%= label_tag :email %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Please confirm email address', value: nil %>
+  </div>
+
+  <div class="pl-4 address-area" style="display: none;">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <%= f.label :street, 'Address' %>
+        <%= f.text_field :street, class: 'form-control', disabled: true, placeholder: '1234 Main St', value: nil %>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <%= f.label :city %>
-          <%= f.text_field :city, class: 'form-control', disabled: true, value: nil %>
-        </div>
-        <div class="form-group col-md-4">
-          <%= f.label :state %>
-          <%= f.select :state, options_for_select(Contact::STATES, 'NC'), {}, class: 'form-control', disabled: true %>
-        </div>
-        <div class="form-group col-md-2">
-          <%= f.label :zip, 'ZIP' %>
-          <%= f.text_field :zip, class: 'form-control', disabled: true, value: nil %>
-        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= f.label :city %>
+        <%= f.text_field :city, class: 'form-control', disabled: true, value: nil %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.label :state %>
+        <%= f.select :state, options_for_select(Contact::STATES, 'NC'), {}, class: 'form-control', disabled: true %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.label :zip, 'ZIP' %>
+        <%= f.text_field :zip, class: 'form-control', disabled: true, value: nil %>
       </div>
     </div>
   </div>
