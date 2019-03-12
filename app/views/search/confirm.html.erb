@@ -33,17 +33,17 @@
     <% street = group[2] %>
 
     <div class="results-returned">
-      <%= check_box_tag "ids[]", ids, false, id: index %>
+      <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index, required: true %>
       <%= label_tag index, "#{name}#{dob}" %>
     </div>
   <% end %>
 
   <div class="results-returned">
-    <%= check_box_tag "ids[]", ids, false, id: index %>
-    <%= label_tag index, "#{name}#{dob}" %>
+    <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1, required: true %>
+    <%= label_tag -1, 'My name does not appear' %>
   </div>
 
-  <%= submit_tag (t '.next_button'), class:'btn btn-primary' %>
+  <%= submit_tag t('.next_button'), class:'btn btn-primary', disabled: true %>
 <% end %>
 
 <%= link_to (t '.back_button'), root_path, class: 'btn btn-primary' %>

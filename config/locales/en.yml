@@ -32,7 +32,7 @@ en:
       last_name: "Last Name"
       dob: "Birthdate"
       records_returned: "Here are the records we found. Please select your name if it
-      appears, otherwise select “my record does not appear.”"
+      appears, otherwise select “my name does not appear.”"
       next_button: "Next"
       back_button: "Back"
     results:

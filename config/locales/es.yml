@@ -36,7 +36,7 @@ es:
       last_name: "Apellido"
       dob: "Fecha de nacimiento"
       records_returned: 'Aquí están los registros que encontramos. Seleccione su nombre si aparece, de
-      lo contrario, seleccione "Mi registro no aparece".'
+      lo contrario, seleccione "Mi nombre no aparece".'
       next_button: "Siguiente"
       back_button: "Atrás"
     results:
