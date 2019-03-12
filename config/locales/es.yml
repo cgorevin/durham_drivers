@@ -8,14 +8,11 @@ es:
       welcome_message_sub: "Ayudamos a las personas a volver a la carretera y al trabajo de una forma segura"
       introduction_header: "Verifique si recibió alivio:"
       introduction: 'El Programa de Eliminación y Restauración de Durham (“DEAR”) respalda la iniciativa de transformación de la Oficina del Fiscal del Distrito de Durham para resolver los antiguos cargos de tráfico que están causando suspensiones de la licencia de conducir a largo plazo para los residentes de Durham.
-      Este proyecto ayuda a las personas que han tenido una licencia de conducir suspendida por
-      más de 2 años debido a cargos de tráfico en el Condado de Durham, que no involucran a DWI
-      u otras infracciones de tráfico de "alto riesgo".
       Busque en este sitio web para determinar si ha recibido alivio, ya sea por la anulación de un caso de
       tráfico pendiente anterior o la eliminación de la deuda de la corte de tráfico sin pagar anterior, o ambos.'
-      upcoming_court_dates: "Tenga en cuenta: Si tiene un caso en la corte de tránsito pendiente, debe acudir
-      a la corte en las fechas programas para ir a la corte. Este proyecto solo asiste a
-      personas con ciertos cargos de tráfico que tienen más de 2 años."
+      upcoming_court_dates: '<b>Tenga en cuenta</b>: Si tiene un caso en la corte de tránsito pendiente, debe acudir
+      a la corte en las fechas programas para ir a la corte. Este proyecto ayuda a las personas que han tenido una licencia de conducir suspendida por más de 2 años debido a cargos de tráfico en el Condado de Durham, que no involucran a DWI
+      u otras infracciones de tráfico de "alto riesgo".'
       project_partners: "Este proyecto es apoyado por los siguientes socios:"
       about_button: "Aprenda más sobre el proyecto"
       about1: "Entre diciembre del 2018 y febrero del 2019, la Oficina del Fiscal del Distrito de Durham, como parte de un esfuerzo único para ayudar a las personas a restablecer sus privilegios de conducir, despidió más de 50,000 casos de tráfico a más de 30,000 personas. Muchos de estos casos de tráfico pendientes tenían más de diez años y ninguno de ellos implicaba un DWI u otro delito de tráfico de alto riesgo. La desestimación de un caso de tráfico pendiente elimina la suspensión de la licencia de conducir que se activó porque el caso de tráfico no se resolvió."
