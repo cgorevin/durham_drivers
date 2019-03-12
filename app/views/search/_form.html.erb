@@ -2,15 +2,15 @@
   <div>
     <div class="form-group">
       <%= f.label :method, t('.contact_method') %>
-      <%= f.radio_button :method, 'email', class: 'js-contact-radio', required: true %>
-      <%= f.label :method_email, t('.email')%>
-      <%= f.radio_button :method, 'phone', class: 'js-contact-radio', required: true %>
-      <%= f.label :method_phone, t('.text') %>
+      <%= f.radio_button :relief_method, 'email', class: 'js-contact-radio', required: true %>
+      <%= f.label :relief_method_email, t('.email')%>
+      <%= f.radio_button :relief_method, 'phone', class: 'js-contact-radio', required: true %>
+      <%= f.label :relief_method_phone, t('.text') %>
     </div>
 
     <div class="form-group">
-      <%= f.email_field :info, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
-      <%= f.phone_field :info, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;' %>
+      <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
+      <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;' %>
     </div>
   </div>
 

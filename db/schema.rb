@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(version: 2019_03_12_152134) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "method"
-    t.string "info"
+    t.string "relief_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "requestor_name"
+    t.string "email"
+    t.string "phone"
     t.string "full_name"
-    t.string "letter_contact_method"
+    t.string "advice_method"
     t.date "queue_date"
   end
 

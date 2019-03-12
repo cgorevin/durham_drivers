@@ -30,9 +30,20 @@ class ContactsController < ApplicationController
     end
   end
 
+  def update
+    contact = Contact.find session[:contact_id]
+    contact.update contact_params
+    redirect_to next_steps_path
+  end
+
   private
 
   def contact_params
-    params.require(:contact).permit(:method, :info, :requestor_name)
+    params.require(:contact).permit(
+      :relief_method, :advice_method,
+      :email, :phone,
+      :full_name, :requestor_name,
+      :queue_date
+    )
   end
 end

@@ -36,6 +36,7 @@ class SearchController < ApplicationController
 
   # where user can sign up for attorney help
   def sign_up
+    @contact = Contact.find session[:contact_id]
   end
 
   def next_steps
