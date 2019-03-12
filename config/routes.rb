@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   devise_for :admins
   get '/panel' => 'offenses#panel'
   get 'search_histories/index'
-  resources :contacts, only: [:index, :create, :update]
+  resources :contacts, only: [:index, :show, :create, :update]
   resources :offenses do
     collection do
       get 'group/:group' => 'offenses#group', as: :group

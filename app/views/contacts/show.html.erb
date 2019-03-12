@@ -1,0 +1,24 @@
+<br>
+<h3>Contact</h3>
+
+<div class="card">
+  Full name: <%= @contact.full_name %>
+  <hr>
+  Relief method: <%= @contact.relief_method %>
+  <hr>
+  Requestor: <%= @contact.requestor_name %>
+  <hr>
+  Email: <%= @contact.email %>
+  <hr>
+  Phone: <%= @contact.phone %>
+  <hr>
+  Advice method: <%= @contact.advice_method %>
+  <hr>
+  Queue date: <%= @contact.queue_date %>
+  <hr>
+  Created: <%= @contact.created_at %>
+  <hr>
+  Last updated: <%= @contact.updated_at %>
+</div>
+
+<%= link_to 'back', contacts_path, class: 'btn btn-primary' %>

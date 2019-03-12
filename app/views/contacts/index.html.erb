@@ -2,7 +2,7 @@
 
 <ul>
   <% @queued.each do |contact| %>
-    <li><%= contact.info %></li>
+    <li><%= contact.info %> <%= link_to 'view', contact, class: 'btn btn-secondary' %></li>
     <ul>
       <li>Queued: <%= contact.queue_date %></li>
     </ul>

@@ -4,6 +4,10 @@ class ContactsController < ApplicationController
     @unqueued = Contact.where(queue_date: nil).order(email: :asc)
   end
 
+  def show
+    @contact = Contact.find params[:id]
+  end
+
   # Parameters: {
   #   "ids"=>"1 2 3",
   #   "contact"=>{
