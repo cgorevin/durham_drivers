@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2019_03_12_152134) do
     t.string "full_name"
     t.string "advice_method"
     t.date "queue_date"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
   end
 
   create_table "contacts_offenses", force: :cascade do |t|

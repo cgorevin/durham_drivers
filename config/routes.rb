@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # redirect all com requests to org site
   get '/', constraints: { host: /com/ }, to: redirect('https://secondchancedriving.org')
 
+  get '/admin', to: redirect('/admins/sign_in')
+
   # user related paths
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'

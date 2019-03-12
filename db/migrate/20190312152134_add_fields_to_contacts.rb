@@ -14,5 +14,11 @@ class AddFieldsToContacts < ActiveRecord::Migration[5.2]
 
     # add ability to place contact in queue
     t.date :queue_date
+
+    # add ability to track address
+    t.string :street
+    t.string :city
+    t.string :state
+    t.string :zip
   end
 end
