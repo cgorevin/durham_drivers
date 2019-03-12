@@ -33,13 +33,13 @@
     <% street = group[2] %>
 
     <div class="results-returned">
-      <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index, required: true %>
+      <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index %>
       <%= label_tag index, "#{name}#{dob}" %>
     </div>
   <% end %>
 
   <div class="results-returned">
-    <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1, required: true %>
+    <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1 %>
     <%= label_tag -1, 'My name does not appear' %>
   </div>
 
