@@ -16,8 +16,6 @@
       <td><%= @last.inspect %></td>
       <td>
         <%= @dob.inspect %>
-        <!-- <span class="fa fa-arrow-right"></span>
-        <%= Chronic.parse(@dob).strftime('%b %-d, %Y') %> -->
       </td>
     </tr>
   </tbody>
@@ -39,6 +37,11 @@
       <%= label_tag index, "#{name}#{dob}" %>
     </div>
   <% end %>
+
+  <div class="results-returned">
+    <%= check_box_tag "ids[]", ids, false, id: index %>
+    <%= label_tag index, "#{name}#{dob}" %>
+  </div>
 
   <%= submit_tag (t '.next_button'), class:'btn btn-primary' %>
 <% end %>
