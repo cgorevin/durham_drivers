@@ -1,4 +1,9 @@
 class ContactsController < ApplicationController
+  def index
+    @queued = Contact.where.not(queue_date: nil).order(queue_date: :asc)
+    @unqueued = Contact.where(queue_date: nil).order(email: :asc)
+  end
+
   # Parameters: {
   #   "ids"=>"1 2 3",
   #   "contact"=>{

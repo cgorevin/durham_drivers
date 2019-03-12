@@ -1,0 +1,21 @@
+<h2>Queued</h2>
+
+<ul>
+  <% @queued.each do |contact| %>
+    <li><%= contact.info %></li>
+    <ul>
+      <li>Queued: <%= contact.queue_date %></li>
+    </ul>
+  <% end %>
+</ul>
+
+<h2>Unqueued</h2>
+
+<ul>
+  <% @unqueued.each do |contact| %>
+    <li><%= contact.info %></li>
+    <ul>
+      <li>Added: <%= contact.created_at.strftime('%-m/%-d/%Y') %></li>
+    </ul>
+  <% end %>
+</ul>
