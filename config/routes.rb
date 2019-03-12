@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   scope "(:locale)", :locale => /en|es/ do
     root 'search#show'
     controller :search do
-      get :results, :next_steps
+      get :results, :next_steps, :sign_up
       post :confirm, :results
       get :confirm, to: redirect('/')
     end

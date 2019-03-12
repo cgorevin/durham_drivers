@@ -10,14 +10,24 @@ class ContactsController < ApplicationController
   # POST '/contacts'
   def create
     ids = session[:ids]
-    @offenses = Offense.where id: ids
     contact = Contact.find_or_create_by contact_params
 
     if contact.persisted?
       contact.add_offenses ids
+      session[:contact_id] = contact.id
     end
 
-    redirect_to next_steps_path
+    offenses = Offense.where id: ids
+    # we need to determine
+    # 1. if person is approved
+    # 2. if person is who they say they are
+    approved = offenses.any?(&:approved?)
+    not_requestor = contact.requestor_name.blank?
+    if approved && not_requestor
+      redirect_to sign_up_path
+    else
+      redirect_to next_steps_path
+    end
   end
 
   private

@@ -1,0 +1,95 @@
+<br>
+
+<h3>
+  Sign Up to Have Your Full Driving Record Reviewed for Free
+</h3>
+
+<br>
+
+<p>
+  We are glad to inform you that you are eligible to receive an additional free legal service through the DEAR Program. If you complete the registration form below, the DEAR Program will obtain and review your state driving record to identify all reasons your license is currently suspended, including issues that occurred in other counties. If you do not have any other suspensions, the record will indicate that you are now eligible to reinstate your driver’s license. An attorney with the DEAR Program will draft an advice letter for you explaining the information contained in the driving record and send it to you within six weeks. When you receive this advice letter, you will have an opportunity to sign-up to attend a DEAR clinic where you will be able to speak directly with an attorney about your case.
+</p>
+
+<hr>
+
+<ul>
+  <li>
+    I give the DEAR Program permission to obtain a certified copy of my driving record from the NC Department of Motor Vehicles.
+  </li>
+</ul>
+
+<%= form_tag '/' do %>
+  <div class="form-row">
+    <div class="col-md-6 mb-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Signature</div>
+        </div>
+        <%= text_field_tag 'name', nil, class: 'form-control', placeholder: 'type full name', required: true %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Date</div>
+        </div>
+        <%= date_field_tag 'date', Date.today, class: 'form-control', disabled: false, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <p>
+    The DEAR Program prefers to communicate with program participants by email. However, if you do not have an email account or prefer to receive letters through the postal service, please check the box below and provide your mailing address.
+  </p>
+
+  <p>
+    Choose One:
+  </p>
+
+  <div class="">
+    <div class="form-check">
+      <%= radio_button_tag :communication_type, 'email', true, class: 'form-check-input' %>
+      <%= label :communication_type, 'email', 'I prefer to receive my record by email.', class: 'form-check-label' %>
+    </div>
+
+    <div class="pl-4">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, nil, class: 'form-control', placeholder: 'Please confirm email address' %>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="form-check">
+      <%= radio_button_tag :communication_type, 'postal', false, class: 'form-check-input' %>
+      <%= label :communication_type, 'postal', 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
+    </div>
+
+    <div class="pl-4">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <%= label_tag :street, 'Address' %>
+          <%= text_field_tag :street, nil, class: 'form-control', placeholder: '1234 Main St' %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= label_tag :city %>
+          <%= text_field_tag :city, nil, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= label_tag :state %>
+          <%= select_tag :state, nil, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= label_tag :zip, 'ZIP' %>
+          <%= text_field_tag :zip, nil, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%#= link_to 'next', next_steps_path, class: 'btn btn-primary' %>
+  <%= submit_tag 'next', class: 'btn btn-primary' %>
+<% end %>

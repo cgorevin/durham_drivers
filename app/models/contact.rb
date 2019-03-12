@@ -4,8 +4,9 @@ class Contact < ApplicationRecord
   has_many :contact_histories, dependent: :destroy
   has_many :relief_messages, dependent: :destroy
 
-  validates :info, presence: true, uniqueness: true
+  validates :info, presence: true, uniqueness: { scope: :requestor_name }
   validates :method, presence: true
+  validates :requestor_name, presence: true, allow_blank: true
 
   def add_offenses(ids_array)
     old_ids = offense_ids

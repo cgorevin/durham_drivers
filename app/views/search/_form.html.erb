@@ -37,7 +37,7 @@
         <%= t '.requestor_name' %>
       </div>
       <div class="col-auto">
-        <%= f.text_field :requestor_name, class: 'js-field form-control', disabled: true, required: true, placeholder: t('.enter_name') %>
+        <%= f.text_field :requestor_name, class: 'js-field form-control', disabled: true, required: true, pattern: '.*\S.*', placeholder: t('.enter_name') %>
       </div>
     </div>
   </div>

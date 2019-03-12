@@ -34,14 +34,16 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <div class="card">
+    <div class="card mb-4">
       <%= image_tag 'mayor2.jpg', class: 'card-img-top' %>
 
-      <div class="card-body">
+      <div class="card-header pt-4">
         <h5 class="card-title">Steve Schewel</h5>
         <h6 class="card-subtitle mb-2 text-muted">Mayor, City of Durham</h6>
+      </div>
 
-        <p class="card-text"><em>
+      <div class="card-body">
+        <p class="card-text text-muted"><em>
           “Making the city we love, a city for all, means making the city we love a city of second chance. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
         </em></p>
       </div>
@@ -49,13 +51,15 @@
   </div>
 
   <div class="col-sm-6">
-    <div class="card">
+    <div class="card mb-4">
       <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="card-img-top">
 
       <div class="card-body">
         <h5 class="card-title">Satana Deberry</h5>
         <h6 class="card-subtitle mb-2 text-muted">Durham County District Attorney</h6>
+      </div>
 
+      <div class="card-footer">
         <p><em>
           “With their debts forgiven, these individuals can now get a driver’s license.  They can get insurance. They can go to work and to school. They can participate fully in the economic and social vitality of our community.”
         </em></p>
@@ -63,8 +67,6 @@
     </div>
   </div>
 </div>
-
-<br>
 
 <p>
   <%= link_to t('.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary' %>

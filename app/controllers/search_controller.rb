@@ -34,11 +34,15 @@ class SearchController < ApplicationController
     # based on all the offenses gathered, show some type of message
   end
 
-  # def sign_up
+  # where user can sign up for attorney help
+  def sign_up
+  end
+
   def next_steps
     ids = session[:ids]
 
     # load offenses based on ids
     @offenses = Offense.where id: ids
   end
+
 end
