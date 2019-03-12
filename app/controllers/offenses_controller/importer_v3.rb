@@ -22,12 +22,14 @@ class OffensesController
       # }
 
       # 8 lines
+      # FTC/FTP => CONVICTED_OFFENSE_TEXT
+      # FTA => CHARGED_OFFENSE_TEXT
       @attrs = {
         dob: 'DEFENDANT_BIRTHDATE', date: 'DISPOSITION_DATE', ftp: 'RELIEF',
         addr: 'DEFENDANT_ADDRESS', name: 'DEFENDANT_NAME', sex: 'DEFENDANT_SEX',
         city: 'DEFENDANT_CITY', race: 'DEFENDANT_RACE', num: 'CASE_NUMBER',
-        text: 'CONVICTED_OFFENSE_TEXT', group: 'GRP_ID', amount: 'AMOUNT',
-        status: 'CASE_STATUS'
+        text1: 'CONVICTED_OFFENSE_TEXT', text2: 'CHARGED_OFFENSE',
+        group: 'GRP_ID', amount: 'AMOUNT', status: 'CASE_STATUS'
       }
       @attrs.each { |k, v| @attrs[k] = { header: v } }
 
@@ -129,13 +131,15 @@ class OffensesController
     def get_data(row)
       # if case is FTA, then status is approved
       ftp_value = row[@ftp] == 'FTP'
+      description = ftp_value ? row[@text1] : row[@text2]
+      p "DESCRIPTION: #{description}"
 
       # return hash of data to import
       {
         name: row[@name], dob: row[@dob], ftp: ftp_value, group: row[@group],
         disposition_date: row[@date], case_number: row[@num], city: row[@city],
         street_address: row[@addr], race: row[@race], status: row[@status],
-        relief_amount: row[@amount], sex: row[@sex], description: row[@text]
+        relief_amount: row[@amount], sex: row[@sex], description: description
       }
     end
 
