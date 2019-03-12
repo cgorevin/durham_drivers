@@ -52,7 +52,8 @@ class ContactsController < ApplicationController
       :relief_method, :advice_method,
       :email, :phone,
       :full_name, :requestor_name,
-      :queue_date
+      :street, :city, :state, :zip,
+      :queue_date,
     )
   end
 end

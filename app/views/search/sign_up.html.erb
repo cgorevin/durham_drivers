@@ -25,7 +25,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Signature</div>
         </div>
-        <%= f.text_field :full_name, class: 'form-control', placeholder: 'type full name', required: true %>
+        <%= f.text_field :full_name, class: 'form-control', placeholder: 'type full name', required: true, value: nil %>
       </div>
     </div>
     <div class="col-md-6">
@@ -51,7 +51,7 @@
   <div class="">
     <div class="form-check">
       <%= f.radio_button :advice_method, 'email', checked: true, class: 'form-check-input' %>
-      <%= label :communication_type, 'email', 'I prefer to receive my record by email.', class: 'form-check-label' %>
+      <%= f.label :advice_method_email, 'I prefer to receive my record by email.', class: 'form-check-label' %>
     </div>
 
     <div class="pl-4">
@@ -62,29 +62,29 @@
 
   <div class="">
     <div class="form-check">
-      <%= radio_button_tag :advice_method, 'postal', false, class: 'form-check-input' %>
-      <%= label :communication_type, 'postal', 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
+      <%= f.radio_button :advice_method, 'postal', class: 'form-check-input' %>
+      <%= f.label :advice_method_postal, 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
     </div>
 
     <div class="pl-4">
       <div class="form-row">
         <div class="form-group col-md-12">
-          <%= label_tag :street, 'Address' %>
-          <%= text_field_tag :street, nil, class: 'form-control', placeholder: '1234 Main St' %>
+          <%= f.label :street, 'Address' %>
+          <%= f.text_field :street, class: 'form-control', disabled: true, placeholder: '1234 Main St', value: nil %>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <%= label_tag :city %>
-          <%= text_field_tag :city, nil, class: 'form-control' %>
+          <%= f.label :city %>
+          <%= f.text_field :city, class: 'form-control', disabled: true, value: nil %>
         </div>
         <div class="form-group col-md-4">
-          <%= label_tag :state %>
-          <%= select_tag :state, nil, class: 'form-control' %>
+          <%= f.label :state %>
+          <%= f.select :state, options_for_select(Contact::STATES, 'NC'), {}, class: 'form-control', disabled: true %>
         </div>
         <div class="form-group col-md-2">
-          <%= label_tag :zip, 'ZIP' %>
-          <%= text_field_tag :zip, nil, class: 'form-control' %>
+          <%= f.label :zip, 'ZIP' %>
+          <%= f.text_field :zip, class: 'form-control', disabled: true, value: nil %>
         </div>
       </div>
     </div>
