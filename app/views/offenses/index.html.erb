@@ -54,7 +54,7 @@
         <td><%= offense.first_name %></td>
         <td><%= offense.middle_name %></td>
         <td><%= offense.last_name %></td>
-        <td><%= offense.dob&.strftime('%-m/%-d/%Y'.freeze) %></td>
+        <td><%= offense.dob&.strftime('%-m/%-d/%Y'.freeze).freeze %></td>
         <td><%= offense.status %></td>
         <td><%= offense.group %></td>
       </tr>
