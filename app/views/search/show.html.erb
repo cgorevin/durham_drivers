@@ -20,7 +20,7 @@
   </div>
   <div class="form-group">
     <%= f.label :date_of_birth, t('.dob') %>
-    <%= f.date_field :date_of_birth, class: :'form-control', placeholder: t('.dob'), required: true %>
+    <%= f.date_field :date_of_birth, class: :'form-control', placeholder: t('.dob'), required: true, pattern: '(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d', title: 'MM/DD/YYYY', max: Date.today %>
   </div>
   <%= f.submit (t '.search'), class:'btn btn-primary' %>
 <% end %>
