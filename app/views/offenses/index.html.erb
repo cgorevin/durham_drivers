@@ -39,6 +39,7 @@
 
 <table>
   <thead>
+    <th></th>
     <th><%= sortable 'first_name' %></th>
     <th><%= sortable 'middle_name' %></th>
     <th><%= sortable 'last_name' %></th>
@@ -49,13 +50,13 @@
   <tbody>
     <% @offenses.each do |offense| %>
       <tr>
+        <td><%= link_to 'link', offense, class: 'btn btn-secondary' %></td>
         <td><%= offense.first_name %></td>
         <td><%= offense.middle_name %></td>
         <td><%= offense.last_name %></td>
         <td><%= offense.dob&.strftime('%-m/%-d/%Y') %></td>
         <td><%= offense.status %></td>
         <td><%= offense.group %></td>
-        <td><%= link_to 'link', offense_path(offense) %></td>
       </tr>
     <% end %>
   </tbody>
