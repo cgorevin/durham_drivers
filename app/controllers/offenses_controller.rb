@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class OffensesController < ApplicationController
   include OffensesHelper
 

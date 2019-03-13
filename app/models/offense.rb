@@ -50,6 +50,10 @@ class Offense < ApplicationRecord
     date_of_birth
   end
 
+  def dob_clean
+    date_of_birth&.strftime '%-m/%-d/%Y'
+  end
+
   def fta?
     !ftp
   end

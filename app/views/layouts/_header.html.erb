@@ -1,21 +1,25 @@
+<% root = root_path(locale: params[:locale]) %>
+
 <header>
-  <%= link_to 'Second Chance Driving', root_path(locale: params[:locale]), class: 'logo' %>
+  <%= link_to 'Second Chance Driving', root, class: 'logo' %>
 
   <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
 
   <nav>
     <ul style="list-style: none;">
-      <li><%= link_to t('.search'), root_path(locale: params[:locale]), class: 'nav-link' %></li>
+      <li><%= link_to t('.search'), root, class: 'nav-link'.freeze %></li>
 
-      <% if I18n.locale == :en %>
-        <li><%= link_to 'Español', root_path(locale: 'es'), class: 'nav-link' %></li>
-      <% elsif I18n.locale == :es %>
-        <li><%= link_to 'English', root_path(locale: 'en'), class: 'nav-link' %></li>
-      <% end %>
+      <li>
+        <% if I18n.locale == :es %>
+          <a class="nav-link" href="/en">English</a>
+        <% else %>
+          <a class="nav-link" href="/es">Español</a>
+        <% end %>
+      </li>
 
       <% if admin_signed_in? %>
-        <li><%= link_to 'Admin', panel_path, class: 'nav-link' %></li>
-        <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link' %></li>
+        <li><%= link_to 'Admin', panel_path, class: 'nav-link'.freeze %></li>
+        <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link'.freeze %></li>
       <% end %>
     </ul>
   </nav>
