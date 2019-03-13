@@ -29,7 +29,7 @@
 
 <div>
   <% @groups.each do |group| %>
-    <span><%= link_to group, group_offenses_path(group) %></span>
+    <span><%= link_to group, "/offenses/group/#{group}" %></span>
   <% end %>
 </div>
 
@@ -50,11 +50,11 @@
   <tbody>
     <% @offenses.each do |offense| %>
       <tr>
-        <td><%= link_to 'link', offense, class: 'btn btn-secondary' %></td>
+        <td><%= link_to :link, offense %></td>
         <td><%= offense.first_name %></td>
         <td><%= offense.middle_name %></td>
         <td><%= offense.last_name %></td>
-        <td><%= offense.dob&.strftime('%-m/%-d/%Y') %></td>
+        <td><%= offense.dob&.strftime('%-m/%-d/%Y'.freeze) %></td>
         <td><%= offense.status %></td>
         <td><%= offense.group %></td>
       </tr>

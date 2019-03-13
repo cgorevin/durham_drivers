@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module OffensesHelper
   def sortable(column, title = nil)
     # set the title if not already set

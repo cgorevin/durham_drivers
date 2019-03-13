@@ -132,7 +132,6 @@ class OffensesController
       # if case is FTA, then status is approved
       ftp_value = row[@ftp] == 'FTP'
       description = ftp_value ? row[@text1] : row[@text2]
-      p "DESCRIPTION: #{description}"
 
       # return hash of data to import
       {

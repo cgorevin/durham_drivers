@@ -204,7 +204,7 @@ class Offense < ApplicationRecord
   def self.groups(group)
     like = Rails.env.production? ? 'ILIKE' : 'LIKE'
     search = where %("offenses"."group" #{like} ?), "%#{group}%"
-    search.map(&:group).uniq.map(&:to_i).sort
+    search.pluck(:group).uniq.map(&:to_i).sort
   end
 
   # find all offenses that belong to a group
