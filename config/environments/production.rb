@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # set local to true if you want to run app locally but in production mode
   # set local to false if actually going to use in production
-  local = true
+  local = false
   if local
     config.force_ssl = false
     config.consider_all_requests_local       = true
