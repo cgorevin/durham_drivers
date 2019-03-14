@@ -1,3 +1,7 @@
+<p>
+  <%= params[:c].inspect %>
+</p>
+
 <h1>Search Offenses</h1>
 
 <h2>Admin Panel page</h2>
@@ -28,7 +32,7 @@
 
 <div>
   <% @groups.each do |group| %>
-    <span><%= link_to group, "/offenses/group/#{group}" %></span>
+    <span><%= link_to group, "/offenses/group/#{group}".freeze %></span>
   <% end %>
 </div>
 
@@ -39,12 +43,12 @@
 <table>
   <thead>
     <th></th>
-    <th><%= sortable 'first_name' %></th>
-    <th><%= sortable 'middle_name' %></th>
-    <th><%= sortable 'last_name' %></th>
-    <th><%= sortable 'date_of_birth' %></th>
-    <th><%= sortable 'status' %></th>
-    <th><%= sortable 'group' %></th>
+    <th><%= sortable 'first_name'.freeze %></th>
+    <th><%= sortable 'middle_name'.freeze %></th>
+    <th><%= sortable 'last_name'.freeze %></th>
+    <th><%= sortable 'date_of_birth'.freeze %></th>
+    <th><%= sortable 'status'.freeze %></th>
+    <th><%= sortable '"offenses"."group"'.freeze, 'Group'.freeze %></th>
   </thead>
   <tbody>
     <% @offenses.each do |offense| %>
