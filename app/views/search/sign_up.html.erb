@@ -61,7 +61,7 @@
 
   <div class="pl-4 email-area">
     <%= label_tag :email %>
-    <%= f.text_field :email, class: 'form-control', placeholder: 'Please confirm email address', required: true, value: nil %>
+    <%= f.text_field :email, class: 'form-control', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", placeholder: 'Please confirm email address', required: true, title: 'Email format: email@example.com', value: nil %>
   </div>
 
   <div class="pl-4 address-area" style="display: none;">
