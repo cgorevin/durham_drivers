@@ -206,8 +206,7 @@ class Offense < ApplicationRecord
   # find all groups that partially match group given
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
   def self.groups(group)
-    # like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-    like = Rails.env.production? ? 'LIKE' : 'LIKE'
+    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
     search = where %("offenses"."group" #{like} ?), "%#{group}%"
     search.pluck(:group).uniq.map(&:to_i).sort
   end
