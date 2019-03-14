@@ -4,7 +4,7 @@ class OffensesController < ApplicationController
 
   before_action :set_params, only: [:index, :group, :group_update]
   before_action :set_offense, only: [:show, :edit, :update]
-  before_action :authenticate_admin!, only: [:new, :index, :show, :edit, :group, :panel]
+  # before_action :authenticate_admin!, only: [:new, :index, :show, :edit, :group, :panel]
 
   def index
     @group = params[:g]
@@ -49,7 +49,7 @@ class OffensesController < ApplicationController
   # GET "/offenses/group/4"
   def group
     @group = params[:group]
-    # @offenses = Offense.group_search(params[:group]).page page
+
     @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
                        .order("#{sort_column} #{sort_direction}")
                        .page @page

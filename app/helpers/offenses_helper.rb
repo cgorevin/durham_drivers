@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 module OffensesHelper
+  ATTRIBUTES = { 'f' => 'first_name', 'm' => 'middle_name',
+                 'l' => 'last_name', 's' => 'status', 'd' => 'date_of_birth',
+                  '"' => '"offenses"."group"' }
+  ATTRIBUTES.default = 'first_name'
+
+  DIRECTIONS = { 'a' => 'asc', 'd' => 'desc' }
+  DIRECTIONS.default = 'asc'
+
+  ALLOWED = %i[f m l d p c o] # details in #sort_params
+
   def sortable(column, title = nil)
     # set the title if not already set
     title ||= column.titleize
@@ -13,17 +23,11 @@ module OffensesHelper
   end
 
   def sort_column
-    attributes = { 'f' => 'first_name', 'm' => 'middle_name',
-                   'l' => 'last_name', 's' => 'status', 'd' => 'date_of_birth',
-                    '"' => '"offenses"."group"' }
-    attributes.default = 'first_name'
-    attributes[params[:c]]
+    ATTRIBUTES[params[:c]]
   end
 
   def sort_direction
-    directions = { 'a' => 'asc', 'd' => 'desc' }
-    directions.default = 'asc'
-    directions[params[:o]]
+    DIRECTIONS[params[:o]]
   end
 
   def sort_params(column, direction)
@@ -33,7 +37,6 @@ module OffensesHelper
     # c stands for column (first, middle, last, dob, or status)
     # o stands for order (ascending or descending)
     # " stand for group (only one that just don't make sense lol)
-    allowed = %i[f m l d p c o]
-    params.permit(allowed).merge(c: column.first, o: direction.first)
+    params.permit(ALLOWED).merge(c: column.first, o: direction.first)
   end
 end

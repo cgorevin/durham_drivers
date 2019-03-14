@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :authenticate_admin!, only: [:index, :show]
+  # before_action :authenticate_admin!, only: [:index, :show]
 
   def index
     @queued = Contact.where.not(queue_date: nil).order(queue_date: :asc)

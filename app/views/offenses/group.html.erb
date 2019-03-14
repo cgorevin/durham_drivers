@@ -38,9 +38,9 @@
 
     <span>
       Mark all as:
-      <%= link_to 'pending', 'javascript:void(0)', class: 'js-mark-as' %>
-      <%= link_to 'approved', 'javascript:void(0)', class: 'js-mark-as' %>
-      <%= link_to 'denied', 'javascript:void(0)', class: 'js-mark-as' %>
+      <span class="js-mark-as btn btn-secondary">pending</span>
+      <span class="js-mark-as btn btn-secondary">approved</span>
+      <span class="js-mark-as btn btn-secondary">denied</span>
     </span>
   </p>
 <% end %>
@@ -52,32 +52,32 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <%= submit_tag 'Save and send emails' %>
+  <%= submit_tag 'Save and send emails'.freeze %>
 
   <table>
     <thead>
-      <th><%= sortable 'first_name' %></th>
-      <th><%= sortable 'middle_name' %></th>
-      <th><%= sortable 'last_name' %></th>
-      <th><%= sortable 'date_of_birth' %></th>
-      <th><%= sortable 'status' %></th>
+      <th><%= sortable 'first_name'.freeze %></th>
+      <th><%= sortable 'middle_name'.freeze %></th>
+      <th><%= sortable 'last_name'.freeze %></th>
+      <th><%= sortable 'date_of_birth'.freeze %></th>
+      <th><%= sortable 'status'.freeze %></th>
     </thead>
     <tbody>
+      <% options = %w(pending approved denied pulled) %>
       <% @offenses.each do |offense| %>
-        <% id = offense.id %>
         <tr>
           <td><%= offense.first_name %></td>
           <td><%= offense.middle_name %></td>
           <td><%= offense.last_name %></td>
-          <td><%= offense.dob&.strftime('%-m/%-d/%Y') %></td>
-          <td><%= select_tag "offenses[#{id}]status", options_for_select(['pending', 'approved', 'denied', 'pulled'], offense.status) %></td>
-          <td><%= link_to 'link', offense_path(offense) %></td>
+          <td><%= offense.dob_clean %></td>
+          <td><%= select_tag "offenses[#{offense.id}]status", options_for_select(options, offense.status) %></td>
+          <td><%= link_to 'link'.freeze, offense %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <%= submit_tag 'Save and send emails' %>
+  <%= submit_tag 'Save and send emails'.freeze %>
 <% end %>
 
 <%= paginate @offenses, param_name: :p %>
