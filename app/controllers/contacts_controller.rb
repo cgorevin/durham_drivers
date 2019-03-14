@@ -40,7 +40,7 @@ class ContactsController < ApplicationController
   end
 
   def update
-    contact = Contact.find session[:contact_id]
+    contact = Contact.find session.delete :contact_id
     contact.update contact_params
     redirect_to next_steps_path
   end
@@ -53,7 +53,7 @@ class ContactsController < ApplicationController
       :email, :phone,
       :full_name, :requestor_name,
       :street, :city, :state, :zip,
-      :queue_date,
+      :queue_date
     )
   end
 end
