@@ -6,7 +6,12 @@ Rails.application.configure do
   local = false
   if local
     config.force_ssl = false
-    config.consider_all_requests_local       = true
+    config.consider_all_requests_local = true
+    Airbrake.configure do |c|
+      c.project_id = 217540
+      c.project_key = '890382020e033ef7bbe935e2a444937a'
+      c.environment = 'development'
+    end
   else
     # Do not fallback to assets pipeline if a precompiled asset is missed.
     config.assets.compile = false

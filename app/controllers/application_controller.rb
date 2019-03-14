@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     locale = params[:locale]
-    I18n.locale = locale || 'en'
-    Rails.application.routes.default_url_options = { locale: locale }
+    I18n.locale = locale || :en
+    Rails.application.routes.default_url_options[:locale] = locale
   end
 
   def set_time_zone(&block)

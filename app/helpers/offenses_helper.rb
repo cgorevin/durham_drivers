@@ -15,7 +15,7 @@ module OffensesHelper
   def sort_column
     attributes = { 'f' => 'first_name', 'm' => 'middle_name',
                    'l' => 'last_name', 's' => 'status', 'd' => 'date_of_birth',
-                    'g' => '"offenses"."group"' }
+                    '"' => '"offenses"."group"' }
     attributes.default = 'first_name'
     attributes[params[:c]]
   end
@@ -32,6 +32,7 @@ module OffensesHelper
     # p stands for page (1, 2, 3..)
     # c stands for column (first, middle, last, dob, or status)
     # o stands for order (ascending or descending)
+    # " stand for group (only one that just don't make sense lol)
     allowed = %i[f m l d p c o]
     params.permit(allowed).merge(c: column.first, o: direction.first)
   end
