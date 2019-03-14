@@ -36,7 +36,13 @@ class SearchController < ApplicationController
 
   # where user can sign up for attorney help
   def sign_up
-    @contact = Contact.find session[:contact_id]
+    contact_id = session[:contact_id]
+
+    if contact_id.present?
+      @contact = Contact.find session[:contact_id]
+    else
+      redirect_to root_path(locale: params[:locale])
+    end
   end
 
   def next_steps
