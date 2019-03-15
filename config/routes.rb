@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # redirect all www requests to no subdomain site
   get '/', constraints: { subdomain: 'www' }, to: redirect('/', subdomain: nil)
   # redirect all com requests to org site
-  get '/', constraints: { host: /com/ }, to: redirect('https://secondchancedriving.org')
+  get '/', constraints: { host: /g.com/ }, to: redirect('https://secondchancedriving.org')
 
   get '/admin', to: redirect('/admins/sign_in')
 
