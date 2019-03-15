@@ -16,18 +16,17 @@
     <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application'.freeze, media: 'all'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <%= render 'layouts/shim' %>
-
+    <%= render 'layouts/shim'.freeze %>
   </head>
   <body>
     <%= flash_helper if flash.present? %>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header'.freeze %>
     <div class="container">
       <div class="row">
         <div class="col-md-2"></div>
@@ -38,91 +37,7 @@
         </div>
         <div class="col-md-2"></div>
       </div>
-
-      <!-- <div class="bg-image" style="display: block; height: 50em; padding: 1em 1em 15em 49%; background-image: url(https://snworksceo.imgix.net/dtc/730188fd-060a-435c-9a00-1e1a45ca3fff.sized-1000x1000.jpg);">
-        <div style="shape-outside: polygon(0 0, 0 37em, 12em 0em); float: left; width: 8.5em; height: 31em; opacity: .2;">
-        </div>
-
-        <p style="color: white; font-size: 18px; padding-top: 7em;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; font-size: 17px; float: right;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div> -->
-
-      <!-- <div class="bg-image" style="height: 105em; padding-top: 65em; background-image: url(https://assets.nationbuilder.com/durhampa/pages/1944/attachments/original/1504313510/170831_schewel.jpg);">
-        <p style="color: white; font-size: 30px;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size: 30px;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 90em; background-image: url(https://www.ourcampaigns.com/images/candidates/b392/FullC392575D2017-01-01.jpg);">
-        <p style="color: white; font-size: 17px; padding-left: 65%;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size:17px;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 105em; padding-top: 65em; background-image: url(https://indyweek.com/downloads/10190/download/schewel_new_photo_2_2015.jpe);">
-        <p style="color: white; font-size: 35px;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size: 35px;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 55em; width: 55em; background-image: url(https://d1dbd4ex4tu372.cloudfront.net/uploads/image/picture/81334/large_33546104_442880576138677_821011521508212736_n.jpg);">
-        <p style="color: white; font-size: 80px; padding-top: 3em; padding-left: 5em;">
-          “BOI.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size: 40px; padding-top: 5em;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 80em; padding-top: 30em; background-image: url(https://pbs.twimg.com/media/DwrThGMXQAYCK8c.jpg);">
-        <p style="color: white; padding-left: 50%; font-size: 18px;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size: 18px;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 55em; padding-bottom: 30em; background-image: url(https://pbs.twimg.com/media/DzsxQOsWoAEN8J3.jpg:large);">
-        <p style="color: white; padding-left: 55%; font-size: 20px;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end; font-size: 18px;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div>
-
-      <div class="bg-image" style="height: 45em; background-image: url(https://i.ytimg.com/vi/s3PtQoB4q_E/maxresdefault.jpg);">
-        <p style="color: white;">
-          “Making the city we love, a city for all, means making the city we love a city of second chances. Everyone who is benefiting from this program has paid a very steep price. They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </p>
-
-        <p style="color: white; align-self: flex-end;">
-          - Mayor Steve Schewel, City of Durham
-        </p>
-      </div> -->
-
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render 'layouts/footer'.freeze %>
   </body>
 </html>

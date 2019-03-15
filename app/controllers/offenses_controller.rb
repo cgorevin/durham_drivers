@@ -49,7 +49,7 @@ class OffensesController < ApplicationController
   # GET "/offenses/group/4"
   def group
     @group = params[:group]
-    # @offenses = Offense.group_search(params[:group]).page page
+
     @offenses = Offense.fuzzy_group_search(@first, @middle, @last, @dob, @group)
                        .order("#{sort_column} #{sort_direction}")
                        .page @page

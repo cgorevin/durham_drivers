@@ -1,21 +1,41 @@
-<h2>Queued</h2>
+<h1><%= @queued.count %> Queued</h1>
 
-<ul>
-  <% @queued.each do |contact| %>
-    <li><%= contact.info %> <%= link_to 'view', contact, class: 'btn btn-secondary' %></li>
-    <ul>
-      <li>Queued: <%= contact.queue_date %></li>
-    </ul>
-  <% end %>
-</ul>
+<div class="card">
+  <table>
+    <thead>
+      <th>Queue date</th>
+      <th>Full Name</th>
+      <th>Advice preference</th>
+    </thead>
+    <tbody>
+      <% @queued.each do |contact| %>
+        <tr>
+          <td><%= contact.queue_date.strftime '%b %-d'.freeze %></td>
+          <td><%= contact.full_name %></td>
+          <td><%= contact.advice_method %></td>
+          <td><%= link_to :view, contact, class: 'btn btn-secondary'.freeze %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<h2>Unqueued</h2>
+<h1><%= @unqueued.count %> Unqueued</h1>
 
-<ul>
-  <% @unqueued.each do |contact| %>
-    <li><%= contact.info %></li>
-    <ul>
-      <li>Added: <%= contact.created_at.strftime('%-m/%-d/%Y') %></li>
-    </ul>
-  <% end %>
-</ul>
+<div class="card">
+  <table>
+    <thead>
+      <th>Info</th>
+      <th>Relief preference</th>
+    </thead>
+    <tbody>
+      <% @unqueued.each do |contact| %>
+        <tr>
+          <td><%= contact.info %></td>
+          <td><%= contact.relief_method %></td>
+          <td><%= link_to :view, contact, class: 'btn btn-secondary'.freeze %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

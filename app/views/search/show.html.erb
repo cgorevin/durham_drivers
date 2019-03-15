@@ -1,6 +1,6 @@
-<div class="flex justify-between" style="padding: 2em 0;">
-  <%= image_tag '/durham_logo_transparent.png', class: 'logo-twin' %>
-  <%= image_tag 'DEAR_logo.png', class: 'logo-twin' %>
+<div class="flex justify-between pt-4 pb-4">
+  <%= image_tag '/durham_logo_transparent.png'.freeze, class: 'logo-twin'.freeze %>
+  <%= image_tag 'DEAR_logo.png'.freeze, class: 'logo-twin'.freeze %>
 </div>
 
 <h2 class="welcome"><%= t '.welcome_message' %></h2>
@@ -10,31 +10,34 @@
 
 <%= form_for @offense, url: confirm_path do |f| %>
   <div class="form-group">
-    <%= f.text_field :first_name, autocomplete: :'new-password', class: :'form-control', placeholder: (t '.first_name'), required: true %>
+    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.first_name' %>" required="required" type="text" name="offense[first_name]" id="offense_first_name">
   </div>
+
   <div class="form-group">
-    <%= f.text_field :middle_name, autocomplete: :'new-password', class: :'form-control', placeholder: (t '.middle_name') %>
+    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.middle_name' %>" type="text" name="offense[middle_name]" id="offense_middle_name">
   </div>
+
   <div class="form-group">
-    <%= f.text_field :last_name, autocomplete: :'new-password', class: :'form-control', placeholder: (t '.last_name'), required: true %>
+    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.last_name' %>" required="required" type="text" name="offense[last_name]" id="offense_last_name">
   </div>
+
   <div class="form-group">
-    <%= f.label :date_of_birth, t('.dob') %>
-    <%= f.date_field :date_of_birth, class: :'form-control', placeholder: t('.dob'), required: true, pattern: '(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d', title: 'MM/DD/YYYY', max: Date.today %>
+    <label for="offense_date_of_birth"><%= t '.dob'.freeze %></label>
+    <input class="form-control" max="<%= Date.today %>" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" placeholder="MM/DD/YYYY" required="required" title="MM/DD/YYYY" type="date" name="offense[date_of_birth]" id="offense_date_of_birth">
   </div>
-  <%= f.submit (t '.search'), class:'btn btn-primary' %>
+
+  <input type="submit" name="commit" value="<%= t '.search'.freeze %>" class="btn btn-primary" data-disable-with="<%= t '.search'.freeze %>">
 <% end %>
 
-<hr />
+<hr>
 <p><%= t('.upcoming_court_dates').html_safe %></p>
-<hr />
-
+<hr>
 <br>
 
 <div class="row">
   <div class="col-sm-6">
     <div class="card mb-4">
-      <%= image_tag 'mayor2.jpg', class: 'card-img-top' %>
+      <%= image_tag 'mayor2.jpg'.freeze, class: 'card-img-top'.freeze %>
 
       <div class="card-header pt-4">
         <h5 class="card-title">Steve Schewel</h5>
@@ -69,29 +72,30 @@
 </div>
 
 <p>
-  <%= link_to t('.about_button'), 'http://www.deardurham.org', target: '_blank', rel: 'noopener', class: 'btn btn-primary' %>
+  <a target="_blank" rel="noopener" class="btn btn-primary" href="http://www.deardurham.org">
+    <%= t '.about_button' %>
+  </a>
 </p>
 
 <hr>
 
-<p><%= t '.about1' %></p>
-<p><%= t '.about2' %></p>
-<p><%= t '.about3' %></p>
-<p><%= t '.about4' %></p>
-<p><%= t '.about5' %></p>
+<p><%= t '.about1'.freeze %></p>
+<p><%= t '.about2'.freeze %></p>
+<p><%= t '.about3'.freeze %></p>
+<p><%= t '.about4'.freeze %></p>
+<p><%= t '.about5'.freeze %></p>
 
 <hr>
 
-<p class="project-partners-text"><%= t '.project_partners' %></p>
+<p class="project-partners-text"><%= t '.project_partners'.freeze %></p>
 
 <ul class="partners">
-  <li class="project-partners">
-    <%#= image_tag '/durham_logo_transparent.png', class: 'durham-logo' %>
-  </li>
   <li class="project-partners district-attorney">
-    <h3 class="district-attorney-media"><%= t '.district_attorney' %></h3>
+    <h3 class="district-attorney-media">
+      <%= t '.district_attorney'.freeze %>
+    </h3>
   </li>
   <li class="project-partners">
-    <%= image_tag 'justice_center.jpg', style: 'width: 30em; max-width: 100%;', class: 'dear-logo' %>
+    <%= image_tag 'justice_center.jpg'.freeze, class: 'ncjc-logo'.freeze %>
   </li>
 </ul>

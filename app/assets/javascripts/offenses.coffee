@@ -1,6 +1,6 @@
 markAllAs = ->
   $('.js-mark-as').click ->
-    value = @.text
+    value = $(@).text()
     options = $ "option[value='#{value}']"
     options.prop 'selected', true
 
