@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_152134) do
+ActiveRecord::Schema.define(version: 2019_03_15_194458) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -54,6 +54,21 @@ ActiveRecord::Schema.define(version: 2019_03_12_152134) do
     t.integer "offense_id"
     t.index ["contact_id"], name: "index_contacts_offenses_on_contact_id"
     t.index ["offense_id"], name: "index_contacts_offenses_on_offense_id"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "offenses", force: :cascade do |t|

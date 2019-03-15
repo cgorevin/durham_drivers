@@ -244,7 +244,11 @@ class Offense < ApplicationRecord
     return unless approved? && saved_change_to_status?
 
     contacts.each do |contact|
-      contact.notify_of contact.offense_ids # creates relief message for all offenses
+      cid = contact.id
+      if Delayed::Job.where('handler LIKE ?', "%arguments:\n  - #{cid}\n%").empty?
+        ReliefMessageJob.set(wait: 10.seconds).perform_later(cid)
+      end
+      # contact.notify_of contact.offense_ids # creates relief message for all offenses
     end
   end
 end

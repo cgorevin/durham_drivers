@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'daemons' # needed to run bin/delayed_job start
+gem 'delayed_job_active_record'
 gem 'envyable'
 gem 'twilio-ruby'
 gem 'wicked_pdf' # create pdfs with html
