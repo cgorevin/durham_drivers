@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Offense < ApplicationRecord
+  after_update_commit :send_updates
+  # after_save :send_updates, on: :update
+
   alias_attribute :street, :street_address
   alias_attribute :first, :first_name
   alias_attribute :middle, :middle_name
@@ -234,5 +237,14 @@ class Offense < ApplicationRecord
 
   def downcase_fields
     self.status.downcase!
+  end
+
+  # send an update message only if offense has been approved
+  def send_updates
+    return unless approved? && saved_change_to_status?
+
+    contacts.each do |contact|
+      contact.notify_of contact.offense_ids # creates relief message for all offenses
+    end
   end
 end

@@ -23,7 +23,7 @@ class Contact < ApplicationRecord
     all_ids = (old_ids + new_ids).map(&:to_i).uniq
     self.offense_ids = all_ids
 
-    notify_of ids_array
+    notify_of all_ids
   end
 
   def info
