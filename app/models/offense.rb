@@ -14,8 +14,8 @@ class Offense < ApplicationRecord
   has_and_belongs_to_many :contacts
   has_many :contact_histories
 
-  paginates_per 100
-  # paginates_per ENV['PER_PAGE'].to_i
+  # paginates_per 100
+  paginates_per (ENV['PER_PAGE'] || 100).to_i
 
   validates :first_name, presence: true
   validates :last_name, presence: true

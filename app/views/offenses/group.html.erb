@@ -66,12 +66,7 @@
       <% options = %w(pending approved denied pulled) %>
       <% @offenses.each do |offense| %>
         <tr>
-          <td><%= offense.first_name %></td>
-          <td><%= offense.middle_name %></td>
-          <td><%= offense.last_name %></td>
-          <td><%= offense.dob_clean %></td>
-          <td><%= select_tag "offenses[#{offense.id}]status", options_for_select(options, offense.status) %></td>
-          <td><%= link_to 'link'.freeze, offense %></td>
+          <td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= select_tag "offenses[#{offense.id}]status", options_for_select(options, offense.status) %></td><td><%= link_to 'link'.freeze, offense %></td>
         </tr>
       <% end %>
     </tbody>
