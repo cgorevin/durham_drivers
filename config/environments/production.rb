@@ -11,6 +11,7 @@ Rails.application.configure do
       c.project_id = 217540
       c.project_key = '890382020e033ef7bbe935e2a444937a'
       c.environment = 'development'
+      c.ignore_environments = %w[test development]
     end
   else
     # Do not fallback to assets pipeline if a precompiled asset is missed.

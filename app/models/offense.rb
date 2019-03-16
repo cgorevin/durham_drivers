@@ -246,7 +246,7 @@ class Offense < ApplicationRecord
     contacts.each do |contact|
       cid = contact.id
       if Delayed::Job.where('handler LIKE ?', "%arguments:\n  - #{cid}\n%").empty?
-        ReliefMessageJob.set(wait: 10.seconds).perform_later(cid)
+        ReliefMessageJob.set(wait: 10.seconds).perform_later cid
       end
       # contact.notify_of contact.offense_ids # creates relief message for all offenses
     end
