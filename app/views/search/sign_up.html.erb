@@ -1,92 +1,98 @@
-<br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <br>
 
-<h3>
-  Sign Up to Have Your Full Driving Record Reviewed for Free
-</h3>
+    <h3 class="text-center">
+      Sign Up to Have Your Full Driving Record Reviewed for Free
+    </h3>
 
-<br>
+    <br>
 
-<p>
-  We are glad to inform you that you are eligible to receive an additional free legal service through the DEAR Program. If you complete the registration form below, the DEAR Program will obtain and review your state driving record to identify all reasons your license is currently suspended, including issues that occurred in other counties. If you do not have any other suspensions, the record will indicate that you are now eligible to reinstate your driver’s license. An attorney with the DEAR Program will draft an advice letter for you explaining the information contained in the driving record and send it to you within six weeks. When you receive this advice letter, you will have an opportunity to sign-up to attend a DEAR clinic where you will be able to speak directly with an attorney about your case.
-</p>
+    <p>
+      We are glad to inform you that you are eligible to receive an additional free legal service through the DEAR Program. If you complete the registration form below, the DEAR Program will obtain and review your state driving record to identify all reasons your license is currently suspended, including issues that occurred in other counties. If you do not have any other suspensions, the record will indicate that you are now eligible to reinstate your driver’s license. An attorney with the DEAR Program will draft an advice letter for you explaining the information contained in the driving record and send it to you within six weeks. When you receive this advice letter, you will have an opportunity to sign-up to attend a DEAR clinic where you will be able to speak directly with an attorney about your case.
+    </p>
 
-<hr>
+    <hr>
 
-<ul>
-  <li>
-    I give the DEAR Program permission to obtain a certified copy of my driving record from the NC Department of Motor Vehicles.
-  </li>
-</ul>
+    <ul>
+      <li>
+        I give the DEAR Program permission to obtain a certified copy of my driving record from the NC Department of Motor Vehicles.
+      </li>
+    </ul>
 
-<%= form_for @contact do |f| %>
-  <div class="form-row">
-    <div class="col-md-6 mb-4">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">Signature</div>
+    <%= form_for @contact do |f| %>
+      <div class="form-row">
+        <div class="col-md-6 mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Signature</div>
+            </div>
+            <%= f.text_field :full_name, class: 'form-control', placeholder: 'type full name', required: true, value: nil %>
+          </div>
         </div>
-        <%= f.text_field :full_name, class: 'form-control', placeholder: 'type full name', required: true, value: nil %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">Date</div>
+        <div class="col-md-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Date</div>
+            </div>
+            <%= f.date_field :queue_date, class: 'form-control', disabled: false, required: true, value: Date.today %>
+          </div>
         </div>
-        <%= f.date_field :queue_date, class: 'form-control', disabled: false, required: true, value: Date.today %>
       </div>
-    </div>
-  </div>
 
-  <hr>
+      <hr>
 
-  <p>
-    The DEAR Program prefers to communicate with program participants by email. However, if you do not have an email account or prefer to receive letters through the postal service, please check the box below and provide your mailing address.
-  </p>
+      <p>
+        The DEAR Program prefers to communicate with program participants by email. However, if you do not have an email account or prefer to receive letters through the postal service, please check the box below and provide your mailing address.
+      </p>
 
-  <p>
-    Choose One:
-  </p>
+      <p>
+        Choose One:
+      </p>
 
 
-  <div class="form-check">
-    <%= f.radio_button :advice_method, 'email', checked: true, class: 'form-check-input js-advice-radio' %>
-    <%= f.label :advice_method_email, 'I prefer to receive my record by email.', class: 'form-check-label' %>
-  </div>
-
-  <div class="form-check">
-    <%= f.radio_button :advice_method, 'postal', class: 'form-check-input js-advice-radio' %>
-    <%= f.label :advice_method_postal, 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
-  </div>
-
-  <div class="pl-4 email-area">
-    <%= label_tag :email %>
-    <%= f.text_field :email, class: 'form-control', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", placeholder: 'Please confirm email address', required: true, title: 'Email format: email@example.com', value: nil %>
-  </div>
-
-  <div class="pl-4 address-area" style="display: none;">
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <%= f.label :street, 'Address' %>
-        <%= f.text_field :street, class: 'form-control', disabled: true, placeholder: '1234 Main St', required: true, value: nil %>
+      <div class="form-check">
+        <%= f.radio_button :advice_method, 'email', checked: true, class: 'form-check-input js-advice-radio' %>
+        <%= f.label :advice_method_email, 'I prefer to receive my record by email.', class: 'form-check-label' %>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <%= f.label :city %>
-        <%= f.text_field :city, class: 'form-control', disabled: true, required: true, value: nil %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= f.label :state %>
-        <%= f.select :state, options_for_select(Contact::STATES, 'NC'), {}, class: 'form-control', disabled: true, required: true %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= f.label :zip, 'ZIP' %>
-        <%= f.text_field :zip, class: 'form-control', disabled: true, required: true, value: nil %>
-      </div>
-    </div>
-  </div>
 
-  <%#= link_to 'next', next_steps_path, class: 'btn btn-primary' %>
-  <%= submit_tag 'next', class: 'btn btn-primary' %>
-<% end %>
+      <div class="form-check">
+        <%= f.radio_button :advice_method, 'postal', class: 'form-check-input js-advice-radio' %>
+        <%= f.label :advice_method_postal, 'I would like to receive the advice letter through the postal service at the mailing address below:', class: 'form-check-label' %>
+      </div>
+
+      <div class="pl-4 email-area">
+        <%= label_tag :email %>
+        <%= f.text_field :email, class: 'form-control', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", placeholder: 'Please confirm email address', required: true, title: 'Email format: email@example.com', value: nil %>
+      </div>
+
+      <div class="pl-4 address-area" style="display: none;">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <%= f.label :street, 'Address' %>
+            <%= f.text_field :street, class: 'form-control', disabled: true, placeholder: '1234 Main St', required: true, value: nil %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.label :city %>
+            <%= f.text_field :city, class: 'form-control', disabled: true, required: true, value: nil %>
+          </div>
+          <div class="form-group col-md-4">
+            <%= f.label :state %>
+            <%= f.select :state, options_for_select(Contact::STATES, 'NC'), {}, class: 'form-control', disabled: true, required: true %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :zip, 'ZIP' %>
+            <%= f.text_field :zip, class: 'form-control', disabled: true, required: true, value: nil %>
+          </div>
+        </div>
+      </div>
+
+      <%#= link_to 'next', next_steps_path, class: 'btn btn-primary' %>
+      <%= submit_tag 'next', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>

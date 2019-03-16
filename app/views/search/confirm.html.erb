@@ -1,49 +1,55 @@
-<h1 class="title"><%= t ".title" %></h1>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1 class="title"><%= t ".title" %></h1>
 
-<table class="search-result-table">
-  <thead>
-    <tr>
-      <th><%= t ".first_name" %></th>
-      <th><%= t ".middle_name" %></th>
-      <th><%= t ".last_name" %></th>
-      <th><%= t ".dob" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @first.inspect %></td>
-      <td><%= @middle.inspect %></td>
-      <td><%= @last.inspect %></td>
-      <td>
-        <%= @dob.inspect %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <table class="search-result-table">
+      <thead>
+        <tr>
+          <th><%= t ".first_name" %></th>
+          <th><%= t ".middle_name" %></th>
+          <th><%= t ".last_name" %></th>
+          <th><%= t ".dob" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @first.inspect %></td>
+          <td><%= @middle.inspect %></td>
+          <td><%= @last.inspect %></td>
+          <td>
+            <%= @dob.inspect %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-<p class="records-returned"><%= t '.records_returned' %></p>
+    <p class="records-returned"><%= t '.records_returned' %></p>
 
-<%= form_tag results_path do |f| %>
-  <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
-    <% group = array.first %>
-    <% offenses = array.last %>
-    <% ids = offenses.map(&:id) %>
-    <% name = group[0] %>
-    <% dob = group[1]&.strftime(', %-m/%-d/%Y') %>
-    <% street = group[2] %>
+    <%= form_tag results_path do |f| %>
+      <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
+        <% group = array.first %>
+        <% offenses = array.last %>
+        <% ids = offenses.map(&:id) %>
+        <% name = group[0] %>
+        <% dob = group[1]&.strftime(', %-m/%-d/%Y') %>
+        <% street = group[2] %>
 
-    <div class="results-returned">
-      <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index %>
-      <%= label_tag index, "#{name}#{dob}" %>
-    </div>
-  <% end %>
+        <div class="results-returned">
+          <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index %>
+          <%= label_tag index, "#{name}#{dob}" %>
+        </div>
+      <% end %>
 
-  <div class="results-returned">
-    <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1 %>
-    <%= label_tag -1, 'My name does not appear' %>
+      <div class="results-returned">
+        <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1 %>
+        <%= label_tag -1, 'My name does not appear' %>
+      </div>
+
+      <%= submit_tag t('.next_button'), class:'btn btn-primary', disabled: true %>
+    <% end %>
+
+    <%= link_to (t '.back_button'), root_path, class: 'btn btn-primary' %>
   </div>
-
-  <%= submit_tag t('.next_button'), class:'btn btn-primary', disabled: true %>
-<% end %>
-
-<%= link_to (t '.back_button'), root_path, class: 'btn btn-primary' %>
+  <div class="col-md-1"></div>
+</div>

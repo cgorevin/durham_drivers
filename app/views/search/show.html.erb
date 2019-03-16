@@ -1,101 +1,107 @@
-<div class="flex justify-between pt-4 pb-4">
-  <%= image_tag '/durham_logo_transparent.png'.freeze, class: 'logo-twin'.freeze %>
-  <%= image_tag 'DEAR_logo.png'.freeze, class: 'logo-twin'.freeze %>
-</div>
-
-<h2 class="welcome"><%= t '.welcome_message' %></h2>
-
-<p><%= t '.introduction' %></p>
-<h3><%= t '.introduction_header' %></h3>
-
-<%= form_for @offense, url: confirm_path do |f| %>
-  <div class="form-group">
-    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.first_name' %>" required="required" type="text" name="offense[first_name]" id="offense_first_name">
-  </div>
-
-  <div class="form-group">
-    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.middle_name' %>" type="text" name="offense[middle_name]" id="offense_middle_name">
-  </div>
-
-  <div class="form-group">
-    <input autocomplete="new-password" class="form-control" placeholder="<%= t '.last_name' %>" required="required" type="text" name="offense[last_name]" id="offense_last_name">
-  </div>
-
-  <div class="form-group">
-    <label for="offense_date_of_birth"><%= t '.dob'.freeze %></label>
-    <input class="form-control" min="1900-01-01" max="<%= Date.today %>" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" placeholder="MM/DD/YYYY" required="required" title="MM/DD/YYYY" type="date" name="offense[date_of_birth]" id="offense_date_of_birth">
-  </div>
-
-  <input type="submit" name="commit" value="<%= t '.search'.freeze %>" class="btn btn-primary" data-disable-with="<%= t '.search'.freeze %>">
-<% end %>
-
-<hr>
-<p><%= t('.upcoming_court_dates').html_safe %></p>
-<hr>
-<br>
-
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card mb-4">
-      <%= image_tag 'mayor2.jpg'.freeze, class: 'card-img-top'.freeze %>
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="flex justify-between pt-4 pb-4">
+      <%= image_tag '/durham_logo_transparent.png'.freeze, class: 'logo-twin'.freeze %>
+      <%= image_tag 'DEAR_logo.png'.freeze, class: 'logo-twin'.freeze %>
+    </div>
 
-      <div class="card-header pt-4">
-        <h5 class="card-title">Steve Schewel</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Mayor, City of Durham</h6>
+    <h2 class="welcome"><%= t '.welcome_message' %></h2>
+
+    <p><%= t '.introduction' %></p>
+    <h3><%= t '.introduction_header' %></h3>
+
+    <%= form_for @offense, url: confirm_path do |f| %>
+      <div class="form-group">
+        <input autocomplete="new-password" class="form-control" placeholder="<%= t '.first_name' %>" required="required" type="text" name="offense[first_name]" id="offense_first_name">
       </div>
 
-      <div class="card-body">
-        <p class="card-text text-muted"><em>
-          “Making the city we love, a city for all, means making the city we love a city of second chance. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
-        </em></p>
+      <div class="form-group">
+        <input autocomplete="new-password" class="form-control" placeholder="<%= t '.middle_name' %>" type="text" name="offense[middle_name]" id="offense_middle_name">
+      </div>
+
+      <div class="form-group">
+        <input autocomplete="new-password" class="form-control" placeholder="<%= t '.last_name' %>" required="required" type="text" name="offense[last_name]" id="offense_last_name">
+      </div>
+
+      <div class="form-group">
+        <label for="offense_date_of_birth"><%= t '.dob'.freeze %></label>
+        <input class="form-control" min="1900-01-01" max="<%= Date.today %>" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" placeholder="MM/DD/YYYY" required="required" title="MM/DD/YYYY" type="date" name="offense[date_of_birth]" id="offense_date_of_birth">
+      </div>
+
+      <input type="submit" name="commit" value="<%= t '.search'.freeze %>" class="btn btn-primary" data-disable-with="<%= t '.search'.freeze %>">
+    <% end %>
+
+    <hr>
+    <p><%= t('.upcoming_court_dates').html_safe %></p>
+    <hr>
+    <br>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card mb-4">
+          <%= image_tag 'mayor2.jpg'.freeze, class: 'card-img-top'.freeze %>
+
+          <div class="card-header pt-4">
+            <h5 class="card-title">Steve Schewel</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Mayor, City of Durham</h6>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text text-muted"><em>
+              “Making the city we love, a city for all, means making the city we love a city of second chance. Everyone who is benefiting from this program has paid a very steep price.  They have lost their license for at least two years. To be a city of second chances, there must be an expiration date on what it means to hold someone accountable.”
+            </em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="card mb-4">
+          <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="card-img-top">
+
+          <div class="card-header pt-4">
+            <h5 class="card-title">Satana Deberry</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Durham County District Attorney</h6>
+
+          </div>
+
+          <div class="card-body">
+            <p class="card-text text-muted"><em>
+              “With their debts forgiven, these individuals can now get a driver’s license.  They can get insurance. They can go to work and to school. They can participate fully in the economic and social vitality of our community.”
+            </em></p>
+          </div>
+        </div>
       </div>
     </div>
+
+    <p>
+      <a target="_blank" rel="noopener" class="btn btn-primary" href="http://www.deardurham.org">
+        <%= t '.about_button' %>
+      </a>
+    </p>
+
+    <hr>
+
+    <p><%= t '.about1'.freeze %></p>
+    <p><%= t '.about2'.freeze %></p>
+    <p><%= t '.about3'.freeze %></p>
+    <p><%= t '.about4'.freeze %></p>
+    <p><%= t '.about5'.freeze %></p>
+
+    <hr>
+
+    <p class="project-partners-text"><%= t '.project_partners'.freeze %></p>
+
+    <ul class="partners">
+      <li class="project-partners district-attorney">
+        <h3 class="district-attorney-media">
+          <%= t '.district_attorney'.freeze %>
+        </h3>
+      </li>
+      <li class="project-partners">
+        <%= image_tag 'justice_center.jpg'.freeze, class: 'ncjc-logo'.freeze %>
+      </li>
+    </ul>
   </div>
-
-  <div class="col-sm-6">
-    <div class="card mb-4">
-      <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="card-img-top">
-
-      <div class="card-header pt-4">
-        <h5 class="card-title">Satana Deberry</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Durham County District Attorney</h6>
-
-      </div>
-
-      <div class="card-body">
-        <p class="card-text text-muted"><em>
-          “With their debts forgiven, these individuals can now get a driver’s license.  They can get insurance. They can go to work and to school. They can participate fully in the economic and social vitality of our community.”
-        </em></p>
-      </div>
-    </div>
-  </div>
+  <div class="col-md-2"></div>
 </div>
-
-<p>
-  <a target="_blank" rel="noopener" class="btn btn-primary" href="http://www.deardurham.org">
-    <%= t '.about_button' %>
-  </a>
-</p>
-
-<hr>
-
-<p><%= t '.about1'.freeze %></p>
-<p><%= t '.about2'.freeze %></p>
-<p><%= t '.about3'.freeze %></p>
-<p><%= t '.about4'.freeze %></p>
-<p><%= t '.about5'.freeze %></p>
-
-<hr>
-
-<p class="project-partners-text"><%= t '.project_partners'.freeze %></p>
-
-<ul class="partners">
-  <li class="project-partners district-attorney">
-    <h3 class="district-attorney-media">
-      <%= t '.district_attorney'.freeze %>
-    </h3>
-  </li>
-  <li class="project-partners">
-    <%= image_tag 'justice_center.jpg'.freeze, class: 'ncjc-logo'.freeze %>
-  </li>
-</ul>

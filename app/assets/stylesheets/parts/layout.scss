@@ -5,13 +5,11 @@ $footer-height: 160px;
   // min-height: 67vh; // good estimate, but it's not exact and could break down with screens bigger than mine
   min-height: calc(100vh - (80px + 160px)); // perfect
   padding-bottom: 5em;
-}
-
-@include mobile {
-  .content {
+  @include mobile {
     padding-top: 4em;
   }
 }
+
 
 .bg-image {
   background-position: center;

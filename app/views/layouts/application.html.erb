@@ -28,14 +28,8 @@
     <%= flash_helper if flash.present? %>
     <%= render 'layouts/header'.freeze %>
     <div class="container">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <div class="content">
-            <%= yield %>
-          </div>
-        </div>
-        <div class="col-md-2"></div>
+      <div class="content">
+        <%= yield %>
       </div>
     </div>
     <%= render 'layouts/footer'.freeze %>

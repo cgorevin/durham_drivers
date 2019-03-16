@@ -1,7 +1,13 @@
-<h1 class="title"><%= t '.title' %></h1>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1 class="title"><%= t '.title' %></h1>
 
-<% if @offenses.all?(&:approved?) %>
-  <%= render 'search/approved_signup' %>
-<% else %>
-  <%= render 'search/pending_signup' %>
-<% end %>
+    <% if @offenses.all?(&:approved?) %>
+      <%= render 'search/approved_signup' %>
+    <% else %>
+      <%= render 'search/pending_signup' %>
+    <% end %>
+  </div>
+  <div class="col-md-1"></div>
+</div>
