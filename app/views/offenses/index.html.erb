@@ -1,27 +1,26 @@
 <h1>Search Offenses</h1>
 
-<h2>Admin Panel page</h2>
-
 <%= form_tag offenses_path, method: :get, enforce_utf8: false do %>
-  <table>
-    <thead>
-      <th><label for="f">First name</label></th>
-      <th><label for="m">Middle name</label></th>
-      <th><label for="l">Last name</label></th>
-      <th><label for="d">Date of birth</label></th>
-      <th><label for="g">Group ID</label></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name'.freeze %></td>
-        <td><%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name'.freeze %></td>
-        <td><%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name'.freeze %></td>
-        <td><%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth'.freeze %></td>
-        <td><%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52'.freeze, size: 12 %></td>
-        <td><input class="btn btn-success" type="submit" value="Search" data-disable-with="Search"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="form-row">
+    <div class="col-sm-3 pb-2">
+      <%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name'.freeze %>
+    </div>
+    <div class="col-sm-1 pb-2">
+      <%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name'.freeze %>
+    </div>
+    <div class="col-sm-3 pb-2">
+      <%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name'.freeze %>
+    </div>
+    <div class="col-sm-2 pb-2">
+      <%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth'.freeze %>
+    </div>
+    <div class="col-sm-2 pb-2">
+      <%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52'.freeze %>
+    </div>
+    <div class="col-auto pb-2">
+      <input class="btn btn-success" type="submit" value="Search" data-disable-with="Search">
+    </div>
+  </div>
 <% end %>
 
 <h3>Groups</h3>

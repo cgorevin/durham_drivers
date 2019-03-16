@@ -28,9 +28,7 @@
     <%= flash_helper if flash.present? %>
     <%= render 'layouts/header'.freeze %>
     <div class="container">
-      <div class="content">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
     <%= render 'layouts/footer'.freeze %>
   </body>
