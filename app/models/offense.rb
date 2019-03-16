@@ -210,8 +210,7 @@ class Offense < ApplicationRecord
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
   def self.groups(group)
     if group.present?
-      # like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-      like = Rails.env.production? ? 'LIKE' : 'LIKE'
+      like = Rails.env.production? ? 'ILIKE' : 'LIKE'
       search = where %("offenses"."group" #{like} ?), "%#{group}%"
     else
       search = all
