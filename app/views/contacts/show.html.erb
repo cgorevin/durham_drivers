@@ -1,80 +1,148 @@
-<br>
-<h3>Contact</h3>
+<%= link_to 'back', contacts_path, class: 'btn btn-primary mb-4' %>
 
 <div class="card">
   <div class="card-header">
-    <h6 class="card-subtitle text-muted">Names</h6>
+    <b><span class="card-subtitle text-muted">Names</span></b>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      Full name: <%= @contact.full_name %>
+      <div class="row">
+        <div class="col-4 col-sm-3">
+          Name
+        </div>
+        <div class="col-8 col-sm-9">
+          <%= @contact.full_name %>
+        </div>
+      </div>
     </li>
     <li class="list-group-item">
-      Email: <%= @contact.email %>
+      <div class="row">
+        <div class="col-4 col-sm-3">
+          Requestor
+        </div>
+        <div class="col-8 col-sm-9">
+          <%= @contact.requestor_name %>
+        </div>
+      </div>
     </li>
   </ul>
   <div class="card-header">
-    <h6 class="card-subtitle text-muted">Contact info</h6>
+    <b><span class="card-subtitle text-muted">Contact info</span></b>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      Requestor name: <%= @contact.requestor_name %>
+      <div class="row">
+        <div class="col-3">
+          Email
+        </div>
+        <div class="col-9">
+          <%= @contact.email %>
+        </div>
+      </div>
     </li>
     <li class="list-group-item">
-      Email: <%= @contact.email %>
-    </li>
-    <li class="list-group-item">
-      Phone: <%= @contact.phone %>
+      <div class="row">
+        <div class="col-3">
+          Phone
+        </div>
+        <div class="col-9">
+          <%= @contact.phone %>
+        </div>
+      </div>
     </li>
   </ul>
   <div class="card-header">
-    <h6 class="card-subtitle text-muted">Preferences</h6>
+    <b><span class="card-subtitle text-muted">Preferences</span></b>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      Relief preference: <%= @contact.relief_method %>
+      <div class="row">
+        <div class="col-5 col-sm-3">
+          Relief letter
+        </div>
+        <div class="col-7 col-sm-9">
+          <%= @contact.relief_method %>
+        </div>
+      </div>
     </li>
     <li class="list-group-item">
-      Advice preference: <%= @contact.advice_method %>
+      <div class="row">
+        <div class="col-5 col-sm-3">
+          Advice letter
+        </div>
+        <div class="col-7 col-sm-9">
+          <%= @contact.advice_method %>
+        </div>
+      </div>
     </li>
   </ul>
   <div class="card-header">
-    <h6 class="card-subtitle text-muted">Address</h6>
+    <b><span class="card-subtitle text-muted">Address</span></b>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      Street: <%= @contact.street %>
+      <div class="row">
+        <div class="col-3">
+          Street
+        </div>
+        <div class="col-9">
+          <%= @contact.street %>
+        </div>
+      </div>
     </li>
     <li class="list-group-item">
-      City: <%= @contact.city %>
+      <div class="row">
+        <div class="col-3">
+          City
+        </div>
+        <div class="col-9">
+          <%= @contact.city %>
+        </div>
+      </div>
+
     </li>
     <li class="list-group-item">
-      State: <%= @contact.state %>
+      <div class="row">
+        <div class="col-3">
+          State
+        </div>
+        <div class="col-9">
+          <%= @contact.state %>
+        </div>
+      </div>
+
     </li>
     <li class="list-group-item">
-      ZIP: <%= @contact.zip %>
+      <div class="row">
+        <div class="col-3">
+          ZIP
+        </div>
+        <div class="col-9">
+          <%= @contact.zip %>
+        </div>
+      </div>
+
     </li>
   </ul>
-  <div class="card-header">
-    <h6 class="card-subtitle text-muted">Dates</h6>
+  <div class="card-footer text-center text-muted">
+    <% if @contact.queue_date.present? %>
+      <div>
+        Queued
+        <%= time_ago_in_words @contact.queue_date %> ago
+        (<%= @contact.queue_date.strftime('%b %d, %Y') %>)
+      </div>
+    <% end %>
+    <div>
+      Created
+      <%= time_ago_in_words @contact.created_at %> ago
+      (<%= @contact.created_at.strftime('%b %d, %Y %l:%M %P') %>)
+    </div>
+    <div>
+      Last updated
+      <%= time_ago_in_words @contact.updated_at %> ago
+      (<%= @contact.updated_at.strftime('%b %d, %Y %l:%M %P') %>)
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      Queue date:
-      <%= @contact.queue_date.strftime('%b %d, %Y') %>
-      (<%= time_ago_in_words @contact.queue_date %> ago)
-    </li>
-    <li class="list-group-item">
-      Created:
-      <%= @contact.created_at.strftime('%b %d, %Y %l:%M %P') %>
-      (<%= time_ago_in_words @contact.created_at %> ago)
-    </li>
-    <li class="list-group-item">
-      Last updated:
-      <%= @contact.updated_at.strftime('%b %d, %Y %l:%M %P') %>
-      (<%= time_ago_in_words @contact.updated_at %> ago)
-    </li>
-  </ul>
 </div>
 
 <%= link_to 'back', contacts_path, class: 'btn btn-primary' %>
