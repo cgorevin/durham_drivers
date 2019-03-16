@@ -1,6 +1,8 @@
 class ReliefMessage < ApplicationRecord
   after_create_commit :deliver_message
 
+  attr_accessor :context
+
   before_validation :set_body
   before_validation :set_token
 
@@ -28,7 +30,7 @@ class ReliefMessage < ApplicationRecord
   def deliver_message
     if contact.relief_method == 'email'
       # send email
-      ContactMailer.send_message(contact_id, id).deliver_now
+      ContactMailer.send_message(contact_id, id, @context).deliver_now
     elsif contact.relief_method == 'phone'
       # send text
       url = Rails.env.production? ? 'secondchancedriving.org' : 'localhost:3000'
@@ -36,12 +38,17 @@ class ReliefMessage < ApplicationRecord
       acc_sid = ENV['TWILIO_ID']
       auth_tkn = ENV['TWILIO_TOKEN']
       twilio_number = ENV['TWILIO_NUMBER']
+      body = if @context == :create
+        "Hi! Please view your relief details here: #{url}/m/#{token}"
+      else
+        "Hi! An update for your relief has been made: #{url}/m/#{token}"
+      end
 
       @client = Twilio::REST::Client.new(acc_sid, auth_tkn)
       @client.messages.create(
         from: twilio_number,
         to: contact.phone,
-        body: "Hi! Please view your relief details here: #{url}/m/#{token}"
+        body: body
       )
     end
   end

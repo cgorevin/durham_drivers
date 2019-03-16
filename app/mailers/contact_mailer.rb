@@ -1,7 +1,9 @@
 class ContactMailer < ApplicationMailer
-  def send_message(contact_id, relief_message_id)
+  def send_message(contact_id, relief_message_id, context)
     @contact = Contact.find contact_id
+    @context = context
     @relief_message = ReliefMessage.find relief_message_id
-    mail to: @contact.email, subject: 'Your relief details'
+    info = @context == :create ? '[NEW]' : '[UPDATE]'
+    mail to: @contact.email, subject: "#{info} Your relief details"
   end
 end

@@ -1,5 +1,9 @@
 <p>
-  Below are your relief details as well as
+  <% if @context == :create %>
+    New! Below are your relief details as well as
+  <% else %>
+    Update! Below are your relief update details as well as
+  <% end %>
   <%= link_to 'online', token_url(@relief_message.token) %>
   and in
   <%= link_to 'PDF format', token_url(@relief_message.token, format: :pdf) %>.

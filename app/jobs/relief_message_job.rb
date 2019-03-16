@@ -3,6 +3,6 @@ class ReliefMessageJob < ApplicationJob
 
   def perform(contact_id)
     contact = Contact.find contact_id
-    contact.notify_of contact.offense_ids
+    contact.notify_of contact.offense_ids, :update
   end
 end

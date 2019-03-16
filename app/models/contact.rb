@@ -34,10 +34,10 @@ class Contact < ApplicationRecord
   end
 
   # need a contact_histories_offenses table
-  def notify_of(ids_array)
+  def notify_of(ids_array, context = :create)
     offenses_to_notify = offenses.where id: ids_array
 
-    relief_message = relief_messages.create offenses: offenses_to_notify
+    relief_message = relief_messages.create offenses: offenses_to_notify, context: context
 
     contact_histories.create relief_message: relief_message
   end
