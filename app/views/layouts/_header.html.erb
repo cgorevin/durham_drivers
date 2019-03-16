@@ -1,30 +1,14 @@
-<% root = root_path(locale: params[:locale]) %>
-
+<% root = root_path(locale: params[:locale]).freeze %>
 <header>
-  <%= link_to 'Second Chance Driving', root, class: 'logo'.freeze %>
-
-  <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
-
+  <a class="logo" href="<%= root %>">Second Chance Driving</a><input type="checkbox" class="nav-toggle" id="nav-toggle"/>
   <nav>
     <ul style="list-style: none;">
-      <li><%= link_to t('.search'), root, class: 'nav-link'.freeze %></li>
-
-      <li>
-        <% if I18n.locale == :es %>
-          <a class="nav-link" href="/en">English</a>
-        <% else %>
-          <a class="nav-link" href="/es">Español</a>
-        <% end %>
-      </li>
-
+      <li><a class="nav-link" href="<%= root %>"><%= t '.search'.freeze %></a></li>
+      <li><a class="nav-link" href=<% if I18n.locale == :es %>"/en">English<% else %>"/es">Español<% end %></a></li>
       <% if admin_signed_in? %>
-        <li><%= link_to 'Admin', panel_path, class: 'nav-link'.freeze %></li>
-        <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'nav-link'.freeze %></li>
+        <li><a class="nav-link" href="/panel">Admin</a></li><li><a class="nav-link" rel="nofollow" data-method="delete" href="/admins/sign_out">Logout</a></li>
       <% end %>
     </ul>
   </nav>
-
-  <label for="nav-toggle" class="nav-toggle-label">
-    <span></span>
-  </label>
+  <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
 </header>

@@ -16,6 +16,7 @@ class Offense < ApplicationRecord
   has_many :contact_histories
 
   paginates_per 100
+  # paginates_per ENV['PER_PAGE'].to_i
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -209,9 +210,14 @@ class Offense < ApplicationRecord
   # find all groups that partially match group given
   # search for "5" should return ["5", "15", "25", "35", "45", "50", "51", "52"]
   def self.groups(group)
-    like = Rails.env.production? ? 'ILIKE' : 'LIKE'
-    search = where %("offenses"."group" #{like} ?), "%#{group}%"
-    search.pluck(:group).uniq.map(&:to_i).sort
+    if group.present?
+      # like = Rails.env.production? ? 'ILIKE' : 'LIKE'
+      like = Rails.env.production? ? 'LIKE' : 'LIKE'
+      search = where %("offenses"."group" #{like} ?), "%#{group}%"
+    else
+      search = all
+    end
+    search.distinct.pluck(:group).map(&:to_i).sort
   end
 
   # find all offenses that belong to a group
