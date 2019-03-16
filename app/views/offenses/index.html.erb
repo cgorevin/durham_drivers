@@ -27,9 +27,7 @@
 <h3>Groups</h3>
 
 <div>
-  <% @groups.each do |group| %>
-    <span><%= link_to group, "/offenses/group/#{group}".freeze %></span>
-  <% end %>
+  <% @groups.each do |group| %><span><a href="/offenses/group/<%= group %>"><%= group %></a></span> <% end %>
 </div>
 
 <h3>Offenses</h3>
@@ -49,13 +47,7 @@
   <tbody>
     <% @offenses.each do |offense| %>
       <tr>
-        <td><%= link_to :link, offense %></td>
-        <td><%= offense.first_name %></td>
-        <td><%= offense.middle_name %></td>
-        <td><%= offense.last_name %></td>
-        <td><%= offense.dob_clean %></td>
-        <td><%= offense.status %></td>
-        <td><%= offense.group %></td>
+        <td><%= link_to :link, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= offense.status %></td><td><%= offense.group %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,7 +4,7 @@ class OffensesController < ApplicationController
 
   before_action :set_params, only: [:index, :group, :group_update]
   before_action :set_offense, only: [:show, :edit, :update]
-  before_action :authenticate_admin!, only: [:new, :index, :show, :edit, :group, :panel]
+  # before_action :authenticate_admin!, only: [:new, :index, :show, :edit, :group, :panel]
 
   def index
     @group = params[:g]
