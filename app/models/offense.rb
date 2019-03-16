@@ -2,7 +2,6 @@
 
 class Offense < ApplicationRecord
   after_update_commit :send_updates
-  # after_save :send_updates, on: :update
 
   alias_attribute :street, :street_address
   alias_attribute :first, :first_name
