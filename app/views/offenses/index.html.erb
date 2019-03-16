@@ -13,12 +13,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= text_field_tag :f, @first, placeholder: 'First name'.freeze %></td>
-        <td><%= text_field_tag :m, @middle, placeholder: 'Middle name'.freeze %></td>
-        <td><%= text_field_tag :l, @last, placeholder: 'Last name'.freeze %></td>
-        <td><%= text_field_tag :d, @date, placeholder: 'Date of birth'.freeze %></td>
-        <td><%= text_field_tag :g, @group, placeholder: 'Groups 1-52'.freeze, size: 12 %></td>
-        <td><input type="submit" value="Search" data-disable-with="Search"></td>
+        <td><%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name'.freeze %></td>
+        <td><%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name'.freeze %></td>
+        <td><%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name'.freeze %></td>
+        <td><%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth'.freeze %></td>
+        <td><%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52'.freeze, size: 12 %></td>
+        <td><input class="btn btn-success" type="submit" value="Search" data-disable-with="Search"></td>
       </tr>
     </tbody>
   </table>
@@ -26,31 +26,36 @@
 
 <h3>Groups</h3>
 
-<div>
+<p>
   <% @groups.each do |group| %><span><a href="/offenses/group/<%= group %>"><%= group %></a></span> <% end %>
-</div>
+</p>
 
 <h3>Offenses</h3>
 
-<%= page_entries_info @offenses %>
+<p>
+  <%= page_entries_info @offenses %>
+</p>
 
-<table>
-  <thead>
-    <th></th>
-    <th><%= sortable 'first_name'.freeze %></th>
-    <th><%= sortable 'middle_name'.freeze %></th>
-    <th><%= sortable 'last_name'.freeze %></th>
-    <th><%= sortable 'date_of_birth'.freeze %></th>
-    <th><%= sortable 'status'.freeze %></th>
-    <th><%= sortable '"offenses"."group"'.freeze, 'Group'.freeze %></th>
-  </thead>
-  <tbody>
-    <% @offenses.each do |offense| %>
-      <tr>
-        <td><%= link_to :link, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= offense.status %></td><td><%= offense.group %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+    <table>
+    <thead>
+      <th></th>
+      <th><%= sortable 'first_name'.freeze, 'First' %></th>
+      <th><%= sortable 'middle_name'.freeze, 'Middle' %></th>
+      <th><%= sortable 'last_name'.freeze, 'Last' %></th>
+      <th><%= sortable 'date_of_birth'.freeze, 'Birthday' %></th>
+      <th><%= sortable 'status'.freeze %></th>
+      <th><%= sortable '"offenses"."group"'.freeze, 'Group'.freeze %></th>
+    </thead>
+    <tbody>
+      <% @offenses.each do |offense| %>
+        <tr>
+          <td><%= link_to :link, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= offense.status %></td><td><%= offense.group %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 
 <%= paginate @offenses, param_name: :p %>
