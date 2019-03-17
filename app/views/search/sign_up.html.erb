@@ -36,7 +36,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">Date</div>
             </div>
-            <%= f.date_field :queue_date, class: 'form-control', disabled: false, required: true, value: Date.today %>
+            <%= f.date_field :queue_date, class: 'form-control', readonly: true, required: true, value: Date.today %>
           </div>
         </div>
       </div>
