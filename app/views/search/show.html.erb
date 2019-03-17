@@ -6,10 +6,10 @@
       <%= image_tag 'DEAR_logo.png'.freeze, class: 'logo-twin'.freeze %>
     </div>
 
-    <h2 class="welcome"><%= t '.welcome_message' %></h2>
+    <h6 class="welcome text-center"><b><%= t '.welcome_message' %></b></h6>
 
     <p><%= t '.introduction' %></p>
-    <h3><%= t '.introduction_header' %></h3>
+    <h5><b><%= t '.introduction_header' %></b></h5>
 
     <%= form_for @offense, url: confirm_path do |f| %>
       <div class="form-group">
@@ -42,9 +42,9 @@
         <div class="card mb-4">
           <%= image_tag 'mayor2.jpg'.freeze, class: 'card-img-top'.freeze %>
 
-          <div class="card-header pt-4">
-            <h5 class="card-title">Steve Schewel</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Mayor, City of Durham</h6>
+          <div class="card-header pt-3">
+            <h5 class="card-title"><b>Steve Schewel</b></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><b>Mayor, City of Durham</b></h6>
           </div>
 
           <div class="card-body">
@@ -59,10 +59,9 @@
         <div class="card mb-4">
           <img src="https://www.philly.com/resizer/eIq4c8ONtNIziooVZFaKamxFVT0=/1400x0/center/middle/arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/P4YWO57Q3RFPHJ7QM4AUXZVXAU.jpg" alt="" class="card-img-top">
 
-          <div class="card-header pt-4">
-            <h5 class="card-title">Satana Deberry</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Durham County District Attorney</h6>
-
+          <div class="card-header pt-3">
+            <h5 class="card-title"><b>Satana Deberry</b></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><b>Durham County District Attorney</b></h6>
           </div>
 
           <div class="card-body">

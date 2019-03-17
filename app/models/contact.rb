@@ -28,8 +28,8 @@ class Contact < ApplicationRecord
 
   def info
     out = ''
-    out << "phone: #{phone}" if phone.present?
-    out << "email: #{email}" if email.present?
+    out << "Phone: #{phone}" if phone.present?
+    out << "Email: #{email}" if email.present?
     out
   end
 
@@ -37,7 +37,7 @@ class Contact < ApplicationRecord
   def notify_of(ids_array, context = :create)
     offenses_to_notify = offenses.where id: ids_array
 
-    relief_message = relief_messages.create offenses: offenses_to_notify, context: context
+    relief_message = relief_messages.create offenses: offenses_to_notify, new: context == :create
 
     contact_histories.create relief_message: relief_message
   end

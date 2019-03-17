@@ -38,32 +38,6 @@ html, body {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6, p, li, a, th, td {
-  color: $nav-bg;
-}
-
-h1, h2, h3, h4, h5, h6, th {
-  line-height: 1;
-  font-family: 'Sofia Pro Soft Light', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-
 .welcome-sub {
   font-style: italic;
 }
@@ -205,10 +179,6 @@ th, td {
 
   h2 {
     font-size: 1em;
-  }
-
-  h3, .footer h5 {
-    font-size: 0.85em;
   }
 
   p, .footer a {

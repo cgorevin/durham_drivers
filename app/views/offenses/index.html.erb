@@ -2,20 +2,20 @@
 
 <%= form_tag offenses_path, method: :get, enforce_utf8: false do %>
   <div class="form-row">
-    <div class="col-sm-3 pb-2">
-      <%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name'.freeze %>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name' %>
     </div>
-    <div class="col-sm-1 pb-2">
-      <%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name'.freeze %>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name' %>
     </div>
-    <div class="col-sm-3 pb-2">
-      <%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name'.freeze %>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name' %>
     </div>
-    <div class="col-sm-2 pb-2">
-      <%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth'.freeze %>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth' %>
     </div>
-    <div class="col-sm-2 pb-2">
-      <%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52'.freeze %>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52' %>
     </div>
     <div class="col-auto pb-2">
       <input class="btn btn-success" type="submit" value="Search" data-disable-with="Search">
