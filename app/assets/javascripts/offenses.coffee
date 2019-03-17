@@ -4,6 +4,17 @@ markAllAs = ->
     options = $ "option[value='#{value}']"
     options.prop 'selected', true
 
+sendEmails = ->
+  $('.js-send-emails').change ->
+    initial = $(@).find('option[selected="selected"]').text()
+    current = @.value
+    btn = $('.btn-success')
+    if initial != 'approved' && current == 'approved'
+      btn.prop('value', 'Save and send emails')
+    else
+      btn.prop('value', 'Save')
+
+
 validateCheckbox = ->
   $('.js-checkbox').click ->
     boxes = $ '.js-checkbox'
@@ -22,4 +33,5 @@ validateCheckbox = ->
         boxes.last().prop 'checked', false
 
 $(window).on 'turbolinks:load', markAllAs
+$(window).on 'turbolinks:load', sendEmails
 $(window).on 'turbolinks:load', validateCheckbox

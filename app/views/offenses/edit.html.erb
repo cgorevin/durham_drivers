@@ -1,18 +1,27 @@
-<h1>Edit Case</h1>
+<h2>Edit Case</h2>
 
 <p>
-  This page will detail individual cases where you can edit status from pending to approved/rejected
-  on a case-by-case basis.
+  This page detail individual cases and allows you to edit status and group on a case-by-case basis.
 </p>
 
 <%= form_for @offense do |f| %>
-  <%= f.label :status %>
-  <%= f.select :status, ['pending', 'approved', 'denied', 'pulled'] %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= f.label :status %>
+      <%= f.select :status, ['pending', 'approved', 'denied', 'pulled'], {}, class: 'form-control js-send-emails' %>
+    </div>
 
-  <%= f.label :group %>
-  <%= f.select :group, (1..52).to_a.unshift('NA') %>
+    <div class="form-group col-md-6">
+      <%= f.label :group %>
+      <%= f.select :group, (1..52).to_a.unshift('NA'), {}, class: 'form-control' %>
+    </div>
+  </div>
+
+  <p>
+    <%= @offense.contacts.count %> contacts
+  </p>
 
   <div>
-    <%= f.submit @offense.contacts.any? ? 'Save and send emails' : 'Save' %>
+    <%= f.submit 'Save', class: 'btn btn-success' %>
   </div>
 <% end %>
