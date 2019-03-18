@@ -1,0 +1,35 @@
+<h2>Stats</h2>
+
+<p>
+  Offense count: <%= Offense.count %>
+</p>
+
+<ul>
+  <li>pending: <%= @pending.count %></li>
+  <ul>
+    <li>unnotified: <%= @pending.includes(:contacts).where(contacts: {id: nil}).count %></li>
+    <li>notified: <%= @pending.joins(:contacts).uniq.count %></li>
+  </ul>
+  <li>approved: <%= @approved.count %></li>
+  <ul>
+    <li>unnotified: <%= @approved.includes(:contacts).where(contacts: {id: nil}).count %></li>
+    <li>notified: <%= @approved.joins(:contacts).uniq.count %></li>
+  </ul>
+  <li>denied: <%= @denied.count %></li>
+  <ul>
+    <li>unnotified: <%= @denied.includes(:contacts).where(contacts: {id: nil}).count %></li>
+    <li>notified: <%= @denied.joins(:contacts).uniq.count %></li>
+  </ul>
+  <li>pulled: <%= @pulled.count %></li>
+  <ul>
+    <li>unnotified: <%= @pulled.includes(:contacts).where(contacts: {id: nil}).count %></li>
+    <li>notified: <%= @pulled.joins(:contacts).uniq.count %></li>
+  </ul>
+</ul>
+
+
+<div id="chart-3"></div>
+
+<!-- <script type="text/javascript">
+  // $(window).on('turbolinks:load resize', function() { BilevelPartition3("<%#= j bilevel_data %>") } );
+</script> -->

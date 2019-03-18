@@ -77,6 +77,13 @@ class OffensesController < ApplicationController
     redirect_to group_offenses_path(@group, p: @page, f: @first, m: @middle, l: @last), notice: 'Save successful'
   end
 
+  def stats
+    @pending = Offense.where(status: 'pending')
+    @approved = Offense.where(status: 'approved')
+    @denied = Offense.where(status: 'denied')
+    @pulled = Offense.where(status: 'pulled')
+  end
+
   private
 
   def offense_params

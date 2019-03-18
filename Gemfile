@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'd3_rails', '~> 4.0'
 gem 'daemons' # needed to run bin/delayed_job start
 gem 'delayed_job_active_record'
 gem 'envyable'

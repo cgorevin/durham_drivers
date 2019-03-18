@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # admin related paths
   devise_for :admins
   get '/panel' => 'offenses#panel'
+  get '/stats' => 'offenses#stats'
   get 'search_histories/index'
   resources :contacts, only: [:index, :show, :create, :update]
   resources :offenses do
