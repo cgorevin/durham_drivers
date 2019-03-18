@@ -1,0 +1,35 @@
+#donut {
+  width: 100%;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  position: relative;
+
+  .pie-info {
+    color: #777;
+    display: none;
+    left: 50%;
+    padding: 15px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  @include mobile {
+    height: 96vw;
+  }
+
+  circle,
+  path {
+    cursor: pointer;
+  }
+
+  circle {
+    fill: none;
+    pointer-events: all;
+  }
+}

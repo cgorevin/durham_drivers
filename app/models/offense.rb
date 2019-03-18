@@ -17,6 +17,9 @@ class Offense < ApplicationRecord
   # paginates_per 100
   paginates_per (ENV['PER_PAGE'] || 100).to_i
 
+  scope :unnotified, -> { includes(:contacts).where contacts: { id: nil } }
+  scope :notified, -> { joins(:contacts).uniq }
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :street_address, presence: true

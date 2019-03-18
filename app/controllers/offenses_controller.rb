@@ -79,9 +79,17 @@ class OffensesController < ApplicationController
 
   def stats
     @pending = Offense.where(status: 'pending')
+    @pending_unnotified = @pending.unnotified.count
+    @pending_notified = @pending.notified.count
     @approved = Offense.where(status: 'approved')
+    @approved_unnotified = @approved.unnotified.count
+    @approved_notified = @approved.notified.count
     @denied = Offense.where(status: 'denied')
+    @denied_unnotified = @denied.unnotified.count
+    @denied_notified = @denied.notified.count
     @pulled = Offense.where(status: 'pulled')
+    @pulled_unnotified = @pulled.unnotified.count
+    @pulled_notified = @pulled.notified.count
   end
 
   private
