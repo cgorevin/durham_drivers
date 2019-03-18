@@ -1,41 +1,40 @@
 <div class="row">
-  <div class="col-md-3"></div>
   <div class="col-md-6">
     <h2>Stats</h2>
 
     <p>
-      <%= Offense.count %> offenses
+      <%= number_with_delimiter Offense.count %> offenses
     </p>
 
     <ul>
-      <li>pending: <%= @pending.count %></li>
+      <li>pending: <%= number_with_delimiter @pending.count %></li>
       <ul>
-        <li>unnotified: <%= @pending_unnotified %></li>
-        <li>notified: <%= @pending_notified %></li>
+        <li>unnotified: <%= number_with_delimiter @pending_unnotified %></li>
+        <li>notified: <%= number_with_delimiter @pending_notified %></li>
       </ul>
-      <li>approved: <%= @approved.count %></li>
+      <li>approved: <%= number_with_delimiter @approved.count %></li>
       <ul>
-        <li>unnotified: <%= @approved_unnotified %></li>
-        <li>notified: <%= @approved_notified %></li>
+        <li>unnotified: <%= number_with_delimiter @approved_unnotified %></li>
+        <li>notified: <%= number_with_delimiter @approved_notified %></li>
       </ul>
-      <li>denied: <%= @denied.count %></li>
+      <li>denied: <%= number_with_delimiter @denied.count %></li>
       <ul>
-        <li>unnotified: <%= @denied_unnotified %></li>
-        <li>notified: <%= @denied_notified %></li>
+        <li>unnotified: <%= number_with_delimiter @denied_unnotified %></li>
+        <li>notified: <%= number_with_delimiter @denied_notified %></li>
       </ul>
-      <li>pulled: <%= @pulled.count %></li>
+      <li>pulled: <%= number_with_delimiter @pulled.count %></li>
       <ul>
-        <li>unnotified: <%= @pulled_unnotified %></li>
-        <li>notified: <%= @pulled_notified %></li>
+        <li>unnotified: <%= number_with_delimiter @pulled_unnotified %></li>
+        <li>notified: <%= number_with_delimiter @pulled_notified %></li>
       </ul>
     </ul>
+  </div>
 
-
+  <div class="col-md-6">
     <div id="donut"></div>
 
     <script type="text/javascript">
       $(window).on('turbolinks:load resize', function() { donutChart("<%= j bilevel_data %>") } );
     </script>
   </div>
-  <div class="col-md-3"></div>
 </div>
