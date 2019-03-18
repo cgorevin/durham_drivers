@@ -28,6 +28,14 @@
         <li>notified: <%= number_with_delimiter @pulled_notified %></li>
       </ul>
     </ul>
+
+    <p>
+      <%= ContactHistory.count %> messages sent
+    </p>
+    <ul>
+      <li><%= ContactHistory.joins(:contact).where(contacts: { relief_method: 'email' }).count %> emails sent</li>
+      <li><%= ContactHistory.joins(:contact).where(contacts: { relief_method: 'phone' }).count %> text messages sent</li>
+    </ul>
   </div>
 
   <div class="col-md-6">
