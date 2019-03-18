@@ -25,7 +25,6 @@ module DataHelper
             },
             {
               name: 'notified',
-              date: 'boi',
               size: @approved_notified
             }
           ]
