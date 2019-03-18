@@ -17,10 +17,9 @@ class Contact < ApplicationRecord
 
   validate :email_or_phone
 
-  def add_offenses(ids_array)
+  def add_offenses(new_ids)
     old_ids = offense_ids
-    new_ids = ids_array
-    all_ids = (old_ids + new_ids).map(&:to_i).uniq
+    all_ids = (old_ids + new_ids.to_a).map(&:to_i).uniq
     self.offense_ids = all_ids
 
     notify_of all_ids

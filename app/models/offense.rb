@@ -237,6 +237,36 @@ class Offense < ApplicationRecord
     end
   end
 
+  def self.to_csv
+    # CSV.generate do |csv|
+    #   Full name: #{x.full_name}
+    #   Birthday:  #{x.offenses.pluck(:date_of_birth).uniq.map{|x| x.strftime('%-m/%-d/%Y')}.join ', '}
+    #   Email:     #{x.email}
+    #   Phone:     #{x.phone}
+    #   Street:    #{x.street}
+    #   City:      #{x.city}
+    #   State:     #{x.state}
+    #   ZIP:       #{x.zip}
+    #   Relief message preference: #{x.relief_method}
+    #   Advice letter preference: #{x.advice_method}
+    #   Queue Date: #{x.queue_date}
+    csv << %w(Name Birthday Email Phone Street City State ZIP Relief\ Message\ Preference Advice\ Letter\ Prefernce)
+
+    all.order(name: :asc).group_by{|x|x.votes.count}.sort.each do |group|
+      if group.first == 0
+        csv << ["Non-voters (#{group.first} votes): #{group.last.count}"]
+      else
+        p "group.first: #{group.first}"
+        csv << ["Voters (#{group.first} #{'vote'.pluralize(group.first)}): #{group.last.count}"]
+      end
+
+      group.last.each do |u|
+        name = u.name.present? ? u.name : 'Anonymous'
+        csv << [name, u.email, u.phone_number, u.ip_address]
+      end
+    end
+  end
+
   private
 
   def downcase_fields
