@@ -30,6 +30,21 @@
         </li>
       </ul>
       <div class="card-header">
+        <b><span class="card-subtitle text-muted">Birthday</span></b>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-4 col-sm-3">
+              Birthday
+            </div>
+            <div class="col-8 col-sm-9">
+              <%= @contact.offenses.pluck(:date_of_birth).uniq.map{|x| x.strftime('%-m/%-d/%Y')}.join ', ' %>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="card-header">
         <b><span class="card-subtitle text-muted">Contact info</span></b>
       </div>
       <ul class="list-group list-group-flush">
