@@ -1,3 +1,4 @@
+
 class Contact < ApplicationRecord
   STATES = %w(AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY).freeze
 
@@ -41,6 +42,37 @@ class Contact < ApplicationRecord
     contact_histories.create relief_message: relief_message
   end
 
+  def self.queued_to_csv
+    # Full name: #{x.full_name}
+    # Birthday:  #{x.offenses.pluck(:date_of_birth).uniq.map{|x| x.strftime('%-m/%-d/%Y')}.join ', '}
+    # Email:     #{x.email}
+    # Phone:     #{x.phone}
+    # Street:    #{x.street}
+    # City:      #{x.city}
+    # State:     #{x.state}
+    # ZIP:       #{x.zip}
+    # Relief message preference: #{x.relief_method}
+    # Advice letter preference: #{x.advice_method}
+    # Queue Date: #{x.queue_date}
+    CSV.generate do |csv|
+      csv << %w(Name Birthday Email Phone Street City State ZIP Relief\ Message\ Preference Advice\ Letter\ Preference Queue\ Date)
+
+      where.not(queue_date: nil).order(queue_date: :asc).each do |x|
+        name = x.full_name
+        bday = x.offenses.pluck(:date_of_birth).uniq.map { |x| x.strftime('%-m/%-d/%Y') }.join '; '
+        email = x.email
+        phone = x.phone
+        street = x.street
+        city = x.city
+        state = x.state
+        zip = x.zip
+        relief = x.relief_method
+        advice = x.advice_method
+        queue = x.queue_date
+        csv << [name, bday, email, phone, street, city, state, zip, relief, advice, queue]
+      end
+    end
+  end
 
   private
 

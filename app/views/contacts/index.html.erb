@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1><%= @queued.count %> Queued</h1>
 
-      <%= link_to 'CSV', "javascript:void(0)", class: 'btn btn-primary' %>
+      <%= link_to 'CSV', "/contacts.csv", class: 'btn btn-primary', target: '_blank' %>
     </div>
 
 

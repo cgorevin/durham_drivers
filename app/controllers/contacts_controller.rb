@@ -4,6 +4,12 @@ class ContactsController < ApplicationController
   def index
     @queued = Contact.where.not(queue_date: nil).order(queue_date: :asc)
     @unqueued = Contact.where(queue_date: nil).order(email: :asc)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Contact.queued_to_csv }
+      # format.csv { send_data text: 'hi' }
+    end
   end
 
   def show
