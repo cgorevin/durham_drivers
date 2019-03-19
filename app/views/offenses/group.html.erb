@@ -31,16 +31,16 @@
   <%= hidden_field_tag :p, @page %>
 
   <div class="row">
-    <div class="col-md">
+    <p class="col-md">
       <%= page_entries_info @offenses %>
-    </div>
+    </p>
 
-    <div class="col-md text-right">
+    <p class="col-md text-right">
       Mark all as:
-      <span class="js-mark-as btn btn-info btn-sm">pending</span>
-      <span class="js-mark-as btn btn-info btn-sm">approved</span>
-      <span class="js-mark-as btn btn-info btn-sm">denied</span>
-    </div>
+      <span class="js-mark-as btn btn-secondary btn-sm">pending</span>
+      <span class="js-mark-as btn btn-success btn-sm">approved</span>
+      <span class="js-mark-as btn btn-danger btn-sm">denied</span>
+    </p>
   </div>
 <% end %>
 
