@@ -7,12 +7,10 @@
       <%= render 'record_missing' %>
     <% elsif @offenses.any?(&:approved?) %>
       <%= render 'approved' %>
-    <% elsif @offenses.all?(&:denied?) %>
-      <%= render 'denied' %>
-    <% elsif @offenses.all?(&:pending?) %>
+    <% elsif @offenses.any?(&:pending?) %>
       <%= render 'pending' %>
-    <% elsif %>
-      <%= render 'mix' %>
+    <% elsif @offenses.any?(&:denied?) %>
+      <%= render 'denied' %>
     <% end %>
   </div>
   <div class="col-md-2"></div>

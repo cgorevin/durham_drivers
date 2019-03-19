@@ -23,7 +23,10 @@ class SearchController < ApplicationController
 
     # NOTE: redirect if no matches
     # redirect to results page with 0 offenses
-    redirect_to results_path if @offenses.empty?
+    if @offenses.empty?
+      session[:ids] = nil
+      redirect_to results_path
+    end
   end
 
   # POST "/results"

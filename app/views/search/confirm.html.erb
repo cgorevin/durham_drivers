@@ -46,10 +46,14 @@
         <%= label_tag -1, 'My name does not appear' %>
       </div>
 
-      <%= submit_tag t('.next_button'), class:'btn btn-info', disabled: true %>
+
+      <div class="d-flex justify-content-between">
+        <%= link_to t('.back_button'), root_path, class: 'btn btn-info' %>
+
+        <%= submit_tag t('.next_button'), class:'btn btn-info', disabled: true %>
+      </div>
     <% end %>
 
-    <%= link_to (t '.back_button'), root_path, class: 'btn btn-info' %>
   </div>
   <div class="col-md-1"></div>
 </div>

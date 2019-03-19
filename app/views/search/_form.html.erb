@@ -45,5 +45,8 @@
     </div>
   </div>
 
-  <%= submit_tag t('.save_button'), class:'btn btn-info' %>
+  <div class="d-flex justify-content-between">
+    <%= link_to 'Back', root_path(locale: params[:locale]), class: 'btn btn-info' %>
+    <%= submit_tag t('.save_button'), class:'btn btn-info' %>
+  </div>
 <% end %>
