@@ -1,3 +1,10 @@
 <div class="pdf-html-container">
-  <%= @relief_message.body.html_safe %>
+  <% if @relief_messsage %>
+    <%= @relief_message&.body.html_safe %>
+  <% else %>
+    <div class="alert alert-danger" role="alert">
+      Error 404. Nothing found.
+    </div>
+    <%= link_to 'Back', root_path, class: 'btn btn-primary' %>
+  <% end %>
 </div>
