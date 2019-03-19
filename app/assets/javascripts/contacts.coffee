@@ -14,6 +14,7 @@ requestorNameToggle = ->
       field.attr 'disabled', ''
 
 contactMethodToggle = ->
+  container = $('.js-requestor-container')
   emailOption = $('.js-email-option')
   phoneOption = $('.js-phone-option')
   emailRadio = emailOption.find('input')
@@ -22,6 +23,7 @@ contactMethodToggle = ->
   phoneField = $('input[type=tel]')
 
   $('.js-contact-radio').change ->
+    container.show()
     value = @.value
     if value == 'email'
       emailOption.show()

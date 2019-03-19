@@ -5,8 +5,6 @@ en:
     header:
       search: Search
   search:
-    form:
-      save_button: "Save"
     show:
       welcome_message: "Welcome to the Driver’s License Restoration Project: Getting you safely back on the road and back to work!"
       welcome_message: "Durham Second Chance Driving Project: Getting you safely back on the road and back to work!"

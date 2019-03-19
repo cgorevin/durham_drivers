@@ -1,20 +1,23 @@
 <%= form_for Contact.new do |f| %>
-  <div>
-    <div class="form-group">
-      <%= f.label :method, t('.contact_method') %>
-      <%= f.radio_button :relief_method, 'email', class: 'js-contact-radio', required: true %>
-      <%= f.label :relief_method_email, t('.email')%>
-      <%= f.radio_button :relief_method, 'phone', class: 'js-contact-radio', required: true %>
-      <%= f.label :relief_method_phone, t('.text') %>
-    </div>
+  <p><%= t '.contact_method' %></p>
 
+  <p class="form-check">
+    <%= f.radio_button :relief_method, 'email', class: 'form-check-input js-contact-radio', required: true %>
+    <%= f.label :relief_method_email, t('.email'), class: 'form-check-label' %>
+  </p>
+
+  <p class="form-check">
+    <%= f.radio_button :relief_method, 'phone', class: 'form-check-input js-contact-radio', required: true %>
+    <%= f.label :relief_method_phone, t('.text'), class: 'form-check-label' %>
+  </p>
+
+
+  <div class="js-requestor-container" style="display: none;">
     <div class="form-group">
       <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
       <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;', title: 'Valid phone number: "(xxx) xxx-xxxx"' %>
     </div>
-  </div>
 
-  <div>
     <p><%= t ".selector" %></p>
 
     <p class="js-email-option form-check">
