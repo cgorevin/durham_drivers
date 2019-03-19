@@ -30,18 +30,18 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <p class="flex justify-between">
-    <span>
+  <div class="row">
+    <div class="col-md">
       <%= page_entries_info @offenses %>
-    </span>
+    </div>
 
-    <span>
+    <div class="col-md text-right">
       Mark all as:
-      <span class="js-mark-as btn btn-info">pending</span>
-      <span class="js-mark-as btn btn-info">approved</span>
-      <span class="js-mark-as btn btn-info">denied</span>
-    </span>
-  </p>
+      <span class="js-mark-as btn btn-info btn-sm">pending</span>
+      <span class="js-mark-as btn btn-info btn-sm">approved</span>
+      <span class="js-mark-as btn btn-info btn-sm">denied</span>
+    </div>
+  </div>
 <% end %>
 
 <%= form_tag group_offenses_path(@group) do %>
