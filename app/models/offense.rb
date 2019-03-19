@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Offense < ApplicationRecord
+  COLORS = {
+    'pending' => 'text-secondary',
+    'approved' => 'text-success',
+    'denied' => 'text-danger',
+    'pulled' => 'bg-dark text-light'
+  }
   after_update_commit :send_updates
 
   alias_attribute :street, :street_address
@@ -48,6 +54,14 @@ class Offense < ApplicationRecord
 
   def pending?
     status == 'pending'
+  end
+
+  def pulled?
+    status == 'pulled'
+  end
+
+  def css_class
+    COLORS[status]
   end
 
   # NOTE: use method instead of alias_attribute so that we can write our own
