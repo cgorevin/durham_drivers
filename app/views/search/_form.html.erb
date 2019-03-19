@@ -10,7 +10,7 @@
 
     <div class="form-group">
       <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
-      <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;' %>
+      <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;', title: 'Valid phone number: "(xxx) xxx-xxxx"' %>
     </div>
   </div>
 

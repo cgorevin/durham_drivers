@@ -26,10 +26,18 @@ class SearchController < ApplicationController
     redirect_to results_path if @offenses.empty?
   end
 
+  # POST "/results"
+  # POST "/en/results"
+  # POST "/es/results"
+  # GET "/results"
+  # GET "/es/results"
+  # GET "/es/results"
   def results
     # collect all the ids
     # place all ids in session variable and use for the rest of the pages
-    session[:ids] = params[:ids]&.join(' ')&.split
+    if request.post?
+      session[:ids] = params[:ids]&.join(' ')&.split
+    end
     ids = session[:ids]
 
     # load offenses based on ids

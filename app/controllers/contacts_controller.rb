@@ -44,6 +44,10 @@ class ContactsController < ApplicationController
     else
       redirect_to next_steps_path
     end
+  rescue Twilio::REST::RestError
+    phone = params[:contact][:phone]
+    msg = t '.twilio_fail'
+    redirect_to results_path(locale: params[:locale]), alert: msg % phone
   end
 
   # PATCH /contacts/123

@@ -39,7 +39,7 @@ class ReliefMessage < ApplicationRecord
       body = if new?
         "Hi! Please view your relief details here: #{url}/m/#{token}"
       else
-        "Hi! An update for your relief has been made: #{url}/m/#{token}"
+        "Hi! You have updated relief from Second Chance Driving: #{url}/m/#{token}"
       end
 
       @client = Twilio::REST::Client.new(acc_sid, auth_tkn)

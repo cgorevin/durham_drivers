@@ -1,4 +1,6 @@
 es:
+  contacts:
+    twilio_fail: No pudimos textear %s. Intente otro número.
   layouts:
     header:
       search: Buscar

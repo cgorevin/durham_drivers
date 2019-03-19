@@ -53,20 +53,14 @@ toggleAdviceMethod = ->
       emailArea.hide().find('input').attr 'disabled', ''
 
 phoneNumberFormatter = ->
-  prevLength = 0
-  $('.js-phone-format').on 'input', ->
+  $('.js-phone-format').on 'keyup', (e) ->
+    return if e.keyCode == 8
     value = @.value
-    currentLength = value.length
-    shorterThanBefore = currentLength < prevLength
-    prevLength = currentLength
-    return if shorterThanBefore
-    number = @.value.replace /[^\d]/g, ''
+    number = value.replace /[^\d]/g, ''
     length = number.length
 
     formattedNumber = switch
-      when length == 0
-        ''
-      when 1 <= length <= 2
+      when 0 <= length <= 2
         number.replace /(\d+)/, '($1'
       when 3 <= length <= 5
         number.replace /(\d{3})(\d*)/, '($1) $2'
