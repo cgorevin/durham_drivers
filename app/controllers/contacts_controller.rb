@@ -46,8 +46,11 @@ class ContactsController < ApplicationController
     end
   end
 
+  # PATCH /contacts/123
   def update
-    contact = Contact.find session.delete :contact_id
+    # load contact and delete contact id
+    session.delete :contact_id # id should be present but possibly empty
+    contact = Contact.find params[:id] # params[:id] will be present
     contact.update contact_params
     redirect_to next_steps_path
   end

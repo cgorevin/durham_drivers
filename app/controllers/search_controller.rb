@@ -44,7 +44,7 @@ class SearchController < ApplicationController
     contact_id = session[:contact_id]
 
     if contact_id.present?
-      @contact = Contact.find session[:contact_id]
+      @contact = Contact.find contact_id
     else
       redirect_to root_path locale: params[:locale]
     end
