@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1><%= @queued.count %> Queued</h1>
 
-      <%= link_to 'CSV', "/contacts.csv", class: 'btn btn-primary', target: '_blank' %>
+      <%= link_to 'Download CSV', "/contacts.csv", class: 'btn btn-info', target: '_blank' %>
     </div>
 
 
@@ -21,7 +21,7 @@
               <td><%= contact.queue_date.strftime '%b %-d'.freeze %></td>
               <td><%= contact.full_name %></td>
               <td><%= contact.advice_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-secondary'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info'.freeze %></td>
             </tr>
           <% end %>
         </tbody>
@@ -41,7 +41,7 @@
             <tr>
               <td><%= contact.info %></td>
               <td><%= contact.relief_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-secondary'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info'.freeze %></td>
             </tr>
           <% end %>
         </tbody>

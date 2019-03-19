@@ -18,7 +18,7 @@
       <%= text_field_tag :g, @group, class: 'form-control', placeholder: 'Groups 1-52' %>
     </div>
     <div class="col-auto pb-2">
-      <input class="btn btn-success" type="submit" value="Search" data-disable-with="Search">
+      <input class="btn btn-info" type="submit" value="Search" data-disable-with="Search">
     </div>
   </div>
 <% end %>
@@ -49,7 +49,7 @@
     <tbody>
       <% @offenses.each do |offense| %>
         <tr>
-          <td><%= link_to :link, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= offense.status %></td><td><%= offense.group %></td>
+          <td><%= link_to :view, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= offense.status %></td><td><%= offense.group %></td>
         </tr>
       <% end %>
     </tbody>

@@ -38,7 +38,7 @@
         <input class="form-control" min="1900-01-01" max="<%= Date.today %>" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" placeholder="MM/DD/YYYY" required="required" title="MM/DD/YYYY" type="date" name="offense[date_of_birth]" id="offense_date_of_birth">
       </div>
 
-      <input type="submit" name="commit" value="<%= t '.search'.freeze %>" class="btn btn-primary" data-disable-with="<%= t '.search'.freeze %>">
+      <input type="submit" name="commit" value="<%= t '.search'.freeze %>" class="btn btn-info" data-disable-with="<%= t '.search'.freeze %>">
     <% end %>
 
     <hr>
@@ -83,7 +83,7 @@
     </div>
 
     <p>
-      <a target="_blank" rel="noopener" class="btn btn-primary" href="http://www.deardurham.org">
+      <a target="_blank" rel="noopener" class="btn btn-info" href="http://www.deardurham.org">
         <%= t '.about_button' %>
       </a>
     </p>

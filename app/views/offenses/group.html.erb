@@ -1,24 +1,23 @@
-<h1>Group <%= @group %></h1>
+<h1>Search Group <%= @group %></h1>
 
 <%= form_tag group_offenses_path(@group), method: :get, enforce_utf8: false do %>
-  <table>
-    <thead>
-      <th><%= label_tag :f, 'First name' %></th>
-      <th><%= label_tag :m, 'Middle name' %></th>
-      <th><%= label_tag :l, 'Last name' %></th>
-      <th><%= label_tag :d, 'Date of birth' %></th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= text_field_tag :f, @first, placeholder: 'First name' %></td>
-        <td><%= text_field_tag :m, @middle, placeholder: 'Middle name' %></td>
-        <td><%= text_field_tag :l, @last, placeholder: 'Last name' %></td>
-        <td><%= text_field_tag :d, @date, placeholder: 'Date of birth' %></td>
-        <td><%= submit_tag 'Search', name: nil %></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="form-row">
+    <div class="pb-2 col-sm-3">
+      <%= text_field_tag :f, @first, class: 'form-control', placeholder: 'First name' %>
+    </div>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :m, @middle, class: 'form-control', placeholder: 'Middle name' %>
+    </div>
+    <div class="pb-2 col-sm-3">
+      <%= text_field_tag :l, @last, class: 'form-control', placeholder: 'Last name' %>
+    </div>
+    <div class="pb-2 col-sm-2">
+      <%= text_field_tag :d, @date, class: 'form-control', placeholder: 'Date of birth' %>
+    </div>
+    <div class="col-auto pb-2">
+      <input class="btn btn-info" type="submit" value="Search" data-disable-with="Search">
+    </div>
+  </div>
 <% end %>
 
 <br>
@@ -38,9 +37,9 @@
 
     <span>
       Mark all as:
-      <span class="js-mark-as btn btn-secondary">pending</span>
-      <span class="js-mark-as btn btn-secondary">approved</span>
-      <span class="js-mark-as btn btn-secondary">denied</span>
+      <span class="js-mark-as btn btn-info">pending</span>
+      <span class="js-mark-as btn btn-info">approved</span>
+      <span class="js-mark-as btn btn-info">denied</span>
     </span>
   </p>
 <% end %>
@@ -52,7 +51,7 @@
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <%= submit_tag 'Save and send emails'.freeze %>
+  <%= submit_tag 'Save and send emails'.freeze, class: 'btn btn-info' %>
 
   <table>
     <thead>
@@ -72,7 +71,7 @@
     </tbody>
   </table>
 
-  <%= submit_tag 'Save and send emails'.freeze %>
+  <%= submit_tag 'Save and send emails'.freeze, class: 'btn btn-info' %>
 <% end %>
 
 <%= paginate @offenses, param_name: :p %>
