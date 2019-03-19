@@ -1,6 +1,11 @@
 class SearchController < ApplicationController
   def show
     @offense = Offense.new
+
+    respond_to do |format|
+      format.html
+      format.rss { redirect_to root_path }
+    end
   end
 
   def confirm

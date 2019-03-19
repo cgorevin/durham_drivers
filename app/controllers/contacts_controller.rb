@@ -8,7 +8,6 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data Contact.queued_to_csv }
-      # format.csv { send_data text: 'hi' }
     end
   end
 
