@@ -1,3 +1,5 @@
+require 'csv'
+
 class ContactsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show]
 
