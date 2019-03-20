@@ -1,7 +1,7 @@
 <% root = root_path(locale: params[:locale]).freeze %>
 <header>
   <a class="logo" href="<%= root %>">Second Chance Driving</a><input type="checkbox" class="nav-toggle" id="nav-toggle"/>
-  <nav>
+  <nav class="header-nav">
     <ul style="list-style: none;">
       <li><a class="nav-link" href="<%= root %>"><%= t '.search'.freeze %></a></li>
       <li><a class="nav-link" href=<% if I18n.locale == :es %>"/en">English<% else %>"/es">Español<% end %></a></li>

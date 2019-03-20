@@ -1,53 +1,47 @@
 @include desktop {
-  nav {
+  nav.header-nav {
     // all: unset;
     grid-column: 3 / span 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
-
-  nav ul {
-    display: flex;
-    margin-bottom: 0;
-  }
-
-  nav li {
-    margin-right: 3em;
-    margin-bottom: 0;
-  }
-
-  nav a {
-    opacity: 1;
-    position: relative;
-  }
-
-  nav a:hover {
-    text-decoration: none;
-    color: var(--nav);
-  }
-
-  nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background: $green;
-    position: absolute;
-    top: -0.75em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transform-origin: left;
-    transition: transform ease-in-out 250ms;
-  }
-
-  nav a:hover::before {
-    transform: scale(1, 1);
+    ul {
+      display: flex;
+      margin-bottom: 0;
+    }
+    li {
+      margin-right: 3em;
+      margin-bottom: 0;
+    }
+    a {
+      opacity: 1;
+      position: relative;
+      &:hover {
+        text-decoration: none;
+        color: $nav-link-color;
+      }
+      &::before {
+        content: '';
+        display: block;
+        height: 5px;
+        background: $green;
+        position: absolute;
+        top: -0.75em;
+        left: 0;
+        right: 0;
+        transform: scale(0, 1);
+        transform-origin: left;
+        transition: transform ease-in-out 250ms;
+      }
+      &:hover::before {
+        transform: scale(1, 1);
+      }
+    }
   }
 }
 
 @include mobile {
-  nav {
+  nav.header-nav {
     position: absolute;
     text-align: left;
     top: 100%;
@@ -57,29 +51,26 @@
     transform: scale(1,0);
     transform-origin: top;
     transition: transform 400ms ease-in-out;
+    ul {
+      margin: 0;
+      padding-top: 1em;
+      padding-left: 0;
+      list-style: none;
+    }
+    li {
+      margin-bottom: 1em;
+      margin-left: 1em;
+    }
+    a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+      &:hover {
+        color: $green;
+      }
+    }
   }
 
-  nav ul {
-    margin: 0;
-    padding-top: 1em;
-    padding-left: 0;
-    list-style: none;
-  }
-
-  nav li {
-    margin-bottom: 1em;
-    margin-left: 1em;
-  }
-
-  nav a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity 150ms ease-in-out;
-  }
-
-  nav a:hover {
-    color: $green;
-  }
 }
