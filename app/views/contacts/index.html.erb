@@ -14,6 +14,7 @@
           <th>Queue date</th>
           <th>Full Name</th>
           <th>Advice preference</th>
+          <th></th>
         </thead>
         <tbody>
           <% @queued.each do |contact| %>
@@ -21,7 +22,7 @@
               <td><%= contact.queue_date.strftime '%b %-d'.freeze %></td>
               <td><%= contact.full_name %></td>
               <td><%= contact.advice_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-info'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze %></td>
             </tr>
           <% end %>
         </tbody>
@@ -35,13 +36,14 @@
         <thead>
           <th>Info</th>
           <th>Relief preference</th>
+          <th></th>
         </thead>
         <tbody>
           <% @unqueued.each do |contact| %>
             <tr>
               <td><%= contact.info %></td>
               <td><%= contact.relief_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-info'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze %></td>
             </tr>
           <% end %>
         </tbody>

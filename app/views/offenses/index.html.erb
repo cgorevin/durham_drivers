@@ -36,24 +36,21 @@
 </p>
 
 <div class="card">
-    <table>
+  <table>
     <thead>
-      <th></th>
-      <th><%= sortable 'first_name'.freeze, 'First' %></th>
-      <th><%= sortable 'middle_name'.freeze, 'Middle' %></th>
-      <th><%= sortable 'last_name'.freeze, 'Last' %></th>
-      <th><%= sortable 'date_of_birth'.freeze, 'Birthday' %></th>
-      <th><%= sortable 'status'.freeze %></th>
-      <th><%= sortable '"offenses"."group"'.freeze, 'Group'.freeze %></th>
+      <tr>        
+        <th><%= sortable 'first_name'.freeze, 'First' %></th>
+        <th><%= sortable 'middle_name'.freeze, 'Middle' %></th>
+        <th><%= sortable 'last_name'.freeze, 'Last' %></th>
+        <th><%= sortable 'date_of_birth'.freeze, 'Birthday' %></th>
+        <th><%= sortable 'status'.freeze %></th>
+        <th><%= sortable '"offenses"."group"'.freeze, 'Group'.freeze %></th>
+      </tr>
     </thead>
     <tbody>
       <% @offenses.each do |offense| %>
-        <tr>
-          <td><%= link_to :view, offense %></td><td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td>
-          <td>
-            <span class="<%= offense.css_class %>"><%= offense.status %></span>
-          </td>
-          <td><%= offense.group %></td>
+        <tr class="list-group-item-action" data-href="<%= offense_path(offense) %>">
+          <td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><small class="<%= offense.css_class %>"><%= offense.status %></small></td><td><%= offense.group %></td>
         </tr>
       <% end %>
     </tbody>
