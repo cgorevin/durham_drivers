@@ -24,7 +24,8 @@ class Contact < ApplicationRecord
 
     # if requestor, notify of new_ids only
     # if self, notify of all_ids
-    notify_of requestor_name.present? ? new_ids : all_ids
+    # notify_of requestor_name.present? ? new_ids : all_ids
+    notify_of all_ids
   end
 
   def info
