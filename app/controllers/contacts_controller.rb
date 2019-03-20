@@ -1,7 +1,7 @@
 require 'csv'
 
 class ContactsController < ApplicationController
-  before_action :authenticate_admin!, only: [:index, :show]
+  before_action :authenticate_admin!, only: [:index, :show, :edit]
 
   def index
     @queued = Contact.where.not(queue_date: nil).order(queue_date: :asc)
@@ -52,13 +52,27 @@ class ContactsController < ApplicationController
     redirect_to results_path(locale: params[:locale]), alert: msg % phone
   end
 
+  def edit
+    @contact = Contact.find params[:id]
+  end
+
   # PATCH /contacts/123
   def update
+    from_edit = request.referrer['edit']
+
+    # if not from edit, clear session
+    unless from_edit
+      session.delete :contact_id # id should be present but possibly empty
+    end
     # load contact and delete contact id
-    session.delete :contact_id # id should be present but possibly empty
     contact = Contact.find params[:id] # params[:id] will be present
     contact.update contact_params
-    redirect_to next_steps_path
+
+    if from_edit
+      redirect_to contact
+    else
+      redirect_to next_steps_path
+    end
   end
 
   private

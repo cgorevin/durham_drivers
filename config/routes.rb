@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/panel' => 'offenses#panel'
   get '/stats' => 'offenses#stats'
   get 'search_histories/index'
-  resources :contacts, only: [:index, :show, :create, :update]
+  resources :contacts, only: [:index, :show, :create, :edit, :update]
   resources :offenses do
     collection do
       get 'group/:group' => 'offenses#group', as: :group
