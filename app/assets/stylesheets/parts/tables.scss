@@ -1,0 +1,19 @@
+th,td {
+  padding: 4px 2px 2px 2px;
+  &:first-child {
+    padding-left: 6px;
+  }
+}
+
+tr {
+  border-bottom: 1px solid rgba($black, .125);
+  padding: 0 5px;
+}
+
+tbody tr:last-child {
+  border: 0;
+}
+
+[data-href] {
+  cursor: pointer;
+}
