@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between mb-4">
       <%= link_to 'Back', offenses_path, class: 'btn btn-info' %>
 
-      <%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-info' %>
+      <%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-warning' %>
     </div>
 
     <div class="card">
@@ -242,7 +242,11 @@
       </ul>
     </div>
 
-    <%= link_to 'Back', offenses_path, class: 'btn btn-info mt-4' %>
+    <div class="d-flex justify-content-between mt-4">
+      <%= link_to 'Back', offenses_path, class: 'btn btn-info' %>
+
+      <%= link_to 'Edit', "/offenses/#{@offense.id}/edit", class: 'btn btn-warning' %>
+    </div>
   </div>
   <div class="col-md-1"></div>
 </div>
