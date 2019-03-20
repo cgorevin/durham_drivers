@@ -20,58 +20,59 @@
   </div>
 <% end %>
 
-<br>
+<div class="row">
+  <p class="col-md">
+    <%= page_entries_info @offenses %>
+  </p>
+
+  <p class="col-md text-right">
+    Mark all as:
+    <span class="js-mark-as btn btn-warning btn-sm">pending</span>
+    <span class="js-mark-as btn btn-success btn-sm">approved</span>
+    <span class="js-mark-as btn btn-danger btn-sm">denied</span>
+  </p>
+</div>
+
 
 <%= form_tag group_offenses_path(@group) do %>
-  <%= hidden_field_tag :ids, @offenses.pluck(:id) %>
   <%= hidden_field_tag :f, @first %>
   <%= hidden_field_tag :m, @middle %>
   <%= hidden_field_tag :l, @last %>
   <%= hidden_field_tag :d, @date %>
   <%= hidden_field_tag :p, @page %>
 
-  <div class="row">
-    <p class="col-md">
-      <%= page_entries_info @offenses %>
-    </p>
+  <%= submit_tag 'Save and send emails'.freeze, class: 'btn btn-info mb-4' %>
 
-    <p class="col-md text-right">
-      Mark all as:
-      <span class="js-mark-as btn btn-secondary btn-sm">pending</span>
-      <span class="js-mark-as btn btn-success btn-sm">approved</span>
-      <span class="js-mark-as btn btn-danger btn-sm">denied</span>
-    </p>
+  <div class="d-flex justify-content-around">
+    <%= paginate @offenses, param_name: :p, window: 2, outer_window: 1 %>
   </div>
-<% end %>
 
-<%= form_tag group_offenses_path(@group) do %>
-  <%= hidden_field_tag :f, @first %>
-  <%= hidden_field_tag :m, @middle %>
-  <%= hidden_field_tag :l, @last %>
-  <%= hidden_field_tag :d, @date %>
-  <%= hidden_field_tag :p, @page %>
-
-  <%= submit_tag 'Save and send emails'.freeze, class: 'btn btn-info' %>
-
-  <table>
-    <thead>
-      <th><%= sortable 'first_name'.freeze %></th>
-      <th><%= sortable 'middle_name'.freeze %></th>
-      <th><%= sortable 'last_name'.freeze %></th>
-      <th><%= sortable 'date_of_birth'.freeze %></th>
-      <th><%= sortable 'status'.freeze %></th>
-    </thead>
-    <tbody>
-      <% options = %w(pending approved denied pulled) %>
-      <% @offenses.each do |offense| %>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th><%= sortable 'first_name'.freeze %></th>
+          <th><%= sortable 'middle_name'.freeze %></th>
+          <th><%= sortable 'last_name'.freeze %></th>
+          <th><%= sortable 'date_of_birth'.freeze %></th>
+          <th><%= sortable 'status'.freeze %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% options = %w(pending approved denied pulled) %>
+        <% @offenses.each do |offense| %>
         <tr>
           <td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><%= select_tag "offenses[#{offense.id}]status", options_for_select(options, offense.status) %></td><td><%= link_to 'link'.freeze, offense %></td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-around mt-4">
+    <%= paginate @offenses, param_name: :p, window: 2, outer_window: 1 %>
+  </div>
 
   <%= submit_tag 'Save and send emails'.freeze, class: 'btn btn-info' %>
 <% end %>
-
-<%= paginate @offenses, param_name: :p %>

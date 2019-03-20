@@ -35,10 +35,14 @@
   <%= page_entries_info @offenses %>
 </p>
 
-<div class="card">
+<div class="d-flex justify-content-around">
+  <%= paginate @offenses, param_name: :p, window: 2, outer_window: 1 %>
+</div>
+
+<div class="card mb-4">
   <table>
     <thead>
-      <tr>        
+      <tr>
         <th><%= sortable 'first_name'.freeze, 'First' %></th>
         <th><%= sortable 'middle_name'.freeze, 'Middle' %></th>
         <th><%= sortable 'last_name'.freeze, 'Last' %></th>
@@ -57,5 +61,6 @@
   </table>
 </div>
 
-
-<%= paginate @offenses, param_name: :p %>
+<div class="d-flex justify-content-around">
+  <%= paginate @offenses, param_name: :p, window: 2, outer_window: 1 %>
+</div>
