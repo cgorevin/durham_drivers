@@ -5,12 +5,12 @@
   width = $(ID).width()
   margin = top: width/2, right: width/2, bottom: width/2, left: width/2
   radius = Math.min(margin.top, margin.right, margin.bottom, margin.left) - 10
-  hue = d3.scale.category10()
+  hue = d3.scale.ordinal().range(['#777', '#4FC37E', 'red', '#ffc107'])
 
   luminance = d3.scale.sqrt()
     .domain [0, 1e6]
     .clamp true
-    .range [90, 20]
+    .range [95, 5]
 
   # This clears the chart, useful when window resizes.
   $(ID).html '<svg></svg>'

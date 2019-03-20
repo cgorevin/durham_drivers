@@ -2,7 +2,7 @@
 
 class Offense < ApplicationRecord
   COLORS = {
-    'pending' => 'text-secondary',
+    'pending' => 'text-warning',
     'approved' => 'text-success',
     'denied' => 'text-danger',
     'pulled' => 'bg-dark text-light'

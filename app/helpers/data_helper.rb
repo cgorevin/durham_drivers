@@ -4,19 +4,6 @@ module DataHelper
       name: 'offenses',
       children: [
         {
-          name: 'pending',
-          children: [
-            {
-              name: 'unnotified',
-              size: @pending_unnotified
-            },
-            {
-              name: 'notified',
-              size: @pending_notified
-            }
-          ]
-        },
-        {
           name: 'approved',
           children: [
             {
@@ -43,6 +30,19 @@ module DataHelper
           ]
         },
         {
+          name: 'pending',
+          children: [
+            {
+              name: 'unnotified',
+              size: @pending_unnotified
+            },
+            {
+              name: 'notified',
+              size: @pending_notified
+            }
+          ]
+        },
+        {
           name: 'pulled',
           children: [
             {
@@ -54,7 +54,7 @@ module DataHelper
               size: @pulled_notified
             }
           ]
-        },
+        }
       ]
     }.to_json.html_safe
   end
