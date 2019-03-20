@@ -1,4 +1,3 @@
-
 class Contact < ApplicationRecord
   STATES = %w(AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY).freeze
 
@@ -23,7 +22,9 @@ class Contact < ApplicationRecord
     all_ids = (old_ids + new_ids.to_a).map(&:to_i).uniq
     self.offense_ids = all_ids
 
-    notify_of all_ids
+    # if requestor, notify of new_ids only
+    # if self, notify of all_ids
+    notify_of requestor_name.present? ? new_ids : all_ids
   end
 
   def info
