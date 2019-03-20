@@ -67,6 +67,7 @@ es:
       requestor_name: "Mi nombre es:"
       enter_name: "Ingresar nombre"
       save_button: "Siguiente"
+      multiple_clients: 'Si está buscando varios clientes, dé un nombre diferente para cada cliente. Intente "Tu nombre (nombre de cliente)"'
     pending:
       pending: "Hemos identificado algunos problemas que condujeron a la suspensión de su licencia que pueden ser elegibles bajo este
       programa para recibir asistencia. Debido a la gran cantidad de registros que estamos
