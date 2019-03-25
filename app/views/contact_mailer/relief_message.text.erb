@@ -40,11 +40,7 @@ All tickets identified above have been resolved.<% elsif ftas.any? %>
 
 <% if ftp_pending.any? %>
 <% ftp_pending_tickets = 'ticket'.pluralize ftp_pending.count %>
-The Durham District Attorney’s Office is
-<% if ftas.any? || ftp_approved.any? %>
-also
-<% end %>
-willing to ask the Durham District Court to eliminate all fees and/fines for the following traffic <%= ftp_pending_tickets %>:
+The Durham District Attorney’s Office is <% if ftas.any? || ftp_approved.any? %>also <% end %>willing to ask the Durham District Court to eliminate all fees and/fines for the following traffic <%= ftp_pending_tickets %>:
 
 <% ftp_pending.each do |x| %>
 - Full name: <%= x.name %>. Case number: <%= x.case_number %>.  Charge description: <%= x.description %>.
