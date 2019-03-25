@@ -75,6 +75,7 @@ The DEAR team
 VERSION EN ESPAÑOL
 
 Estimado <%= full_name %>:
+
 Gracias por usar el portal en línea de la ciudad para ver si ha recibido alivio a través del Proyecto de Restauración de Licencia del Conductor de Durham. Este proyecto cuenta con el personal del Programa de Eliminación y Restauración de Durham (“DEAR”) en colaboración con la Oficina del Fiscal del Distrito de Durham. Nuestro objetivo es brindar alivio a las personas que han tenido la licencia de conducir suspendida por más de dos años debido a multas de tránsito no resueltas en el Condado de Durham que no involucran a DWI u otras infracciones de tráfico de “alto riesgo”.
 
 <% if ftas.any? %>
@@ -114,12 +115,7 @@ anteriormente se
 <%= ':ha eliminado y :el :boleto ya no :provoca'.pluralize_sentence all_approved.count, :es %>
 la suspensión de su licencia,
 <% else %>
-Aunque
-<%= ':este :boleto :ha sido :cancelado y ya no :está'.pluralize_sentence ftas.count %>
-causando que su licencia sea suspendida,
-<% end %>
-
-esto no significa que ahora pueda conducir legalmente. Puede haber otros asuntos de tráfico que estén causando que su licencia permanezca suspendida. Si no hay otros asuntos de tráfico que causen que su licencia sea suspendida, entonces deberá pagar una tarifa de restablecimiento al NCDMV para restablecer su licencia.
+Aunque <%= ':este :boleto :ha sido :cancelado y ya no :está'.pluralize_sentence ftas.count %> causando que su licencia sea suspendida,<% end %> esto no significa que ahora pueda conducir legalmente. Puede haber otros asuntos de tráfico que estén causando que su licencia permanezca suspendida. Si no hay otros asuntos de tráfico que causen que su licencia sea suspendida, entonces deberá pagar una tarifa de restablecimiento al NCDMV para restablecer su licencia.
 <% end %>
 
 <% if ftp_pending.any? %>
