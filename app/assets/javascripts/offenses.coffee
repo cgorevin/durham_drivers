@@ -16,8 +16,9 @@ sendEmails = ->
 
 
 validateCheckbox = ->
-  $('.js-checkbox').click ->
+  $('.js-checkbox').change ->
     boxes = $ '.js-checkbox'
+    buttons = $ '.btn-outline-info'
     submit = $ 'input[type="submit"]'
     submit.attr 'disabled', !boxes.is ':checked'
     # if 'name not present' checked, uncheck all others
@@ -29,8 +30,10 @@ validateCheckbox = ->
     if checked
       if blank
         boxes[0..-2].prop 'checked', false
+        buttons[0..-2].removeClass('active')
       else
         boxes.last().prop 'checked', false
+        buttons.last().removeClass('active')
 
 $(window).on 'turbolinks:load', markAllAs
 $(window).on 'turbolinks:load', sendEmails
