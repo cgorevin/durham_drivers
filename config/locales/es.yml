@@ -59,7 +59,6 @@ es:
       contact_method: "Prefiero"
       email: "E-mail"
       text: "Mensaje de texto"
-      selector: "Marque uno (requerido):"
       email_request: "Esta dirección de correo electrónico es para "
       phone_request: "Este número de teléfono es para "
       request_start: "Recibo esta información en nombre de "

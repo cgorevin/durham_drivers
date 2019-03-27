@@ -56,7 +56,6 @@ en:
       email: "Email"
       text: "Text message"
       contact_info: "Contact information"
-      selector: "Check one (required):"
       email_request: "This email address is for "
       phone_request: "This phone number is for "
       request_start: "I am getting this information on behalf of "

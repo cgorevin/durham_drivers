@@ -17,28 +17,29 @@
     </label>
   </div>
 
-  <div class="js-requestor-container" style="display: none;">
+  <div class="js-requestor-container btn-group-toggle" style="display: none;" data-toggle="buttons">
     <div class="form-group">
       <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
       <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;', title: 'Valid phone number: "(xxx) xxx-xxxx"' %>
     </div>
 
-    <p><%= t ".selector" %></p>
+    <label class="col btn btn-outline-info text-left form-check mb-2 js-email-option" style="padding-left: 2em;">
+      <input type="radio" name="requestor_type" value="email" class="js-requestor-radio" required="required">
+      <i class="far fa-square mr-1 form-check-input"></i><i class="fa fa-check-square mr-1 form-check-input"></i>
+      <%= t('.email_request') + @offense.name %>.
+    </label>
 
-    <p class="js-email-option form-check">
-      <%= f.radio_button :requestor_name, ' ', class: 'form-check-input js-requestor-radio', required: true %>
-      <%= f.label :requestor_name__, t('.email_request') + @offense.name + '.', class: 'form-check-label' %>
-    </p>
+    <label class="col btn btn-outline-info text-left form-check mb-2 js-phone-option" style="padding-left: 2em;">
+      <input type="radio" name="requestor_type" value="phone" class="js-requestor-radio" required="required">
+      <i class="far fa-square mr-1 form-check-input"></i><i class="fa fa-check-square mr-1 form-check-input"></i>
+      <%= t('.phone_request') + @offense.name %>.
+    </label>
 
-    <p class="js-phone-option form-check" style="display: none;">
-      <%= f.radio_button :requestor_name, '  ', class: 'form-check-input js-requestor-radio', required: true %>
-      <%= f.label :requestor_name___, t('.phone_request') + @offense.name + '.', class: 'form-check-label' %>
-    </p>
-
-    <p class="form-check">
-      <%= f.radio_button :requestor_name, true, class: 'form-check-input js-requestor-radio', required: true %>
-      <%= f.label :requestor_name_true,  t('.request_start') + @offense.name + t('.request_end'), class: 'form-check-label' %>
-    </p>
+    <label class="col btn btn-outline-info text-left form-check mb-2" style="padding-left: 2em;">
+      <input type="radio" name="requestor_type" value="other" class="js-requestor-radio" required="required">
+      <i class="far fa-square mr-1 form-check-input"></i><i class="fa fa-check-square mr-1 form-check-input"></i>
+      <%=  t('.request_start') + @offense.name + t('.request_end') %>
+    </label>
 
     <div class="js-div form-row">
       <div class="col-auto">

@@ -4,7 +4,7 @@ requestorNameToggle = ->
     field = $('.js-field')
     div = $('.js-div')
 
-    if value == 'true'
+    if value == 'other'
       # show and enable name field
       div.css display: 'flex'
       field.removeAttr 'disabled'
