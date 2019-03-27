@@ -1,16 +1,21 @@
 <%= form_for Contact.new do |f| %>
-  <p><%= t '.contact_method' %></p>
-
-  <p class="form-check">
-    <%= f.radio_button :relief_method, 'email', class: 'form-check-input js-contact-radio', required: true %>
-    <%= f.label :relief_method_email, t('.email'), class: 'form-check-label' %>
-  </p>
-
-  <p class="form-check">
-    <%= f.radio_button :relief_method, 'phone', class: 'form-check-input js-contact-radio', required: true %>
-    <%= f.label :relief_method_phone, t('.text'), class: 'form-check-label' %>
-  </p>
-
+  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+    <div class="input-group-prepend">
+      <span class="input-group-text bg-light border-light text-body" style="border-bottom-right-radius: 0; border-top-right-radius: 0;">
+        <%= t '.contact_method' %>
+      </span>
+    </div>
+    <label class="btn btn-outline-info ml-0">
+      <%#= f.radio_button :relief_method, 'email', class: 'js-contact-radio', required: true %>
+      <input class="js-contact-radio" required="required" type="radio" value="email" name="contact[relief_method]">
+      <%= t '.email' %>
+    </label>
+    <label class="btn btn-outline-info">
+      <%#= f.radio_button :relief_method, 'phone', class: 'js-contact-radio', required: true %>
+      <input class="js-contact-radio" required="required" type="radio" value="phone" name="contact[relief_method]">
+      <%= t '.text' %>
+    </label>
+  </div>
 
   <div class="js-requestor-container" style="display: none;">
     <div class="form-group">

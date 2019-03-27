@@ -43,7 +43,7 @@ es:
     approved:
       approved: "Podemos ayudarlo con algunos de los problemas que llevaron a que su
       licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de
-      correo electrónico a continuación y le enviaremos información detallada sobre el
+      correo electrónico o número de teléfono a continuación y le enviaremos información detallada sobre el
       alivio legal que recibió. Tenga en cuenta que esto no significa que pueda conducir
       legalmente. Es probable que aún tengas pasos adicionales que tomar."
     denied:
@@ -56,8 +56,8 @@ es:
       Durham en la suite 6400, en el sexto piso (Durham County Courthouse)."
       about_button: "Obtenga más información sobre el programa DEAR"
     form:
-      contact_method: "Metodo de contacto:"
-      email: "Correo electrónico"
+      contact_method: "Prefiero"
+      email: "E-mail"
       text: "Mensaje de texto"
       selector: "Marque uno (requerido):"
       email_request: "Esta dirección de correo electrónico es para "
@@ -72,7 +72,7 @@ es:
       pending: "Hemos identificado algunos problemas que condujeron a la suspensión de su licencia que pueden ser elegibles bajo este
       programa para recibir asistencia. Debido a la gran cantidad de registros que estamos
       revisando, puede tomar hasta 12 meses para que sus casos sean revisados. Para proteger
-      su privacidad, ingrese su dirección de correo electrónico a continuación y le
+      su privacidad, ingrese su dirección de correo electrónico o número de teléfono a continuación y le
       enviaremos una actualización cuando se revise su caso. Por favor permita hasta 12
       meses. Recibirá una actualización automática tan pronto como sepamos más sobre su caso.
       Si tiene un caso en la corte de tránsito próximo o pendiente, debe ir a la corte en

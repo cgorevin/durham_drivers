@@ -1,3 +1,4 @@
+// for checkboxes inside button
 .btn-outline-info input {
   & ~ .fa-check-square {
     display: none;
@@ -12,3 +13,20 @@
     }
   }
 }
+
+// for checkboxes outside button
+// input.js-checkbox {
+//   display: none;
+//   & ~ .fa-check-square {
+//     display: none;
+//   }
+//
+//   &:checked {
+//     & ~ .fa-square {
+//       display: none;
+//     }
+//     & ~ .fa-check-square {
+//       display: inline;
+//     }
+//   }
+// }

@@ -4,10 +4,6 @@
   --nav: #f7fcfa;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 html, body {
   height: 100%;
 }
@@ -108,11 +104,6 @@ td {
   margin: 20px 0px 10px 0px;
 }
 
-.results-returned {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 /* media queries */
 
 @include mobile {
@@ -187,10 +178,6 @@ td {
 
   .footer-image {
     margin-top: 5px;
-  }
-
-  .btn-primary {
-    font-size: 0.625em;
   }
 
   .durham-logo {
