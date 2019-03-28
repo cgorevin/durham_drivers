@@ -33,9 +33,10 @@ en:
       last_name: "Last Name"
       dob: "Birthdate"
       records_returned: "Here are the records we found. Please select your name if it
-      appears, otherwise select “my name does not appear.”"
-      next_button: "Next"
-      back_button: "Back"
+      appears, otherwise select “My name does not appear”."
+      next_button: Next
+      back_button: Back
+      missing: My name does not appear
     results:
       title: "Results"
     approved:

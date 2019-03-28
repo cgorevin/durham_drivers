@@ -1,6 +1,6 @@
-<%# inside: 1 %>
-<%# outside: 0 %>
-<% inside = false %>
+<%# inside: 10 %>
+<%# outside: 1 %>
+<% inside = true %>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">
@@ -62,18 +62,15 @@
           <label class="col mb-2 btn btn-outline-info text-left">
             <input type="checkbox" name="ids[]" value="" class="js-checkbox">
             <i class="far fa-square mr-1"></i><i class="fa fa-check-square mr-1"></i>
-            My name does not appear
+            <%= t '.missing' %>
           </label>
         <% else %>
           <div class="d-flex align-items-center form-row mr-0">
-            <div class="col-auto">
-              <input id="-1" type="checkbox" name="ids[]" value="" class="js-checkbox">
-              <i class="far fa-square text-info"></i>
-              <i class="fa fa-check-square text-info"></i>
-            </div>
+            <input id="-1" type="checkbox" name="ids[]" value="" class="js-checkbox">
+            <i class="far fa-square text-info col-auto"></i><i class="fa fa-check-square text-info col-auto"></i>
 
             <label class="col btn btn-outline-info text-left pl-2 mb-2 ml-1" for="-1">
-              My name does not appear
+              <%= t '.missing' %>
             </label>
           </div>
 
