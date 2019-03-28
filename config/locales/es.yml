@@ -57,9 +57,10 @@ es:
       Durham en la suite 6400, en el sexto piso (Durham County Courthouse)."
       about_button: "Obtenga más información sobre el programa DEAR"
     form:
-      contact_method: "Prefiero"
-      email: "E-mail"
-      text: "Mensaje de texto"
+      prefer: Prefiero
+      email: E-mail
+      text: Mensaje de texto
+      phone: Número de Teléfono
       email_request: "Esta dirección de correo electrónico es para "
       phone_request: "Este número de teléfono es para "
       request_start: "Recibo esta información en nombre de "

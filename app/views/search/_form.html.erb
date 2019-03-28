@@ -2,7 +2,7 @@
   <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
     <div class="input-group-prepend">
       <span class="input-group-text bg-light border-light text-body" style="border-bottom-right-radius: 0; border-top-right-radius: 0;">
-        <%= t '.contact_method' %>
+        <%= t '.prefer' %>
       </span>
     </div>
     <label class="btn btn-outline-info ml-0">
@@ -18,18 +18,29 @@
   </div>
 
   <div class="js-requestor-container btn-group-toggle" style="display: none;" data-toggle="buttons">
+
     <div class="form-group">
-      <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
-      <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', style: 'display: none;', title: 'Valid phone number: "(xxx) xxx-xxxx"' %>
+      <div class="input-group js-email-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><%= t '.email' %></div>
+        </div>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'address@example.com', required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" %>
+      </div>
+      <div class="input-group js-phone-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><%= t '.phone' %></div>
+        </div>
+        <%= f.phone_field :phone, class: 'form-control js-phone-format', placeholder: '(xxx) xxx-xxxx', required: true, pattern: '.{14}', title: 'Valid phone number: "(xxx) xxx-xxxx"' %>
+      </div>
     </div>
 
-    <label class="col btn btn-outline-info text-left form-check mb-2 js-email-option" style="padding-left: 2em;">
+    <label class="col btn btn-outline-info text-left form-check mb-2 js-email-label" style="padding-left: 2em;">
       <input type="radio" name="requestor_type" value="email" class="js-requestor-radio" required="required">
       <i class="far fa-square mr-1 form-check-input"></i><i class="fa fa-check-square mr-1 form-check-input"></i>
       <%= t('.email_request') + @offense.name %>.
     </label>
 
-    <label class="col btn btn-outline-info text-left form-check mb-2 js-phone-option" style="padding-left: 2em;">
+    <label class="col btn btn-outline-info text-left form-check mb-2 js-phone-label" style="padding-left: 2em;">
       <input type="radio" name="requestor_type" value="phone" class="js-requestor-radio" required="required">
       <i class="far fa-square mr-1 form-check-input"></i><i class="fa fa-check-square mr-1 form-check-input"></i>
       <%= t('.phone_request') + @offense.name %>.

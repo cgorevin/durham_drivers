@@ -15,28 +15,34 @@ requestorNameToggle = ->
 
 contactMethodToggle = ->
   container = $('.js-requestor-container')
-  emailOption = $('.js-email-option')
-  phoneOption = $('.js-phone-option')
-  emailRadio = emailOption.find('input')
-  phoneRadio = phoneOption.find('input')
+  emailLabel = $('.js-email-label')
+  phoneLabel = $('.js-phone-label')
+  emailRadio = emailLabel.find('input')
+  phoneRadio = phoneLabel.find('input')
   emailField = $('input[type=email]')
   phoneField = $('input[type=tel]')
+  emailGroup = $('.js-email-group')
+  phoneGroup = $('.js-phone-group')
 
   $('.js-contact-radio').change ->
     container.show()
     value = @.value
     if value == 'email'
-      emailOption.show()
-      phoneOption.hide()
+      emailLabel.show()
+      phoneLabel.hide()
       phoneRadio.prop 'checked', false
-      emailField.show().removeAttr 'disabled'
-      phoneField.hide().attr 'disabled', ''
+      emailGroup.show()
+      emailField.removeAttr 'disabled'
+      phoneGroup.hide()
+      phoneField.attr 'disabled', ''
     else if value == 'phone'
-      emailOption.hide()
+      emailLabel.hide()
+      phoneLabel.show()
       emailRadio.prop 'checked', false
-      phoneOption.show()
-      emailField.hide().attr 'disabled', ''
-      phoneField.show().removeAttr 'disabled'
+      emailGroup.hide()
+      emailField.attr 'disabled', ''
+      phoneGroup.show()
+      phoneField.removeAttr 'disabled'
 
 toggleAdviceMethod = ->
   emailArea = $('.email-area')

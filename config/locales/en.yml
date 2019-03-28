@@ -53,9 +53,10 @@ en:
       suite 6400 on the 6th floor."
       about_button: "Learn more about the DEAR program"
     form:
-      contact_method: "I prefer"
-      email: "Email"
-      text: "Text message"
+      prefer: I prefer
+      email: Email
+      text: Text message
+      phone: Phone Number
       contact_info: "Contact information"
       email_request: "This email address is for "
       phone_request: "This phone number is for "
