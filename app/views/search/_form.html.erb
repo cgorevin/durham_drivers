@@ -18,7 +18,6 @@
   </div>
 
   <div class="js-requestor-container btn-group-toggle" style="display: none;" data-toggle="buttons">
-
     <div class="form-group">
       <div class="input-group js-email-group">
         <div class="input-group-prepend">
@@ -52,17 +51,21 @@
       <%=  t('.request_start') + @offense.name + t('.request_end') %>
     </label>
 
-    <div class="js-div form-row">
-      <div class="col-auto">
-        <%= t '.requestor_name' %>
-      </div>
-      <div class="col-auto">
-        <%= f.text_field :requestor_name, class: 'js-field form-control', disabled: true, required: true, pattern: '.*\S.*', placeholder: t('.enter_name') %>
+    <div class="js-div mt-2 mb-4">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><%= t '.requestor_name' %></div>
+          </div>
+          <%= f.text_field :requestor_name, class: 'js-field form-control', disabled: true, required: true, pattern: '.*\S.*', placeholder: t('.enter_name') %>
+        </div>
       </div>
 
-      <small class="text-muted pl-4 mb-4">
-        <%= t '.multiple_clients' %>
-      </small>
+      <div class="text-center">
+        <small class="text-muted">
+          <%= t '.multiple_clients' %>
+        </small>
+      </div>
     </div>
   </div>
 

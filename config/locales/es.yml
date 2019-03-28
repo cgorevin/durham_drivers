@@ -65,8 +65,8 @@ es:
       phone_request: "Este número de teléfono es para "
       request_start: "Recibo esta información en nombre de "
       request_end: " a solicitud de la persona."
-      requestor_name: "Mi nombre es:"
-      enter_name: "Ingresar nombre"
+      requestor_name: Nombre
+      enter_name: Tu nombre (nombre de cliente)
       save_button: "Siguiente"
       multiple_clients: 'Si está buscando varios clientes, dé un nombre diferente para cada cliente. Intente "Tu nombre (nombre de cliente)"'
     pending:

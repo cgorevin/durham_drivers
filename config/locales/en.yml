@@ -62,8 +62,8 @@ en:
       phone_request: "This phone number is for "
       request_start: "I am getting this information on behalf of "
       request_end: " at their request."
-      requestor_name: "My name is:"
-      enter_name: "Enter name here"
+      requestor_name: Name
+      enter_name: Your name (client name)
       save_button: "Next"
       multiple_clients: 'If your are searching for multiple clients, please give a different name for every client. Try "Your name (client name)"'
     pending:
