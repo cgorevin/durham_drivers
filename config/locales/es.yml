@@ -35,15 +35,16 @@ es:
       last_name: "Apellido"
       dob: "Fecha de nacimiento"
       records_returned: 'Aquí están los registros que encontramos. Seleccione su nombre si aparece, de
-      lo contrario, seleccione "Mi nombre no aparece".'
-      next_button: "Siguiente"
-      back_button: "Atrás"
+      lo contrario, seleccione “Mi nombre no aparece”.'
+      next_button: Siguiente
+      back_button: Atrás
+      missing: Mi nombre no aparece
     results:
       title: "Resultados"
     approved:
       approved: "Podemos ayudarlo con algunos de los problemas que llevaron a que su
       licencia fuese suspendida. Para proteger su privacidad, ingrese su dirección de
-      correo electrónico a continuación y le enviaremos información detallada sobre el
+      correo electrónico o número de teléfono a continuación y le enviaremos información detallada sobre el
       alivio legal que recibió. Tenga en cuenta que esto no significa que pueda conducir
       legalmente. Es probable que aún tengas pasos adicionales que tomar."
     denied:
@@ -56,23 +57,23 @@ es:
       Durham en la suite 6400, en el sexto piso (Durham County Courthouse)."
       about_button: "Obtenga más información sobre el programa DEAR"
     form:
-      contact_method: "Metodo de contacto:"
-      email: "Correo electrónico"
-      text: "Mensaje de texto"
-      selector: "Marque uno (requerido):"
+      prefer: Prefiero
+      email: E-mail
+      text: Mensaje de texto
+      phone: Número de Teléfono
       email_request: "Esta dirección de correo electrónico es para "
       phone_request: "Este número de teléfono es para "
       request_start: "Recibo esta información en nombre de "
       request_end: " a solicitud de la persona."
-      requestor_name: "Mi nombre es:"
-      enter_name: "Ingresar nombre"
+      requestor_name: Nombre
+      enter_name: Tu nombre
       save_button: "Siguiente"
       multiple_clients: 'Si está buscando varios clientes, dé un nombre diferente para cada cliente. Intente "Tu nombre (nombre de cliente)"'
     pending:
       pending: "Hemos identificado algunos problemas que condujeron a la suspensión de su licencia que pueden ser elegibles bajo este
       programa para recibir asistencia. Debido a la gran cantidad de registros que estamos
       revisando, puede tomar hasta 12 meses para que sus casos sean revisados. Para proteger
-      su privacidad, ingrese su dirección de correo electrónico a continuación y le
+      su privacidad, ingrese su dirección de correo electrónico o número de teléfono a continuación y le
       enviaremos una actualización cuando se revise su caso. Por favor permita hasta 12
       meses. Recibirá una actualización automática tan pronto como sepamos más sobre su caso.
       Si tiene un caso en la corte de tránsito próximo o pendiente, debe ir a la corte en

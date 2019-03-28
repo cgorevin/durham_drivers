@@ -1,3 +1,6 @@
+<%# inside: 10 %>
+<%# outside: 1 %>
+<% inside = true %>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">
@@ -27,25 +30,52 @@
     <p class="records-returned"><%= t '.records_returned' %></p>
 
     <%= form_tag results_path do |f| %>
-      <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
-        <% group = array.first %>
-        <% offenses = array.last %>
-        <% ids = offenses.map(&:id) %>
-        <% name = group[0] %>
-        <% dob = group[1]&.strftime(', %-m/%-d/%Y') %>
-        <% street = group[2] %>
+      <div class="btn-group-toggle" <%= inside ? 'data-toggle="buttons"'.html_safe : nil %>>
+        <% @offenses.group_by { |x| [x.name, x.dob, x.sex, x.race] }.each_with_index do |array, index| %>
+          <% group = array.first %>
+          <% offenses = array.last %>
+          <% ids = offenses.map(&:id) %>
+          <% name = group[0] %>
+          <% dob = group[1]&.strftime ', %-m/%-d/%Y' %>
 
-        <div class="results-returned">
-          <%= check_box_tag "ids[]", ids, false, class: 'js-checkbox', id: index %>
-          <%= label_tag index, "#{name}#{dob}" %>
-        </div>
-      <% end %>
+          <%# for checkboxes inside button %>
+          <% if inside %>
+            <label class="col mb-2 btn btn-outline-info text-left">
+              <input type="checkbox" name="ids[]" value="<%= ids.join ' ' %>" class="js-checkbox">
+              <i class="far fa-square mr-1"></i><i class="fa fa-check-square mr-1"></i>
+              <%= "#{name}#{dob}" %>
+            </label>
+          <% else %>
+            <%# for checkboxes outside button %>
+            <div class="d-flex align-items-center form-row mr-0">
+              <input id="<%= index %>" type="checkbox" name="ids[]" value="<%= ids.join ' ' %>" class="js-checkbox">
+              <i class="far fa-square text-info col-auto"></i><i class="fa fa-check-square text-info col-auto"></i>
 
-      <div class="results-returned">
-        <%= check_box_tag "ids[]", '', false, class: 'js-checkbox', id: -1 %>
-        <%= label_tag -1, 'My name does not appear' %>
+              <label class="col btn btn-outline-info text-left pl-2 mb-2 ml-1" for="<%= index %>">
+                <%= "#{name}#{dob}" %>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if inside %>
+          <label class="col mb-2 btn btn-outline-info text-left">
+            <input type="checkbox" name="ids[]" value="" class="js-checkbox">
+            <i class="far fa-square mr-1"></i><i class="fa fa-check-square mr-1"></i>
+            <%= t '.missing' %>
+          </label>
+        <% else %>
+          <div class="d-flex align-items-center form-row mr-0">
+            <input id="-1" type="checkbox" name="ids[]" value="" class="js-checkbox">
+            <i class="far fa-square text-info col-auto"></i><i class="fa fa-check-square text-info col-auto"></i>
+
+            <label class="col btn btn-outline-info text-left pl-2 mb-2 ml-1" for="-1">
+              <%= t '.missing' %>
+            </label>
+          </div>
+
+        <% end %>
       </div>
-
 
       <div class="d-flex justify-content-between">
         <%= link_to t('.back_button'), root_path, class: 'btn btn-info' %>

@@ -33,14 +33,15 @@ en:
       last_name: "Last Name"
       dob: "Birthdate"
       records_returned: "Here are the records we found. Please select your name if it
-      appears, otherwise select “my name does not appear.”"
-      next_button: "Next"
-      back_button: "Back"
+      appears, otherwise select “My name does not appear”."
+      next_button: Next
+      back_button: Back
+      missing: My name does not appear
     results:
       title: "Results"
     approved:
       approved: "We were able to assist with some of the issues leading to your suspended
-      license.  To protect your privacy, please enter your email address below and we will
+      license.  To protect your privacy, please enter your email address or phone number below and we will
       send you detailed information about the legal relief you received. Please note, this
       does not mean you can legally drive.  You likely still have additional steps to take."
     denied:
@@ -52,25 +53,25 @@ en:
       suite 6400 on the 6th floor."
       about_button: "Learn more about the DEAR program"
     form:
-      contact_method: "Contact method:"
-      email: "Email"
-      text: "Text message"
+      prefer: I prefer
+      email: Email
+      text: Text message
+      phone: Phone Number
       contact_info: "Contact information"
-      selector: "Check one (required):"
       email_request: "This email address is for "
       phone_request: "This phone number is for "
       request_start: "I am getting this information on behalf of "
       request_end: " at their request."
-      requestor_name: "My name is:"
-      enter_name: "Enter name here"
+      requestor_name: Name
+      enter_name: Your name
       save_button: "Next"
       multiple_clients: 'If your are searching for multiple clients, please give a different name for every client. Try "Your name (client name)"'
     pending:
       pending: "We have identified some issues leading to your suspended license that may be
-      eligible under this program for assistance.  Due the large number of records we are
-      reviewing it could take up to 12 months for your cases to be reviewed.  To protect
-      your privacy, please enter your email address below and we will send you an update
-      when your case has been reviewed.  Please allow up to 12 months.  You will get an
+      eligible under this program for assistance. Due the large number of records we are
+      reviewing it could take up to 12 months for your cases to be reviewed. To protect
+      your privacy, please enter your email address or phone number below and we will send you an update
+      when your case has been reviewed. Please allow up to 12 months.  You will get an
       automatic update as soon as we know more about your case.  If you have upcoming or
       pending traffic court case, you should go to court on your court dates. "
     record_missing:
