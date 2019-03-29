@@ -1,42 +1,4 @@
-/* universal */
-
-:root {
-  --nav: #f7fcfa;
-}
-
-html, body {
-  height: 100%;
-}
-
-/* buttons & images */
-
-.dear-program {
-  margin: 5px 10px 15px 0px;
-}
-
-/* header */
-/* footer */
-
-.footer-row {
-  margin-top: 15px;
-}
-
-.text-uppercase, .credits, .copyright, .list-unstyled > li > a {
-  text-decoration: none;
-  color: var(--nav);
-}
-
-.footer-sections {
-  @include mobile {
-    margin-top: 15px;
-  }
-}
-
 /* typography */
-
-.welcome-sub {
-  font-style: italic;
-}
 
 p, li, a, .copyright, td {
   font-family: 'Raleway', sans-serif;
@@ -44,15 +6,7 @@ p, li, a, .copyright, td {
 
 p {
   font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-th {
-  font-size: 1.33em;
-}
-
-td {
-  font-size: 1.25em;
+  line-height: 1.6em;
 }
 
 /* show page */
@@ -62,26 +16,11 @@ td {
   list-style: none;
 }
 
-.welcome {
-  margin-bottom: 7px;
-}
-
-.welcome-sub {
-  margin-top: 0px;
-}
-
-.project-partners-text {
-  margin-bottom: 15px;
-}
-
-.partners {
-  padding-left: 0px;
-}
-
 .project-partners img {
   display: block;
   margin: 0 auto;
 }
+
 .district-attorney {
   margin: 15px 10px 15px 10px;
   text-align: center;
@@ -91,13 +30,6 @@ td {
 
 .title {
   margin-top: 50px;
-}
-
-.search-result-table {
-  margin: 0 auto;
-  padding: 10px;
-  width: 70%;
-  border-spacing: 3px;
 }
 
 .records-returned {
@@ -135,7 +67,7 @@ td {
   .nav-toggle-label span::before,
   .nav-toggle-label span::after {
     display: block;
-    background: var(--nav);
+    background: $nav-link-color;
     height: 2px;
     width: 2em;
     border-radius: 2px;

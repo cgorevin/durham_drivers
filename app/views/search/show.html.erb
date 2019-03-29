@@ -16,7 +16,7 @@
       <%= image_tag 'DEAR_logo_s.webp'.freeze, class: 'logo-twin'.freeze %>
     </div>
 
-    <h6 class="welcome text-center"><b><%= t '.welcome_message' %></b></h6>
+    <h6 class="text-center"><b><%= t '.welcome_message' %></b></h6>
 
     <p><%= t '.introduction' %></p>
     <h5><b><%= t '.introduction_header' %></b></h5>
@@ -101,12 +101,11 @@
 
     <p class="project-partners-text"><%= t '.project_partners'.freeze %></p>
 
-    <ul class="partners">
+    <ul class="p-0">
       <li class="project-partners district-attorney">
         <h3 class="district-attorney-media"><%= t '.district_attorney'.freeze %></h3>
       </li>
       <li class="project-partners">
-        <%#= image_tag 'justice_center_s.webp'.freeze, class: 'ncjc-logo'.freeze %>
         <%= image_tag ''.freeze, class: 'ncjc-logo'.freeze, data: { src: asset_path('justice_center_s.webp'.freeze)} %>
       </li>
     </ul>

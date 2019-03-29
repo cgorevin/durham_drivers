@@ -16,7 +16,7 @@
 
 .text-uppercase, .credits, .copyright, .list-unstyled > li > a {
   text-decoration: none;
-  color: var(--nav);
+  color: $nav-link-color;
 }
 
 .footer-sections {
