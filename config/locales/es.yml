@@ -6,8 +6,8 @@ es:
       search: Buscar
   search:
     show:
-      welcome_message: "¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!"
-      welcome_message_sub: "Ayudamos a las personas a volver a la carretera y al trabajo de una forma segura"
+      welcome_message: ¡Bienvenido al Proyecto de Restauración de Licencia para Conductores de Durham!
+      welcome_message_sub: Ayudamos a las personas a volver a la carretera y al trabajo de una forma segura
       introduction_header: "Verifique si recibió alivio:"
       introduction: 'El Programa de Eliminación y Restauración de Durham (“DEAR”) respalda la iniciativa de transformación de la Oficina del Fiscal del Distrito de Durham para resolver los antiguos cargos de tráfico que están causando suspensiones de la licencia de conducir a largo plazo para los residentes de Durham.
       Busque en este sitio web para determinar si ha recibido alivio, ya sea por la anulación de un caso de
@@ -16,18 +16,18 @@ es:
       a la corte en las fechas programas para ir a la corte. Este proyecto ayuda a las personas que han tenido una licencia de conducir suspendida por más de 2 años debido a cargos de tráfico en el Condado de Durham, que no involucran a DWI
       u otras infracciones de tráfico de "alto riesgo".'
       project_partners: "Este proyecto es apoyado por los siguientes socios:"
-      about_button: "Aprenda más sobre el proyecto"
+      about_button: Aprenda más sobre el proyecto
       about1: "Entre diciembre del 2018 y febrero del 2019, la Oficina del Fiscal del Distrito de Durham, como parte de un esfuerzo único para ayudar a las personas a restablecer sus privilegios de conducir, despidió más de 50,000 casos de tráfico a más de 30,000 personas. Muchos de estos casos de tráfico pendientes tenían más de diez años y ninguno de ellos implicaba un DWI u otro delito de tráfico de alto riesgo. La desestimación de un caso de tráfico pendiente elimina la suspensión de la licencia de conducir que se activó porque el caso de tráfico no se resolvió."
       about2: "Durante el mismo período, la Oficina del Fiscal del Distrito de Durham y DEAR se asociaron para pedir al Tribunal del Distrito de Durham que elimine todas las multas y tarifas impagas para 15,000 casos de tráfico a más de 11,000 personas. Hasta el momento, se han presentado aproximadamente 1,500 casos ante los tribunales, y 13,500 casos adicionales que tienen al menos 2 años de antigüedad y no implican un DWI u otros delitos de tráfico de alto riesgo han sido identificados para el alivio de la deuda. Durante los próximos 12 a 18 meses, la Oficina del Fiscal del Distrito de Durham solicitará al Tribunal de Distrito de Durham que elimine todas las multas y tarifas impagas por estos casos. La eliminación de la deuda impaga de la corte de tráfico elimina cualquier suspensión de la licencia de conducir que se estaba provocado por el caso de trafico irresuelto."
       about3: "Busque en este sitio web para determinar si ha recibido alivio, ya sea por la anulación de un caso de tráfico pendiente anterior o la eliminación de la deuda de la corte de tráfico sin pagar anterior, o ambos. La búsqueda en este sitio web también le informará si tiene o no una antigua deuda impaga del tribunal de tránsito que ha sido previamente identificada por la Oficina del Fiscal del Distrito de Durham para pedirle al Tribunal del Distrito de Durham que elimine la deuda durante los próximos 12 a 18 meses."
       about4: "Las personas que hayan recibido ayuda a través de la Iniciativa de restauración de la licencia de conducir de Durham también tendrán la oportunidad de asistir a una clínica legal gratuita patrocinada por DEAR. Los participantes de la clínica se reunirán con un abogado para revisar su registro de manejo en todo el estado e identificar cualquier otra razón por la cual su licencia esté suspendida."
-      about5: "Si ha recibido ayuda a través del programa o desea compartir su perspectiva, le invitamos a que nos envíe un comentario a dear@durhamnc.gov."
-      district_attorney: "Oficina Fiscal del Distrito del Condado de Durham"
-      first_name: "Primer Nombre"
-      middle_name: "Segundo Nombre"
-      last_name: "Apellido"
-      dob: 'Fecha de Nacimiento'
-      search: "Buscar"
+      about5: Si ha recibido ayuda a través del programa o desea compartir su perspectiva, le invitamos a que nos envíe un comentario a dear@durhamnc.gov.
+      district_attorney: Oficina Fiscal del Distrito del Condado de Durham
+      first_name: Primer Nombre
+      middle_name: Segundo Nombre
+      last_name: Apellido
+      dob: Fecha de Nacimiento
+      search: Buscar
     confirm:
       title: "Tu Búsqueda"
       first_name: "Primer Nombre"

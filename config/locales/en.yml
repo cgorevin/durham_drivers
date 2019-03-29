@@ -6,26 +6,23 @@ en:
       search: Search
   search:
     show:
-      welcome_message: "Welcome to the Driver’s License Restoration Project: Getting you safely back on the road and back to work!"
       welcome_message: "Durham Second Chance Driving Project: Getting you safely back on the road and back to work!"
-      welcome_message_sub: "Helping people get safely back on the road and back to work"
       introduction_header: "Search to see if you received relief:"
       introduction: "The Durham Expunction & Restoration Program is supporting the transformational initiative of the Durham District Attorney’s Office to resolve old traffic charges that are causing long-term driver’s license suspensions for Durham residents. Please search this website to determine if you have received relief—either the dismissal of an old pending traffic case or the elimination of old unpaid traffic court debt, or both."
       upcoming_court_dates: "<b>Please note</b>: If you have upcoming traffic court cases, you should attend them. This project assists people who have had a suspended driver’s license for more than 2 years due to traffic charges in Durham County that do not involve DWIs or other “high risk” traffic offenses."
       project_partners: "This project is supported by the following partners:"
-      about_button: "Learn more about the project"
+      about_button: Learn more about the project
       about1: "Between December 2018 and February 2019, the Durham District Attorney’s Office — as part of a one-time effort to help people restore their driving privileges — dismissed over 50,000 traffic cases for more than 30,000 people. Many of these pending traffic cases were over ten years old and none of them involved a DWI or other high-risk traffic offense. The dismissal of a pending traffic case eliminates any driver’s license suspension that was being triggered because the traffic case was unresolved."
       about2: "During the same period, the Durham District Attorney’s Office and DEAR partnered to begin the process of asking the Durham District Court to eliminate all unpaid fines and fees for 15,000 traffic cases for over 11,000 people. Approximately 1,500 cases have been brought before the courts so far, and an additional 13,500 additional cases that are at least 2 years old and do not involve a DWI or other high-risk traffic offense have been pre-identified for debt relief. Over the next 12-18 months, the Durham District Attorney’s Office will motion the Durham District Court to eliminate all unpaid fines and fees for these cases. The elimination of unpaid traffic court debt eliminates any driver’s license suspension that was being triggered because the traffic case was unresolved."
       about3: "Please search this website to determine if you have received relief—either the dismissal of an old pending traffic case or the elimination of old unpaid traffic court debt, or both. Searching this website will also inform you whether or not you have an old unpaid traffic court debt that has been pre-identified for the Durham District Attorney’s Office to ask the Durham District Court to eliminate the debt over the next 12-18 months."
       about4: "Individuals who have received relief through the Durham Driver’s License Restoration Initiative will also be provided an opportunity to attend a free legal clinic sponsored by DEAR. Clinic participants will meet with an attorney to review their statewide driving record and identify any other reasons their license is suspended."
       about5: "If you have received relief through the program or would otherwise like to share your perspective, we welcome you to send us a comment at dear@durhamnc.gov."
-
-      district_attorney: "Durham County District Attorney's Office"
-      first_name: "First Name"
-      middle_name: "Middle Name"
-      last_name: "Last Name"
-      dob: 'Date of Birth'
-      search: "Search"
+      district_attorney: Durham County District Attorney's Office
+      first_name: First Name
+      middle_name: Middle Name
+      last_name: Last Name
+      dob: Date of Birth
+      search: Search
     confirm:
       title: "Your Search"
       first_name: "First Name"

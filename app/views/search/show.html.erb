@@ -1,6 +1,4 @@
 <%# preload top header images, lazyload mayor, deberry, and justice center images %>
-<!-- <link rel="preload" href="/durham_logo_transparent.png" as="image" type="image/png">
-<link rel="preload" href="<%= asset_url 'DEAR_logo_s.webp'.freeze %>" as="image"> -->
 
 <div class="row">
   <div class="col-md-2"></div>
@@ -52,7 +50,6 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="card mb-4">
-          <%#= image_tag 'mayor2.webp'.freeze, class: 'card-img-top'.freeze %>
           <%= image_tag ''.freeze, class: 'card-img-top'.freeze, data: { src: asset_path('mayor2.webp'.freeze) } %>
 
           <div class="card-header pt-3">
@@ -70,7 +67,6 @@
 
       <div class="col-sm-6">
         <div class="card mb-4">
-          <%#= image_tag 'deberry.webp'.freeze, class: 'card-img-top'.freeze %>
           <%= image_tag ''.freeze, class: 'card-img-top'.freeze, data: { src: asset_path('deberry.webp'.freeze)} %>
 
           <div class="card-header pt-3">
@@ -107,9 +103,7 @@
 
     <ul class="partners">
       <li class="project-partners district-attorney">
-        <h3 class="district-attorney-media">
-          <%= t '.district_attorney'.freeze %>
-        </h3>
+        <h3 class="district-attorney-media"><%= t '.district_attorney'.freeze %></h3>
       </li>
       <li class="project-partners">
         <%#= image_tag 'justice_center_s.webp'.freeze, class: 'ncjc-logo'.freeze %>
