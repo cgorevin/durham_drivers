@@ -29,17 +29,8 @@
 
 // bootstrap (129KB) (loads all in one file)
 
-// custom bootstrap require (32.1KB)
+// custom bootstrap require (43.5KB) (loads individually)
   // util (6.0KB) << yes
   // alert (5.6KB) << yes
   // button (5.8KB) << yes
-  // carousel (19.9KB)
-  // collapse (13.1KB)
-  // dropdown (18.0KB)
-  // modal (19.8KB)
   // tooltip (26.1KB) << yes
-  // popover (7.5KB)
-  // scrollspy (11.6KB)
-  // tab (8.2KB)
-  // toast (7.7KB)
-  // boostrap sprockets (277B)

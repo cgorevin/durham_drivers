@@ -1,3 +1,7 @@
+<%# preload top header images, lazyload mayor, deberry, and justice center images %>
+<!-- <link rel="preload" href="/durham_logo_transparent.png" as="image" type="image/png">
+<link rel="preload" href="<%= asset_url 'DEAR_logo_s.webp'.freeze %>" as="image"> -->
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -48,7 +52,8 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="card mb-4">
-          <%= image_tag 'mayor2.webp'.freeze, class: 'card-img-top'.freeze %>
+          <%#= image_tag 'mayor2.webp'.freeze, class: 'card-img-top'.freeze %>
+          <%= image_tag ''.freeze, class: 'card-img-top'.freeze, data: { src: asset_path('mayor2.webp'.freeze) } %>
 
           <div class="card-header pt-3">
             <h5 class="card-title"><b>Steve Schewel</b></h5>
@@ -65,7 +70,8 @@
 
       <div class="col-sm-6">
         <div class="card mb-4">
-          <%= image_tag 'deberry.webp'.freeze, class: 'card-img-top'.freeze %>
+          <%#= image_tag 'deberry.webp'.freeze, class: 'card-img-top'.freeze %>
+          <%= image_tag ''.freeze, class: 'card-img-top'.freeze, data: { src: asset_path('deberry.webp'.freeze)} %>
 
           <div class="card-header pt-3">
             <h5 class="card-title"><b>Satana Deberry</b></h5>
@@ -106,7 +112,8 @@
         </h3>
       </li>
       <li class="project-partners">
-        <%= image_tag 'justice_center_s.webp'.freeze, class: 'ncjc-logo'.freeze %>
+        <%#= image_tag 'justice_center_s.webp'.freeze, class: 'ncjc-logo'.freeze %>
+        <%= image_tag ''.freeze, class: 'ncjc-logo'.freeze, data: { src: asset_path('justice_center_s.webp'.freeze)} %>
       </li>
     </ul>
   </div>
