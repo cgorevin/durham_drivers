@@ -114,7 +114,9 @@
         <h3 class="district-attorney-media"><%= t '.district_attorney'.freeze %></h3>
       </li>
       <li class="project-partners">
-        <%= image_tag ''.freeze, class: 'ncjc-logo'.freeze, data: { src: asset_path('justice_center_s.webp'.freeze)} %>
+        <picture data-src="<%= asset_path 'justice_center_s.webp' %>" data-fallback="<%= asset_path 'justice_center_s.jpg' %>">
+          <img alt="North Carolina Justice Center" class="ncjc-logo">
+        </picture>
       </li>
     </ul>
   </div>
