@@ -43,7 +43,7 @@
               Birthday
             </div>
             <div class="col-8 col-sm-9">
-              <%= @contact.offenses.pluck(:date_of_birth).uniq.map{|x| x.strftime('%-m/%-d/%Y')}.join ', ' %>
+              <%= @contact.offenses.pluck(:date_of_birth).uniq.compact.map{|x| x.strftime('%-m/%-d/%Y')}.join ', ' %>
             </div>
           </div>
         </li>
@@ -148,21 +148,18 @@
       </ul>
       <div class="card-footer text-center text-muted">
         <% if @contact.queue_date.present? %>
-          <div>
+          <div data-toggle="tooltip" title="<%= @contact.queue_date.strftime('%b %d, %Y') %>">
             Queued
             <%= time_ago_in_words @contact.queue_date %> ago
-            (<%= @contact.queue_date.strftime('%b %d, %Y') %>)
           </div>
         <% end %>
-        <div>
-          Created
-          <%= time_ago_in_words @contact.created_at %> ago
-          (<%= @contact.created_at.strftime('%b %d, %Y %l:%M %P') %>)
-        </div>
-        <div>
+        <div data-toggle="tooltip" title="<%= @contact.updated_at.strftime('%b %d, %Y %l:%M %P') %>">
           Last updated
           <%= time_ago_in_words @contact.updated_at %> ago
-          (<%= @contact.updated_at.strftime('%b %d, %Y %l:%M %P') %>)
+        </div>
+        <div data-toggle="tooltip" title="<%= @contact.created_at.strftime('%b %d, %Y %l:%M %P') %>">
+          Created
+          <%= time_ago_in_words @contact.created_at %> ago
         </div>
       </div>
     </div>
