@@ -1,34 +1,3 @@
-contactMethodToggle = ->
-  container = $('.js-requestor-container')
-  emailLabel = $('.js-email-label')
-  phoneLabel = $('.js-phone-label')
-  emailRadio = emailLabel.find('input')
-  phoneRadio = phoneLabel.find('input')
-  emailField = $('input[type=email]')
-  phoneField = $('input[type=tel]')
-  emailGroup = $('.js-email-group')
-  phoneGroup = $('.js-phone-group')
-
-  $('.js-contact-radio').change ->
-    container.show()
-    value = @.value
-    if value == 'email'
-      emailLabel.show()
-      phoneLabel.hide()
-      phoneRadio.prop 'checked', false
-      emailGroup.show()
-      emailField.removeAttr 'disabled'
-      phoneGroup.hide()
-      phoneField.attr 'disabled', ''
-    else if value == 'phone'
-      emailLabel.hide()
-      phoneLabel.show()
-      emailRadio.prop 'checked', false
-      emailGroup.hide()
-      emailField.attr 'disabled', ''
-      phoneGroup.show()
-      phoneField.removeAttr 'disabled'
-
 requestorNameToggle = ->
   $('.js-requestor-radio').change ->
     value = @.value
@@ -61,6 +30,5 @@ toggleAdviceMethod = ->
       emailArea.hide().find('input').attr 'disabled', ''
 
 
-$(window).on 'turbolinks:load', contactMethodToggle
 $(window).on 'turbolinks:load', requestorNameToggle
 $(window).on 'turbolinks:load', toggleAdviceMethod
