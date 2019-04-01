@@ -1,9 +1,3 @@
-markAllAs = ->
-  $('.js-mark-as').click ->
-    value = $(@).text()
-    options = $ "option[value='#{value}']"
-    options.prop 'selected', true
-
 sendEmails = ->
   $('.js-send-emails').change ->
     initial = $(@).find('option[selected="selected"]').text()
@@ -35,6 +29,5 @@ validateCheckbox = ->
         boxes.last().prop 'checked', false
         buttons.last().removeClass('active')
 
-$(window).on 'turbolinks:load', markAllAs
 $(window).on 'turbolinks:load', sendEmails
 $(window).on 'turbolinks:load', validateCheckbox
