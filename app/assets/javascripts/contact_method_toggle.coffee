@@ -1,3 +1,4 @@
+# jQuery version
 contactMethodToggle = ->
   hide = (container, field, label) ->
     container.hide()
@@ -30,7 +31,7 @@ contactMethodToggle = ->
   $('.js-contact-radio').change toggle
 $(window).on 'turbolinks:load', contactMethodToggle
 
-# no jquery
+# native version
 # https://github.com/jackocnr/intl-tel-input/wiki/Converting-jQuery-to-JavaScript
 # contactMethodToggle = ->
 #   hide = (container, field, label) ->
