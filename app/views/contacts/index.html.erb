@@ -21,7 +21,7 @@
               <td><%= contact.queue_date.strftime '%b %-d'.freeze %></td>
               <td><%= contact.full_name %></td>
               <td><%= contact.advice_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze, data: { turbolinks: false } %></td>
             </tr>
           <% end %>
         </tbody>
@@ -42,7 +42,7 @@
             <tr>
               <td><%= contact.info %></td>
               <td><%= contact.relief_method %></td>
-              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze %></td>
+              <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze, data: { turbolinks: false } %></td>
             </tr>
           <% end %>
         </tbody>

@@ -1,6 +1,6 @@
 <%# required for tooltip %>
-<%= javascript_include_tag 'popper', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'bootstrap/tooltip', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'popper' %>
+<%= javascript_include_tag 'bootstrap/tooltip' %>
 
 <div class="row">
   <div class="col-md-1"></div>
@@ -181,15 +181,13 @@
       </ul>
 
       <div class="card-footer text-center text-muted">
-        <div>
+        <div data-toggle="tooltip" title="<%= @offense.created_at.strftime('%b %d, %Y %l:%M %P') %>">
           Created
           <%= time_ago_in_words @offense.created_at %> ago
-          (<%= @offense.created_at.strftime('%b %d, %Y %l:%M %P') %>)
         </div>
-        <div>
+        <div data-toggle="tooltip" title="<%= @offense.updated_at.strftime('%b %d, %Y %l:%M %P') %>">
           Last updated
           <%= time_ago_in_words @offense.updated_at %> ago
-          (<%= @offense.updated_at.strftime('%b %d, %Y %l:%M %P') %>)
         </div>
       </div>
     </div>
@@ -254,3 +252,7 @@
   </div>
   <div class="col-md-1"></div>
 </div>
+
+<script type="text/javascript">
+  initializeTooltips();
+</script>

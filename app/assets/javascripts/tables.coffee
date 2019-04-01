@@ -7,6 +7,7 @@ tableRowClick = ->
     if ctrl || cmd # if user is pressing the command or ctrl key
       open href # open in new tab
     else
-      Turbolinks.visit href # simulate regular click
+      # Turbolinks.visit href # simulate regular click
+      window.location = href
 
 $(window).on 'turbolinks:load', tableRowClick
