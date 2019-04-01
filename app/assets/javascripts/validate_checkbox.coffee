@@ -28,8 +28,8 @@ $(window).on 'turbolinks:load', validateCheckbox
 #     elem.addEventListener 'change', ->
 #       buttons = Array.from document.querySelectorAll('.btn-outline-info')
 #       submit = document.querySelector 'input[type="submit"]'
-#       sum = 0
-#       checked_count = boxes.forEach (e) -> if e.checked then sum += 1
+#       checked_count = 0
+#       boxes.forEach (e) -> if e.checked then checked_count += 1
 #       # disable submit button if any are checked
 #       submit.disabled = !checked_count
 #       # if 'name not present' checked, uncheck all others
