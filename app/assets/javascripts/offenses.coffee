@@ -1,14 +1,3 @@
-sendEmails = ->
-  $('.js-send-emails').change ->
-    initial = $(@).find('option[selected="selected"]').text()
-    current = @.value
-    btn = $('.btn-success')
-    if initial != 'approved' && current == 'approved'
-      btn.prop('value', 'Save and send emails')
-    else
-      btn.prop('value', 'Save')
-
-
 validateCheckbox = ->
   $('.js-checkbox').change ->
     boxes = $ '.js-checkbox'
@@ -29,5 +18,4 @@ validateCheckbox = ->
         boxes.last().prop 'checked', false
         buttons.last().removeClass('active')
 
-$(window).on 'turbolinks:load', sendEmails
 $(window).on 'turbolinks:load', validateCheckbox
