@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  before_action :set_user_page
+
   def show
     @offense = Offense.new
 
@@ -68,4 +70,10 @@ class SearchController < ApplicationController
     @offenses = Offense.where id: ids
   end
 
+
+  private
+
+  def set_user_page
+    @user_page = true
+  end
 end

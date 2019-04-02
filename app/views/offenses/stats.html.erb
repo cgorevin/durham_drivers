@@ -53,4 +53,3 @@
 <%# this d3 version is 3.5.17 %>
 <%# we could also load from asset pipeline %>
 <script src="https://d3js.org/d3.v3.min.js" onload='donutChart("<%= j bilevel_data %>"); $(window).on("resize", function() { donutChart("<%= j bilevel_data %>") } );'></script>
-<%= stylesheet_link_tag 'admin', media: 'all' %>

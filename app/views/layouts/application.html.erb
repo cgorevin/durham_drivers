@@ -18,6 +18,10 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application'.freeze, media: 'all'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
     <%= javascript_include_tag 'application'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
+    <% unless @user_page %>
+      <%= stylesheet_link_tag 'admin'.freeze, media: 'all'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
+      <%= javascript_include_tag 'admin'.freeze, 'data-turbolinks-track': 'reload'.freeze %>
+    <% end %>
     <%= render 'layouts/shim'.freeze %>
   </head>
   <body>

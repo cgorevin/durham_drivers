@@ -195,6 +195,6 @@
   <div class="col-md-1"></div>
 </div>
 
-<%# required for tooltip %>
-<%= stylesheet_link_tag 'admin', media: 'all' %>
-<%= javascript_include_tag 'admin', onload: 'initializeTooltips();' %>
+<script type="text/javascript">
+  initializeTooltips();
+</script>

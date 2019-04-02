@@ -1,6 +1,7 @@
 # jQuery version
-tableRowClick = ->
+@tableRowClick = ->
   $('[data-href]').click (e) ->
+    console.log 'click'
     href = $(@).data 'href'
     cmd = e.metaKey # for mac support
     ctrl = e.ctrlKey # for windows support
