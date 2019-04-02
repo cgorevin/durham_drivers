@@ -5,9 +5,9 @@
   <div class="col-md-8">
     <p class="text-right">
       <% if I18n.locale == :es %>
-        <%= link_to 'English', root_path(locale: :en) %>
+        <a href="/en">English</a>
       <% else %>
-        <%= link_to 'Español', root_path(locale: :es) %>
+        <a href="/es">Español</a>
       <% end %>
     </p>
 
@@ -49,9 +49,8 @@
     <hr>
     <p><%= t('.upcoming_court_dates').html_safe %></p>
     <hr>
-    <br>
 
-    <div class="row">
+    <div class="row mt-4">
       <div class="col-sm-6">
         <div class="card mb-4">
           <picture data-src="<%= asset_path 'mayor2.webp' %>" data-fallback="<%= asset_path 'mayor2.jpg' %>">
