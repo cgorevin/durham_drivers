@@ -9,8 +9,7 @@ tableRowClick = ->
       open href # open in new tab
     else
       # use full reload instead of turbolinks visit so that tooltip scripts load successfully on offenses#show page
-      # Turbolinks.visit href # simulate regular click
-      window.location = href
+      Turbolinks.visit href # simulate regular click
 
 $(window).on 'turbolinks:load', tableRowClick
 
@@ -25,7 +24,6 @@ $(window).on 'turbolinks:load', tableRowClick
 #       open href # open in new tab
 #     else
 #       # use full reload instead of turbolinks visit so that tooltip scripts load successfully on offenses#show page
-#       # Turbolinks.visit href # simulate regular click
-#       window.location = href
+#       Turbolinks.visit href # simulate regular click
 #
 # window.addEventListener 'turbolinks:load', tableRowClick
