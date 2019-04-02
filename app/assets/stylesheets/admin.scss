@@ -1,0 +1,55 @@
+/*
+* this file is for styling that only appears only on admin pages
+* namely: tooltips, donut charts
+*= require_self
+*/
+
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+
+@import "bootstrap/functions";
+// $info: #0091A0;
+/// $info: #15919D;
+/// $info: #3D8E9C;
+/// $primary: #0091A0;
+/// $component-active-bg: $info;
+/// $input-btn-focus-color: rgba($info, .25) !default;
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+/// @import "bootstrap/root";
+// @import "bootstrap/reboot";
+// @import "bootstrap/type";
+/// @import "bootstrap/images";
+/// @import "bootstrap/code";
+// @import "bootstrap/grid";
+/// @import "bootstrap/tables";
+// @import "bootstrap/forms";
+// @import "bootstrap/buttons";
+/// @import "bootstrap/transitions";
+/// @import "bootstrap/dropdown";
+// @import "bootstrap/button-group";
+// @import "bootstrap/input-group";
+/// @import "bootstrap/custom-forms";
+/// @import "bootstrap/nav";
+/// @import "bootstrap/navbar";
+// @import "bootstrap/card";
+/// @import "bootstrap/breadcrumb";
+// @import "bootstrap/pagination";
+// @import "bootstrap/badge";
+/// @import "bootstrap/jumbotron";
+// @import "bootstrap/alert";
+/// @import "bootstrap/progress";
+/// @import "bootstrap/media";
+// @import "bootstrap/list-group";
+// @import "bootstrap/close";
+/// @import "bootstrap/toasts";
+/// @import "bootstrap/modal";
+@import "bootstrap/tooltip";
+/// @import "bootstrap/popover";
+/// @import "bootstrap/carousel";
+/// @import "bootstrap/spinners";
+// @import "bootstrap/utilities";
+/// @import "bootstrap/print";
+
+@import 'sass';
+@import 'admin/*';
