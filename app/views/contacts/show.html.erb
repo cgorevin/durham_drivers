@@ -5,6 +5,8 @@
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">
+    <h2>Contact</h2>
+
     <div class="d-flex justify-content-between">
       <%= link_to 'Back', contacts_path, class: 'btn btn-info mb-4' %>
 
@@ -169,6 +171,31 @@
     </div>
 
     <%= link_to 'Back', contacts_path, class: 'btn btn-info mt-4' %>
+
+    <h2><%= pluralize @contact.offenses.count, 'Offense' %></h2>
+
+    <div class="card mb-4">
+      <table>
+        <thead>
+          <tr>
+            <th>First</th>
+            <th>Middle</th>
+            <th>Last</th>
+            <th>Birthday</th>
+            <th>Status</th>
+            <th>Group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @offenses.each do |offense| %>
+            <tr class="list-group-item-action" data-href="<%= offense_path(offense) %>">
+              <td><%= offense.first_name %></td><td><%= offense.middle_name %></td><td><%= offense.last_name %></td><td><%= offense.dob_clean %></td><td><small class="<%= offense.css_class %>"><%= offense.status %></small></td><td><%= offense.group %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   </div>
   <div class="col-md-1"></div>
 </div>

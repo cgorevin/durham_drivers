@@ -15,6 +15,7 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find params[:id]
+    @offenses = @contact.offenses
   end
 
   # Parameters: {
