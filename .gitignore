@@ -32,6 +32,7 @@
 
 # Ignore notes folder
 /notes
+.DS_store
 
-# Don't check in credentials 
+# Don't check in credentials
 config/env.yml
