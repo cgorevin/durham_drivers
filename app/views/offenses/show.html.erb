@@ -1,11 +1,12 @@
 <%# required for tooltip %>
 <%= javascript_include_tag 'popper' %>
+<%= javascript_include_tag 'bootstrap/util' %>
 <%= javascript_include_tag 'bootstrap/tooltip' %>
 
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">
-    <h2>Status & Contact History</h2>
+    <h2>Offense Status & Contact History</h2>
 
     <div class="d-flex justify-content-between mb-4">
       <%= link_to 'Back', offenses_path, class: 'btn btn-info' %>
