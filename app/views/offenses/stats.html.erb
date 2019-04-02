@@ -1,8 +1,3 @@
-<%# only load d3 js library on this page, because this is the only page that uses it %>
-<%# donut chart was made with d3 version 3.5.16 %>
-<%# this d3 version is 3.5.17 %>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-
 <div class="row">
   <div class="col-md-6">
     <h2>Stats</h2>
@@ -51,8 +46,11 @@
   <div class="col-md-6">
     <div id="donut"></div>
 
-    <script type="text/javascript">
-      $(window).on('turbolinks:load resize', function() { donutChart("<%= j bilevel_data %>") } );
-    </script>
   </div>
 </div>
+
+<%# only load d3 js library on this page, because this is the only page that uses it %>
+<%# donut chart was made with d3 version 3.5.16 %>
+<%# this d3 version is 3.5.17 %>
+<%# we could also load from asset pipeline %>
+<script src="https://d3js.org/d3.v3.min.js" onload='donutChart("<%= j bilevel_data %>"); $(window).on("resize", function() { donutChart("<%= j bilevel_data %>") } );'></script>
