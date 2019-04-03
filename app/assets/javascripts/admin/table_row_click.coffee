@@ -1,5 +1,5 @@
 # jQuery version
-@tableRowClick = ->
+tableRowClick = ->
   $('[data-href]').click (e) ->
     console.log 'click'
     href = $(@).data 'href'

@@ -1,17 +1,14 @@
 @include desktop {
   nav.header-nav {
-    // all: unset;
-    grid-column: 3 / span 1;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     ul {
       display: flex;
       margin-bottom: 0;
+      padding: 0;
     }
     li {
-      margin-right: 3em;
-      margin-bottom: 0;
+      margin-left: 4vw;
     }
     a {
       opacity: 1;

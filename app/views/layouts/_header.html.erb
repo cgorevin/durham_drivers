@@ -1,14 +1,16 @@
 <% root = root_path(locale: params[:locale]).freeze %>
-<header>
-  <a class="logo" href="<%= root %>">Second Chance Driving</a><input type="checkbox" class="nav-toggle" id="nav-toggle"/>
+<header class="d-flex justify-content-between">
+  <input type="checkbox" class="nav-toggle" id="nav-toggle"/>
+  <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+  <a class="logo" href="<%= root %>">Second Chance Driving</a>
+  <i class="placeholder"></i>
   <nav class="header-nav">
     <ul style="list-style: none;">
       <li><a class="nav-link" href="<%= root %>"><%= t '.search'.freeze %></a></li>
       <li><a class="nav-link" href=<% if I18n.locale == :es %>"/en">English<% else %>"/es">Español<% end %></a></li>
       <% if admin_signed_in? %>
-        <li><a class="nav-link" href="/panel">Admin</a></li><li><a class="nav-link" rel="nofollow" data-method="delete" href="/admins/sign_out">Logout</a></li>
+        <li><a class="nav-link" href="/panel">Admin</a></li>
       <% end %>
     </ul>
   </nav>
-  <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
 </header>
