@@ -19,6 +19,10 @@ class SearchController < ApplicationController
     @last = data[:last_name]
     @dob = data[:date_of_birth]
 
+    ary = [@first, @middle, @last]
+    @query = ary.join(' ').squish
+    @query << ", #{@dob.to_date.strftime '%b %-d, %Y'}"
+
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
                        .where.not(status: 'pulled')
                        .order(first: :asc)

@@ -8,28 +8,7 @@
   <div class="col-md-10">
     <h1 class="title text-center"><%= t ".title" %></h1>
 
-    <div class="card">
-      <table>
-        <tbody>
-          <tr>
-            <td><%= t ".first_name" %></td>
-            <td><%= @first.inspect %></td>
-          </tr>
-          <tr>
-            <td><%= t ".middle_name" %></td>
-            <td><%= @middle.inspect %></td>
-          </tr>
-          <tr>
-            <td><%= t ".last_name" %></td>
-            <td><%= @last.inspect %></td>
-          </tr>
-          <tr>
-            <td><%= t ".dob" %></td>
-            <td><%= @dob.inspect %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <%= text_field_tag :yeet, :yeeet, class: 'form-control', readonly: true, value: @query %>
 
     <p class="records-returned"><%= t '.records_returned' %></p>
 
