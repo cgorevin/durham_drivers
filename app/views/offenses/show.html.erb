@@ -61,18 +61,20 @@
           <b><span class="card-subtitle text-muted">Dates</span></b>
         </div>
         <ul class="list-group list-group-flush">
-          <% if dob %>
             <li class="list-group-item">
               <div class="row">
                 <div class="col-4 col-sm-3">
                   Date of birth
                 </div>
                 <div class="col-8 col-sm-9">
-                  <%= dob.strftime('%b %-d, %Y') %> (<%= @offense.age %> years old)
+                  <% if dob %>
+                    <%= dob.strftime('%b %-d, %Y') %> (<%= @offense.age %> years old)
+                  <% else %>
+                    ???
+                  <% end %>
                 </div>
               </div>
             </li>
-          <% end %>
           <% if disposition %>
             <li class="list-group-item">
               <div class="row">
@@ -90,7 +92,11 @@
                   Age during incident
                 </div>
                 <div class="col-8 col-sm-9">
-                  <%= distance_of_time_in_words dob, disposition %> old
+                  <% if dob %>
+                    <%= distance_of_time_in_words dob, disposition %> old
+                  <% else %>
+                    ???
+                  <% end %>
                 </div>
               </div>
             </li>
