@@ -2,12 +2,12 @@
 lazyLoadImg = ->
   $(window).scroll ->
     top = $(@).scrollTop()
-    if top > 180
+    if top > 100
       $('[data-src]').each ->
         img = $(@)
         src = img.data 'src'
         fallback = img.data 'fallback'
-        img.prepend("<source srcset='#{src}' type='image/webp'><source srcset='#{fallback}' type='image/jpeg'>")
+        img.prepend "<source srcset='#{src}' type='image/webp'><source srcset='#{fallback}' type='image/jpeg'>"
       $(window).off 'scroll'
 
 $(window).on 'turbolinks:load', lazyLoadImg
@@ -16,7 +16,7 @@ $(window).on 'turbolinks:load', lazyLoadImg
 # lazyLoadImg = ->
 #   load = ->
 #     top = @.scrollY
-#     if top > 180
+#     if top > 100
 #       document.querySelectorAll('[data-src]').forEach (picture) ->
 #         src = picture.dataset.src
 #         fallback = picture.dataset.fallback

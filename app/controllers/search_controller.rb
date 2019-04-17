@@ -20,8 +20,9 @@ class SearchController < ApplicationController
     @dob = data[:date_of_birth]
 
     ary = [@first, @middle, @last]
+    dob = Chronic.parse(@dob).to_date
     @query = ary.join(' ').squish
-    @query << ", #{@dob.to_date.strftime '%b %-d, %Y'}"
+    @query << ", #{dob.strftime '%b %-d, %Y'}"
 
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
                        .where.not(status: 'pulled')
