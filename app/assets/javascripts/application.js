@@ -1,5 +1,6 @@
 //= require rails-ujs
 // require jquery
+//= require jquery-3.1.1.slim.min
 //= require bootstrap/button
 //= require turbolinks
 //= require_tree ./user
