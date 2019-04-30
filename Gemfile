@@ -3,39 +3,31 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
-gem 'font-awesome-rails'
+gem 'airbrake', '~> 8.2'
+gem 'bootstrap', '~> 4.3.1'
+gem 'chronic' # date parsing
+gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
+gem 'creek' # Use creek to read .xlsx files
 # gem 'd3_rails', '~> 4.0'
 gem 'daemons' # needed to run bin/delayed_job start
 gem 'delayed_job_active_record'
+gem 'devise'
 gem 'envyable'
+gem 'font-awesome-rails'
+gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'jquery-rails'
+gem 'kaminari' # for pagination
+gem 'puma', '~> 3.11' # Use Puma as the app server
+gem 'rails', '~> 5.2.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
+gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'twilio-ruby'
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'wicked_pdf' # create pdfs with html
 gem 'wkhtmltopdf-binary' # needed by wicked_pdf
-gem 'chronic' # date parsing
-gem 'kaminari' # for pagination
-# Use creek to read .xlsx files
-gem 'creek'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-gem 'devise'
-gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
 
-gem 'airbrake', '~> 8.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -46,9 +38,7 @@ gem 'airbrake', '~> 8.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.1.0', require: false # Reduces boot times through caching; required in config/boot.rb
 
 group :production do
   gem 'pg' # database
