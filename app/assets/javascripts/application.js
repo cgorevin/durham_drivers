@@ -1,5 +1,5 @@
 //= require rails-ujs
-//= require jquery
+// require jquery
 //= require bootstrap/button
 //= require turbolinks
 //= require_tree ./user
