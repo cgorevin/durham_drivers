@@ -6,8 +6,7 @@ class SearchController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.rss { redirect_to root_path }
-      format.env { redirect_to root_path }
+      format.any { redirect_to root_path }
     end
   end
 
