@@ -93,7 +93,16 @@ es:
       item3: "Los cargos eran por ofensas identificadas como “alto riesgo” por la oficina de la Fiscal del Distrito."
       about_button: "Obtenga más información sobre el programa DEAR"
     next_steps:
-      title: "Gracias Y Qué Esperar Después"
+      title: Gracias Y Qué Esperar Después
+      dear_program: Oficina del programa DEAR
+      address1: Palacio de Justicia del Condado de Durham (Durham County Courthouse)
+      address2: 510 S Dillard Street
+      address3: Suite 6400, 6<sup>to</sup> piso
+      address4: Durham, NC 27701
+      email: dear@durhamnc.gov
+      map: Mapa
+      print: Imprimir esta página
+      back: Buscar de nuevo
     approved_signup:
       first_paragraph: "¡Gracias! Debería recibir un correo electrónico o un texto del programa DEAR hoy.
       Si no recibe el correo electrónico, primero verifique que el correo electrónico no haya
@@ -111,17 +120,9 @@ es:
       recomendamos que se comunique con ellos para verificar los problemas pendientes que necesita
       resolver o los pasos que debe seguir para restaurar su licencia de conducir. Pregúnteles
       qué necesita traer con usted y cuánto tendrá que pagar. Para hablar con alguien en el DMV,
-      llame al (919) 715-7000. En ocasiones, el DMV puede tardar un poco en procesar todos los
+      llame al <a href='tel:9197157000'>(919) 715-7000</a>. En ocasiones, el DMV puede tardar un poco en procesar todos los
       documentos de los tribunales. Si los llama antes de ir a una ubicación del DMV, también
       puede verificar que el alivio que recibió esté reflejado en sus registros."
-      dear_program: "Oficina del programa DEAR"
-      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
-      address2: "510 S Dillard Street"
-      address3: "Suite 6400, 6to piso"
-      address4: "Durham, NC 27701"
-      email: "dear@durhamnc.gov"
-      map: "Mapa"
-      print: "Imprimir esta página"
     pending_signup:
       first_paragraph: "¡Gracias! Debería recibir un correo electrónico del programa DEAR hoy
       confirmando que recibimos su información. Si no recibe el correo electrónico, primero
@@ -139,11 +140,3 @@ es:
       third_paragraph: "Le notificaremos tan pronto como tengamos una actualización de su caso,
       e incluiremos información adicional sobre los próximos pasos que puede seguir una vez que
       sepamos más."
-      dear_program: "Oficina del programa DEAR"
-      address1: "Palacio de Justicia del Condado de Durham (Durham County Courthouse)"
-      address2: "510 S Dillard Street"
-      address3: "Suite 6400, 6to piso"
-      address4: "Durham, NC 27701"
-      email: "dear@durhamnc.gov"
-      map: "Mapa"
-      print: "Imprimir esta página"
