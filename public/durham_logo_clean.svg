@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<!-- 2,496 bytes initial -->
+<!-- 926 bytes after (mini) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="500pt"
+  height="620pt" viewBox="0 0 500 620" preserveAspectRatio="xMidYMid meet">
+
+  <g transform="translate(0,620) scale(0.1,-0.1)" fill="#00548F" stroke="none">
+    <!-- yellow stripe -->
+    <rect fill="#FFD046" width="1350" height="6200"/>
+
+    <!-- red stripe -->
+    <rect fill="#EF3E42" width="675" height="6200"/>
+
+    <!-- blue block with stars -->
+    <path d="M1350 0 l3650 0 0 6200 -3650 0z
+      M3835 3645
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M4015 2965
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M3341 3165
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M3460 2465
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M2668 2780
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M2812 2144
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z
+      M1947 2552
+      l63 -196 204 0 -165 -120 61 -191 -163 118 -163 -118 62 191 -166 120 204 0z"/>
+  </g>
+</svg>
