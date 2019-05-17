@@ -27,7 +27,7 @@ Rails.application.configure do
 
   # serve assets under public with cache
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{20.minutes.to_i}"
+    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
   }
 
   # Eager load code on boot. This eager loads most of Rails and
