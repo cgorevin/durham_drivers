@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   def show
     # sets cache to public 2 minutes
-    expires_in 20.minutes, public: true
+    expires_in 30.minutes, public: true
     @offense = Offense.new
 
     respond_to do |format|
