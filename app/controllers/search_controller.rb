@@ -2,6 +2,7 @@ class SearchController < ApplicationController
   before_action :set_user_page
 
   def show
+    expires_in 2.minutes, public: true
     @offense = Offense.new
 
     respond_to do |format|
