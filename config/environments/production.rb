@@ -25,6 +25,11 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  # serve assets under public with cache
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{20.minutes.to_i}"
+  }
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
