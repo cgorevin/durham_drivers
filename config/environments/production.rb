@@ -25,9 +25,9 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  # serve assets under public with cache
+  # serve assets under public with cache ttl
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    'Cache-Control' => "public, max-age=#{2.hours.to_i}"
   }
 
   # Eager load code on boot. This eager loads most of Rails and
