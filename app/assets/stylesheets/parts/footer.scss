@@ -1,6 +1,4 @@
 .footer {
-  // flex-shrink: 0;
-  // position: fixed;
   bottom: 0;
   width: 100%;
   background-color: $nav-bg;
@@ -10,11 +8,7 @@
   margin-top: 15px;
 }
 
-.copyright {
-  padding-bottom: 1.5em;
-}
-
-.text-uppercase, .credits, .copyright, .list-unstyled > li > a {
+.text-uppercase, .credits, .list-unstyled > li > a {
   text-decoration: none;
   color: $nav-link-color;
 }
