@@ -1,3 +1,4 @@
+# controller that shows all of non-admin pages
 class SearchController < ApplicationController
   before_action :set_user_page
 
@@ -12,30 +13,27 @@ class SearchController < ApplicationController
     end
   end
 
+  # POST "/confirm"
+  # POST "/en/confirm"
+  # POST "/es/confirm"
   def confirm
-    data = params[:offense]
+    set_data
 
-    @first = data[:first_name]
-    @middle = data[:middle_name]
-    @last = data[:last_name]
-    @dob = data[:date_of_birth]
+    redirect_to(request.referer, alert: t('.required')) && return if invalid?
 
-    ary = [@first, @middle, @last]
-    dob = Chronic.parse(@dob).to_date
-    @query = ary.join(' ').squish
-    @query << ", #{dob.strftime '%b %-d, %Y'}"
+    set_query
 
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
                        .where.not(status: 'pulled')
                        .order(first: :asc)
                        .to_a
 
-    # NOTE: redirect if no matches
+    # NOTE: redirect if no matches found
     # redirect to results page with 0 offenses
-    if @offenses.empty?
-      session[:ids] = nil
-      redirect_to results_path
-    end
+    return unless @offenses.empty?
+
+    session[:ids] = nil
+    redirect_to results_path
   end
 
   # POST "/results"
@@ -47,9 +45,7 @@ class SearchController < ApplicationController
   def results
     # collect all the ids
     # place all ids in session variable and use for the rest of the pages
-    if request.post?
-      session[:ids] = params[:ids]&.join(' ')&.split
-    end
+    session[:ids] = params[:ids]&.join(' ')&.split if request.post?
     ids = session[:ids]
 
     # load offenses based on ids
@@ -77,8 +73,25 @@ class SearchController < ApplicationController
     @offenses = Offense.where id: ids
   end
 
-
   private
+
+  def invalid?
+    [@first, @last, @dob].any?(&:blank?)
+  end
+
+  def set_data
+    data = params[:offense]
+
+    @first = data[:first_name]
+    @middle = data[:middle_name]
+    @last = data[:last_name]
+    @dob = data[:date_of_birth]
+  end
+
+  def set_query
+    @query = [@first, @middle, @last].join(' ').squish
+    @query << ", #{Chronic.parse(@dob).to_date.strftime '%b %-d, %Y'}"
+  end
 
   def set_user_page
     @user_page = true
