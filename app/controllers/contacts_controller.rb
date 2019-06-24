@@ -33,6 +33,9 @@ class ContactsController < ApplicationController
 
     if contact.persisted?
       contact.add_offenses ids
+
+      raise StandardError if contact.errors.any?
+
       session[:contact_id] = contact.id
     end
 

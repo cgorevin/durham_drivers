@@ -49,6 +49,8 @@ class ReliefMessage < ApplicationRecord
         body: body
       )
     end
+  rescue
+    errors.add :no, 'stop'
   end
 
   def set_body

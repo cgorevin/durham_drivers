@@ -40,6 +40,9 @@ class Contact < ApplicationRecord
     offenses_to_notify = offenses.where id: ids_array
 
     relief_message = relief_messages.create offenses: offenses_to_notify, new: context == :create
+    if relief_message.errors.any?
+      errors.add :no, 'stop'
+    end
 
     contact_histories.create relief_message: relief_message
   end
