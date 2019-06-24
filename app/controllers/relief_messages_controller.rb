@@ -1,6 +1,6 @@
 class ReliefMessagesController < ApplicationController
   def show
-    token = parmas[:token]
+    token = params[:token]
 
     if params[:id]
       @relief_message = ReliefMessage.find params[:id]
