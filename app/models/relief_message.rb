@@ -50,6 +50,12 @@ class ReliefMessage < ApplicationRecord
       )
     end
   rescue
+    # if number given is not able to be texted, Twilio throws an error like
+    # Twilio::REST::RestError: [HTTP 400] 21211 : Unable to create record
+    # The 'To' number 9191234567 is not a valid phone number.
+    # In order to catch this error, we have to go up the chain of callbacks
+    # if we don't, we might catch the error in the controller, but airbrake will
+    # also detect the error and report it, even though we are catching it too
     errors.add :no, 'stop'
   end
 

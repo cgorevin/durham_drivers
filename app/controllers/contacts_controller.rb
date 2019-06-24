@@ -34,6 +34,7 @@ class ContactsController < ApplicationController
     if contact.persisted?
       contact.add_offenses ids
 
+      # raise error if any errors on model. rescue clause will handle the rest
       raise StandardError if contact.errors.any?
 
       session[:contact_id] = contact.id
