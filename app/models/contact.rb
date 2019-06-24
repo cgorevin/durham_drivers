@@ -41,6 +41,9 @@ class Contact < ApplicationRecord
 
     relief_message = relief_messages.create offenses: offenses_to_notify, new: context == :create
 
+    # error handling for controller to pick iup
+    errors.add :no, 'stop' if relief_message.errors.any?
+
     contact_histories.create relief_message: relief_message
   end
 

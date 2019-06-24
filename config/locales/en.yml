@@ -29,11 +29,11 @@ en:
       middle_name: "Middle Name"
       last_name: "Last Name"
       dob: "Birthdate"
-      records_returned: "Here are the records we found. Please select your name if it
-      appears, otherwise select “My name does not appear”."
+      records_returned: Here are the records we found. Please select your name if it appears, otherwise select “My name does not appear”.
       next_button: Next
       back_button: Back
       missing: My name does not appear
+      required: Please include your first name, last name, and date of birth
     results:
       title: "Results"
     approved:

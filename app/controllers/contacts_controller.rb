@@ -33,6 +33,10 @@ class ContactsController < ApplicationController
 
     if contact.persisted?
       contact.add_offenses ids
+
+      # raise error if any errors on model. rescue clause will handle the rest
+      raise StandardError if contact.errors.any?
+
       session[:contact_id] = contact.id
     end
 
@@ -47,7 +51,7 @@ class ContactsController < ApplicationController
     else
       redirect_to next_steps_path
     end
-  rescue Twilio::REST::RestError
+  rescue StandardError
     phone = params[:contact][:phone]
     msg = t '.twilio_fail'
     redirect_to results_path(locale: params[:locale]), alert: msg % phone

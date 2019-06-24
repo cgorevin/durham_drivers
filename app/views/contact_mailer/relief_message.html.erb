@@ -6,33 +6,10 @@
   all_approved = ftas + ftp_approved
   ftp_pending = ftps.select(&:pending?)
 
-  full_name = offenses.first.name
+  full_name = offenses.first&.name
 %>
 
 <div class="pdf-page">
-  <!-- <h1>
-    Message
-    <% if offenses.all?(&:fta?) %>
-      1
-    <% elsif offenses.all?(&:ftp?) %>
-      <% if offenses.all?(&:pending?) %>
-        5
-      <% elsif offenses.all?(&:approved?) %>
-        2
-      <% elsif offenses.all?(&:denied?) %>
-        6
-      <% end %>
-    <% elsif offenses.any?(&:fta?) && offenses.any?(&:ftp?) %>
-      <% if ftps.all?(&:approved?) %>
-        3
-      <% elsif ftps.all?(&:pending?) %>
-        4
-      <% elsif ftps.all?(&:denied?) %>
-        7
-      <% end %>
-    <% end %>
-  </h1> -->
-
   <%= wicked_pdf_image_tag '/durham_logo_transparent.png', class: 'pdf-logo' %>
   <%= image_tag asset_url('/durham_logo_transparent.png'), class: 'pdf-html-logo' %>
 
