@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
     contact = Contact.find_or_create_by contact_params
 
     if contact.persisted?
-      contact.add_offenses ids
+      relief_message = contact.add_offenses ids
 
       # raise error if any errors on model. rescue clause will handle the rest
       raise StandardError if contact.errors.any?
@@ -46,6 +46,15 @@ class ContactsController < ApplicationController
     # 2. if person is who they say they are
     approved = offenses.any?(&:approved?)
     not_requestor = contact.requestor_name.blank?
+
+    flash.notice = <<~HTML
+      View your Relief Letter here:
+      <a id="popup" href="#{token_path(relief_message.token, format: :pdf)}" target="_blank">See Relief Letter</a>
+      <script>
+        var href = $('#popup')[0].href;
+        window.open(href, '_blank');
+      </script>
+    HTML
     if approved && not_requestor
       redirect_to sign_up_path
     else

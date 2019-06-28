@@ -45,6 +45,8 @@ class Contact < ApplicationRecord
     errors.add :no, 'stop' if relief_message.errors.any?
 
     contact_histories.create relief_message: relief_message
+
+    relief_message
   end
 
   def self.queued_to_csv
