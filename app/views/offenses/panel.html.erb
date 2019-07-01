@@ -4,13 +4,18 @@
     <h1 class="title">Admin Panel</h1>
 
     <div class="mb-4">
+      <%= link_to 'Admins', admins_path, class: 'btn btn-info' %>
       <%= link_to 'Contacts', contacts_path, class: 'btn btn-info' %>
       <%= link_to 'Offenses', offenses_path, class: 'btn btn-info' %>
       <%#= link_to 'Import', new_offense_path, class: 'btn btn-secondary' %>
       <%= link_to 'Stats', stats_path, class: 'btn btn-info' %>
     </div>
 
-    <a class="btn btn-danger" rel="nofollow" data-method="delete" href="/admins/sign_out">Logout</a>
+    <a class="btn btn-danger mb-3" rel="nofollow" data-method="delete" href="/admins/sign_out">Logout</a>
+
+    <p>
+      Signed in as: <b><%= current_admin.email %></b>
+    </p>
   </div>
   <div class="col-md-3"></div>
 </div>

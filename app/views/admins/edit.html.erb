@@ -1,0 +1,31 @@
+
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1>Set Password</h1>
+
+    <p>Enter the password you want to use to log into Second Chance Driving.</p>
+
+    <%= form_for @admin do |f| %>
+      <%= hidden_field_tag :token, params[:token] %>
+
+      <div class="form-group">
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Email', required: true, autocomplete: :off, disabled: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Cofirm password', required: true %>
+      </div>
+
+      <div class="text-right">
+        <%= f.submit 'Set password', class: 'btn btn-info right' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-1"></div>
+</div>

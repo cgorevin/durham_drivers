@@ -1,0 +1,28 @@
+<p>
+  Dear <%= @admin.email %>,
+</p>
+
+<p>
+  Someone from Second Chance Driving has invited you to join the admin team!
+</p>
+
+<p>
+  You will be able to see and edit lots of information.
+</p>
+
+<p>
+  Accept the invitation by clicking the button below.
+</p>
+
+<p>
+  You will be asked to set your password so you can log in from anywhere!
+</p>
+
+<p>
+  Email: "<%= @admin.email %>"
+</p>
+
+<p>
+  Password:
+  <%= link_to 'Set password', edit_admin_url(@admin, token: @admin.token) %>
+</p>

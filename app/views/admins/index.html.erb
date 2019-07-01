@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1>Admins</h1>
+
+    <p>
+      Signed in as: <b><%= current_admin.email %></b>
+    </p>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <span>
+        <%= page_entries_info @admins %>
+      </span>
+
+      <%= link_to 'Invite Admin', new_admin_path, class: 'btn btn-info' %>
+    </div>
+
+    <div class="card mt-4">
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <% @admins.each do |admin| %>
+            <tr>
+              <td><%= admin.id %></td>
+              <td><%= admin.email %></td>
+              <td>
+                <%= admin.encrypted_password? ? 'Admin' : 'Invited' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
