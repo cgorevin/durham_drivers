@@ -66,7 +66,12 @@ class Contact < ApplicationRecord
 
       where.not(queue_date: nil).order(queue_date: :asc).each do |x|
         name = x.full_name
-        bday = x.offenses.pluck(:date_of_birth).uniq.map { |x| x.strftime('%-m/%-d/%Y') }.join '; '
+        bday = x.offenses
+                .pluck(:date_of_birth)
+                .uniq
+                .compact
+                .map { |x| x.strftime('%-m/%-d/%Y') }
+                .join '; '
         email = x.email
         phone = x.phone
         street = x.street
