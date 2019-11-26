@@ -21,6 +21,12 @@ class SearchController < ApplicationController
 
     redirect_to(request.referer, alert: t('.required')) && return if invalid?
 
+    # BUG: UNDEFINED METHOD TO_DATE OF FOR NIL. User agent: Firefox 54.0
+    # CHRONIC#PARSE is returning nil
+    # we already make sure first name, last name, and date of birth are required
+    # but what happens when the date provided is unparsable by chronic?
+    # the date of birth that caused this error was "date_of_birth": "12 23 1980"
+    # what if we redirect if we get nil from chronic?
     set_query
 
     @offenses = Offense.fuzzy_search(@first, @middle, @last, @dob)
@@ -89,6 +95,10 @@ class SearchController < ApplicationController
   end
 
   def set_query
+    # code against input like "12 23 1980", even after format restrictions
+    # input like "12.23.1980" also is unparsable
+    # @dob.gsub! ' ', '-' # works
+
     @query = [@first, @middle, @last].join(' ').squish
     @query << ", #{Chronic.parse(@dob).to_date.strftime '%b %-d, %Y'}"
   end
