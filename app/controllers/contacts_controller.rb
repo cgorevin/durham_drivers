@@ -8,7 +8,10 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @contacts.to_csv }
+      format.csv do
+        @contacts = @contacts.includes(:offenses)
+        send_data @contacts.to_csv
+      end
     end
   end
 
@@ -17,7 +20,10 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @queued.to_csv }
+      format.csv do
+        @queued = @queued.includes(:offenses)
+        send_data @queued.to_csv
+      end
     end
   end
 
@@ -26,7 +32,10 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @unqueued.to_csv }
+      format.csv do
+        @unqueued = @unqueued.includes(:offenses)
+        send_data @unqueued.to_csv
+      end
     end
   end
 

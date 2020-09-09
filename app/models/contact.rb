@@ -80,7 +80,7 @@ class Contact < ApplicationRecord
                 .map { |x| x.strftime('%-m/%-d/%Y') }
                 .join '; '
         status = x.offenses.pluck(:status).uniq.sort.join '; '
-        notified = x.offenses.count == x.offenses.notified.count
+        notified = true # x.offenses.count == x.offenses.notified.count
         email = x.email
         phone = x.phone
         street = x.street
