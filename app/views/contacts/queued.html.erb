@@ -5,51 +5,45 @@
   <div class="col-md-10">
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
-        <a class="nav-link active" href="#">All</a>
+        <a class="nav-link" href="/contacts">All</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="contacts/queued">Queued</a>
+        <a class="nav-link active" href="/contacts/queued">Queued</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Unqueued</a>
+        <a class="nav-link" href="/contacts/unqueued">Unqueued</a>
       </li>
     </ul>
 
     <div class="d-flex justify-content-between align-items-center">
-      <h4 class="font-weight-light"><%= @contacts.count %> Queued</h4>
+      <h4 class="font-weight-light"><%= @queued.count %> Queued</h4>
 
-      <%= link_to 'Download CSV', "/contacts.csv", class: 'btn btn-info', target: '_blank', download: "SecondChanceDriving All Contacts #{Date.current}.csv" %>
+      <%= link_to 'Download CSV', "/contacts/queued.csv", class: 'btn btn-info', target: '_blank', download: "SecondChanceDriving Queued #{Date.current}.csv" %>
     </div>
 
-    <!-- for all contacts -->
+    <!-- for queued contacts -->
     <div class="card mt-4">
       <table>
         <thead>
-          <th>
-            <div class="desktop-only">Relief Preference</div>
-          </th>
-          <th>Info</th>
+          <th><div class="desktop-only">Advice preference</div></th>
+          <th>Full Name</th>
+          <th>Queue date</th>
           <th></th>
         </thead>
         <tbody>
-          <% @contacts.each do |contact| %>
+          <% @queued.each do |contact| %>
             <tr>
               <td>
-                <% if contact.relief_method == 'email' %>
+                <% if contact.advice_method == 'email' %>
                   <div class="desktop-only">Email</div>
                   <div class="mobile-only"><i class="fas fa-envelope text-black-50"></i></div>
-                <% elsif contact.relief_method == 'phone' %>
-                  <div class="desktop-only">Phone</div>
-                  <div class="mobile-only"><i class="fas fa-comment-alt fa-flip-horizontal text-primary"></i></div>
-                <% end %>
-              </td>
-              <td>
-                <% if contact.relief_method == 'email' %>
-                  <%= contact.email %>
                 <% else %>
-                  <%= contact.phone %>
+                  <div class="desktop-only">Postal</div>
+                  <div class="mobile-only"><i class="fab fa-usps text-primary"></i></div>
                 <% end %>
               </td>
+              <td><%= contact.full_name %></td>
+              <td><%= contact.queue_date.strftime '%b %-d'.freeze %></td>
               <td><%= link_to :view, contact, class: 'btn btn-info btn-sm'.freeze %></td>
             </tr>
           <% end %>

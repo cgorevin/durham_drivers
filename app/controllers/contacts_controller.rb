@@ -4,12 +4,29 @@ class ContactsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit]
 
   def index
-    @queued = Contact.where.not(queue_date: nil).order(queue_date: :asc)
-    @unqueued = Contact.where(queue_date: nil).order(email: :asc)
+    @contacts = Contact.all
 
     respond_to do |format|
       format.html
-      format.csv { send_data Contact.queued_to_csv }
+      format.csv { send_data @contacts.to_csv }
+    end
+  end
+
+  def queued
+    @queued = Contact.queued.order(queue_date: :asc)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @queued.to_csv }
+    end
+  end
+
+  def unqueued
+    @unqueued = Contact.unqueued.order(email: :asc)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @unqueued.to_csv }
     end
   end
 

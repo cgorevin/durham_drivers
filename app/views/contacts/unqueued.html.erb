@@ -5,23 +5,23 @@
   <div class="col-md-10">
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
-        <a class="nav-link active" href="#">All</a>
+        <a class="nav-link" href="/contacts">All</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="contacts/queued">Queued</a>
+        <a class="nav-link" href="/contacts/queued">Queued</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Unqueued</a>
+        <a class="nav-link active" href="/contacts/unqueued">Unqueued</a>
       </li>
     </ul>
 
     <div class="d-flex justify-content-between align-items-center">
-      <h4 class="font-weight-light"><%= @contacts.count %> Queued</h4>
+      <h4 class="font-weight-light"><%= @unqueued.count %> Unqueued</h4>
 
-      <%= link_to 'Download CSV', "/contacts.csv", class: 'btn btn-info', target: '_blank', download: "SecondChanceDriving All Contacts #{Date.current}.csv" %>
+      <%= link_to 'Download CSV', "/contacts/unqueued.csv", class: 'btn btn-info', target: '_blank', download: "SecondChanceDriving Unqueued #{Date.current}.csv" %>
     </div>
 
-    <!-- for all contacts -->
+    <!-- for unqueued contacts -->
     <div class="card mt-4">
       <table>
         <thead>
@@ -32,7 +32,7 @@
           <th></th>
         </thead>
         <tbody>
-          <% @contacts.each do |contact| %>
+          <% @unqueued.each do |contact| %>
             <tr>
               <td>
                 <% if contact.relief_method == 'email' %>

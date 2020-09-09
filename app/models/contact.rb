@@ -6,6 +6,10 @@ class Contact < ApplicationRecord
   has_many :contact_histories, dependent: :destroy
   has_many :relief_messages, dependent: :destroy
 
+  scope :queued, -> { where.not queue_date: nil }
+  scope :unqueued, -> { where queue_date: nil }
+
+
   # validates :info, presence: true, uniqueness: { scope: :requestor_name }
   # validates :relief_method, presence: true
   validates :relief_method, presence: true, inclusion: {
@@ -49,9 +53,12 @@ class Contact < ApplicationRecord
     relief_message
   end
 
-  def self.queued_to_csv
+  # convert any association into csv
+  def self.to_csv
     # Full name: #{x.full_name}
     # Birthday:  #{x.offenses.pluck(:date_of_birth).uniq.map{|x| x.strftime('%-m/%-d/%Y')}.join ', '}
+    # Status:    #{x.offenses.pluck(:status).uniq.join "; "}
+    # Notified:  #{x.?}
     # Email:     #{x.email}
     # Phone:     #{x.phone}
     # Street:    #{x.street}
@@ -62,9 +69,9 @@ class Contact < ApplicationRecord
     # Advice letter preference: #{x.advice_method}
     # Queue Date: #{x.queue_date}
     CSV.generate do |csv|
-      csv << %w(Name Birthday Email Phone Street City State ZIP Relief\ Message\ Preference Advice\ Letter\ Preference Queue\ Date)
+      csv << %w(Name Birthday Status Notified Email Phone Street City State ZIP Relief\ Message\ Preference Advice\ Letter\ Preference Queue\ Date Last\ Update)
 
-      where.not(queue_date: nil).order(queue_date: :asc).each do |x|
+      all.each do |x|
         name = x.full_name
         bday = x.offenses
                 .pluck(:date_of_birth)
@@ -72,6 +79,8 @@ class Contact < ApplicationRecord
                 .compact
                 .map { |x| x.strftime('%-m/%-d/%Y') }
                 .join '; '
+        status = x.offenses.pluck(:status).uniq.sort.join '; '
+        notified = x.offenses.count == x.offenses.notified.count
         email = x.email
         phone = x.phone
         street = x.street
@@ -81,7 +90,9 @@ class Contact < ApplicationRecord
         relief = x.relief_method
         advice = x.advice_method
         queue = x.queue_date
-        csv << [name, bday, email, phone, street, city, state, zip, relief, advice, queue]
+        # updated = x.updated_at.strftime('%-m/%-d/%Y %l:%M %P')
+        updated = ([x.updated_at] + x.offenses.pluck(:updated_at)).max.strftime('%-m/%-d/%Y %l:%M %P')
+        csv << [name, bday, status, notified, email, phone, street, city, state, zip, relief, advice, queue, updated]
       end
     end
   end
