@@ -82,7 +82,8 @@ class ContactsController < ApplicationController
       </script>
     HTML
     if approved && not_requestor
-      redirect_to sign_up_path
+      # redirect_to sign_up_path # send them to advice letter page
+      redirect_to next_steps_path # send them to thank you page
     else
       redirect_to next_steps_path
     end
